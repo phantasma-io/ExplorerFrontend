@@ -2,13 +2,7 @@
 
 # Explorer Frontend
 
-![build](https://img.shields.io/github/workflow/status/ricardo-jrm/nebula/Continuous%20Integration)
-![license](https://img.shields.io/github/license/ricardo-jrm/nebula)
-![lang](https://img.shields.io/github/languages/top/ricardo-jrm/nebula)
-
 </div>
-
-<br />
 
 ### <b>Scripts</b>
 
