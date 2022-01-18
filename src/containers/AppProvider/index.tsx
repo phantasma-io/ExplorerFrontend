@@ -1,5 +1,6 @@
 import React from 'react';
-import { locales, metas, themes, AceProvider } from '@ricardo-jrm/ace';
+import { AceProvider } from '@ricardo-jrm/ace';
+import { locales, metas, themes } from '../../cfg';
 
 /**
  * AppProviderProps
@@ -17,8 +18,8 @@ export const AppProvider = ({ children }: AppProviderProps) => (
     metas={metas}
     themes={themes}
     localesDefault="en"
-    metasDefault="nebula"
-    themesDefault="nebula"
+    metasDefault="soul"
+    themesDefault="soul"
   >
     {children}
   </AceProvider>
