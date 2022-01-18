@@ -1,0 +1,31 @@
+import { EchoMsgs } from '@ricardo-jrm/echo';
+
+export const pt: EchoMsgs = {
+  // sys
+  example: 'exemplo pt',
+  wip: '🚧 Trabalho em curso 🚧',
+  'copy-to-clipboard': 'Copiar para o clipboard',
+  'copied-to-clipboard': 'Copiado para oclipboard',
+  'not-found': 'Não encontrado',
+  // app
+  close: 'Fechar',
+  apply: 'Aplicar',
+  search: 'Pesquisar',
+  account: 'Conta',
+  address: 'Endereço',
+  hash: 'Hash',
+  block: 'Bloco',
+  chain: 'Cadeia',
+  contract: 'Contrato',
+  dao: 'DAO',
+  token: 'Token',
+  transaction: 'Transação',
+  // meta
+  'meta-description': 'Meta description', // TODO
+  // tooltips
+  'tooltip-locale': 'Alternar idioma',
+  'tooltip-darkmode': 'Alternar modo escuro',
+  'tooltip-search': 'Abrir pesquisa',
+  'tooltip-brand': 'Alternar marca',
+  'tooltip-nav-homepage': 'Ir para a página inicial',
+};
