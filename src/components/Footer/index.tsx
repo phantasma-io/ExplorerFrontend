@@ -1,8 +1,7 @@
 import React, { useMemo } from 'react';
 import { useRouter } from 'next/router';
 import { useFury } from '@ricardo-jrm/fury';
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
+import { Box, Grid } from '@mui/material';
 import { Link } from '../Link';
 import { FOOTER_HEIGHT, FOOTER_OFFSET } from '../../cfg';
 

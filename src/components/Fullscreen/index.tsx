@@ -1,6 +1,5 @@
 import React, { ReactNode } from 'react';
-import Grid, { GridSpacing } from '@mui/material/Grid';
-import Box from '@mui/material/Box';
+import { Box, Grid, GridSpacing } from '@mui/material';
 
 /**
  * Fullscreen props
