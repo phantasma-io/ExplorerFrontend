@@ -4,6 +4,36 @@
 
 </div>
 
+### <b>Requirements</b>
+
+<b>Baseline:</b>
+
+- Display transactions
+- Display contracts
+- Display chains
+- Display tokens
+- Display accounts
+- Display DAOs
+- Search
+
+<b>Extra spice:</b>
+
+- Refreshed design
+- Mobile friendly
+- Dark mode
+- White label
+- Localization
+- Data Visualization
+- Unit tests with `jest` and `react-testing-library`
+- Integration / e2e tests with `cypress`
+- Auto generated changelogs on release
+- CI workflows with `Github Actions`
+- CD workflows with `Vercel`
+
+<br />
+
+</div>
+
 ### <b>Scripts</b>
 
 ```tsx
@@ -55,5 +85,15 @@ yarn sb
 - `Storybook`
 - `Webpack`
 - `Semantic Release`
+
+<br />
+
+---
+
+<br />
+
+### <b>License</b>
+
+[Apache-2.0](https://github.com/phantasma-io/ExplorerFrontend/blob/main/LICENSE) © Phantasma Team ([@phantasma-io](https://github.com/phantasma-io))
 
 <br />
