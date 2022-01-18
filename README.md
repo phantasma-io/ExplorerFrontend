@@ -23,8 +23,8 @@
 - Dark mode
 - White label
 - Localization
-- Data Visualization
-- Component Library with `storybook`
+- Data visualization
+- Component library with `storybook`
 - Unit tests with `jest` and `react-testing-library`
 - Integration / e2e tests with `cypress`
 - Auto generated changelogs on release
