@@ -35,6 +35,7 @@ export const Image = ({
           height: height || 'auto',
           width: width || 'auto',
           maxWidth: '100%',
+          userSelect: 'none',
           ...style,
         }}
       />
@@ -49,6 +50,7 @@ export const Image = ({
       style={{
         height: height || undefined,
         width: width || undefined,
+        userSelect: 'none',
         ...style,
       }}
     />
