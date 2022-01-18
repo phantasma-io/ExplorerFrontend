@@ -1,5 +1,4 @@
 type ObjectType = {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   [x: string]: string | number;
 };
 
