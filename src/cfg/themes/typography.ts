@@ -19,16 +19,16 @@ export const typography: ThemeOptions['typography'] = {
     '"Radiance-Distressed"',
   ].join(','),
   h1: {
+    fontWeight: 600,
+  },
+  h2: {
+    fontWeight: 600,
     fontSize: '60px',
     lineHeight: '60px',
-    fontWeight: 600,
     [breakpoints.down('sm')]: {
       fontSize: '30px',
       lineHeight: '30px',
     },
-  },
-  h2: {
-    fontWeight: 600,
   },
   h3: {
     fontWeight: 600,
