@@ -24,6 +24,7 @@
 - White label
 - Localization
 - Data Visualization
+- Component Library with `storybook`
 - Unit tests with `jest` and `react-testing-library`
 - Integration / e2e tests with `cypress`
 - Auto generated changelogs on release
