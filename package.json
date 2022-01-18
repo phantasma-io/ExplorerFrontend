@@ -40,7 +40,8 @@
     "lint:fix": "eslint --fix .",
     "prettier:fix": "prettier --write --ignore-unknown .",
     "test": "jest --passWithNoTests",
-    "test:watch": "jest --watchAll",
+    "test:watch": "jest --watch",
+    "test:watchAll": "jest --watchAll",
     "cy:open": "yarn run cypress open",
     "cy:run": "yarn run cypress run",
     "prepare": "husky install",
@@ -68,6 +69,7 @@
     "@testing-library/user-event": "^13.5.0",
     "@types/jest": "^27.0.2",
     "@types/node": "^16.11.4",
+    "@types/react-copy-to-clipboard": "^5.0.2",
     "@typescript-eslint/eslint-plugin": "^5.1.0",
     "@typescript-eslint/parser": "^5.1.0",
     "babel-jest": "^27.4.2",
@@ -105,7 +107,9 @@
     "@mui/material": "^5.2.3",
     "@ricardo-jrm/ace": "^1.2.2",
     "next": "^12.0.7",
+    "notistack": "^2.0.3",
     "react": "^17.0.2",
+    "react-copy-to-clipboard": "^5.0.4",
     "react-dom": "^17.0.2"
   }
 }

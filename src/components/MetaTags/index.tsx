@@ -40,7 +40,7 @@ export const MetaTags = () => {
         />
       )} */}
 
-      <meta name="author" content="Ricardo <l1b3r_-> Mota" />
+      <meta name="author" content="Phantasma Team" />
 
       <meta httpEquiv="X-UA-Compatible" content="ie=edge" />
 

@@ -7,15 +7,15 @@ import { createEmotionCache } from '../scripts/createEmotionCache';
 
 const clientSideEmotionCache = createEmotionCache();
 
-interface NebulaAppProps extends AppProps {
+interface ExplorerAppProps extends AppProps {
   emotionCache: EmotionCache;
 }
 
-const NebulaApp: ReactNode = ({
+const ExplorerApp: ReactNode = ({
   Component,
   emotionCache = clientSideEmotionCache,
   pageProps,
-}: NebulaAppProps) => (
+}: ExplorerAppProps) => (
   <CacheProvider value={emotionCache}>
     <AppProvider>
       <AppLayout>
@@ -25,4 +25,4 @@ const NebulaApp: ReactNode = ({
   </CacheProvider>
 );
 
-export default NebulaApp;
+export default ExplorerApp;

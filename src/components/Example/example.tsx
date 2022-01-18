@@ -46,27 +46,18 @@ export const ExampleComponent = ({ text }: ExampleComponentProps) => {
               <Button
                 variant="contained"
                 color="primary"
-                onClick={() => painSetById('nebula')}
+                onClick={() => painSetById('soul')}
               >
-                Nebula
+                SOUL
               </Button>
             </Grid>
             <Grid item>
               <Button
                 variant="contained"
                 color="primary"
-                onClick={() => painSetById('ace')}
+                onClick={() => painSetById('kcal')}
               >
-                Ace
-              </Button>
-            </Grid>
-            <Grid item>
-              <Button
-                variant="contained"
-                color="primary"
-                onClick={() => painSetById('fury')}
-              >
-                Fury
+                KCAL
               </Button>
             </Grid>
           </Grid>
@@ -76,54 +67,36 @@ export const ExampleComponent = ({ text }: ExampleComponentProps) => {
               <Button
                 variant="contained"
                 color="secondary"
-                onClick={() => furySetById('nebula')}
+                onClick={() => furySetById('soul')}
               >
-                NEBULA
+                SOUL
               </Button>
             </Grid>
             <Grid item>
               <Button
                 variant="contained"
                 color="secondary"
-                onClick={() => furySetById('nebula-dark')}
+                onClick={() => furySetById('soul-dark')}
               >
-                NEBULA DARK
+                SOUL DARK
               </Button>
             </Grid>
             <Grid item>
               <Button
                 variant="contained"
                 color="secondary"
-                onClick={() => furySetById('ace')}
+                onClick={() => furySetById('kcal')}
               >
-                ACE
+                KCAL
               </Button>
             </Grid>
             <Grid item>
               <Button
                 variant="contained"
                 color="secondary"
-                onClick={() => furySetById('ace-dark')}
+                onClick={() => furySetById('kcal-dark')}
               >
-                ACE DARK
-              </Button>
-            </Grid>
-            <Grid item>
-              <Button
-                variant="contained"
-                color="secondary"
-                onClick={() => furySetById('fury')}
-              >
-                FURY
-              </Button>
-            </Grid>
-            <Grid item>
-              <Button
-                variant="contained"
-                color="secondary"
-                onClick={() => furySetById('fury-dark')}
-              >
-                FURY DARK
+                KCAL DARK
               </Button>
             </Grid>
           </Grid>
