@@ -2,7 +2,7 @@ import React, { ReactNode } from 'react';
 import { useFury } from '@ricardo-jrm/fury';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
-import { FOOTER_HEIGHT, HEADER_HEIGHT } from '@ricardo-jrm/mesmer';
+import { FOOTER_HEIGHT, HEADER_HEIGHT } from '../../cfg';
 import { Header } from '../../components/Header';
 import { Footer } from '../../components/Footer';
 

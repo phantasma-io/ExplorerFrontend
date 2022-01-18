@@ -1,14 +1,10 @@
 import React, { ReactNode } from 'react';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
-import {
-  useFury,
-  FOOTER_HEIGHT,
-  FOOTER_OFFSET,
-  HEADER_HEIGHT,
-} from '@ricardo-jrm/ace';
+import { useFury } from '@ricardo-jrm/fury';
 import { Header } from '../../components/Header';
 import { Footer } from '../../components/Footer';
+import { FOOTER_HEIGHT, FOOTER_OFFSET, HEADER_HEIGHT } from '../../cfg';
 
 interface LayoutPageProps {
   children: ReactNode;

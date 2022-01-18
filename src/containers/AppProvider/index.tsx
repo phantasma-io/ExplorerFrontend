@@ -1,5 +1,8 @@
 import React from 'react';
-import { AceProvider } from '@ricardo-jrm/ace';
+import { SnackbarProvider } from 'notistack';
+import { FuryProvider } from '@ricardo-jrm/fury';
+import { PainProvider } from '@ricardo-jrm/pain';
+import { EchoProvider } from '@ricardo-jrm/echo';
 import { locales, metas, themes } from '../../cfg';
 
 /**
@@ -13,14 +16,13 @@ interface AppProviderProps {
  * AppProvider
  */
 export const AppProvider = ({ children }: AppProviderProps) => (
-  <AceProvider
-    locales={locales}
-    metas={metas}
-    themes={themes}
-    localesDefault="en"
-    metasDefault="soul"
-    themesDefault="soul"
-  >
-    {children}
-  </AceProvider>
+  <SnackbarProvider maxSnack={3}>
+    <EchoProvider echo={locales} echoDefault="en">
+      <PainProvider pain={metas} painDefault="soul">
+        <FuryProvider fury={themes} furyDefault="soul">
+          {children}
+        </FuryProvider>
+      </PainProvider>
+    </EchoProvider>
+  </SnackbarProvider>
 );
