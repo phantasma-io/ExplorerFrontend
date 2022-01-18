@@ -1,5 +1,5 @@
 import React from 'react';
-import { Fullscreen } from '@ricardo-jrm/ace';
+import { Fullscreen } from '../../components';
 import { FOOTER_HEIGHT, HEADER_HEIGHT } from '../../cfg';
 
 /**

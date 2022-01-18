@@ -3,7 +3,8 @@ import { useRouter } from 'next/router';
 import { useFury } from '@ricardo-jrm/fury';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
-import { Link, FOOTER_HEIGHT, FOOTER_OFFSET } from '@ricardo-jrm/ace';
+import { Link } from '../Link';
+import { FOOTER_HEIGHT, FOOTER_OFFSET } from '../../cfg';
 
 /**
  * Footer props
