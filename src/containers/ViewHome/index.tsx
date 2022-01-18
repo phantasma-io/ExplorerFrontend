@@ -14,7 +14,6 @@ export const ViewHome = () => {
     <Fullscreen subtract={HEADER_HEIGHT + FOOTER_HEIGHT}>
       <Grid
         container
-        spacing={1}
         alignContent="center"
         alignItems="center"
         justifyContent="center"
@@ -30,13 +29,18 @@ export const ViewHome = () => {
           </Box>
         </Grid>
         <Grid item>
-          <Text variant="h1" sx={{ color: '#fff' }}>
+          <Text variant="h2" sx={{ color: '#fff' }} align="center">
             Phantasma Chain Explorer
           </Text>
         </Grid>
         <Grid item xs={12}>
           <Box pt={3} textAlign="center">
-            <Button size="large" variant="contained" color="secondary">
+            <Button
+              size="large"
+              variant="contained"
+              color="secondary"
+              sx={{ fontSize: furyActive.typography.h6.fontSize }}
+            >
               Enter the Nexus
             </Button>
           </Box>
