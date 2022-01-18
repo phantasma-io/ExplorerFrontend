@@ -2,7 +2,12 @@ import React, { useMemo } from 'react';
 import { useRouter } from 'next/router';
 import { useFury } from '@ricardo-jrm/fury';
 import { Box, Grid } from '@mui/material';
+import TwitterIcon from '@mui/icons-material/Twitter';
+import RedditIcon from '@mui/icons-material/Reddit';
+import GitHubIcon from '@mui/icons-material/GitHub';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import { Link } from '../Link';
+import { Image } from '../Image';
 import { FOOTER_HEIGHT, FOOTER_OFFSET } from '../../cfg';
 
 /**
@@ -80,6 +85,123 @@ export const Footer = ({
         justifyItems="center"
         justifyContent="center"
       >
+        <Grid item xs={12}>
+          <Grid
+            container
+            alignItems="center"
+            alignContent="center"
+            justifyItems="center"
+            justifyContent="center"
+          >
+            <Grid item pb={2} pt={1}>
+              <Grid
+                container
+                alignItems="center"
+                alignContent="center"
+                justifyItems="center"
+                justifyContent="center"
+                spacing={{ xs: 0.75, md: 2 }}
+              >
+                <Grid item>
+                  <Link
+                    href="https://twitter.com/phantasmachain"
+                    external
+                    sx={{
+                      color: '#fff',
+                      textDecoration: 'none',
+                    }}
+                  >
+                    <TwitterIcon
+                      sx={{
+                        fontSize: '42px',
+                      }}
+                    />
+                  </Link>
+                </Grid>
+                <Grid item>
+                  <Link
+                    href="https://discord.com/invite/u7D74kH"
+                    external
+                    sx={{
+                      color: '#fff',
+                      textDecoration: 'none',
+                    }}
+                  >
+                    <Image
+                      src="/static/v1/img/discord.png"
+                      height="42px"
+                      responsive
+                    />
+                  </Link>
+                </Grid>
+                <Grid item>
+                  <Link
+                    href="https://www.reddit.com/r/phantasma/"
+                    external
+                    sx={{
+                      color: '#fff',
+                      textDecoration: 'none',
+                    }}
+                  >
+                    <RedditIcon
+                      sx={{
+                        fontSize: '42px',
+                      }}
+                    />
+                  </Link>
+                </Grid>
+                <Grid item>
+                  <Link
+                    href="https://github.com/Phantasma-io"
+                    external
+                    sx={{
+                      color: '#fff',
+                      textDecoration: 'none',
+                    }}
+                  >
+                    <GitHubIcon
+                      sx={{
+                        fontSize: '42px',
+                      }}
+                    />
+                  </Link>
+                </Grid>
+                <Grid item>
+                  <Link
+                    href="https://medium.com/phantasticphantasma"
+                    external
+                    sx={{
+                      color: '#fff',
+                      textDecoration: 'none',
+                    }}
+                  >
+                    <Image
+                      src="/static/v1/img/medium.png"
+                      height="42px"
+                      responsive
+                    />
+                  </Link>
+                </Grid>
+                <Grid item>
+                  <Link
+                    href="https://www.linkedin.com/company/phantasmachain/"
+                    external
+                    sx={{
+                      color: '#fff',
+                      textDecoration: 'none',
+                    }}
+                  >
+                    <LinkedInIcon
+                      sx={{
+                        fontSize: '42px',
+                      }}
+                    />
+                  </Link>
+                </Grid>
+              </Grid>
+            </Grid>
+          </Grid>
+        </Grid>
         <Grid item xs={12}>
           <Grid
             container
