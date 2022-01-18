@@ -1,29 +1,27 @@
 import React, { ReactNode } from 'react';
-import { Box, Grid, GridSpacing } from '@mui/material';
+import { Box, Grid } from '@mui/material';
 
 /**
  * Fullscreen props
  */
 export interface FullscreenProps {
   children?: ReactNode;
-  spacing?: GridSpacing;
   subtract?: number;
 }
 
 /**
  * Fullscreen
  */
-export const Fullscreen = ({
-  children,
-  spacing = 2,
-  subtract = 0,
-}: FullscreenProps) => (
+export const Fullscreen = ({ children, subtract = 0 }: FullscreenProps) => (
   <Grid
     container
     sx={{
       minHeight: `calc(100vh - ${subtract}px)`,
     }}
+    alignItems={'center'}
     alignContent="center"
+    justifyContent={'center'}
+    justifyItems={'center'}
   >
     <Grid
       item
@@ -32,8 +30,10 @@ export const Fullscreen = ({
       sx={{
         minHeight: `calc(100vh - ${subtract}px)`,
       }}
+      alignItems={'center'}
       alignContent="center"
-      spacing={spacing}
+      justifyContent={'center'}
+      justifyItems={'center'}
     >
       <Grid
         item
@@ -42,7 +42,7 @@ export const Fullscreen = ({
         alignItems={'center'}
         alignContent="center"
         justifyContent={'center'}
-        spacing={spacing}
+        justifyItems={'center'}
       >
         <Box>{children}</Box>
       </Grid>
