@@ -8,11 +8,12 @@
 
 <b>Baseline:</b>
 
+- Display chains
+- Display addresses
+- Display blocks
 - Display transactions
 - Display contracts
-- Display chains
 - Display tokens
-- Display accounts
 - Display DAOs
 - Search
 
