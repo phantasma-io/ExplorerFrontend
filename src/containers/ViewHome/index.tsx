@@ -1,14 +1,16 @@
 import React from 'react';
 import { useFury } from '@ricardo-jrm/fury';
+import { useEcho } from '@ricardo-jrm/echo';
 import { Box, Grid, Button } from '@mui/material';
-import { Fullscreen, Text, Image } from '../../components';
-import { FOOTER_HEIGHT, HEADER_HEIGHT } from '../../cfg';
+import { Fullscreen, Text, Image, Link } from '../../components';
+import { FOOTER_HEIGHT, HEADER_HEIGHT, routes } from '../../cfg';
 
 /**
  * ViewHome
  */
 export const ViewHome = () => {
   const { furyActive } = useFury();
+  const { echo } = useEcho();
 
   return (
     <Fullscreen subtract={HEADER_HEIGHT + FOOTER_HEIGHT}>
@@ -29,20 +31,19 @@ export const ViewHome = () => {
           </Box>
         </Grid>
         <Grid item>
-          <Text variant="h2" sx={{ color: '#fff' }} align="center">
-            Phantasma Chain Explorer
-          </Text>
+          <Box py={1.5}>
+            <Text variant="h2" sx={{ color: '#fff' }} align="center">
+              Phantasma Chain Explorer
+            </Text>
+          </Box>
         </Grid>
         <Grid item xs={12}>
           <Box pt={3} textAlign="center">
-            <Button
-              size="large"
-              variant="contained"
-              color="secondary"
-              sx={{ fontSize: furyActive.typography.h6.fontSize }}
-            >
-              Enter the Nexus
-            </Button>
+            <Link href={routes['/nexus']()} sx={{ textDecoration: 'none' }}>
+              <Button size="large" variant="contained" color="secondary">
+                {echo('btn-enterNexus')}
+              </Button>
+            </Link>
           </Box>
         </Grid>
       </Grid>

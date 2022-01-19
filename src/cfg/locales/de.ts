@@ -10,6 +10,8 @@ export const de: EchoMsgs = {
   close: 'Schließen',
   apply: 'Anwenden',
   search: 'Suchen',
+  // meta
+  'meta-description': 'Meta description', // TODO
   // app
   account: 'Konto',
   address: 'Adresse',
@@ -20,12 +22,21 @@ export const de: EchoMsgs = {
   dao: 'DAO',
   token: 'Zeichen',
   transaction: 'Transaktion',
-  // meta
-  'meta-description': 'Meta description', // TODO
   // tooltips
   'tooltip-locale': 'Sprache wechseln',
   'tooltip-darkmode': 'Dunkelmodus umschalten',
   'tooltip-search': 'Suche öffnen',
   'tooltip-brand': 'Marke wechseln',
   'tooltip-nav-homepage': 'Zur Startseite',
+  // btns
+  'btn-enterNexus': 'Betreten Sie den Nexus',
+  // page titles
+  'title-nexus': 'Nexus', // TODO
+  'title-chain': 'chain', // TODO
+  'title-address': 'address', // TODO
+  'title-block': 'block', // TODO
+  'title-transaction': 'transaction', // TODO
+  'title-contract': 'contract', // TODO
+  'title-token': 'token', // TODO
+  'title-dao': 'dao', // TODO
 };
