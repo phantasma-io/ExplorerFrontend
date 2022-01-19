@@ -35,28 +35,31 @@ describe('test router', () => {
     );
   });
 
-  it('should return "/contract?id=account"', () => {
+  it('should return "/contract?id=account&tab=overview"', () => {
     expect(
       routes['/contract']({
         id: 'account',
+        tab: 'overview',
       }),
-    ).toBe('/contract?id=account');
+    ).toBe('/contract?id=account&tab=overview');
   });
 
-  it('should return "/dao?id=masters"', () => {
+  it('should return "/dao?id=masters&tab=overview"', () => {
     expect(
       routes['/dao']({
         id: 'masters',
+        tab: 'overview',
       }),
-    ).toBe('/dao?id=masters');
+    ).toBe('/dao?id=masters&tab=overview');
   });
 
-  it('should return "/token?id=soul"', () => {
+  it('should return "/token?id=soul&tab=overview"', () => {
     expect(
       routes['/token']({
         id: 'soul',
+        tab: 'overview',
       }),
-    ).toBe('/token?id=soul');
+    ).toBe('/token?id=soul&tab=overview');
   });
 
   it('should return "/transaction?id=6DC8D95C32D1517DE55EB4D8A46BF23235CE3DCFA38079398AC01F5C182CFF55"', () => {
