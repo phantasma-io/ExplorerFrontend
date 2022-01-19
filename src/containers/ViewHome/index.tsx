@@ -2,8 +2,8 @@ import React from 'react';
 import { useFury } from '@ricardo-jrm/fury';
 import { useEcho } from '@ricardo-jrm/echo';
 import { Box, Grid, Button } from '@mui/material';
-import { Fullscreen, Text, Image } from '../../components';
-import { FOOTER_HEIGHT, HEADER_HEIGHT } from '../../cfg';
+import { Fullscreen, Text, Image, Link } from '../../components';
+import { FOOTER_HEIGHT, HEADER_HEIGHT, routes } from '../../cfg';
 
 /**
  * ViewHome
@@ -39,9 +39,11 @@ export const ViewHome = () => {
         </Grid>
         <Grid item xs={12}>
           <Box pt={3} textAlign="center">
-            <Button size="large" variant="contained" color="secondary">
-              {echo('btn-enterNexus')}
-            </Button>
+            <Link href={routes['/nexus']()} sx={{ textDecoration: 'none' }}>
+              <Button size="large" variant="contained" color="secondary">
+                {echo('btn-enterNexus')}
+              </Button>
+            </Link>
           </Box>
         </Grid>
       </Grid>
