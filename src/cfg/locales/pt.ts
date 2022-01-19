@@ -30,4 +30,13 @@ export const pt: EchoMsgs = {
   'tooltip-nav-homepage': 'Ir para a página inicial',
   // btns
   'btn-enterNexus': 'Entre no Nexus',
+  // page titles
+  'title-nexus': 'Nexus', // TODO
+  'title-chain': 'chain', // TODO
+  'title-address': 'address', // TODO
+  'title-block': 'block', // TODO
+  'title-transaction': 'transaction', // TODO
+  'title-contract': 'contract', // TODO
+  'title-token': 'token', // TODO
+  'title-dao': 'dao', // TODO
 };
