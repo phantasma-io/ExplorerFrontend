@@ -5,3 +5,5 @@ export { locales } from './locales';
 export { metas } from './metas';
 
 export { themes } from './themes';
+
+export { routes } from './routes';
