@@ -7,6 +7,8 @@ export const pt: EchoMsgs = {
   'copy-to-clipboard': 'Copiar para o clipboard',
   'copied-to-clipboard': 'Copiado para oclipboard',
   'not-found': 'Não encontrado',
+  // meta
+  'meta-description': 'Meta description', // TODO
   // app
   close: 'Fechar',
   apply: 'Aplicar',
@@ -20,12 +22,12 @@ export const pt: EchoMsgs = {
   dao: 'DAO',
   token: 'Token',
   transaction: 'Transação',
-  // meta
-  'meta-description': 'Meta description', // TODO
   // tooltips
   'tooltip-locale': 'Alternar idioma',
   'tooltip-darkmode': 'Alternar modo escuro',
   'tooltip-search': 'Abrir pesquisa',
   'tooltip-brand': 'Alternar marca',
   'tooltip-nav-homepage': 'Ir para a página inicial',
+  // btns
+  'btn-enterNexus': 'Entre no Nexus',
 };
