@@ -28,9 +28,9 @@
 - Component library with `storybook`
 - Unit tests with `jest` and `react-testing-library`
 - Integration / e2e tests with `cypress`
+- CI workflows with `github-actions`
+- CD workflows with `vercel`
 - Auto generated changelogs on release
-- CI workflows with `Github Actions`
-- CD workflows with `Vercel`
 
 <br />
 
