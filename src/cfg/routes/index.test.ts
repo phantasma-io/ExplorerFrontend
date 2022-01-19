@@ -9,12 +9,8 @@ describe('test router', () => {
     expect(routes['/nexus']()).toBe('/nexus');
   });
 
-  it('should return "/chain?id=main"', () => {
-    expect(
-      routes['/chain']({
-        id: 'main',
-      }),
-    ).toBe('/chain?id=main');
+  it('should return "/chain"', () => {
+    expect(routes['/chain']()).toBe('/chain');
   });
 
   it('should return "/address?id=S3d7TbZxtNPdXy11hfmBLJLYn67gZTG2ibL7fJBcVdihWU4"', () => {
