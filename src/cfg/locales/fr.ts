@@ -39,4 +39,8 @@ export const fr: EchoMsgs = {
   'title-contract': 'contract', // TODO
   'title-token': 'token', // TODO
   'title-dao': 'dao', // TODO
+  // tabs
+  'tab-chains': 'Chains', // TODO
+  'tab-tokens': 'Tokens', // TODO
+  'tab-daos': 'Daos', // TODO
 };
