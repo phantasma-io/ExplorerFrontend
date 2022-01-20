@@ -11,7 +11,7 @@ export const en: EchoMsgs = {
   apply: 'Apply',
   search: 'Search',
   // meta
-  'meta-description': 'Meta description',
+  'meta-description': 'Meta description', // TODO
   // app
   account: 'Account',
   address: 'Address',
