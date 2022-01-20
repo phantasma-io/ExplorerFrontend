@@ -9,7 +9,7 @@ export type NavTab = {
   component: ReactNode;
 };
 
-export type NavTabRecord = {
+export type NavTabsRecord = {
   [x: string]: NavTab;
 };
 
@@ -17,7 +17,7 @@ export type NavTabRecord = {
  * NavTabs props
  */
 export interface NavTabsProps {
-  tabs: NavTabRecord;
+  tabs: NavTabsRecord;
   tabsDefault: string;
 }
 
