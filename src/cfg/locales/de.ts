@@ -39,4 +39,17 @@ export const de: EchoMsgs = {
   'title-contract': 'contract', // TODO
   'title-token': 'token', // TODO
   'title-dao': 'dao', // TODO
+  // tabs
+  'tab-overview': 'Overview', // TODO
+  'tab-chains': 'Chains', // TODO
+  'tab-tokens': 'Tokens', // TODO
+  'tab-daos': 'Daos', // TODO
+  'tab-blocks': 'Blocks', // TODO
+  'tab-contracts': 'Contracts', // TODO
+  'tab-balances': 'Balances', // TODO
+  'tab-transactions': 'Transactions', // TODO
+  'tab-events': 'Events', // TODO
+  'tab-oracles': 'Oracles', // TODO
+  'tab-script': 'Script', // TODO
+  'tab-members': 'Members', // TODO
 };
