@@ -12,8 +12,8 @@ export const ViewPage = ({ children, title }: ViewPageProps) => {
   const { echo } = useEcho();
   return (
     <Box>
-      <Box pt={{ xs: 3, lg: 6 }}>
-        <Text variant="h2" sx={{ color: '#fff' }}>
+      <Box pt={{ xs: 3, lg: 6 }} pb={3}>
+        <Text variant="h3" sx={{ color: '#fff' }}>
           {echo(title)}
         </Text>
       </Box>
