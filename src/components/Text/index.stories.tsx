@@ -1,6 +1,7 @@
 import React from 'react';
 import { Story, Meta } from '@storybook/react';
 import { Text, TextProps } from '.';
+import { Link } from '../Link';
 
 export default {
   title: 'Components/Text',
@@ -11,67 +12,61 @@ export default {
 } as Meta;
 
 export const BasicText: Story<TextProps> = (args) => (
-  <Text {...args}>Basic Text</Text>
+  <Text {...args} value="Basic Text" />
 );
 
 export const BasicLabel: Story<TextProps> = (args) => (
-  <Text {...args} label="Label" spacing={1}>
-    Basic Text
-  </Text>
+  <Text {...args} label="Label" value="Basic Text" spacing={1} />
 );
 
 export const BasicClipboard: Story<TextProps> = (args) => (
-  <Text {...args} clipboard spacing={1}>
-    Basic Text
-  </Text>
+  <Text {...args} clipboard spacing={1} value="Basic Text" />
 );
 
 export const Capitalize: Story<TextProps> = (args) => (
-  <Text {...args} capitalize>
-    lorem ipsum dolor sit amet
-  </Text>
+  <Text {...args} capitalize value="lorem ipsum dolor sit amet" />
 );
 
 export const CapitalizeWords: Story<TextProps> = (args) => (
-  <Text {...args} capitalize="allWords">
-    lorem ipsum dolor sit amet
-  </Text>
+  <Text {...args} capitalize="allWords" value="lorem ipsum dolor sit amet" />
 );
 
 export const CapitalizeClipboard: Story<TextProps> = (args) => (
-  <Text {...args} capitalize="allWords" clipboard>
-    lorem ipsum dolor sit amet
-  </Text>
+  <Text
+    {...args}
+    capitalize="allWords"
+    clipboard
+    value="lorem ipsum dolor sit amet"
+  />
 );
 
 export const Truncate: Story<TextProps> = (args) => (
-  <Text {...args} truncate={{ len: 20 }}>
-    Lorem ipsum dolor sit amet
-  </Text>
+  <Text {...args} truncate={{ len: 20 }} value="Lorem ipsum dolor sit amet" />
 );
 
 export const TruncateWords: Story<TextProps> = (args) => (
-  <Text {...args} truncate={{ len: 20, keepLastWord: true }}>
-    Lorem ipsum dolor sit amet
-  </Text>
+  <Text
+    {...args}
+    truncate={{ len: 20, keepLastWord: true }}
+    value="Lorem ipsum dolor sit amet"
+  />
 );
 
 export const TruncateClipboard: Story<TextProps> = (args) => (
-  <Text {...args} truncate={{ len: 20, keepLastWord: true }} clipboard>
-    Lorem ipsum dolor sit amet
-  </Text>
+  <Text
+    {...args}
+    truncate={{ len: 20, keepLastWord: true }}
+    clipboard
+    value="Lorem ipsum dolor sit amet"
+  />
 );
 
 export const FormatNumber: Story<TextProps> = (args) => (
-  <Text {...args} formatNumber>
-    1337
-  </Text>
+  <Text {...args} formatNumber value={1337} />
 );
 
 export const FormatNumberClipboard: Story<TextProps> = (args) => (
-  <Text {...args} formatNumber clipboard>
-    1337
-  </Text>
+  <Text {...args} formatNumber clipboard value={1337} />
 );
 
 export const FormatDate: Story<TextProps> = (args) => (
@@ -83,31 +78,29 @@ export const FormatDateClipboard: Story<TextProps> = (args) => (
 );
 
 export const Translate: Story<TextProps> = (args) => (
-  <Text {...args} translate>
-    example
-  </Text>
+  <Text {...args} translate value="example" />
 );
 
 export const TranslateLabel: Story<TextProps> = (args) => (
-  <Text {...args} translate label="example" spacing={1}>
-    example
-  </Text>
+  <Text {...args} translate label="example" value="example" spacing={1} />
 );
 
 export const TranslateClipboard: Story<TextProps> = (args) => (
-  <Text {...args} translate clipboard spacing={1}>
-    example
-  </Text>
+  <Text {...args} translate clipboard spacing={1} value="example" />
 );
 
 export const TranslateCapitalize: Story<TextProps> = (args) => (
-  <Text {...args} translate capitalize="allWords">
-    example
-  </Text>
+  <Text {...args} translate capitalize="allWords" value="example" />
 );
 
 export const TranslateCapitalizeCopy: Story<TextProps> = (args) => (
-  <Text {...args} translate capitalize="allWords" clipboard>
-    example
+  <Text {...args} translate capitalize="allWords" clipboard value="example" />
+);
+
+export const WithLink: Story<TextProps> = (args) => (
+  <Text label="Link" spacing={1} value="https://phantasma.io/" clipboard>
+    <Link href="https://phantasma.io/" external>
+      Phantasma Team
+    </Link>
   </Text>
 );
