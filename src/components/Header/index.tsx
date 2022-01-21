@@ -171,9 +171,8 @@ export const Header = ({ height }: HeaderProps) => {
                       cursor: 'pointer',
                       fontWeight: 600,
                     }}
-                  >
-                    {painActive.name}
-                  </Text>
+                    value={painActive.name}
+                  />
                 </Box>
               </Tooltip>
             </Grid>
@@ -281,7 +280,7 @@ export const Header = ({ height }: HeaderProps) => {
               </Box>
             </Grid>
             <Grid item>
-              <Text>SOUL</Text>
+              <Text value="SOUL" />
             </Grid>
           </Grid>
         </MenuItem>
@@ -303,7 +302,7 @@ export const Header = ({ height }: HeaderProps) => {
               </Box>
             </Grid>
             <Grid item>
-              <Text>KCAL</Text>
+              <Text value="KCAL" />
             </Grid>
           </Grid>
         </MenuItem>
@@ -359,7 +358,7 @@ export const Header = ({ height }: HeaderProps) => {
           <Box pt={2} px={2}>
             <Grid container justifyContent="space-between" alignItems="center">
               <Grid item>
-                <Text variant="h6">{echo('search')}</Text>
+                <Text variant="h6" value={echo('search')} />
               </Grid>
               <Grid item>
                 <Tooltip title={echo('close')}>

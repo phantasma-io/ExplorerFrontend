@@ -18,10 +18,8 @@ export const NotFound = ({ kind }: NotFoundProps) => {
   return (
     <Paper>
       <Box px={{ xs: 1, md: 3 }} py={9}>
-        <Text variant="h3" gutterBottom>
-          404:
-        </Text>
-        <Text variant="h4">{`${echo(kind)} ${echo('not-found')}`}</Text>
+        <Text variant="h3" gutterBottom value="404:" />
+        <Text variant="h4" value={`${echo(kind)} ${echo('not-found')}`} />
       </Box>
     </Paper>
   );

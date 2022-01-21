@@ -32,9 +32,12 @@ export const ViewHome = () => {
         </Grid>
         <Grid item>
           <Box py={1.5}>
-            <Text variant="h2" sx={{ color: '#fff' }} align="center">
-              Phantasma Chain Explorer
-            </Text>
+            <Text
+              variant="h2"
+              sx={{ color: '#fff' }}
+              align="center"
+              value="Phantasma Chain Explorer"
+            />
           </Box>
         </Grid>
         <Grid item xs={12}>
