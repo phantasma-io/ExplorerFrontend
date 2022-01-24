@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { useEcho } from '@ricardo-jrm/echo';
 import { Text, NavTabs, NavTabsRecord } from '../../components';
-import { routes } from '../../cfg';
+import { routes, Locales } from '../../cfg';
 
 const ChainOverview = () => (
   <>
@@ -22,30 +22,30 @@ const ContractsList = () => (
 );
 
 export const ViewChain = () => {
-  const { echo } = useEcho();
+  const { echo, echoActiveId } = useEcho();
 
   const tabs: NavTabsRecord = useMemo(
     () => ({
       overview: {
         id: 'overview',
         label: echo('tab-overview'),
-        href: routes['/chain'](),
+        href: routes['/chain']({}, echoActiveId as Locales),
         component: <ChainOverview />,
       },
       blocks: {
         id: 'blocks',
         label: echo('tab-blocks'),
-        href: routes['/chain'](),
+        href: routes['/chain']({}, echoActiveId as Locales),
         component: <BlocksList />,
       },
       contracts: {
         id: 'contracts',
         label: echo('tab-contracts'),
-        href: routes['/chain'](),
+        href: routes['/chain']({}, echoActiveId as Locales),
         component: <ContractsList />,
       },
     }),
-    [echo],
+    [echo, echoActiveId],
   );
 
   return <NavTabs tabs={tabs} tabsDefault="overview" />;

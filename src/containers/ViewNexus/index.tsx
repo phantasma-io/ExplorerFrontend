@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { useEcho } from '@ricardo-jrm/echo';
 import { Text, NavTabs, NavTabsRecord } from '../../components';
-import { routes } from '../../cfg';
+import { routes, Locales } from '../../cfg';
 
 const ChainsList = () => (
   <>
@@ -22,30 +22,30 @@ const DaosList = () => (
 );
 
 export const ViewNexus = () => {
-  const { echo } = useEcho();
+  const { echo, echoActiveId } = useEcho();
 
   const tabs: NavTabsRecord = useMemo(
     () => ({
       chains: {
         id: 'chains',
         label: echo('tab-chains'),
-        href: routes['/nexus'](),
+        href: routes['/nexus']({}, echoActiveId as Locales),
         component: <ChainsList />,
       },
       tokens: {
         id: 'tokens',
         label: echo('tab-tokens'),
-        href: routes['/nexus'](),
+        href: routes['/nexus']({}, echoActiveId as Locales),
         component: <TokensList />,
       },
       daos: {
         id: 'daos',
         label: echo('tab-daos'),
-        href: routes['/nexus'](),
+        href: routes['/nexus']({}, echoActiveId as Locales),
         component: <DaosList />,
       },
     }),
-    [echo],
+    [echo, echoActiveId],
   );
 
   return <NavTabs tabs={tabs} tabsDefault="chains" />;
