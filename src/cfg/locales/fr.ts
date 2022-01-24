@@ -26,7 +26,7 @@ export const fr: EchoMsgs = {
   'tooltip-locale': 'Changer de langue',
   'tooltip-darkmode': 'Basculer en mode sombre',
   'tooltip-search': 'Ouvrir la recherche',
-  'tooltip-brand': 'Changer de marque',
+  'tooltip-theme': 'Changer de marque', // TODO
   'tooltip-nav-homepage': "Aller à l'accueil",
   // btns
   'btn-enterNexus': 'Entrez dans le Nexus',

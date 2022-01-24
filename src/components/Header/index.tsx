@@ -177,7 +177,7 @@ export const Header = ({ height }: HeaderProps) => {
               </Tooltip>
             </Grid>
             <Grid item>
-              <Tooltip title={echo('tooltip-brand')}>
+              <Tooltip title={echo('tooltip-theme')}>
                 <Button
                   size="small"
                   sx={{ minWidth: '30px' }}
