@@ -4,18 +4,19 @@ import Box from '@mui/material/Box';
 import { LayoutHome } from '../LayoutHome';
 import { LayoutPage } from '../LayoutPage';
 import { MetaTags } from '../../components';
+import { routesHome } from '../../cfg';
 
 interface AppLayoutProps {
   children: ReactNode;
 }
 
 export const AppLayout = ({ children }: AppLayoutProps) => {
-  const { pathname } = useRouter();
+  const { asPath } = useRouter();
 
   return (
     <Box>
       <MetaTags />
-      {pathname === '/' || pathname === '/blankhome' ? (
+      {routesHome.includes(asPath) ? (
         <LayoutHome>{children}</LayoutHome>
       ) : (
         <LayoutPage>{children}</LayoutPage>
