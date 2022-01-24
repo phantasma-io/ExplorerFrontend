@@ -17,14 +17,13 @@ import {
   FormControlLabel,
 } from '@mui/material';
 import { useFury } from '@ricardo-jrm/fury';
-import { usePain } from '@ricardo-jrm/pain';
 import { useEcho } from '@ricardo-jrm/echo';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import SearchIcon from '@mui/icons-material/Search';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import CloseIcon from '@mui/icons-material/Close';
-import { routes } from '../../cfg';
+import { routes, Locales } from '../../cfg';
 import { Text } from '../Text';
 import { Image } from '../Image';
 
@@ -42,10 +41,9 @@ export interface HeaderProps {
  * Header
  */
 export const Header = ({ height }: HeaderProps) => {
-  const { push } = useRouter();
+  const { push, asPath } = useRouter();
   const { furyActive, furyActiveId, furySetById } = useFury();
-  const { echo, echoActiveId, echoSetById } = useEcho();
-  const { painActive, painActiveId, painSetById } = usePain();
+  const { echo, echoActiveId } = useEcho();
 
   const isDark = useMemo(() => furyActiveId.includes('-dark'), [furyActiveId]);
 
@@ -147,34 +145,20 @@ export const Header = ({ height }: HeaderProps) => {
               <Box pt={0.5}>
                 <Tooltip title={echo('tooltip-nav-homepage')}>
                   <Box
-                    onClick={() => push('/')}
+                    onClick={() =>
+                      push(routes['/']({}, echoActiveId as Locales))
+                    }
                     style={{
                       cursor: 'pointer',
                     }}
                   >
                     <Image
-                      src={painActive.logo as string}
-                      height={painActiveId === 'soul' ? '24px' : '27px'}
+                      src={'/static/v1/img/phantasma-logo-white.png'}
+                      height={'24px'}
                     />
                   </Box>
                 </Tooltip>
               </Box>
-            </Grid>
-            <Grid item>
-              <Tooltip title={echo('tooltip-nav-homepage')}>
-                <Box>
-                  <Text
-                    variant="h5"
-                    onClick={() => push('/')}
-                    sx={{
-                      color: '#fff',
-                      cursor: 'pointer',
-                      fontWeight: 600,
-                    }}
-                    value={painActive.name}
-                  />
-                </Box>
-              </Tooltip>
             </Grid>
             <Grid item>
               <Tooltip title={echo('tooltip-theme')}>
@@ -264,7 +248,6 @@ export const Header = ({ height }: HeaderProps) => {
       >
         <MenuItem
           onClick={() => {
-            painSetById('soul');
             furySetById(isDark ? 'soul-dark' : 'soul');
             handleCloseBrands();
           }}
@@ -273,7 +256,7 @@ export const Header = ({ height }: HeaderProps) => {
             <Grid item>
               <Box pt={1}>
                 <Image
-                  src="/static/v1/img/SOUL.png"
+                  src="/static/v1/img/soul.png"
                   height="1.2rem"
                   responsive
                 />
@@ -286,7 +269,6 @@ export const Header = ({ height }: HeaderProps) => {
         </MenuItem>
         <MenuItem
           onClick={() => {
-            painSetById('kcal');
             furySetById(isDark ? 'kcal-dark' : 'kcal');
             handleCloseBrands();
           }}
@@ -295,7 +277,7 @@ export const Header = ({ height }: HeaderProps) => {
             <Grid item>
               <Box pt={1}>
                 <Image
-                  src="/static/v1/img/KCAL.png"
+                  src="/static/v1/img/kcal.png"
                   height="1.2rem"
                   responsive
                 />
@@ -322,7 +304,7 @@ export const Header = ({ height }: HeaderProps) => {
       >
         <MenuItem
           onClick={() => {
-            echoSetById('en');
+            push(asPath.replace(`/${echoActiveId}`, '/en'));
             handleCloseLocales();
           }}
         >
@@ -330,7 +312,7 @@ export const Header = ({ height }: HeaderProps) => {
         </MenuItem>
         <MenuItem
           onClick={() => {
-            echoSetById('pt');
+            push(asPath.replace(`/${echoActiveId}`, '/pt'));
             handleCloseLocales();
           }}
         >
@@ -338,7 +320,7 @@ export const Header = ({ height }: HeaderProps) => {
         </MenuItem>
         <MenuItem
           onClick={() => {
-            echoSetById('de');
+            push(asPath.replace(`/${echoActiveId}`, '/de'));
             handleCloseLocales();
           }}
         >
@@ -346,7 +328,7 @@ export const Header = ({ height }: HeaderProps) => {
         </MenuItem>
         <MenuItem
           onClick={() => {
-            echoSetById('fr');
+            push(asPath.replace(`/${echoActiveId}`, '/fr'));
             handleCloseLocales();
           }}
         >
@@ -383,7 +365,6 @@ export const Header = ({ height }: HeaderProps) => {
                     push(searchQuery);
                   }
                 }}
-                // label={echo('search')}
               />
             </Box>
             <Box pt={2}>

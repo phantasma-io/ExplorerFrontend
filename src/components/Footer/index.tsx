@@ -8,7 +8,7 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import { Link } from '../Link';
 import { Image } from '../Image';
-import { FOOTER_HEIGHT, FOOTER_OFFSET } from '../../cfg';
+import { FOOTER_HEIGHT, FOOTER_OFFSET, routesHome } from '../../cfg';
 
 /**
  * Footer props
@@ -28,14 +28,11 @@ export const Footer = ({
   height = FOOTER_HEIGHT,
   offset = FOOTER_OFFSET,
 }: FooterProps) => {
-  const { pathname } = useRouter();
+  const { asPath } = useRouter();
 
   const { furyActive } = useFury();
 
-  const isHome = useMemo(
-    () => pathname === '/' || pathname === '/blankhome',
-    [pathname],
-  );
+  const isHome = useMemo(() => routesHome.includes(asPath), [asPath]);
 
   return (
     <Box>

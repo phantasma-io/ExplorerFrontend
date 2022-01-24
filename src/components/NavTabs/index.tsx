@@ -33,12 +33,16 @@ export const NavTabs = ({ tabs, tabsDefault }: NavTabsProps) => {
 
   const changeTab = useCallback(
     (tab: string, url: string) => {
+      const { id } = query;
+      const queryNew = id
+        ? {
+            id,
+            tab,
+          }
+        : { tab };
       push({
         pathname: url,
-        query: {
-          ...query,
-          tab,
-        },
+        query: queryNew,
       });
     },
     [push, query],
@@ -47,7 +51,7 @@ export const NavTabs = ({ tabs, tabsDefault }: NavTabsProps) => {
   return (
     <Paper>
       <Box>
-        <Tabs value={activeTab} textcolor="primary" indicatorcolor="primary">
+        <Tabs value={activeTab} textColor="primary" indicatorColor="primary">
           {Object.values(tabs).map(({ label, id, href }: NavTab) => (
             <Tab
               label={label}
