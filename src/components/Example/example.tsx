@@ -33,7 +33,7 @@ export const ExampleComponent = ({ text }: ExampleComponentProps) => {
       <Box p={3}>
         <Typography data-testid="test-component">{text}</Typography>
         <Typography>{loading ? 'Loading...' : data.name}</Typography>
-        <Typography sx={{ color: palette.primary.main }}>
+        <Typography sx={{ color: palette.secondary.main }}>
           <b>{painActive.name}</b>
         </Typography>
         <Typography sx={{ color: palette.secondary.main }}>
@@ -66,7 +66,7 @@ export const ExampleComponent = ({ text }: ExampleComponentProps) => {
             <Grid item>
               <Button
                 variant="contained"
-                color="secondary"
+                color="primary"
                 onClick={() => furySetById('soul')}
               >
                 SOUL
@@ -75,7 +75,7 @@ export const ExampleComponent = ({ text }: ExampleComponentProps) => {
             <Grid item>
               <Button
                 variant="contained"
-                color="secondary"
+                color="primary"
                 onClick={() => furySetById('soul-dark')}
               >
                 SOUL DARK
@@ -84,7 +84,7 @@ export const ExampleComponent = ({ text }: ExampleComponentProps) => {
             <Grid item>
               <Button
                 variant="contained"
-                color="secondary"
+                color="primary"
                 onClick={() => furySetById('kcal')}
               >
                 KCAL
@@ -93,7 +93,7 @@ export const ExampleComponent = ({ text }: ExampleComponentProps) => {
             <Grid item>
               <Button
                 variant="contained"
-                color="secondary"
+                color="primary"
                 onClick={() => furySetById('kcal-dark')}
               >
                 KCAL DARK

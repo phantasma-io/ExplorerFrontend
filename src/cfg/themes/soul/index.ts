@@ -6,12 +6,13 @@ export const soul: ThemeOptions = {
   typography,
   palette: {
     primary: {
+      main: '#17b1e8', // Phantasma Blue
+      contrastText: '#fff',
+    },
+    secondary: {
       light: '#3492c9',
       main: '#037abd',
       dark: '#025484',
-    },
-    secondary: {
-      main: '#037abd',
     },
   },
   components: overrides,

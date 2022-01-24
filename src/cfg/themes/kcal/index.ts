@@ -6,12 +6,12 @@ export const kcal: ThemeOptions = {
   typography,
   palette: {
     primary: {
+      main: '#d02525',
+    },
+    secondary: {
       light: '#d85050',
       main: '#d02525',
       dark: '#911818',
-    },
-    secondary: {
-      main: '#d02525',
     },
   },
   components: overrides,

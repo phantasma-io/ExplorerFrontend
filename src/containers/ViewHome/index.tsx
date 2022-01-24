@@ -43,7 +43,7 @@ export const ViewHome = () => {
         <Grid item xs={12}>
           <Box pt={3} textAlign="center">
             <Link href={routes['/nexus']()} sx={{ textDecoration: 'none' }}>
-              <Button size="large" variant="contained" color="secondary">
+              <Button size="large" variant="contained" color="primary">
                 {echo('btn-enterNexus')}
               </Button>
             </Link>

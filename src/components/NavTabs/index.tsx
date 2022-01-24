@@ -47,11 +47,7 @@ export const NavTabs = ({ tabs, tabsDefault }: NavTabsProps) => {
   return (
     <Paper>
       <Box>
-        <Tabs
-          value={activeTab}
-          textColor="secondary"
-          indicatorColor="secondary"
-        >
+        <Tabs value={activeTab} textcolor="primary" indicatorcolor="primary">
           {Object.values(tabs).map(({ label, id, href }: NavTab) => (
             <Tab
               label={label}

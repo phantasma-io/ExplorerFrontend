@@ -373,7 +373,7 @@ export const Header = ({ height }: HeaderProps) => {
             <Box>
               <TextField
                 variant="outlined"
-                color="secondary"
+                color="primary"
                 fullWidth
                 value={searchValue}
                 onChange={handleSearchChange}
@@ -391,32 +391,32 @@ export const Header = ({ height }: HeaderProps) => {
                 <RadioGroup value={radioValue} onChange={handleRadioChange} row>
                   <FormControlLabel
                     value="address"
-                    control={<Radio color="secondary" />}
+                    control={<Radio color="primary" />}
                     label={echo('address')}
                   />
                   {/* <FormControlLabel
                     value="block"
-                    control={<Radio color="secondary" />}
+                    control={<Radio color="primary" />}
                     label={echo('block')}
                   /> */}
                   <FormControlLabel
                     value="contract"
-                    control={<Radio color="secondary" />}
+                    control={<Radio color="primary" />}
                     label={echo('contract')}
                   />
                   <FormControlLabel
                     value="token"
-                    control={<Radio color="secondary" />}
+                    control={<Radio color="primary" />}
                     label={echo('token')}
                   />
                   <FormControlLabel
                     value="transaction"
-                    control={<Radio color="secondary" />}
+                    control={<Radio color="primary" />}
                     label={echo('transaction')}
                   />
                   {/* <FormControlLabel
                     value="dao"
-                    control={<Radio color="secondary" />}
+                    control={<Radio color="primary" />}
                     label={echo('dao')}
                   /> */}
                 </RadioGroup>
@@ -424,7 +424,7 @@ export const Header = ({ height }: HeaderProps) => {
             </Box>
             <Box textAlign="right" pt={1}>
               <Button
-                color="secondary"
+                color="primary"
                 variant="contained"
                 onClick={() => {
                   handleSearchClose();
