@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { useEcho } from '@ricardo-jrm/echo';
 import { Text, NavTabs, NavTabsRecord } from '../../components';
-import { routes } from '../../cfg';
+import { routes, Locales } from '../../cfg';
 
 const DaoOverview = () => (
   <>
@@ -16,24 +16,24 @@ const DaoMembers = () => (
 );
 
 export const ViewDao = () => {
-  const { echo } = useEcho();
+  const { echo, echoActiveId } = useEcho();
 
   const tabs: NavTabsRecord = useMemo(
     () => ({
       overview: {
         id: 'overview',
         label: echo('tab-overview'),
-        href: routes['/dao'](),
+        href: routes['/dao']({}, echoActiveId as Locales),
         component: <DaoOverview />,
       },
       members: {
         id: 'members',
         label: echo('tab-members'),
-        href: routes['/dao'](),
+        href: routes['/dao']({}, echoActiveId as Locales),
         component: <DaoMembers />,
       },
     }),
-    [echo],
+    [echo, echoActiveId],
   );
 
   return <NavTabs tabs={tabs} tabsDefault="overview" />;

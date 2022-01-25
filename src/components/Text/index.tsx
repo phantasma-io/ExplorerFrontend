@@ -25,11 +25,11 @@ import EventIcon from '@mui/icons-material/Event';
  * Text props
  */
 export interface TextProps
-  extends Omit<TypographyProps, 'translate' | 'variant' | 'children'> {
+  extends Omit<TypographyProps, 'translate' | 'variant'> {
   /**
-   * Children
+   * Value
    */
-  children?: string | number;
+  value?: string | number;
   /**
    * Typography variant
    */
@@ -89,6 +89,7 @@ export interface TextProps
  */
 export const Text = ({
   children,
+  value,
   translate,
   formatNumber,
   formatDate,
@@ -111,25 +112,25 @@ export const Text = ({
     }
 
     if (formatNumber) {
-      return numberFormat(children as number);
+      return numberFormat(value as number);
     }
 
     if (translate) {
       if (capitalize) {
         return stringCapitalize(
-          echo(children as string),
+          echo(value as string),
           capitalize === 'allWords',
         );
       }
-      return echo(children as string);
+      return echo(value as string);
     }
 
     if (capitalize) {
-      return stringCapitalize(`${children}`, capitalize === 'allWords');
+      return stringCapitalize(`${value}`, capitalize === 'allWords');
     }
 
-    return `${children}`;
-  }, [formatDate, formatNumber, children, translate, echo, capitalize]);
+    return `${value}`;
+  }, [formatDate, formatNumber, value, translate, echo, capitalize]);
 
   const result = useMemo(() => {
     let strDisplay = `${copy}`;
@@ -164,7 +165,7 @@ export const Text = ({
           </Typography>
         </Grid>
       )}
-      <Grid item>{result}</Grid>
+      <Grid item>{children || result}</Grid>
       {formatDate && (
         <Grid item>
           <Tooltip title={dateRelative(formatDate).fromNow}>

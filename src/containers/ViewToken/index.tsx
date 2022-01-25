@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { useEcho } from '@ricardo-jrm/echo';
 import { Text, NavTabs, NavTabsRecord } from '../../components';
-import { routes } from '../../cfg';
+import { routes, Locales } from '../../cfg';
 
 const TokenOverview = () => (
   <>
@@ -10,18 +10,18 @@ const TokenOverview = () => (
 );
 
 export const ViewToken = () => {
-  const { echo } = useEcho();
+  const { echo, echoActiveId } = useEcho();
 
   const tabs: NavTabsRecord = useMemo(
     () => ({
       overview: {
         id: 'overview',
         label: echo('tab-overview'),
-        href: routes['/token'](),
+        href: routes['/token']({}, echoActiveId as Locales),
         component: <TokenOverview />,
       },
     }),
-    [echo],
+    [echo, echoActiveId],
   );
 
   return <NavTabs tabs={tabs} tabsDefault="overview" />;

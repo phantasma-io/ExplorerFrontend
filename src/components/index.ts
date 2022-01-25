@@ -12,6 +12,8 @@ export { Link } from './Link';
 
 export { MetaTags } from './MetaTags';
 
+export { MetaDynamic } from './MetaDynamic';
+
 export { NavTabs } from './NavTabs';
 export type { NavTabsRecord } from './NavTabs';
 

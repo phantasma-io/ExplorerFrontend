@@ -17,14 +17,13 @@ import {
   FormControlLabel,
 } from '@mui/material';
 import { useFury } from '@ricardo-jrm/fury';
-import { usePain } from '@ricardo-jrm/pain';
 import { useEcho } from '@ricardo-jrm/echo';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import SearchIcon from '@mui/icons-material/Search';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import CloseIcon from '@mui/icons-material/Close';
-import { routes } from '../../cfg';
+import { routes, Locales } from '../../cfg';
 import { Text } from '../Text';
 import { Image } from '../Image';
 
@@ -42,10 +41,9 @@ export interface HeaderProps {
  * Header
  */
 export const Header = ({ height }: HeaderProps) => {
-  const { push } = useRouter();
+  const { push, asPath } = useRouter();
   const { furyActive, furyActiveId, furySetById } = useFury();
-  const { echo, echoActiveId, echoSetById } = useEcho();
-  const { painActive, painActiveId, painSetById } = usePain();
+  const { echo, echoActiveId } = useEcho();
 
   const isDark = useMemo(() => furyActiveId.includes('-dark'), [furyActiveId]);
 
@@ -132,11 +130,11 @@ export const Header = ({ height }: HeaderProps) => {
   return (
     <Box
       px={{
-        xs: 1,
-        sm: 2,
-        md: 3,
-        lg: 4,
-        xl: 5,
+        xs: 2,
+        sm: 3,
+        md: 4,
+        lg: 5,
+        xl: 6,
       }}
       sx={{ background: 'transparent' }}
     >
@@ -146,39 +144,45 @@ export const Header = ({ height }: HeaderProps) => {
             <Grid item>
               <Box pt={0.5}>
                 <Tooltip title={echo('tooltip-nav-homepage')}>
-                  <Box
-                    onClick={() => push('/')}
-                    style={{
-                      cursor: 'pointer',
-                    }}
-                  >
-                    <Image
-                      src={painActive.logo as string}
-                      height={painActiveId === 'soul' ? '24px' : '27px'}
-                    />
+                  <Box>
+                    <Box
+                      display={{ xs: 'none', md: 'block' }}
+                      onClick={() =>
+                        push(routes['/']({}, echoActiveId as Locales))
+                      }
+                      style={{
+                        cursor: 'pointer',
+                      }}
+                    >
+                      <Image
+                        src={'/static/v1/img/phantasma-logo-white.png'}
+                        height={'24px'}
+                        title="Phantasma"
+                        alt="Phantasma Team"
+                      />
+                    </Box>
+                    <Box
+                      display={{ xs: 'block', md: 'none' }}
+                      onClick={() =>
+                        push(routes['/']({}, echoActiveId as Locales))
+                      }
+                      style={{
+                        cursor: 'pointer',
+                      }}
+                    >
+                      <Image
+                        src={'/static/v1/img/phantasma-logo-icon-white.png'}
+                        height={'24px'}
+                        title="Phantasma"
+                        alt="Phantasma Team"
+                      />
+                    </Box>
                   </Box>
                 </Tooltip>
               </Box>
             </Grid>
             <Grid item>
-              <Tooltip title={echo('tooltip-nav-homepage')}>
-                <Box>
-                  <Text
-                    variant="h5"
-                    onClick={() => push('/')}
-                    sx={{
-                      color: '#fff',
-                      cursor: 'pointer',
-                      fontWeight: 600,
-                    }}
-                  >
-                    {painActive.name}
-                  </Text>
-                </Box>
-              </Tooltip>
-            </Grid>
-            <Grid item>
-              <Tooltip title={echo('tooltip-brand')}>
+              <Tooltip title={echo('tooltip-theme')}>
                 <Button
                   size="small"
                   sx={{ minWidth: '30px' }}
@@ -265,7 +269,6 @@ export const Header = ({ height }: HeaderProps) => {
       >
         <MenuItem
           onClick={() => {
-            painSetById('soul');
             furySetById(isDark ? 'soul-dark' : 'soul');
             handleCloseBrands();
           }}
@@ -274,36 +277,39 @@ export const Header = ({ height }: HeaderProps) => {
             <Grid item>
               <Box pt={1}>
                 <Image
-                  src="/static/v1/img/SOUL.png"
+                  src="/static/v1/img/soul.png"
                   height="1.2rem"
                   responsive
+                  title="SOUL"
+                  alt="SOUL"
                 />
               </Box>
             </Grid>
             <Grid item>
-              <Text>SOUL</Text>
+              <Text value="SOUL" sx={{ fontWeight: 600 }} />
             </Grid>
           </Grid>
         </MenuItem>
         <MenuItem
           onClick={() => {
-            painSetById('kcal');
             furySetById(isDark ? 'kcal-dark' : 'kcal');
             handleCloseBrands();
           }}
         >
           <Grid container alignItems="center" spacing={1}>
             <Grid item>
-              <Box pt={1}>
+              <Box pt={0.6}>
                 <Image
-                  src="/static/v1/img/KCAL.png"
+                  src="/static/v1/img/kcal.png"
                   height="1.2rem"
                   responsive
+                  title="KCAL"
+                  alt="KCAL"
                 />
               </Box>
             </Grid>
             <Grid item>
-              <Text>KCAL</Text>
+              <Text value="KCAL" sx={{ fontWeight: 600 }} />
             </Grid>
           </Grid>
         </MenuItem>
@@ -323,7 +329,7 @@ export const Header = ({ height }: HeaderProps) => {
       >
         <MenuItem
           onClick={() => {
-            echoSetById('en');
+            push(asPath.replace(`/${echoActiveId}`, '/en'));
             handleCloseLocales();
           }}
         >
@@ -331,7 +337,7 @@ export const Header = ({ height }: HeaderProps) => {
         </MenuItem>
         <MenuItem
           onClick={() => {
-            echoSetById('pt');
+            push(asPath.replace(`/${echoActiveId}`, '/pt'));
             handleCloseLocales();
           }}
         >
@@ -339,7 +345,7 @@ export const Header = ({ height }: HeaderProps) => {
         </MenuItem>
         <MenuItem
           onClick={() => {
-            echoSetById('de');
+            push(asPath.replace(`/${echoActiveId}`, '/de'));
             handleCloseLocales();
           }}
         >
@@ -347,7 +353,7 @@ export const Header = ({ height }: HeaderProps) => {
         </MenuItem>
         <MenuItem
           onClick={() => {
-            echoSetById('fr');
+            push(asPath.replace(`/${echoActiveId}`, '/fr'));
             handleCloseLocales();
           }}
         >
@@ -359,7 +365,7 @@ export const Header = ({ height }: HeaderProps) => {
           <Box pt={2} px={2}>
             <Grid container justifyContent="space-between" alignItems="center">
               <Grid item>
-                <Text variant="h6">{echo('search')}</Text>
+                <Text variant="h6" value={echo('search')} />
               </Grid>
               <Grid item>
                 <Tooltip title={echo('close')}>
@@ -374,7 +380,7 @@ export const Header = ({ height }: HeaderProps) => {
             <Box>
               <TextField
                 variant="outlined"
-                color="secondary"
+                color="primary"
                 fullWidth
                 value={searchValue}
                 onChange={handleSearchChange}
@@ -384,7 +390,6 @@ export const Header = ({ height }: HeaderProps) => {
                     push(searchQuery);
                   }
                 }}
-                // label={echo('search')}
               />
             </Box>
             <Box pt={2}>
@@ -392,32 +397,32 @@ export const Header = ({ height }: HeaderProps) => {
                 <RadioGroup value={radioValue} onChange={handleRadioChange} row>
                   <FormControlLabel
                     value="address"
-                    control={<Radio color="secondary" />}
+                    control={<Radio color="primary" />}
                     label={echo('address')}
                   />
                   {/* <FormControlLabel
                     value="block"
-                    control={<Radio color="secondary" />}
+                    control={<Radio color="primary" />}
                     label={echo('block')}
                   /> */}
                   <FormControlLabel
                     value="contract"
-                    control={<Radio color="secondary" />}
+                    control={<Radio color="primary" />}
                     label={echo('contract')}
                   />
                   <FormControlLabel
                     value="token"
-                    control={<Radio color="secondary" />}
+                    control={<Radio color="primary" />}
                     label={echo('token')}
                   />
                   <FormControlLabel
                     value="transaction"
-                    control={<Radio color="secondary" />}
+                    control={<Radio color="primary" />}
                     label={echo('transaction')}
                   />
                   {/* <FormControlLabel
                     value="dao"
-                    control={<Radio color="secondary" />}
+                    control={<Radio color="primary" />}
                     label={echo('dao')}
                   /> */}
                 </RadioGroup>
@@ -425,7 +430,7 @@ export const Header = ({ height }: HeaderProps) => {
             </Box>
             <Box textAlign="right" pt={1}>
               <Button
-                color="secondary"
+                color="primary"
                 variant="contained"
                 onClick={() => {
                   handleSearchClose();
