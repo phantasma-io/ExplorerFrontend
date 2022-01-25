@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useMemo } from 'react';
 import { Story, Meta } from '@storybook/react';
 import { TablePagination, TablePaginationProps } from '.';
 
@@ -10,6 +10,23 @@ export default {
   },
 } as Meta;
 
-export const Default: Story<TablePaginationProps> = () => (
-  <TablePagination page={1} pageSize={25} total={100} />
-);
+export const Default: Story<TablePaginationProps> = () => {
+  const [page, pageSet] = useState(1);
+  const [pageSize] = useState(25);
+  const [total] = useState(100);
+
+  const pageCount = useMemo(
+    () => Math.floor(total / pageSize),
+    [pageSize, total],
+  );
+
+  return (
+    <TablePagination
+      page={page}
+      pageSet={pageSet}
+      pageSize={pageSize}
+      pageCount={pageCount}
+      total={total}
+    />
+  );
+};
