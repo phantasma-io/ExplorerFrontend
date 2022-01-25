@@ -157,6 +157,8 @@ export const Header = ({ height }: HeaderProps) => {
                       <Image
                         src={'/static/v1/img/phantasma-logo-white.png'}
                         height={'24px'}
+                        title="Phantasma"
+                        alt="Phantasma Team"
                       />
                     </Box>
                     <Box
@@ -171,6 +173,8 @@ export const Header = ({ height }: HeaderProps) => {
                       <Image
                         src={'/static/v1/img/phantasma-logo-icon-white.png'}
                         height={'24px'}
+                        title="Phantasma"
+                        alt="Phantasma Team"
                       />
                     </Box>
                   </Box>
@@ -276,11 +280,13 @@ export const Header = ({ height }: HeaderProps) => {
                   src="/static/v1/img/soul.png"
                   height="1.2rem"
                   responsive
+                  title="SOUL"
+                  alt="SOUL"
                 />
               </Box>
             </Grid>
             <Grid item>
-              <Text value="SOUL" />
+              <Text value="SOUL" sx={{ fontWeight: 600 }} />
             </Grid>
           </Grid>
         </MenuItem>
@@ -292,16 +298,18 @@ export const Header = ({ height }: HeaderProps) => {
         >
           <Grid container alignItems="center" spacing={1}>
             <Grid item>
-              <Box pt={1}>
+              <Box pt={0.6}>
                 <Image
                   src="/static/v1/img/kcal.png"
                   height="1.2rem"
                   responsive
+                  title="KCAL"
+                  alt="KCAL"
                 />
               </Box>
             </Grid>
             <Grid item>
-              <Text value="KCAL" />
+              <Text value="KCAL" sx={{ fontWeight: 600 }} />
             </Grid>
           </Grid>
         </MenuItem>
