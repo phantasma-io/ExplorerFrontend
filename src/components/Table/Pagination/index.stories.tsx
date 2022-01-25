@@ -13,7 +13,7 @@ export default {
 export const Default: Story<TablePaginationProps> = () => {
   const [page, pageSet] = useState(1);
   const [pageSize] = useState(25);
-  const [total] = useState(100);
+  const [total] = useState(1000);
 
   const pageCount = useMemo(
     () => Math.floor(total / pageSize),
@@ -21,12 +21,6 @@ export const Default: Story<TablePaginationProps> = () => {
   );
 
   return (
-    <TablePagination
-      page={page}
-      pageSet={pageSet}
-      pageSize={pageSize}
-      pageCount={pageCount}
-      total={total}
-    />
+    <TablePagination page={page} pageSet={pageSet} pageCount={pageCount} />
   );
 };
