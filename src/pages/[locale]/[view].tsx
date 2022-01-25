@@ -6,8 +6,9 @@ import type {
   GetStaticPaths,
 } from 'next';
 import { ParsedUrlQuery } from 'querystring';
+import { EchoProvider } from '@ricardo-jrm/echo';
 import { LocalizedView } from '../../containers/LocalizedView';
-import { localesKeys, Locales, routesViews } from '../../cfg';
+import { locales, localesKeys, Locales, routesViews } from '../../cfg';
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const paths: (
@@ -50,7 +51,13 @@ const HomePage: NextPage = ({
   locale,
   route,
 }: InferGetStaticPropsType<typeof getStaticProps>) => (
-  <LocalizedView locale={locale} route={route} />
+  <EchoProvider
+    echo={locales}
+    echoDefault={locale}
+    lsid="phantasma-explorer-locale"
+  >
+    <LocalizedView locale={locale} route={route} />
+  </EchoProvider>
 );
 
 export default HomePage;

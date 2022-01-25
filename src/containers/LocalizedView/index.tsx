@@ -101,25 +101,18 @@ export const LocalizedView = ({ locale, route }: LocalizedViewProps) => {
     }
   }, [route]);
 
-  if (route === '/') {
-    return (
-      <Box>
-        <MetaDynamic title={title} description={description} />
-        <Box>{children}</Box>
-      </Box>
-    );
-  }
-
   return (
     <Box>
       <MetaDynamic title={title} description={description} />
-      <Box pt={{ xs: 3, lg: 6 }} pb={3}>
-        <Text
-          variant="h3"
-          sx={{ color: '#fff' }}
-          value={echo(`title-${query?.view as string}`)}
-        />
-      </Box>
+      {route !== '/' && (
+        <Box pt={{ xs: 3, lg: 6 }} pb={3}>
+          <Text
+            variant="h3"
+            sx={{ color: '#fff' }}
+            value={echo(`title-${query?.view as string}`)}
+          />
+        </Box>
+      )}
       <Box>{children}</Box>
     </Box>
   );

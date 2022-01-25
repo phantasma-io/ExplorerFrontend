@@ -16,18 +16,12 @@ interface AppProviderProps {
  */
 export const AppProvider = ({ children }: AppProviderProps) => (
   <SnackbarProvider maxSnack={3}>
-    <EchoProvider
-      echo={locales}
-      echoDefault={localesDefault}
-      lsid="phantasma-explorer-locale"
+    <FuryProvider
+      fury={themes}
+      furyDefault="soul"
+      lsid="phantasma-explorer-theme"
     >
-      <FuryProvider
-        fury={themes}
-        furyDefault="soul"
-        lsid="phantasma-explorer-theme"
-      >
-        {children}
-      </FuryProvider>
-    </EchoProvider>
+      {children}
+    </FuryProvider>
   </SnackbarProvider>
 );
