@@ -8,7 +8,16 @@ export const pt: EchoMsgs = {
   'copied-to-clipboard': 'Copiado para oclipboard',
   'not-found': 'Não encontrado',
   // meta
-  'meta-description': 'Meta description', // TODO
+  'meta-title': 'Phantasma Explorer',
+  'meta-home': `home-pt`, // TODO
+  'meta-nexus': `nexus-pt`, // TODO
+  'meta-chain': `chain-pt`, // TODO
+  'meta-address': `address-pt`, // TODO
+  'meta-block': `block-pt`, // TODO
+  'meta-transaction': `tx-pt`, // TODO
+  'meta-contract': `contract-pt`, // TODO
+  'meta-token': `token-pt`, // TODO
+  'meta-dao': `dao-pt`, // TODO
   // app
   close: 'Fechar',
   apply: 'Aplicar',

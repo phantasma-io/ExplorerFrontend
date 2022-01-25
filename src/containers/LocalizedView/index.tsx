@@ -14,7 +14,7 @@ import {
   ViewToken,
   ViewTransaction,
 } from '../index';
-import { Text } from '../../components';
+import { Text, MetaDynamic } from '../../components';
 
 interface LocalizedViewProps {
   locale: Locales;
@@ -28,6 +28,54 @@ export const LocalizedView = ({ locale, route }: LocalizedViewProps) => {
   useEffect(() => {
     echoSetById(locale);
   });
+
+  const title = useMemo(() => {
+    switch (route) {
+      case '/address':
+        return `${echo('address')} | ${echo('meta-title')}`;
+      case '/block':
+        return `${echo('block')} | ${echo('meta-title')}`;
+      case '/chain':
+        return `${echo('chain')} | ${echo('meta-title')}`;
+      case '/contract':
+        return `${echo('contract')} | ${echo('meta-title')}`;
+      case '/dao':
+        return `${echo('dao')} | ${echo('meta-title')}`;
+      case '/nexus':
+        return `${echo('nexus')} | ${echo('meta-title')}`;
+      case '/token':
+        return `${echo('token')} | ${echo('meta-title')}`;
+      case '/transaction':
+        return `${echo('transaction')} | ${echo('meta-title')}`;
+      case '/':
+      default:
+        return `${echo('meta-title')}`;
+    }
+  }, [route, echo]);
+
+  const description = useMemo(() => {
+    switch (route) {
+      case '/address':
+        return `${echo('meta-address')}`;
+      case '/block':
+        return `${echo('meta-block')}`;
+      case '/chain':
+        return `${echo('meta-chain')}`;
+      case '/contract':
+        return `${echo('meta-contract')}`;
+      case '/dao':
+        return `${echo('meta-dao')}`;
+      case '/nexus':
+        return `${echo('meta-nexus')}`;
+      case '/token':
+        return `${echo('meta-token')}`;
+      case '/transaction':
+        return `${echo('meta-transaction')}`;
+      case '/':
+      default:
+        return `${echo('meta-home')}`;
+    }
+  }, [route, echo]);
 
   const children = useMemo(() => {
     switch (route) {
@@ -59,6 +107,7 @@ export const LocalizedView = ({ locale, route }: LocalizedViewProps) => {
 
   return (
     <Box>
+      <MetaDynamic title={title} description={description} />
       <Box pt={{ xs: 3, lg: 6 }} pb={3}>
         <Text
           variant="h3"

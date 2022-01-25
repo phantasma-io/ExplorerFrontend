@@ -11,7 +11,16 @@ export const en: EchoMsgs = {
   apply: 'Apply',
   search: 'Search',
   // meta
-  'meta-description': 'Meta description', // TODO
+  'meta-title': 'Phantasma Explorer',
+  'meta-home': `Phantasma is a blockchain for content distribution of NFTs, Gaming and dApps that is fast, secure and decentralized. The governance token is SOUL and the energy token is KCAL,which allow interoperability with other lockchains, while maintaining a decentralized  governance system.`,
+  'meta-nexus': `Enter the Nexus and explore the chains, tokens, and DAOs on the Phantasma mainnet.`,
+  'meta-chain': `Overview chain details and explore associated blocks and contracts.`,
+  'meta-address': `Overview address details and explore associated balances and transactions.`,
+  'meta-block': `Overview block details and explore associated transactions, events, and oracles.`,
+  'meta-transaction': `Overview transaction details and explore associated scripts and events.`,
+  'meta-contract': `Overview contract details.`,
+  'meta-token': `Overview token details.`,
+  'meta-dao': `Overview DAO details and members.`,
   // app
   account: 'Account',
   address: 'Address',

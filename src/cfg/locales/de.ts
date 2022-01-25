@@ -11,7 +11,16 @@ export const de: EchoMsgs = {
   apply: 'Anwenden',
   search: 'Suchen',
   // meta
-  'meta-description': 'Meta description', // TODO
+  'meta-title': 'Phantasma Explorer',
+  'meta-home': `home-de`, // TODO
+  'meta-nexus': `nexus-de`, // TODO
+  'meta-chain': `chain-de`, // TODO
+  'meta-address': `address-de`, // TODO
+  'meta-block': `block-de`, // TODO
+  'meta-transaction': `tx-de`, // TODO
+  'meta-contract': `contract-de`, // TODO
+  'meta-token': `token-de`, // TODO
+  'meta-dao': `dao-de`, // TODO
   // app
   account: 'Konto',
   address: 'Adresse',
