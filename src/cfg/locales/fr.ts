@@ -12,15 +12,15 @@ export const fr: EchoMsgs = {
   search: 'Rechercher',
   // meta
   'meta-title': 'Phantasma Explorer',
-  'meta-home': `home-fr`, // TODO
-  'meta-nexus': `nexus-fr`, // TODO
-  'meta-chain': `chain-fr`, // TODO
-  'meta-address': `address-fr`, // TODO
-  'meta-block': `block-fr`, // TODO
-  'meta-transaction': `tx-fr`, // TODO
-  'meta-contract': `contract-fr`, // TODO
-  'meta-token': `token-fr`, // TODO
-  'meta-dao': `dao-fr`, // TODO
+  'meta-home': `Phantasma est une blockchain pour la distribution de contenu de NFT, de jeux et de dApps qui est rapide, sécurisée et décentralisée.`,
+  'meta-nexus': `Entrez dans le Nexus et explorez les chaînes, les tokens et les DAO sur le réseau principal Phantasma.`,
+  'meta-chain': `Affichez les détails de la chaîne et explorez les blocs et les contrats associés.`,
+  'meta-address': `Affichez les détails de l'adresse et explorez les soldes et les transactions associés.`,
+  'meta-block': `Affichez les détails des blocs et explorez les transactions, événements et oracles associés.`,
+  'meta-transaction': `Affichez les détails de la transaction et explorez les scripts et événements associés.`,
+  'meta-contract': `Afficher les détails du contrat.`,
+  'meta-token': `Afficher les détails du token.`,
+  'meta-dao': `Voir les détails et les membres de DAO.`,
   // app
   nexus: 'Nexus',
   address: 'Adresse',
@@ -29,36 +29,36 @@ export const fr: EchoMsgs = {
   chain: 'Chaîne',
   contract: 'Contrat',
   dao: 'DAO',
-  token: 'Jeton',
+  token: 'Token',
   transaction: 'Transaction',
   // tooltips
   'tooltip-locale': 'Changer de langue',
   'tooltip-darkmode': 'Basculer en mode sombre',
   'tooltip-search': 'Ouvrir la recherche',
-  'tooltip-theme': 'Changer de marque', // TODO
+  'tooltip-theme': 'Changer de thème',
   'tooltip-nav-homepage': "Aller à l'accueil",
   // btns
   'btn-enterNexus': 'Entrez dans le Nexus',
   // page titles
-  'title-nexus': 'Nexus', // TODO
-  'title-chain': 'chain', // TODO
-  'title-address': 'address', // TODO
-  'title-block': 'block', // TODO
-  'title-transaction': 'transaction', // TODO
-  'title-contract': 'contract', // TODO
-  'title-token': 'token', // TODO
-  'title-dao': 'dao', // TODO
+  'title-nexus': 'Bienvenue au Nexus',
+  'title-chain': 'Explorez la chaîne',
+  'title-address': `Explorer l'adresse`,
+  'title-block': 'Explorer le bloc',
+  'title-transaction': 'Explorer la transaction',
+  'title-contract': 'Explorer le contrat',
+  'title-token': 'Explorer le token',
+  'title-dao': 'Explorez DAO',
   // tabs
-  'tab-overview': 'Overview', // TODO
-  'tab-chains': 'Chains', // TODO
-  'tab-tokens': 'Tokens', // TODO
-  'tab-daos': 'Daos', // TODO
-  'tab-blocks': 'Blocks', // TODO
-  'tab-contracts': 'Contracts', // TODO
-  'tab-balances': 'Balances', // TODO
-  'tab-transactions': 'Transactions', // TODO
-  'tab-events': 'Events', // TODO
-  'tab-oracles': 'Oracles', // TODO
-  'tab-script': 'Script', // TODO
-  'tab-members': 'Members', // TODO
+  'tab-overview': 'Aperçu',
+  'tab-chains': 'Enchaîne',
+  'tab-tokens': 'Tokens',
+  'tab-daos': 'DAOs',
+  'tab-blocks': 'Blocs',
+  'tab-contracts': 'Contrats',
+  'tab-balances': 'Soldes',
+  'tab-transactions': 'Transactions',
+  'tab-events': 'Épreuves',
+  'tab-oracles': 'Oracles',
+  'tab-script': 'Script',
+  'tab-members': 'Membres',
 };
