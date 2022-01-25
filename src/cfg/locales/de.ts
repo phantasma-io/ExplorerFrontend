@@ -22,7 +22,7 @@ export const de: EchoMsgs = {
   'meta-token': `token-de`, // TODO
   'meta-dao': `dao-de`, // TODO
   // app
-  account: 'Konto',
+  nexus: 'Nexus',
   address: 'Adresse',
   hash: 'Hash',
   block: 'Block',

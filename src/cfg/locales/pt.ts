@@ -7,6 +7,9 @@ export const pt: EchoMsgs = {
   'copy-to-clipboard': 'Copiar para o clipboard',
   'copied-to-clipboard': 'Copiado para oclipboard',
   'not-found': 'Não encontrado',
+  close: 'Fechar',
+  apply: 'Aplicar',
+  search: 'Pesquisar',
   // meta
   'meta-title': 'Phantasma Explorer',
   'meta-home': `home-pt`, // TODO
@@ -19,10 +22,7 @@ export const pt: EchoMsgs = {
   'meta-token': `token-pt`, // TODO
   'meta-dao': `dao-pt`, // TODO
   // app
-  close: 'Fechar',
-  apply: 'Aplicar',
-  search: 'Pesquisar',
-  account: 'Conta',
+  nexus: 'Nexus',
   address: 'Endereço',
   hash: 'Hash',
   block: 'Bloco',
