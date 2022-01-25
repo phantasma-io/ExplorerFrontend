@@ -130,11 +130,11 @@ export const Header = ({ height }: HeaderProps) => {
   return (
     <Box
       px={{
-        xs: 1,
-        sm: 2,
-        md: 3,
-        lg: 4,
-        xl: 5,
+        xs: 2,
+        sm: 3,
+        md: 4,
+        lg: 5,
+        xl: 6,
       }}
       sx={{ background: 'transparent' }}
     >
@@ -144,18 +144,35 @@ export const Header = ({ height }: HeaderProps) => {
             <Grid item>
               <Box pt={0.5}>
                 <Tooltip title={echo('tooltip-nav-homepage')}>
-                  <Box
-                    onClick={() =>
-                      push(routes['/']({}, echoActiveId as Locales))
-                    }
-                    style={{
-                      cursor: 'pointer',
-                    }}
-                  >
-                    <Image
-                      src={'/static/v1/img/phantasma-logo-white.png'}
-                      height={'24px'}
-                    />
+                  <Box>
+                    <Box
+                      display={{ xs: 'none', md: 'block' }}
+                      onClick={() =>
+                        push(routes['/']({}, echoActiveId as Locales))
+                      }
+                      style={{
+                        cursor: 'pointer',
+                      }}
+                    >
+                      <Image
+                        src={'/static/v1/img/phantasma-logo-white.png'}
+                        height={'24px'}
+                      />
+                    </Box>
+                    <Box
+                      display={{ xs: 'block', md: 'none' }}
+                      onClick={() =>
+                        push(routes['/']({}, echoActiveId as Locales))
+                      }
+                      style={{
+                        cursor: 'pointer',
+                      }}
+                    >
+                      <Image
+                        src={'/static/v1/img/phantasma-logo-icon-white.png'}
+                        height={'24px'}
+                      />
+                    </Box>
                   </Box>
                 </Tooltip>
               </Box>
