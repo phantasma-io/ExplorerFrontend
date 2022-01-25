@@ -4,6 +4,7 @@ import { Box } from '@mui/material';
 import { useEcho } from '@ricardo-jrm/echo';
 import { Locales, ExplorerRoutes } from '../../cfg';
 import {
+  AppLayout,
   ViewHome,
   ViewAddress,
   ViewBlock,
@@ -102,18 +103,20 @@ export const LocalizedView = ({ locale, route }: LocalizedViewProps) => {
   }, [route]);
 
   return (
-    <Box>
-      <MetaDynamic title={title} description={description} />
-      {route !== '/' && (
-        <Box pt={{ xs: 3, lg: 6 }} pb={3}>
-          <Text
-            variant="h3"
-            sx={{ color: '#fff' }}
-            value={echo(`title-${query?.view as string}`)}
-          />
-        </Box>
-      )}
-      <Box>{children}</Box>
-    </Box>
+    <AppLayout>
+      <Box>
+        <MetaDynamic title={title} description={description} />
+        {route !== '/' && (
+          <Box pt={{ xs: 3, lg: 6 }} pb={3}>
+            <Text
+              variant="h3"
+              sx={{ color: '#fff' }}
+              value={echo(`title-${query?.view as string}`)}
+            />
+          </Box>
+        )}
+        <Box>{children}</Box>
+      </Box>
+    </AppLayout>
   );
 };

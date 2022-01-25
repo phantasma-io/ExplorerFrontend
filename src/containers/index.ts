@@ -1,3 +1,5 @@
+export { AppLayout } from './AppLayout';
+
 export { ViewHome } from './ViewHome';
 
 export { ViewAddress } from './ViewAddress';
