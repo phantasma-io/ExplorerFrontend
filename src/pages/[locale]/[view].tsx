@@ -47,7 +47,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
   };
 };
 
-const HomePage: NextPage = ({
+const LocalizedPage: NextPage = ({
   locale,
   route,
 }: InferGetStaticPropsType<typeof getStaticProps>) => (
@@ -60,4 +60,4 @@ const HomePage: NextPage = ({
   </EchoProvider>
 );
 
-export default HomePage;
+export default LocalizedPage;
