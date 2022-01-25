@@ -102,7 +102,12 @@ export const LocalizedView = ({ locale, route }: LocalizedViewProps) => {
   }, [route]);
 
   if (route === '/') {
-    return <Box>{children}</Box>;
+    return (
+      <Box>
+        <MetaDynamic title={title} description={description} />
+        <Box>{children}</Box>
+      </Box>
+    );
   }
 
   return (
