@@ -19,7 +19,7 @@ export const TablePagination = ({
 }: TablePaginationProps) => {
   return (
     <Box>
-      <Grid container spacing={1}>
+      <Grid container spacing={0.6}>
         <Grid item>
           <IconButton
             size="small"
@@ -39,30 +39,32 @@ export const TablePagination = ({
           </IconButton>
         </Grid>
 
-        {page - 2 > 0 && (
-          <Grid item>
-            <Button
-              size="small"
-              onClick={() => pageSet(page - 2)}
-              sx={{ minWidth: 30 }}
-              color="inherit"
-            >
-              {numberFormat(page - 2)}
-            </Button>
-          </Grid>
-        )}
-        {page - 1 > 0 && (
-          <Grid item>
-            <Button
-              size="small"
-              onClick={() => pageSet(page - 1)}
-              sx={{ minWidth: 30 }}
-              color="inherit"
-            >
-              {numberFormat(page - 1)}
-            </Button>
-          </Grid>
-        )}
+        <Grid item>
+          <Button
+            size="small"
+            onClick={() => pageSet(page - 2)}
+            sx={{
+              minWidth: 30,
+              visibility: page - 2 > 0 ? 'visible' : 'hidden',
+            }}
+            color="inherit"
+          >
+            {numberFormat(page - 2)}
+          </Button>
+        </Grid>
+        <Grid item>
+          <Button
+            size="small"
+            onClick={() => pageSet(page - 1)}
+            sx={{
+              minWidth: 30,
+              visibility: page - 1 > 0 ? 'visible' : 'hidden',
+            }}
+            color="inherit"
+          >
+            {numberFormat(page - 1)}
+          </Button>
+        </Grid>
 
         <Grid item>
           <Button
@@ -75,30 +77,32 @@ export const TablePagination = ({
           </Button>
         </Grid>
 
-        {page + 1 <= pageCount && (
-          <Grid item>
-            <Button
-              size="small"
-              onClick={() => pageSet(page + 1)}
-              sx={{ minWidth: 30 }}
-              color="inherit"
-            >
-              {numberFormat(page + 1)}
-            </Button>
-          </Grid>
-        )}
-        {page + 2 <= pageCount && (
-          <Grid item>
-            <Button
-              size="small"
-              onClick={() => pageSet(page + 2)}
-              sx={{ minWidth: 30 }}
-              color="inherit"
-            >
-              {numberFormat(page + 2)}
-            </Button>
-          </Grid>
-        )}
+        <Grid item>
+          <Button
+            size="small"
+            onClick={() => pageSet(page + 1)}
+            sx={{
+              minWidth: 30,
+              visibility: page + 1 <= pageCount ? 'visible' : 'hidden',
+            }}
+            color="inherit"
+          >
+            {numberFormat(page + 1)}
+          </Button>
+        </Grid>
+        <Grid item>
+          <Button
+            size="small"
+            onClick={() => pageSet(page + 2)}
+            sx={{
+              minWidth: 30,
+              visibility: page + 2 <= pageCount ? 'visible' : 'hidden',
+            }}
+            color="inherit"
+          >
+            {numberFormat(page + 2)}
+          </Button>
+        </Grid>
 
         <Grid item>
           <IconButton
