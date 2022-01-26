@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { numberFormat } from '@ricardo-jrm/dervish';
 import { Box, Grid, IconButton, Button } from '@mui/material';
 import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
@@ -10,13 +10,17 @@ export interface TablePaginationProps {
   page: number;
   pageSet: (page: number) => void;
   pageCount: number;
+  pageSize: number;
 }
 
 export const TablePagination = ({
   page,
   pageSet,
   pageCount,
+  pageSize,
 }: TablePaginationProps) => {
+  useEffect(() => pageSet(1), [pageSize, pageSet]);
+
   return (
     <Box>
       <Grid container spacing={0.6}>

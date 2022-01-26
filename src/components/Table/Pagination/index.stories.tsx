@@ -1,6 +1,8 @@
 import React, { useState, useMemo } from 'react';
 import { Story, Meta } from '@storybook/react';
+import { Grid } from '@mui/material';
 import { TablePagination, TablePaginationProps } from '.';
+import { TablePageSize } from '../PageSize';
 
 export default {
   title: 'Table/Pagination',
@@ -21,6 +23,43 @@ export const Default: Story<TablePaginationProps> = () => {
   );
 
   return (
-    <TablePagination page={page} pageSet={pageSet} pageCount={pageCount} />
+    <TablePagination
+      page={page}
+      pageSet={pageSet}
+      pageCount={pageCount}
+      pageSize={pageSize}
+    />
+  );
+};
+
+export const WithPageSize: Story<TablePaginationProps> = () => {
+  const [page, pageSet] = useState(1);
+  const options = [25, 50, 100];
+  const [pageSize, pageSizeSet] = useState(options[0]);
+  const [total] = useState(1000);
+
+  const pageCount = useMemo(
+    () => Math.floor(total / pageSize),
+    [pageSize, total],
+  );
+
+  return (
+    <Grid container justifyContent="space-between">
+      <Grid item>
+        <TablePageSize
+          pageSize={pageSize}
+          pageSizeSet={pageSizeSet}
+          options={options}
+        />
+      </Grid>
+      <Grid item>
+        <TablePagination
+          page={page}
+          pageSet={pageSet}
+          pageCount={pageCount}
+          pageSize={pageSize}
+        />
+      </Grid>
+    </Grid>
   );
 };
