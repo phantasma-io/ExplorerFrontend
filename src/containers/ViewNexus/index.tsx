@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { useEcho } from '@ricardo-jrm/echo';
 import { Text, NavTabs, NavTabsRecord } from '../../components';
-import { routes, Locales } from '../../cfg';
+import { routes, Locales, ExplorerTabs } from '../../cfg';
 
 const ChainsList = () => (
   <>
@@ -21,7 +21,11 @@ const DaosList = () => (
   </>
 );
 
-export const ViewNexus = () => {
+export interface ViewNexusProps {
+  tabForce?: ExplorerTabs;
+}
+
+export const ViewNexus = ({ tabForce = 'chains' }: ViewNexusProps) => {
   const { echo, echoActiveId } = useEcho();
 
   const tabs: NavTabsRecord = useMemo(
@@ -48,5 +52,5 @@ export const ViewNexus = () => {
     [echo, echoActiveId],
   );
 
-  return <NavTabs tabs={tabs} tabsDefault="chains" />;
+  return <NavTabs tabs={tabs} tabsDefault={tabForce} />;
 };

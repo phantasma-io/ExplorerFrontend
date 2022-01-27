@@ -4,7 +4,7 @@ import { Box, Container } from '@mui/material';
 import { FOOTER_HEIGHT, HEADER_HEIGHT } from '../../cfg';
 import { Header, Footer } from '../../components';
 
-interface LayoutHomeProps {
+export interface LayoutHomeProps {
   children: ReactNode;
 }
 

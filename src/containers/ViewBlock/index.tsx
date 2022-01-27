@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { useEcho } from '@ricardo-jrm/echo';
 import { Text, NavTabs, NavTabsRecord } from '../../components';
-import { routes, Locales } from '../../cfg';
+import { routes, Locales, ExplorerTabs } from '../../cfg';
 
 const BlockOverview = () => (
   <>
@@ -27,7 +27,11 @@ const OraclesList = () => (
   </>
 );
 
-export const ViewBlock = () => {
+export interface ViewBlockProps {
+  tabForce?: ExplorerTabs;
+}
+
+export const ViewBlock = ({ tabForce = 'overview' }: ViewBlockProps) => {
   const { echo, echoActiveId } = useEcho();
 
   const tabs: NavTabsRecord = useMemo(
@@ -60,5 +64,5 @@ export const ViewBlock = () => {
     [echo, echoActiveId],
   );
 
-  return <NavTabs tabs={tabs} tabsDefault="overview" />;
+  return <NavTabs tabs={tabs} tabsDefault={tabForce} />;
 };

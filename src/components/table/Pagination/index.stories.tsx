@@ -46,18 +46,18 @@ export const WithPageSize: Story<TablePaginationProps> = () => {
   return (
     <Grid container justifyContent="space-between">
       <Grid item>
-        <TablePageSize
-          pageSize={pageSize}
-          pageSizeSet={pageSizeSet}
-          options={options}
-        />
-      </Grid>
-      <Grid item>
         <TablePagination
           page={page}
           pageSet={pageSet}
           pageCount={pageCount}
           pageSize={pageSize}
+        />
+      </Grid>
+      <Grid item>
+        <TablePageSize
+          pageSize={pageSize}
+          pageSizeSet={pageSizeSet}
+          options={options}
         />
       </Grid>
     </Grid>

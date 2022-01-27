@@ -10,6 +10,6 @@ export default {
   },
 } as Meta;
 
-export const StoryComponent: Story<FullscreenProps> = () => (
+export const Default: Story<FullscreenProps> = () => (
   <Fullscreen>Centered Fullscreen</Fullscreen>
 );

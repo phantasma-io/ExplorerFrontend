@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { useEcho } from '@ricardo-jrm/echo';
 import { Text, NavTabs, NavTabsRecord } from '../../components';
-import { routes, Locales } from '../../cfg';
+import { routes, Locales, ExplorerTabs } from '../../cfg';
 
 const DaoOverview = () => (
   <>
@@ -15,7 +15,11 @@ const DaoMembers = () => (
   </>
 );
 
-export const ViewDao = () => {
+export interface ViewDaoProps {
+  tabForce?: ExplorerTabs;
+}
+
+export const ViewDao = ({ tabForce = 'overview' }: ViewDaoProps) => {
   const { echo, echoActiveId } = useEcho();
 
   const tabs: NavTabsRecord = useMemo(
@@ -36,5 +40,5 @@ export const ViewDao = () => {
     [echo, echoActiveId],
   );
 
-  return <NavTabs tabs={tabs} tabsDefault="overview" />;
+  return <NavTabs tabs={tabs} tabsDefault={tabForce} />;
 };

@@ -6,6 +6,6 @@ export type { Locales } from './locales';
 export { themes } from './themes';
 
 export { routes, routesKeys, routesViews, routesHome } from './routes';
-export type { ExplorerRoutes } from './routes';
+export type { ExplorerRoutes, ExplorerTabs } from './routes';
 
 export { DATE_FORMAT, NUMBER_FORMAT } from './formats';
