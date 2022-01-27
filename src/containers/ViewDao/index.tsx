@@ -23,13 +23,13 @@ export const ViewDao = () => {
       overview: {
         id: 'overview',
         label: echo('tab-overview'),
-        href: routes['/dao']({}, echoActiveId as Locales),
+        href: routes['/dao'](echoActiveId as Locales),
         component: <DaoOverview />,
       },
       members: {
         id: 'members',
         label: echo('tab-members'),
-        href: routes['/dao']({}, echoActiveId as Locales),
+        href: routes['/dao'](echoActiveId as Locales),
         component: <DaoMembers />,
       },
     }),

@@ -100,32 +100,32 @@ export const Header = ({ height }: HeaderProps) => {
   const searchQuery = useMemo(() => {
     switch (radioValue) {
       case 'address':
-        return routes['/address']({
+        return routes['/address'](echoActiveId as Locales, {
           id: searchValue,
         });
       case 'contract':
-        return routes['/contract']({
+        return routes['/contract'](echoActiveId as Locales, {
           id: searchValue,
         });
       case 'transaction':
-        return routes['/transaction']({
+        return routes['/transaction'](echoActiveId as Locales, {
           id: searchValue,
         });
       case 'block':
-        return routes['/block']({
+        return routes['/block'](echoActiveId as Locales, {
           id: searchValue,
         });
       case 'dao':
-        return routes['/dao']({
+        return routes['/dao'](echoActiveId as Locales, {
           id: searchValue,
         });
       case 'token':
       default:
-        return routes['/token']({
+        return routes['/token'](echoActiveId as Locales, {
           id: searchValue,
         });
     }
-  }, [radioValue, searchValue]);
+  }, [radioValue, searchValue, echoActiveId]);
 
   return (
     <Box
@@ -147,9 +147,7 @@ export const Header = ({ height }: HeaderProps) => {
                   <Box>
                     <Box
                       display={{ xs: 'none', md: 'block' }}
-                      onClick={() =>
-                        push(routes['/']({}, echoActiveId as Locales))
-                      }
+                      onClick={() => push(routes['/'](echoActiveId as Locales))}
                       style={{
                         cursor: 'pointer',
                       }}
@@ -163,9 +161,7 @@ export const Header = ({ height }: HeaderProps) => {
                     </Box>
                     <Box
                       display={{ xs: 'block', md: 'none' }}
-                      onClick={() =>
-                        push(routes['/']({}, echoActiveId as Locales))
-                      }
+                      onClick={() => push(routes['/'](echoActiveId as Locales))}
                       style={{
                         cursor: 'pointer',
                       }}

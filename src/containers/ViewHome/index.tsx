@@ -45,7 +45,7 @@ export const ViewHome = () => {
         <Grid item xs={12}>
           <Box pt={3} textAlign="center">
             <Link
-              href={routes['/nexus']({}, echoActiveId as Locales)}
+              href={routes['/nexus'](echoActiveId as Locales)}
               sx={{ textDecoration: 'none' }}
             >
               <Button size="large" variant="contained" color="primary">

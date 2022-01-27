@@ -29,19 +29,19 @@ export const ViewChain = () => {
       overview: {
         id: 'overview',
         label: echo('tab-overview'),
-        href: routes['/chain']({}, echoActiveId as Locales),
+        href: routes['/chain'](echoActiveId as Locales),
         component: <ChainOverview />,
       },
       blocks: {
         id: 'blocks',
         label: echo('tab-blocks'),
-        href: routes['/chain']({}, echoActiveId as Locales),
+        href: routes['/chain'](echoActiveId as Locales),
         component: <BlocksList />,
       },
       contracts: {
         id: 'contracts',
         label: echo('tab-contracts'),
-        href: routes['/chain']({}, echoActiveId as Locales),
+        href: routes['/chain'](echoActiveId as Locales),
         component: <ContractsList />,
       },
     }),

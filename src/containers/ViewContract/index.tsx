@@ -17,7 +17,7 @@ export const ViewContract = () => {
       overview: {
         id: 'overview',
         label: echo('tab-overview'),
-        href: routes['/contract']({}, echoActiveId as Locales),
+        href: routes['/contract'](echoActiveId as Locales),
         component: <ContractOverview />,
       },
     }),

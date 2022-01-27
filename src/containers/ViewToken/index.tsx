@@ -17,7 +17,7 @@ export const ViewToken = () => {
       overview: {
         id: 'overview',
         label: echo('tab-overview'),
-        href: routes['/token']({}, echoActiveId as Locales),
+        href: routes['/token'](echoActiveId as Locales),
         component: <TokenOverview />,
       },
     }),

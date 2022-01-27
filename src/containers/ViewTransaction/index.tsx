@@ -29,19 +29,19 @@ export const ViewTransaction = () => {
       overview: {
         id: 'overview',
         label: echo('tab-overview'),
-        href: routes['/transaction']({}, echoActiveId as Locales),
+        href: routes['/transaction'](echoActiveId as Locales),
         component: <TransactionOverview />,
       },
       script: {
         id: 'script',
         label: echo('tab-script'),
-        href: routes['/transaction']({}, echoActiveId as Locales),
+        href: routes['/transaction'](echoActiveId as Locales),
         component: <TransactionScript />,
       },
       events: {
         id: 'events',
         label: echo('tab-events'),
-        href: routes['/transaction']({}, echoActiveId as Locales),
+        href: routes['/transaction'](echoActiveId as Locales),
         component: <EventsList />,
       },
     }),

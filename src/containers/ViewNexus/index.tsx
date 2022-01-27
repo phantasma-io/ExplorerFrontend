@@ -29,19 +29,19 @@ export const ViewNexus = () => {
       chains: {
         id: 'chains',
         label: echo('tab-chains'),
-        href: routes['/nexus']({}, echoActiveId as Locales),
+        href: routes['/nexus'](echoActiveId as Locales),
         component: <ChainsList />,
       },
       tokens: {
         id: 'tokens',
         label: echo('tab-tokens'),
-        href: routes['/nexus']({}, echoActiveId as Locales),
+        href: routes['/nexus'](echoActiveId as Locales),
         component: <TokensList />,
       },
       daos: {
         id: 'daos',
         label: echo('tab-daos'),
-        href: routes['/nexus']({}, echoActiveId as Locales),
+        href: routes['/nexus'](echoActiveId as Locales),
         component: <DaosList />,
       },
     }),

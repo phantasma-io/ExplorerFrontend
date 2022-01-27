@@ -5,6 +5,7 @@ import { de } from './de';
 import { fr } from './fr';
 
 export type Locales = 'en' | 'pt' | 'de' | 'fr';
+export type LocalesArr = ['en', 'pt', 'de', 'fr'];
 
 type LocalesRecord = {
   [key in Locales]: EchoMsgs;
@@ -17,6 +18,6 @@ export const locales: LocalesRecord = {
   fr,
 };
 
-export const localesKeys = Object.keys(locales);
+export const localesKeys: LocalesArr = Object.keys(locales) as LocalesArr;
 
 export const localesDefault: Locales = localesKeys[0] as Locales;
