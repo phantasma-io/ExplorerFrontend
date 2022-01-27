@@ -20,6 +20,7 @@ import {
 } from '@ricardo-jrm/dervish';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import EventIcon from '@mui/icons-material/Event';
+import { NUMBER_FORMAT, DATE_FORMAT } from '../../cfg';
 
 /**
  * Text props
@@ -29,7 +30,11 @@ export interface TextProps
   /**
    * Value
    */
-  value?: string | number;
+  value?: string;
+  /**
+   * Justify
+   */
+  justify?: 'start' | 'center' | 'end';
   /**
    * Typography variant
    */
@@ -54,11 +59,13 @@ export interface TextProps
   /**
    * Formats `children: number` with commas
    */
-  formatNumber?: boolean;
+  formatNumber?: number;
+  formatNumberStr?: string;
   /**
    * Formats given `Date`
    */
   formatDate?: Date;
+  formatDateStr?: string;
   /**
    * Spacing between elements
    */
@@ -82,6 +89,7 @@ export interface TextProps
    * Capitalize text options
    */
   capitalize?: boolean | 'allWords';
+  wordBreak?: 'normal' | 'break-all' | 'keep-all' | 'break-word';
 }
 
 /**
@@ -90,9 +98,12 @@ export interface TextProps
 export const Text = ({
   children,
   value,
+  justify = 'start',
   translate,
   formatNumber,
+  formatNumberStr = NUMBER_FORMAT,
   formatDate,
+  formatDateStr = DATE_FORMAT,
   spacing = 0,
   label,
   clipboard,
@@ -100,6 +111,7 @@ export const Text = ({
   truncate,
   capitalize,
   sx,
+  wordBreak = 'normal',
   ...propsTypo
 }: TextProps) => {
   const { enqueueSnackbar } = useSnackbar();
@@ -108,11 +120,11 @@ export const Text = ({
 
   const copy: string = useMemo(() => {
     if (formatDate) {
-      return dateFormat(formatDate);
+      return dateFormat(formatDate, formatDateStr);
     }
 
     if (formatNumber) {
-      return numberFormat(value as number);
+      return numberFormat(formatNumber, formatNumberStr);
     }
 
     if (translate) {
@@ -130,7 +142,16 @@ export const Text = ({
     }
 
     return `${value}`;
-  }, [formatDate, formatNumber, value, translate, echo, capitalize]);
+  }, [
+    formatDate,
+    formatNumber,
+    formatDateStr,
+    formatNumberStr,
+    value,
+    translate,
+    echo,
+    capitalize,
+  ]);
 
   const result = useMemo(() => {
     let strDisplay = `${copy}`;
@@ -144,18 +165,19 @@ export const Text = ({
         variant={variant}
         {...propsTypo}
         sx={sx}
-        style={{ wordBreak: 'break-all' }}
+        style={{ wordBreak }}
       >
         {strDisplay}
       </Typography>
     );
-  }, [variant, propsTypo, copy, truncate, sx]);
+  }, [variant, propsTypo, copy, truncate, sx, wordBreak]);
 
   return (
     <Grid
       container
       spacing={spacing}
       alignItems="center"
+      justifyContent={justify}
       sx={{ width: '100%' }}
     >
       {label && (
