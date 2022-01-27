@@ -1,20 +1,16 @@
-export { NotFound } from './404';
+// display
+export { Image } from './display/Image';
+export { Link } from './display/Link';
+export { Text } from './display/Text';
 
-export { Footer } from './Footer';
+// layout
+export { Footer } from './layout/Footer';
+export { Fullscreen } from './layout/Fullscreen';
+export { Header } from './layout/Header';
+export { NotFound } from './layout/NotFound';
+export { NavTabs } from './layout/NavTabs';
+export type { NavTabsRecord } from './layout/NavTabs';
 
-export { Fullscreen } from './Fullscreen';
-
-export { Header } from './Header';
-
-export { Image } from './Image';
-
-export { Link } from './Link';
-
-export { MetaTags } from './MetaTags';
-
-export { MetaDynamic } from './MetaDynamic';
-
-export { NavTabs } from './NavTabs';
-export type { NavTabsRecord } from './NavTabs';
-
-export { Text } from './Text';
+// meta
+export { MetaTags } from './meta/MetaTags';
+export { MetaDynamic } from './meta/MetaDynamic';

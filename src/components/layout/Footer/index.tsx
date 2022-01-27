@@ -6,9 +6,9 @@ import TwitterIcon from '@mui/icons-material/Twitter';
 import RedditIcon from '@mui/icons-material/Reddit';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
-import { Link } from '../Link';
-import { Image } from '../Image';
-import { FOOTER_HEIGHT, FOOTER_OFFSET, routesHome } from '../../cfg';
+import { Link } from '../../display/Link';
+import { Image } from '../../display/Image';
+import { FOOTER_HEIGHT, FOOTER_OFFSET, routesHome } from '../../../cfg';
 
 /**
  * Footer props

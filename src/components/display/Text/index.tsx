@@ -20,7 +20,7 @@ import {
 } from '@ricardo-jrm/dervish';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import EventIcon from '@mui/icons-material/Event';
-import { NUMBER_FORMAT, DATE_FORMAT } from '../../cfg';
+import { NUMBER_FORMAT, DATE_FORMAT } from '../../../cfg';
 
 /**
  * Text props

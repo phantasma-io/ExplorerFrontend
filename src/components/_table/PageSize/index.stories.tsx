@@ -3,7 +3,7 @@ import { Story, Meta } from '@storybook/react';
 import { TablePageSize, TablePageSizeProps } from '.';
 
 export default {
-  title: 'Table/Page Size',
+  title: 'Components/Table/Page Size',
   component: TablePageSize,
   parameters: {
     componentSubtitle: 'Table Pagination Component',

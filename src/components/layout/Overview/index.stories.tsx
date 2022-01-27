@@ -3,7 +3,7 @@ import { Story, Meta } from '@storybook/react';
 import { Overview, OverviewProps, OverviewItem } from '.';
 
 export default {
-  title: 'Components/Overview',
+  title: 'Components/Layout/Overview',
   component: Overview,
   parameters: {
     componentSubtitle: 'Overview Component',

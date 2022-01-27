@@ -3,7 +3,7 @@ import { Story, Meta } from '@storybook/react';
 import { Fullscreen, FullscreenProps } from '.';
 
 export default {
-  title: 'Components/Fullscreen',
+  title: 'Components/Layout/Fullscreen',
   component: Fullscreen,
   parameters: {
     componentSubtitle: 'Fullscreen component',

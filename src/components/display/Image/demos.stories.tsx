@@ -3,14 +3,14 @@ import { Story, Meta } from '@storybook/react';
 import { Image, ImageProps } from '.';
 
 export default {
-  title: 'Components/Image',
+  title: 'Components/Display/Image/Demos',
   component: Image,
   parameters: {
-    componentSubtitle: 'Image Component',
+    componentSubtitle: 'Image demos',
   },
 } as Meta;
 
-export const Default: Story<ImageProps> = () => (
+export const Normal: Story<ImageProps> = () => (
   <Image src="/static/v1/img/placeholder.png" />
 );
 

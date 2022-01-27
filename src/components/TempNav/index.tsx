@@ -3,7 +3,7 @@ import { Paper, Box, Grid } from '@mui/material';
 import { useFury } from '@ricardo-jrm/fury';
 import { useEcho } from '@ricardo-jrm/echo';
 import { routes, Locales } from '../../cfg';
-import { Link } from '../Link';
+import { Link } from '../display/Link';
 
 export const TempNav = () => {
   const { furyActive } = useFury();

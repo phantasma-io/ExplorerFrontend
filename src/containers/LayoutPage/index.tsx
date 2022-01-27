@@ -1,8 +1,7 @@
 import React, { ReactNode } from 'react';
 import { Box, Container } from '@mui/material';
 import { useFury } from '@ricardo-jrm/fury';
-import { Header } from '../../components/Header';
-import { Footer } from '../../components/Footer';
+import { Header, Footer } from '../../components';
 import { TempNav } from '../../components/TempNav';
 import { FOOTER_HEIGHT, FOOTER_OFFSET, HEADER_HEIGHT } from '../../cfg';
 

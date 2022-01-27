@@ -3,7 +3,7 @@ import { Story, Meta } from '@storybook/react';
 import { Link, LinkProps } from '.';
 
 export default {
-  title: 'Components/Link',
+  title: 'Components/Display/Link',
   component: Link,
   parameters: {
     componentSubtitle: 'Link Component',

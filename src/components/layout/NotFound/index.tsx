@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Paper } from '@mui/material';
 import { useEcho } from '@ricardo-jrm/echo';
-import { Text } from '../Text';
+import { Text } from '../../display/Text';
 
 /**
  * NotFound props
