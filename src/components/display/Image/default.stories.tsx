@@ -11,5 +11,5 @@ export default {
 } as Meta;
 
 export const Default: Story<ImageProps> = (args) => (
-  <Image {...args} src="/static/v1/img/placeholder.png" />
+  <Image {...args} src="/static/v1/img/soul.png" />
 );

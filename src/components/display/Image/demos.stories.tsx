@@ -11,17 +11,17 @@ export default {
 } as Meta;
 
 export const Normal: Story<ImageProps> = () => (
-  <Image src="/static/v1/img/placeholder.png" />
+  <Image src="/static/v1/img/soul.png" />
 );
 
 export const Responsive: Story<ImageProps> = () => (
-  <Image src="/static/v1/img/placeholder.png" responsive />
+  <Image src="/static/v1/img/soul.png" responsive />
 );
 
 export const Styled: Story<ImageProps> = () => (
-  <Image src="/static/v1/img/placeholder.png" height="300px" />
+  <Image src="/static/v1/img/soul.png" height="120px" />
 );
 
 export const StyledResponsive: Story<ImageProps> = () => (
-  <Image src="/static/v1/img/placeholder.png" height="420px" responsive />
+  <Image src="/static/v1/img/soul.png" height="210px" responsive />
 );
