@@ -1,7 +1,19 @@
 import { objToQuery } from '../../scripts/objQuery';
-import { ExplorerEndpoints } from './index.d';
 
-const url = 'http://88.99.141.166:8000/api/v1';
+export const url = 'http://88.99.141.166:8000/api/v1';
+
+export type ExplorerEndpoints =
+  | '/addresses'
+  | '/chains'
+  | '/contracts'
+  | '/instructions'
+  | '/eventkinds'
+  | '/events'
+  | '/nfts'
+  | '/organizations'
+  | '/series'
+  | '/tokens'
+  | '/transactions';
 
 type ApiParams =
   | AddressParams
