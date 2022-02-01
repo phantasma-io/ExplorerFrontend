@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { useEcho } from '@ricardo-jrm/echo';
 import { Text, NavTabs, NavTabsRecord } from '../../components';
-import { routes, Locales } from '../../cfg';
+import { routes, Locales, ExplorerTabs } from '../../cfg';
 
 const AddressOverview = () => (
   <>
@@ -21,7 +21,11 @@ const TransactionsList = () => (
   </>
 );
 
-export const ViewAddress = () => {
+export interface ViewAddressProps {
+  tabForce?: ExplorerTabs;
+}
+
+export const ViewAddress = ({ tabForce = 'overview' }: ViewAddressProps) => {
   const { echo, echoActiveId } = useEcho();
 
   const tabs: NavTabsRecord = useMemo(
@@ -29,24 +33,24 @@ export const ViewAddress = () => {
       overview: {
         id: 'overview',
         label: echo('tab-overview'),
-        href: routes['/address']({}, echoActiveId as Locales),
+        href: routes['/address'](echoActiveId as Locales),
         component: <AddressOverview />,
       },
       balances: {
         id: 'balances',
         label: echo('tab-balances'),
-        href: routes['/address']({}, echoActiveId as Locales),
+        href: routes['/address'](echoActiveId as Locales),
         component: <BalancesList />,
       },
       transactions: {
         id: 'transactions',
         label: echo('tab-transactions'),
-        href: routes['/address']({}, echoActiveId as Locales),
+        href: routes['/address'](echoActiveId as Locales),
         component: <TransactionsList />,
       },
     }),
     [echo, echoActiveId],
   );
 
-  return <NavTabs tabs={tabs} tabsDefault="overview" />;
+  return <NavTabs tabs={tabs} tabsDefault={tabForce} />;
 };

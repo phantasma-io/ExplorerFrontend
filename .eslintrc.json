@@ -100,6 +100,7 @@
     "no-unneeded-ternary": "warn",
     "jest/valid-title": "warn",
     "jest/valid-expect": "warn",
-    "react/jsx-curly-newline": 0
+    "react/jsx-curly-newline": 0,
+    "camelcase": 0
   }
 }

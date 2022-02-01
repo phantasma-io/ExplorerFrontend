@@ -8,6 +8,7 @@ module.exports = {
         backgrounds: false,
       },
     },
+    'storybook-addon-next-router',
   ],
   framework: '@storybook/react',
   core: {

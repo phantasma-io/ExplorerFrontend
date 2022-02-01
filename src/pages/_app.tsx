@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
 import { AppProps } from 'next/app';
 import { CacheProvider, EmotionCache } from '@emotion/react';
-import { AppProvider } from '../containers/AppProvider';
+import { AppProvider } from '../containers';
 import { createEmotionCache } from '../scripts/createEmotionCache';
 
 const clientSideEmotionCache = createEmotionCache();

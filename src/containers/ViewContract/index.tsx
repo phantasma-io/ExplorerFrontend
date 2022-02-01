@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { useEcho } from '@ricardo-jrm/echo';
 import { Text, NavTabs, NavTabsRecord } from '../../components';
-import { routes, Locales } from '../../cfg';
+import { routes, Locales, ExplorerTabs } from '../../cfg';
 
 const ContractOverview = () => (
   <>
@@ -9,7 +9,11 @@ const ContractOverview = () => (
   </>
 );
 
-export const ViewContract = () => {
+export interface ViewContractProps {
+  tabForce?: ExplorerTabs;
+}
+
+export const ViewContract = ({ tabForce = 'overview' }: ViewContractProps) => {
   const { echo, echoActiveId } = useEcho();
 
   const tabs: NavTabsRecord = useMemo(
@@ -17,12 +21,12 @@ export const ViewContract = () => {
       overview: {
         id: 'overview',
         label: echo('tab-overview'),
-        href: routes['/contract']({}, echoActiveId as Locales),
+        href: routes['/contract'](echoActiveId as Locales),
         component: <ContractOverview />,
       },
     }),
     [echo, echoActiveId],
   );
 
-  return <NavTabs tabs={tabs} tabsDefault="overview" />;
+  return <NavTabs tabs={tabs} tabsDefault={tabForce} />;
 };

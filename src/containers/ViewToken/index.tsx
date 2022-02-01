@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { useEcho } from '@ricardo-jrm/echo';
 import { Text, NavTabs, NavTabsRecord } from '../../components';
-import { routes, Locales } from '../../cfg';
+import { routes, Locales, ExplorerTabs } from '../../cfg';
 
 const TokenOverview = () => (
   <>
@@ -9,7 +9,11 @@ const TokenOverview = () => (
   </>
 );
 
-export const ViewToken = () => {
+export interface ViewTokenProps {
+  tabForce?: ExplorerTabs;
+}
+
+export const ViewToken = ({ tabForce = 'overview' }: ViewTokenProps) => {
   const { echo, echoActiveId } = useEcho();
 
   const tabs: NavTabsRecord = useMemo(
@@ -17,12 +21,12 @@ export const ViewToken = () => {
       overview: {
         id: 'overview',
         label: echo('tab-overview'),
-        href: routes['/token']({}, echoActiveId as Locales),
+        href: routes['/token'](echoActiveId as Locales),
         component: <TokenOverview />,
       },
     }),
     [echo, echoActiveId],
   );
 
-  return <NavTabs tabs={tabs} tabsDefault="overview" />;
+  return <NavTabs tabs={tabs} tabsDefault={tabForce} />;
 };

@@ -10,6 +10,8 @@ export const pt: EchoMsgs = {
   close: 'Fechar',
   apply: 'Aplicar',
   search: 'Pesquisar',
+  // table
+  'table-pageSize': 'Page size', // TODO
   // meta
   'meta-title': 'Phantasma Explorer',
   'meta-home': `Phantasma é uma blockchain para distribuição de conteúdos de NFTs, Gaming e dApps que é rápido, seguro e descentralizado.`,

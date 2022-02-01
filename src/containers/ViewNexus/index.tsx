@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { useEcho } from '@ricardo-jrm/echo';
 import { Text, NavTabs, NavTabsRecord } from '../../components';
-import { routes, Locales } from '../../cfg';
+import { routes, Locales, ExplorerTabs } from '../../cfg';
 
 const ChainsList = () => (
   <>
@@ -21,7 +21,11 @@ const DaosList = () => (
   </>
 );
 
-export const ViewNexus = () => {
+export interface ViewNexusProps {
+  tabForce?: ExplorerTabs;
+}
+
+export const ViewNexus = ({ tabForce = 'chains' }: ViewNexusProps) => {
   const { echo, echoActiveId } = useEcho();
 
   const tabs: NavTabsRecord = useMemo(
@@ -29,24 +33,24 @@ export const ViewNexus = () => {
       chains: {
         id: 'chains',
         label: echo('tab-chains'),
-        href: routes['/nexus']({}, echoActiveId as Locales),
+        href: routes['/nexus'](echoActiveId as Locales),
         component: <ChainsList />,
       },
       tokens: {
         id: 'tokens',
         label: echo('tab-tokens'),
-        href: routes['/nexus']({}, echoActiveId as Locales),
+        href: routes['/nexus'](echoActiveId as Locales),
         component: <TokensList />,
       },
       daos: {
         id: 'daos',
         label: echo('tab-daos'),
-        href: routes['/nexus']({}, echoActiveId as Locales),
+        href: routes['/nexus'](echoActiveId as Locales),
         component: <DaosList />,
       },
     }),
     [echo, echoActiveId],
   );
 
-  return <NavTabs tabs={tabs} tabsDefault="chains" />;
+  return <NavTabs tabs={tabs} tabsDefault={tabForce} />;
 };

@@ -16,6 +16,7 @@
 - Display tokens
 - Display DAOs
 - Search
+- Export CSV
 
 <b>Extra spice:</b>
 

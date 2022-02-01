@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { objToQuery } from '../../scripts/objQuery';
-import { localesKeys, Locales, localesDefault } from '../locales';
+import { localesKeys, Locales } from '../locales';
 
 export type ExplorerRoutes =
   | '/'
@@ -13,30 +13,45 @@ export type ExplorerRoutes =
   | '/token'
   | '/transaction';
 
+export type ExplorerTabs =
+  | 'overview'
+  | 'chains'
+  | 'tokens'
+  | 'daos'
+  | 'blocks'
+  | 'contracts'
+  | 'balances'
+  | 'transactions'
+  | 'events'
+  | 'oracles'
+  | 'script'
+  | 'members';
+
 type RouterParams = {
-  [x: string]: string | number;
+  id?: string;
+  tab?: ExplorerTabs;
 };
 
 type ExplorerRouter = {
-  [key in ExplorerRoutes]: (params?: RouterParams, locale?: Locales) => string;
+  [key in ExplorerRoutes]: (locale: Locales, params?: RouterParams) => string;
 };
 
 export const routes: ExplorerRouter = {
-  '/': (params, locale = localesDefault) => `/${locale}/`,
-  '/nexus': (params, locale = localesDefault) => `/${locale}/nexus`,
-  '/chain': (params, locale = localesDefault) =>
+  '/': (locale) => `/${locale}`,
+  '/nexus': (locale) => `/${locale}/nexus`,
+  '/chain': (locale, params) =>
     `/${locale}/chain${params ? objToQuery(params) : ''}`,
-  '/address': (params, locale = localesDefault) =>
+  '/address': (locale, params) =>
     `/${locale}/address${params ? objToQuery(params) : ''}`,
-  '/block': (params, locale = localesDefault) =>
+  '/block': (locale, params) =>
     `/${locale}/block${params ? objToQuery(params) : ''}`,
-  '/contract': (params, locale = localesDefault) =>
+  '/contract': (locale, params) =>
     `/${locale}/contract${params ? objToQuery(params) : ''}`,
-  '/dao': (params, locale = localesDefault) =>
+  '/dao': (locale, params) =>
     `/${locale}/dao${params ? objToQuery(params) : ''}`,
-  '/token': (params, locale = localesDefault) =>
+  '/token': (locale, params) =>
     `/${locale}/token${params ? objToQuery(params) : ''}`,
-  '/transaction': (params, locale = localesDefault) =>
+  '/transaction': (locale, params) =>
     `/${locale}/transaction${params ? objToQuery(params) : ''}`,
 };
 

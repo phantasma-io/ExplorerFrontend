@@ -5,7 +5,7 @@ type ObjectType = {
 /**
  * ObjToQueryType
  */
-type ObjToQueryType = (obj: ObjectType) => string;
+type ObjToQueryType = <T>(obj: T | ObjectType) => string;
 
 /**
  * objToQuery
