@@ -1,4 +1,4 @@
-type ExplorerEndpoints =
+export type ExplorerEndpoints =
   | '/addresses'
   | '/chains'
   | '/contracts'
@@ -6,6 +6,7 @@ type ExplorerEndpoints =
   | '/eventkinds'
   | '/events'
   | '/nfts'
+  | '/organizations'
   | '/series'
   | '/tokens'
   | '/transactions';
