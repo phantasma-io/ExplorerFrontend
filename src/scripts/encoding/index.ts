@@ -1,7 +1,4 @@
-interface TableParams {
-  page: number;
-  pageSize: number;
-}
+import { TableParams } from '../../types/table';
 
 type EncodeParams = (params: TableParams) => string;
 
