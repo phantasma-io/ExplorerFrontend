@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { numberFormat } from '@ricardo-jrm/dervish';
 import { Box, Grid, IconButton, Button } from '@mui/material';
 import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
@@ -9,17 +9,22 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 export interface TablePaginationProps {
   page: number;
   pageSet: (page: number) => void;
-  pageCount: number;
   pageSize: number;
+  total: number;
 }
 
 export const TablePagination = ({
   page,
   pageSet,
-  pageCount,
   pageSize,
+  total,
 }: TablePaginationProps) => {
   useEffect(() => pageSet(1), [pageSize, pageSet]);
+
+  const pageCount = useMemo(
+    () => Math.floor(total / pageSize),
+    [pageSize, total],
+  );
 
   return (
     <Box>
