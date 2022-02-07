@@ -1,4 +1,10 @@
-export { FOOTER_HEIGHT, FOOTER_OFFSET, HEADER_HEIGHT } from './layout';
+export {
+  FOOTER_HEIGHT,
+  FOOTER_OFFSET,
+  HEADER_HEIGHT,
+  TABLE_PAGE,
+  TABLE_SIZE,
+} from './layout';
 
 export { locales, localesKeys, localesDefault } from './locales';
 export type { Locales } from './locales';

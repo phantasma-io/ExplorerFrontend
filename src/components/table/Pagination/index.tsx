@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from 'react';
+import React, { useMemo } from 'react';
 import { numberFormat } from '@ricardo-jrm/dervish';
 import { Box, Grid, IconButton, Button } from '@mui/material';
 import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
@@ -19,8 +19,6 @@ export const TablePagination = ({
   pageSize,
   total,
 }: TablePaginationProps) => {
-  useEffect(() => pageSet(1), [pageSize, pageSet]);
-
   const pageCount = useMemo(
     () => Math.floor(total / pageSize),
     [pageSize, total],
