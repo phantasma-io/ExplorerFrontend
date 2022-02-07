@@ -15,8 +15,10 @@ export type ExplorerRoutes =
 
 export type ExplorerTabs =
   | 'overview'
+  | 'addresses'
   | 'chains'
   | 'tokens'
+  | 'nfts'
   | 'daos'
   | 'blocks'
   | 'contracts'
