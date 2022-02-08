@@ -1,0 +1,1 @@
+export { CellText } from './text';

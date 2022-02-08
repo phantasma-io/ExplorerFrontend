@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { Box, Grid, GridSpacing, Typography } from '@mui/material';
+import { CellText } from './cells';
 import { TableDisplayData, TableDisplayCol, TableDisplayCell } from './types';
 
 export interface TableDisplayDesktopProps extends TableDisplayData {
@@ -13,6 +14,17 @@ export const TableDisplayDesktop = ({
   maxHeight,
   spacing = 1,
 }: TableDisplayDesktopProps) => {
+  const renderCell = useCallback(
+    (type: TableDisplayCol['cell'], value: TableDisplayCell) => {
+      switch (type) {
+        case 'text':
+        default:
+          return <CellText value={value as string} />;
+      }
+    },
+    [],
+  );
+
   return (
     <Box sx={{ maxHeight }}>
       {/* header */}
@@ -35,9 +47,7 @@ export const TableDisplayDesktop = ({
         <Grid container spacing={spacing}>
           {rows.map((cell: TableDisplayCell, idx) => (
             <Grid item xs={cols[idx].size} key={`${cols[idx].label}-${cell}`}>
-              <Box>
-                <Typography variant="body2">{cell}</Typography>
-              </Box>
+              <Box>{renderCell(cols[idx].cell, cell)}</Box>
             </Grid>
           ))}
         </Grid>
