@@ -6,7 +6,9 @@ export interface TableDisplayCol {
 
 export type TableDisplayCell = string | number;
 
+export type TableDisplayRow = TableDisplayCell[];
+
 export interface TableDisplayData {
-  rows: TableDisplayCell[];
+  rows: TableDisplayRow[];
   cols: TableDisplayCol[];
 }
