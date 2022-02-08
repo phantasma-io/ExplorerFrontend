@@ -129,12 +129,9 @@ export const Text = ({
 
     if (translate) {
       if (capitalize) {
-        return stringCapitalize(
-          echo(value as string),
-          capitalize === 'allWords',
-        );
+        return stringCapitalize(echo(`${value}`), capitalize === 'allWords');
       }
-      return echo(value as string);
+      return echo(`${value}`);
     }
 
     if (capitalize) {
