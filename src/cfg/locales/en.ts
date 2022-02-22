@@ -63,4 +63,10 @@ export const en: EchoMsgs = {
   'tab-oracles': 'Oracles',
   'tab-script': 'Script',
   'tab-members': 'Members',
+  // TODO
+  // tab
+  'tab-addresses': 'Addresses',
+  // sys
+  name: 'Name',
+  details: 'Details',
 };

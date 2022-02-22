@@ -4,6 +4,7 @@ export { Link } from './display/Link';
 export { Text } from './display/Text';
 
 // layout
+export { Dialog } from './layout/Dialog';
 export { Footer } from './layout/Footer';
 export { Fullscreen } from './layout/Fullscreen';
 export { Header } from './layout/Header';
@@ -17,3 +18,4 @@ export { MetaDynamic } from './meta/MetaDynamic';
 export { MetaTags } from './meta/MetaTags';
 
 // table
+export { Table } from './table';

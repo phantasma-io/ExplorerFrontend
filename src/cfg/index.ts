@@ -4,7 +4,11 @@ export {
   HEADER_HEIGHT,
   TABLE_PAGE,
   TABLE_SIZE,
+  TABLE_HEIGHT,
 } from './layout';
+
+export { endpoints, url } from './endpoints';
+export type { ExplorerEndpoints } from './endpoints';
 
 export { locales, localesKeys, localesDefault } from './locales';
 export type { Locales } from './locales';

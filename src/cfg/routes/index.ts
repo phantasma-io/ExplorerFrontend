@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { objToQuery } from '../../scripts/objQuery';
 import { localesKeys, Locales } from '../locales';
 

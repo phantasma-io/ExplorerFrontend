@@ -3,7 +3,7 @@ interface ListParams {
   order_direction?: 'asc' | 'desc';
   offset?: number;
   limit?: number;
-  // with_total?: number;
+  with_total?: 0 | 1;
 }
 interface ListResults {
   total_results?: number;
