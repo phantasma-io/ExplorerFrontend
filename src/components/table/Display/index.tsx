@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box } from '@mui/material';
-import { TableControls } from '../Controller';
+import { TableControls } from '../Controls';
 import { TableDisplayDesktop } from './desktop';
 import { TableDisplayMobile } from './mobile';
 import { TableDisplayData, DetailSchema } from './types';

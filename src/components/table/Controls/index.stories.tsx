@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Story, Meta } from '@storybook/react';
 import { TableControls, TableControlsProps } from '.';
 
@@ -19,5 +19,16 @@ export default {
 } as Meta;
 
 export const Default: Story<TableControlsProps> = () => {
-  return <TableControls total={1000} />;
+  const [page, pageSet] = useState(1);
+  const [pageSize, pageSizeSet] = useState(25);
+
+  return (
+    <TableControls
+      total={1000}
+      page={page}
+      pageSet={pageSet}
+      pageSize={pageSize}
+      pageSizeSet={pageSizeSet}
+    />
+  );
 };
