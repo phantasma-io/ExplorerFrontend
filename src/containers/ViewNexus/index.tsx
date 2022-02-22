@@ -1,6 +1,7 @@
 import React, { useMemo } from 'react';
 import { useEcho } from '@ricardo-jrm/echo';
 import { Text, NavTabs, NavTabsRecord } from '../../components';
+import { AddressesList } from '../../components/list';
 import { routes, Locales, ExplorerTabs } from '../../cfg';
 
 const ChainsList = () => (
@@ -25,16 +26,16 @@ export interface ViewNexusProps {
   tabForce?: ExplorerTabs;
 }
 
-export const ViewNexus = ({ tabForce = 'chains' }: ViewNexusProps) => {
+export const ViewNexus = ({ tabForce = 'addresses' }: ViewNexusProps) => {
   const { echo, echoActiveId } = useEcho();
 
   const tabs: NavTabsRecord = useMemo(
     () => ({
-      chains: {
-        id: 'chains',
-        label: echo('tab-chains'),
+      addresses: {
+        id: 'addresses',
+        label: echo('tab-addresses'),
         href: routes['/nexus'](echoActiveId as Locales),
-        component: <ChainsList />,
+        component: <AddressesList route="/nexus" />,
       },
       tokens: {
         id: 'tokens',
@@ -47,6 +48,12 @@ export const ViewNexus = ({ tabForce = 'chains' }: ViewNexusProps) => {
         label: echo('tab-daos'),
         href: routes['/nexus'](echoActiveId as Locales),
         component: <DaosList />,
+      },
+      chains: {
+        id: 'chains',
+        label: echo('tab-chains'),
+        href: routes['/nexus'](echoActiveId as Locales),
+        component: <ChainsList />,
       },
     }),
     [echo, echoActiveId],

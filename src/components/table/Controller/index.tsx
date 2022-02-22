@@ -1,9 +1,7 @@
 import React, { useState, useMemo } from 'react';
-import { useRouter } from 'next/router';
 import { Box, Grid } from '@mui/material';
-import { TABLE_PAGE, TABLE_SIZE } from '../../../cfg';
 import { TableParams } from '../../../types/table';
-import { decode } from '../../../scripts';
+import { usePageParams } from '../../../hooks';
 import { TableEncoder } from '../Encoder';
 import { TablePageSize } from '../PageSize';
 import { TablePagination } from '../Pagination';
@@ -13,22 +11,7 @@ export interface TableControllerProps {
 }
 
 export const TableController = ({ total }: TableControllerProps) => {
-  const { query } = useRouter();
-
-  const { pageParam, pageSizeParam } = useMemo(() => {
-    if (query.t) {
-      const decoded = decode(query.t as string);
-      return {
-        pageParam: decoded.page || TABLE_PAGE,
-        pageSizeParam: decoded.pageSize || TABLE_SIZE,
-      };
-    }
-
-    return {
-      pageParam: TABLE_PAGE,
-      pageSizeParam: TABLE_SIZE,
-    };
-  }, [query]);
+  const { pageParam, pageSizeParam } = usePageParams();
 
   const [page, pageSet] = useState(pageParam);
   const [pageSize, pageSizeSet] = useState(pageSizeParam);
@@ -40,7 +23,7 @@ export const TableController = ({ total }: TableControllerProps) => {
 
   return (
     <Box>
-      <TableEncoder params={params} />
+      {/* <TableEncoder params={params} /> */}
       <Grid container justifyContent={{ xs: 'center', md: 'space-between' }}>
         <Grid item xs={12} md="auto">
           <TablePageSize
