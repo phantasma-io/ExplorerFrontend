@@ -1,10 +1,10 @@
 import React from 'react';
 import { Story, Meta } from '@storybook/react';
-import { TableController, TableControllerProps } from '.';
+import { TableControls, TableControlsProps } from '.';
 
 export default {
   title: 'Components/Table/Controller',
-  component: TableController,
+  component: TableControls,
   parameters: {
     componentSubtitle: 'Table Controller Component',
     nextRouter: {
@@ -18,6 +18,6 @@ export default {
   },
 } as Meta;
 
-export const Default: Story<TableControllerProps> = () => {
-  return <TableController total={1000} />;
+export const Default: Story<TableControlsProps> = () => {
+  return <TableControls total={1000} />;
 };

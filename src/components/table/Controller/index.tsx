@@ -1,21 +1,25 @@
-import React, { useState, useMemo } from 'react';
+import React, { useMemo } from 'react';
 import { Box, Grid } from '@mui/material';
 import { TableParams } from '../../../types/table';
-import { usePageParams } from '../../../hooks';
 import { TableEncoder } from '../Encoder';
 import { TablePageSize } from '../PageSize';
 import { TablePagination } from '../Pagination';
 
-export interface TableControllerProps {
+export interface TableControlsProps {
+  page: number;
+  pageSize: number;
+  pageSet: React.Dispatch<React.SetStateAction<number>>;
+  pageSizeSet: React.Dispatch<React.SetStateAction<number>>;
   total: number;
 }
 
-export const TableController = ({ total }: TableControllerProps) => {
-  const { pageParam, pageSizeParam } = usePageParams();
-
-  const [page, pageSet] = useState(pageParam);
-  const [pageSize, pageSizeSet] = useState(pageSizeParam);
-
+export const TableControls = ({
+  page,
+  pageSet,
+  pageSize,
+  pageSizeSet,
+  total,
+}: TableControlsProps) => {
   const params = useMemo<TableParams>(
     () => ({ page, pageSize }),
     [page, pageSize],
@@ -23,7 +27,7 @@ export const TableController = ({ total }: TableControllerProps) => {
 
   return (
     <Box>
-      {/* <TableEncoder params={params} /> */}
+      <TableEncoder params={params} />
       <Grid container justifyContent={{ xs: 'center', md: 'space-between' }}>
         <Grid item xs={12} md="auto">
           <TablePageSize

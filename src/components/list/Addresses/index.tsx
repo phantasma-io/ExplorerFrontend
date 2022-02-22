@@ -1,8 +1,8 @@
-import React, { useEffect, useMemo } from 'react';
+import React, { useState, useMemo } from 'react';
 import { useEcho } from '@ricardo-jrm/echo';
 import { useEmpathy } from '@ricardo-jrm/empathy';
 import { Box } from '@mui/material';
-import { ExplorerRoutes, endpoints } from '../../../cfg';
+import { endpoints } from '../../../cfg';
 import { usePageParams } from '../../../hooks';
 import {
   Table,
@@ -11,19 +11,18 @@ import {
   DetailSchema,
 } from '../../table';
 
-export interface AddressesListProps {
-  route?: ExplorerRoutes;
-}
-
-export const AddressesList = ({ route = '/nexus' }: AddressesListProps) => {
+export const AddressesList = () => {
   const { echo } = useEcho();
 
   const { pageParam, pageSizeParam } = usePageParams();
 
+  const [page, pageSet] = useState(pageParam);
+  const [pageSize, pageSizeSet] = useState(pageSizeParam);
+
   const { data } = useEmpathy<AddressResults>(
     endpoints['/addresses']({
-      offset: pageParam - 1,
-      limit: pageSizeParam,
+      offset: (page - 1) * pageSize,
+      limit: pageSize,
       with_total: 1,
     }),
   );
@@ -65,10 +64,6 @@ export const AddressesList = ({ route = '/nexus' }: AddressesListProps) => {
     [echo],
   );
 
-  useEffect(() => {
-    console.log({ data, rows });
-  }, [data, rows]);
-
   return (
     <Box>
       <Table
@@ -76,6 +71,10 @@ export const AddressesList = ({ route = '/nexus' }: AddressesListProps) => {
         rows={rows}
         total={data?.total_results || 0}
         withDetails={details}
+        page={page}
+        pageSet={pageSet}
+        pageSize={pageSize}
+        pageSizeSet={pageSizeSet}
       />
     </Box>
   );

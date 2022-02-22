@@ -16,7 +16,7 @@ import { TABLE_HEIGHT } from '../../../../cfg';
 import { TableRow } from './row';
 
 export interface TableDisplayDesktopProps extends TableDisplayData {
-  maxHeight?: string;
+  height?: string;
   spacing?: GridSpacing;
   withDetails?: DetailSchema;
 }
@@ -24,7 +24,7 @@ export interface TableDisplayDesktopProps extends TableDisplayData {
 export const TableDisplayDesktop = ({
   rows,
   cols,
-  maxHeight = TABLE_HEIGHT,
+  height = TABLE_HEIGHT,
   spacing = 1,
   withDetails = undefined,
 }: TableDisplayDesktopProps) => {
@@ -129,7 +129,7 @@ export const TableDisplayDesktop = ({
       </Box>
 
       {/* body */}
-      <Box style={{ overflow: 'auto', maxHeight }}>
+      <Box style={{ overflow: 'auto', height }}>
         {rows.map((row) => (
           <TableRow
             row={row}

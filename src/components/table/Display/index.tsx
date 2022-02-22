@@ -1,11 +1,15 @@
 import React from 'react';
 import { Box } from '@mui/material';
-import { TableController } from '../Controller';
+import { TableControls } from '../Controller';
 import { TableDisplayDesktop } from './desktop';
 import { TableDisplayMobile } from './mobile';
 import { TableDisplayData, DetailSchema } from './types';
 
 export interface TableDisplayProps extends TableDisplayData {
+  page: number;
+  pageSize: number;
+  pageSet: React.Dispatch<React.SetStateAction<number>>;
+  pageSizeSet: React.Dispatch<React.SetStateAction<number>>;
   total: number;
   withDetails?: DetailSchema;
 }
@@ -13,13 +17,23 @@ export interface TableDisplayProps extends TableDisplayData {
 export const TableDisplay = ({
   rows,
   cols,
+  page,
+  pageSet,
+  pageSize,
+  pageSizeSet,
   total,
   withDetails,
 }: TableDisplayProps) => {
   return (
     <Box p={1}>
       <Box mb={1}>
-        <TableController total={total} />
+        <TableControls
+          total={total}
+          page={page}
+          pageSet={pageSet}
+          pageSize={pageSize}
+          pageSizeSet={pageSizeSet}
+        />
       </Box>
       {/* desktop */}
       <Box mb={1} display={{ xs: 'none', md: 'block' }}>
