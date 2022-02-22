@@ -35,7 +35,7 @@ export const ViewNexus = ({ tabForce = 'addresses' }: ViewNexusProps) => {
         id: 'addresses',
         label: echo('tab-addresses'),
         href: routes['/nexus'](echoActiveId as Locales),
-        component: <AddressesList route="/nexus" />,
+        component: <AddressesList />,
       },
       tokens: {
         id: 'tokens',
