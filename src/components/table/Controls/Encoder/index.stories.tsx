@@ -28,6 +28,11 @@ export const Default: Story<TableEncoderProps> = () => {
 
   const total = useMemo(() => 1000, []);
 
+  const pageCount = useMemo(
+    () => Math.floor(total / pageSize),
+    [pageSize, total],
+  );
+
   return (
     <Box>
       <TableEncoder params={params} />
@@ -35,9 +40,8 @@ export const Default: Story<TableEncoderProps> = () => {
         <Grid item>
           <TablePagination
             page={page}
-            pageSize={pageSize}
             pageSet={pageSet}
-            total={total}
+            pageCount={pageCount}
           />
         </Grid>
         <Grid item>
@@ -45,6 +49,7 @@ export const Default: Story<TableEncoderProps> = () => {
             options={[25, 50, 100]}
             pageSize={pageSize}
             pageSizeSet={pageSizeSet}
+            total={total}
           />
         </Grid>
       </Grid>

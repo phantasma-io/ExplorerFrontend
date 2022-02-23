@@ -187,7 +187,7 @@ export const Text = ({
       <Grid item>{children || result}</Grid>
       {formatDate && (
         <Grid item>
-          <Tooltip title={dateRelative(formatDate).fromNow}>
+          <Tooltip title={dateRelative(formatDate).fromNow} placement="right">
             <Typography variant={variant} {...propsTypo} sx={sx}>
               <CopyToClipboard text={copy}>
                 <IconButton
@@ -200,6 +200,7 @@ export const Text = ({
                   <EventIcon
                     style={{
                       fontSize: furyActive.typography[variant].fontSize,
+                      opacity: 0.45,
                     }}
                   />
                 </IconButton>
@@ -210,7 +211,7 @@ export const Text = ({
       )}
       {clipboard && (
         <Grid item>
-          <Tooltip title={echo('copy-to-clipboard')}>
+          <Tooltip title={echo('copy-to-clipboard')} placement="right">
             <Typography variant={variant} {...propsTypo} sx={sx}>
               <CopyToClipboard text={copy}>
                 <IconButton
@@ -223,6 +224,7 @@ export const Text = ({
                   <ContentCopyIcon
                     style={{
                       fontSize: furyActive.typography[variant].fontSize,
+                      opacity: 0.45,
                     }}
                   />
                 </IconButton>

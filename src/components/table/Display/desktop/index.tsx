@@ -4,21 +4,20 @@ import { useFury } from '@ricardo-jrm/fury';
 import { useEcho } from '@ricardo-jrm/echo';
 import { Box, Grid, GridSpacing, Typography, Button } from '@mui/material';
 import { CellText, CellNumber } from '../cells';
+import { Dialog } from '../../../layout/Dialog';
+import { TABLE_HEIGHT } from '../../../../cfg';
+import { TableRow } from './row';
 import {
   TableDisplayData,
   TableDisplayRow,
   TableDisplayCol,
   TableDisplayCell,
-  DetailSchema,
-} from '../types';
-import { Dialog } from '../../../layout/Dialog';
-import { TABLE_HEIGHT } from '../../../../cfg';
-import { TableRow } from './row';
+} from '../../../../types/table';
 
 export interface TableDisplayDesktopProps extends TableDisplayData {
   height?: string;
   spacing?: GridSpacing;
-  withDetails?: DetailSchema;
+  withDetails?: boolean;
 }
 
 export const TableDisplayDesktop = ({
@@ -26,7 +25,7 @@ export const TableDisplayDesktop = ({
   cols,
   height = TABLE_HEIGHT,
   spacing = 1,
-  withDetails = undefined,
+  withDetails = true,
 }: TableDisplayDesktopProps) => {
   const { echo } = useEcho();
   const { furyActive } = useFury();
@@ -92,17 +91,13 @@ export const TableDisplayDesktop = ({
 
   const renderActions = useCallback(() => {
     if (withDetails) {
-      switch (withDetails.action) {
-        case 'close':
-        default:
-          return (
-            <Box>
-              <Button onClick={closeDialog} color="inherit">
-                {echo('close')}
-              </Button>
-            </Box>
-          );
-      }
+      return (
+        <Box>
+          <Button onClick={closeDialog} color="inherit">
+            {echo('close')}
+          </Button>
+        </Box>
+      );
     }
 
     return null;
@@ -148,7 +143,7 @@ export const TableDisplayDesktop = ({
         <Dialog
           isOpen={dialogOpen}
           handleClose={closeDialog}
-          title={withDetails.title}
+          title={echo('details')}
           actions={renderActions()}
         >
           {renderDetails()}

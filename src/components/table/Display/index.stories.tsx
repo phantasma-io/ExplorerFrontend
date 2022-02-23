@@ -1,7 +1,7 @@
 import React from 'react';
 import { Story, Meta } from '@storybook/react';
 import { TableDisplay, TableDisplayProps } from '.';
-import { TableDisplayCol, TableDisplayRow, TableDisplayCell } from './types';
+import { TableDisplayCol, TableDisplayRow } from '../../../types/table';
 
 export default {
   title: 'Components/Table/Display',
@@ -49,16 +49,9 @@ const rows: TableDisplayRow[] = [
 ];
 
 export const Default: Story<TableDisplayProps> = () => {
-  return <TableDisplay rows={rows} cols={cols} total={1000} />;
+  return <TableDisplay rows={rows} cols={cols} />;
 };
 
 export const WithDetails: Story<TableDisplayProps> = () => {
-  return (
-    <TableDisplay
-      rows={rows}
-      cols={cols}
-      total={1000}
-      withDetails={{ title: 'Details', action: 'close' }}
-    />
-  );
+  return <TableDisplay rows={rows} cols={cols} />;
 };

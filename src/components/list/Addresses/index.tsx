@@ -4,12 +4,8 @@ import { useEmpathy } from '@ricardo-jrm/empathy';
 import { Box } from '@mui/material';
 import { endpoints } from '../../../cfg';
 import { usePageParams } from '../../../hooks';
-import {
-  Table,
-  TableDisplayCol,
-  TableDisplayRow,
-  DetailSchema,
-} from '../../table';
+import { Table } from '../../table';
+import { TableDisplayCol, TableDisplayRow } from '../../../types/table';
 
 export const AddressesList = () => {
   const { echo } = useEcho();
@@ -56,21 +52,12 @@ export const AddressesList = () => {
     return [];
   }, [data]);
 
-  const details = useMemo<DetailSchema>(
-    () => ({
-      title: `${echo('address')} ${echo('details')}`,
-      action: 'close',
-    }),
-    [echo],
-  );
-
   return (
     <Box>
       <Table
         cols={cols}
         rows={rows}
         total={data?.total_results || 0}
-        withDetails={details}
         page={page}
         pageSet={pageSet}
         pageSize={pageSize}

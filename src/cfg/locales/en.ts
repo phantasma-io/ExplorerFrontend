@@ -69,4 +69,11 @@ export const en: EchoMsgs = {
   // sys
   name: 'Name',
   details: 'Details',
+  all: 'All',
+  // table
+  'table-firstpage': 'First page',
+  'table-prevpage': 'Previous page',
+  'table-nextpage': 'Next page',
+  'table-lastpage': 'Last page',
+  'table-changePageSize': 'Change page size',
 };

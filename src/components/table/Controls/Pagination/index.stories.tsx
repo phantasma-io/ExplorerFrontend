@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { Story, Meta } from '@storybook/react';
 import { Grid } from '@mui/material';
 import { TablePagination, TablePaginationProps } from '.';
@@ -15,15 +15,11 @@ export default {
 export const Default: Story<TablePaginationProps> = () => {
   const [page, pageSet] = useState(1);
   const [pageSize] = useState(25);
-  const [total] = useState(1000);
+
+  const pageCount = useMemo(() => Math.floor(1000 / pageSize), [pageSize]);
 
   return (
-    <TablePagination
-      page={page}
-      pageSet={pageSet}
-      total={total}
-      pageSize={pageSize}
-    />
+    <TablePagination page={page} pageSet={pageSet} pageCount={pageCount} />
   );
 };
 
@@ -33,21 +29,22 @@ export const WithPageSize: Story<TablePaginationProps> = () => {
   const [pageSize, pageSizeSet] = useState(options[0]);
   const [total] = useState(1000);
 
+  const pageCount = useMemo(
+    () => Math.floor(total / pageSize),
+    [pageSize, total],
+  );
+
   return (
     <Grid container justifyContent="space-between">
       <Grid item>
-        <TablePagination
-          page={page}
-          pageSet={pageSet}
-          total={total}
-          pageSize={pageSize}
-        />
+        <TablePagination page={page} pageSet={pageSet} pageCount={pageCount} />
       </Grid>
       <Grid item>
         <TablePageSize
           pageSize={pageSize}
           pageSizeSet={pageSizeSet}
           options={options}
+          total={total}
         />
       </Grid>
     </Grid>

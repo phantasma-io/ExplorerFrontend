@@ -1,8 +1,8 @@
 import React, { useEffect, ReactChild, ReactChildren } from 'react';
 import { useRouter } from 'next/router';
 import { Box } from '@mui/material';
-import { TableParams } from '../../../types/table';
-import { encode, objToQuery } from '../../../scripts';
+import { encode, objToQuery } from '../../../../scripts';
+import { TableParams } from '../../../../types/table';
 
 export interface TableEncoderProps {
   children?: ReactChild | ReactChildren;

@@ -1,40 +1,20 @@
 import React from 'react';
 import { Box } from '@mui/material';
-import { TableControls } from '../Controls';
 import { TableDisplayDesktop } from './desktop';
 import { TableDisplayMobile } from './mobile';
-import { TableDisplayData, DetailSchema } from './types';
+import { TableDisplayData } from '../../../types/table';
 
 export interface TableDisplayProps extends TableDisplayData {
-  page: number;
-  pageSize: number;
-  pageSet: React.Dispatch<React.SetStateAction<number>>;
-  pageSizeSet: React.Dispatch<React.SetStateAction<number>>;
-  total: number;
-  withDetails?: DetailSchema;
+  withDetails?: boolean;
 }
 
 export const TableDisplay = ({
   rows,
   cols,
-  page,
-  pageSet,
-  pageSize,
-  pageSizeSet,
-  total,
-  withDetails,
+  withDetails = true,
 }: TableDisplayProps) => {
   return (
-    <Box p={1}>
-      <Box mb={1}>
-        <TableControls
-          total={total}
-          page={page}
-          pageSet={pageSet}
-          pageSize={pageSize}
-          pageSizeSet={pageSizeSet}
-        />
-      </Box>
+    <Box>
       {/* desktop */}
       <Box mb={1} display={{ xs: 'none', md: 'block' }}>
         <TableDisplayDesktop

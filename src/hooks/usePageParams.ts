@@ -1,5 +1,4 @@
 import { useMemo } from 'react';
-// import { useRouter } from 'next/router';
 import { TABLE_PAGE, TABLE_SIZE } from '../cfg';
 import { decode, queryToObj } from '../scripts';
 
@@ -27,24 +26,6 @@ export const usePageParams = () => {
       pageSizeParam: TABLE_SIZE,
     };
   }, [location]);
-
-  // const { query } = useRouter();
-  // const params = useMemo(() => {
-  //   console.log({ query });
-
-  //   if (query.t) {
-  //     const decoded = decode(query.t as string);
-  //     return {
-  //       pageParam: decoded.page || TABLE_PAGE,
-  //       pageSizeParam: decoded.pageSize || TABLE_SIZE,
-  //     };
-  //   }
-
-  //   return {
-  //     pageParam: TABLE_PAGE,
-  //     pageSizeParam: TABLE_SIZE,
-  //   };
-  // }, [query]);
 
   return params;
 };

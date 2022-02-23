@@ -20,6 +20,7 @@ export const Default: Story<TablePageSizeProps> = () => {
       pageSize={pageSize}
       pageSizeSet={pageSizeSet}
       options={options}
+      total={1000}
     />
   );
 };
