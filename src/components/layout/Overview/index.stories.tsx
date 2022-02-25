@@ -1,6 +1,6 @@
 import React from 'react';
 import { Story, Meta } from '@storybook/react';
-import { Overview, OverviewProps, OverviewItem } from '.';
+import { Overview, OverviewProps } from '.';
 
 export default {
   title: 'Components/Layout/Overview',
@@ -10,7 +10,7 @@ export default {
   },
 } as Meta;
 
-const items: OverviewItem[] = [
+const items = [
   {
     label: 'Name',
     value: 'Test',

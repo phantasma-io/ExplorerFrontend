@@ -3,7 +3,8 @@ import { useFury } from '@ricardo-jrm/fury';
 import { useEcho } from '@ricardo-jrm/echo';
 import { Box, Grid, Button } from '@mui/material';
 import { Fullscreen, Image, Link } from 'components';
-import { FOOTER_HEIGHT, HEADER_HEIGHT, routes, Locales } from 'cfg';
+import { FOOTER_HEIGHT, HEADER_HEIGHT, routes } from 'cfg';
+import { Locales } from 'types/locales';
 
 /**
  * ViewHome

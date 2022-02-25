@@ -7,7 +7,9 @@ import type {
 } from 'next';
 import { EchoProvider } from '@ricardo-jrm/echo';
 import { LocalizedView } from 'containers/LocalizedView';
-import { locales, localesKeys, Locales, ExplorerRoutes } from 'cfg';
+import { locales, localesKeys } from 'cfg';
+import { Locales } from 'types/locales';
+import { ExplorerRoutes } from 'types/routes';
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const paths = localesKeys.map((key) => ({

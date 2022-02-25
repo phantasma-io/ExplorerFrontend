@@ -1,41 +1,6 @@
-import { objToQuery } from '../../scripts/objQuery';
-import { localesKeys, Locales } from '../locales';
-
-export type ExplorerRoutes =
-  | '/'
-  | '/nexus'
-  | '/chain'
-  | '/address'
-  | '/block'
-  | '/contract'
-  | '/dao'
-  | '/token'
-  | '/transaction';
-
-export type ExplorerTabs =
-  | 'overview'
-  | 'addresses'
-  | 'chains'
-  | 'tokens'
-  | 'nfts'
-  | 'daos'
-  | 'blocks'
-  | 'contracts'
-  | 'balances'
-  | 'transactions'
-  | 'events'
-  | 'oracles'
-  | 'script'
-  | 'members';
-
-type RouterParams = {
-  id?: string;
-  tab?: ExplorerTabs;
-};
-
-type ExplorerRouter = {
-  [key in ExplorerRoutes]: (locale: Locales, params?: RouterParams) => string;
-};
+import { objToQuery } from 'scripts/objQuery';
+import { localesKeys } from 'cfg/locales';
+import { ExplorerRouter } from 'types/routes';
 
 export const routes: ExplorerRouter = {
   '/': (locale) => `/${locale}`,

@@ -2,7 +2,8 @@ import React, { useEffect, useMemo } from 'react';
 import { useRouter } from 'next/router';
 import { Box } from '@mui/material';
 import { useEcho } from '@ricardo-jrm/echo';
-import { Locales, ExplorerRoutes } from 'cfg';
+import { Locales } from 'types/locales';
+import { ExplorerRoutes } from 'types/routes';
 import { Text, MetaDynamic } from 'components';
 import {
   AppLayout,

@@ -23,8 +23,9 @@ import Brightness4Icon from '@mui/icons-material/Brightness4';
 import SearchIcon from '@mui/icons-material/Search';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import CloseIcon from '@mui/icons-material/Close';
-import { routes, Locales } from 'cfg';
+import { routes } from 'cfg';
 import { Text, Image } from 'components/display';
+import { Locales } from 'types/locales';
 
 /**
  * Header props

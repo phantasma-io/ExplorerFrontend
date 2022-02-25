@@ -1,7 +1,9 @@
 import React, { useMemo } from 'react';
 import { useEcho } from '@ricardo-jrm/echo';
 import { Text, NavTabs, NavTabsRecord } from 'components';
-import { routes, Locales, ExplorerTabs } from 'cfg';
+import { routes } from 'cfg';
+import { Locales } from 'types/locales';
+import { ExplorerTabs } from 'types/routes';
 
 const DaoOverview = () => (
   <>
