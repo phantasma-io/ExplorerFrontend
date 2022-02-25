@@ -22,7 +22,7 @@ export type {
   IntructionParams,
 } from './instructions';
 
-export type { ListParams, ListResults } from './list';
+export type { ListParams, ListResults, WithOption } from './list';
 
 export type { Nft, NftMetadata, NftOwner, NftParams, NftResults } from './nfts';
 

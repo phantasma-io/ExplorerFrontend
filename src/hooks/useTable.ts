@@ -1,7 +1,6 @@
 import { useState, useMemo } from 'react';
+import { WithOption } from 'types/api';
 import { useTableParams } from './useTableParams';
-
-type WithTotal = 0 | 1;
 
 export const useTable = () => {
   const tableParams = useTableParams();
@@ -15,7 +14,7 @@ export const useTable = () => {
 
   const offset = useMemo(() => (page - 1) * pageSize, [page, pageSize]);
 
-  const withTotal = useMemo(() => 1 as WithTotal, []);
+  const withTotal = useMemo(() => 1 as WithOption, []);
 
   return {
     withTotal,
