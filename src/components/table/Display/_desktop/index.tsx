@@ -2,31 +2,24 @@ import React, { useState, useCallback } from 'react';
 import { nanoid } from 'nanoid';
 import { useFury } from '@ricardo-jrm/fury';
 import { useEcho } from '@ricardo-jrm/echo';
-import { Box, Grid, GridSpacing, Typography, Button } from '@mui/material';
-import { CellText, CellNumber } from '../cells';
+import { Box, Grid, Typography, Button } from '@mui/material';
+import { CellText, CellNumber } from '../_cells';
 import { Dialog } from '../../../layout/Dialog';
-import { TABLE_HEIGHT } from '../../../../cfg';
 import { TableRow } from './row';
 import {
-  TableDisplayData,
+  TableDisplayProps,
   TableDisplayRow,
   TableDisplayCol,
   TableDisplayCell,
 } from '../../../../types/table';
 
-export interface TableDisplayDesktopProps extends TableDisplayData {
-  height?: string;
-  spacing?: GridSpacing;
-  withDetails?: boolean;
-}
-
 export const TableDisplayDesktop = ({
   rows,
   cols,
-  height = TABLE_HEIGHT,
-  spacing = 1,
-  withDetails = true,
-}: TableDisplayDesktopProps) => {
+  height,
+  spacing,
+  withDetails,
+}: TableDisplayProps) => {
   const { echo } = useEcho();
   const { furyActive } = useFury();
 
