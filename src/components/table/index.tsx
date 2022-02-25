@@ -12,12 +12,10 @@ import { TableDisplay } from './Display';
 export interface TableProps
   extends TableDisplayProps,
     TableParamControls,
-    TableUrlParams {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  raw: any;
-}
+    TableUrlParams {}
 
 export const Table = ({
+  tableId,
   raw,
   rows,
   cols,
@@ -38,9 +36,10 @@ export const Table = ({
   const strData = useMemo(() => JSON.stringify(raw), [raw]);
 
   return (
-    <Box p={1}>
+    <Box p={1} id={tableId}>
       <Box mb={1}>
         <TableControls
+          tableId={tableId}
           exportData={strData}
           total={total}
           page={page}
@@ -56,6 +55,8 @@ export const Table = ({
       </Box>
       <Box>
         <TableDisplay
+          tableId={tableId}
+          raw={raw}
           rows={rows}
           cols={cols}
           withDetails={withDetails}

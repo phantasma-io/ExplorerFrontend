@@ -5,6 +5,8 @@ import { TableDisplayDesktop } from './Desktop';
 import { TableDisplayMobile } from './Mobile';
 
 export const TableDisplay = ({
+  raw,
+  tableId,
   rows,
   cols,
   height,
@@ -16,6 +18,8 @@ export const TableDisplay = ({
       {/* desktop */}
       <Box mb={1} display={{ xs: 'none', md: 'block' }}>
         <TableDisplayDesktop
+          tableId={tableId}
+          raw={raw}
           rows={rows}
           cols={cols}
           height={height}

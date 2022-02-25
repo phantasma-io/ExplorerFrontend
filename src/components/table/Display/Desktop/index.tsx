@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useMemo } from 'react';
 import { nanoid } from 'nanoid';
 import { useFury } from '@ricardo-jrm/fury';
 import { useEcho } from '@ricardo-jrm/echo';
@@ -10,10 +10,14 @@ import {
   TableDisplayCol,
   TableDisplayCell,
 } from 'types/table';
+import csvDownload from 'json-to-csv-export';
+import { encode } from 'scripts';
 import { TableRow } from './row';
 import { CellText, CellNumber } from '../../Cells';
 
 export const TableDisplayDesktop = ({
+  tableId,
+  raw,
   rows,
   cols,
   height,
@@ -27,14 +31,23 @@ export const TableDisplayDesktop = ({
   const [selectedRow, selectedRowSet] = useState<TableDisplayRow | undefined>(
     undefined,
   );
+  const [selectedRowIndex, selectedRowIndexSet] = useState<number | undefined>(
+    undefined,
+  );
   const openDialog = useCallback(
-    (row: TableDisplayRow) => {
+    (row: TableDisplayRow, index: number) => {
       selectedRowSet(row);
+      selectedRowIndexSet(index);
       dialogOpenSet(true);
     },
     [dialogOpenSet, selectedRowSet],
   );
   const closeDialog = useCallback(() => dialogOpenSet(false), [dialogOpenSet]);
+
+  const csvFilename = useMemo(
+    () => `${tableId}-${encode(raw)}.csv`,
+    [tableId, raw],
+  );
 
   const renderCell = useCallback(
     (type: TableDisplayCol['cell'], value: TableDisplayCell) => {
@@ -86,15 +99,30 @@ export const TableDisplayDesktop = ({
     if (withDetails) {
       return (
         <Box>
-          <Button onClick={closeDialog} color="inherit">
-            {echo('close')}
-          </Button>
+          <Grid container alignItems="center" spacing={1}>
+            {selectedRowIndex !== undefined && (
+              <Grid item>
+                <Button
+                  onClick={() =>
+                    csvDownload([raw[selectedRowIndex]], csvFilename, ',')
+                  }
+                >
+                  {echo('table-exportCsv')}
+                </Button>
+              </Grid>
+            )}
+            <Grid item>
+              <Button onClick={closeDialog} color="inherit">
+                {echo('close')}
+              </Button>
+            </Grid>
+          </Grid>
         </Box>
       );
     }
 
     return null;
-  }, [withDetails, echo, closeDialog]);
+  }, [withDetails, echo, closeDialog, raw, csvFilename, selectedRowIndex]);
 
   return (
     <Box>
@@ -104,22 +132,30 @@ export const TableDisplayDesktop = ({
         style={{ borderBottom: `2px solid ${furyActive.palette.divider}` }}
       >
         <Grid container>
-          {cols.map((col: TableDisplayCol) => (
-            <Grid item xs={col.size} key={`${col.label}-col`}>
-              <Box>
-                <Typography variant="body1" fontWeight={600}>
-                  {col.label}
-                </Typography>
-              </Box>
-            </Grid>
-          ))}
+          {cols.map((col: TableDisplayCol) => {
+            if (col.showDesktop) {
+              return (
+                <Grid item xs={col.size} key={`${col.label}-col`}>
+                  <Box>
+                    <Typography variant="body1" fontWeight={600}>
+                      {col.label}
+                    </Typography>
+                  </Box>
+                </Grid>
+              );
+            }
+            return null;
+          })}
         </Grid>
       </Box>
 
       {/* body */}
       <Box style={{ overflow: 'auto', height }}>
-        {rows.map((row) => (
+        {rows.map((row, i) => (
           <TableRow
+            tableId={tableId}
+            index={i}
+            raw={raw[i]}
             row={row}
             spacing={spacing}
             cols={cols}

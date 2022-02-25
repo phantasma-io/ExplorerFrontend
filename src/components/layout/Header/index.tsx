@@ -198,7 +198,7 @@ export const Header = ({ height }: HeaderProps) => {
           <Box textAlign="right">
             <Box display="inline-block" pr={{ xs: 0.5, md: 1.5 }}>
               <Tooltip title={echo('tooltip-search')}>
-                <IconButton size="small" onClick={handleSearchOpen}>
+                <IconButton size="small" onClick={handleSearchOpen} disabled>
                   <SearchIcon
                     sx={{
                       fontSize: furyActive.typography.h5.fontSize,

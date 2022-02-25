@@ -30,12 +30,14 @@ export const AddressesList = () => {
         label: echo('address'),
         cell: 'text',
         size: 8,
+        showDesktop: true,
       },
       {
         id: 'name',
         label: echo('name'),
         cell: 'text',
-        size: 4,
+        size: 3,
+        showDesktop: true,
       },
     ],
     [echo],
@@ -55,6 +57,7 @@ export const AddressesList = () => {
   return (
     <Box>
       <Table
+        tableId="PhantasmaExplorer-Addresses"
         raw={data?.addresses || []}
         cols={cols}
         rows={rows}

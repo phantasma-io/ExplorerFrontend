@@ -1,16 +1,19 @@
 import React, { useMemo } from 'react';
 import { Box, Grid, NoSsr } from '@mui/material';
 import { TableUrlParams, TableParamControls } from 'types/table';
+import { encode } from 'scripts';
 import { TableEncoder } from './Encoder';
 import { TablePageSize } from './PageSize';
 import { TablePagination } from './Pagination';
 import { TableExporter } from './Exporter';
 
 export interface TableControlsProps extends TableUrlParams, TableParamControls {
+  tableId: string;
   exportData: string;
 }
 
 export const TableControls = ({
+  tableId,
   exportData,
   page,
   pageSet,
@@ -46,6 +49,12 @@ export const TableControls = ({
     ],
   );
 
+  const encodedParams = useMemo(() => encode(params), [params]);
+  const csvFilename = useMemo(
+    () => `${tableId}-${encodedParams}.csv`,
+    [encodedParams, tableId],
+  );
+
   const pageCount = useMemo(
     () => Math.floor(total / pageSize),
     [pageSize, total],
@@ -70,7 +79,7 @@ export const TableControls = ({
               </Grid>
               {/* <Grid item></Grid> */}
               <Grid item>
-                <TableExporter data={exportData} />
+                <TableExporter data={exportData} filename={csvFilename} />
               </Grid>
             </Grid>
           </Grid>

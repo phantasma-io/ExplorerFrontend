@@ -8,6 +8,7 @@ export interface TableDisplayCol {
   label: string;
   cell: 'text' | 'number' | 'link' | 'date';
   size: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
+  showDesktop?: boolean;
 }
 
 export type TableDisplayCell = string | number;
@@ -36,6 +37,9 @@ export interface TableParamControls {
 }
 
 export interface TableDisplayProps extends TableDisplayData {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  raw: any;
+  tableId: string;
   height?: string;
   spacing?: GridSpacing;
   withDetails?: boolean;
