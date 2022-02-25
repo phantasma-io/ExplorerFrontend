@@ -51,7 +51,7 @@ export const TableRow = ({
     }
   }, [hasClick, openDialog, row, index]);
 
-  const csvFilename = useMemo(() => `${tableId}-${nanoid}.csv`, [tableId]);
+  const csvFilename = useMemo(() => `${tableId}-${nanoid()}.csv`, [tableId]);
 
   return (
     <Box
