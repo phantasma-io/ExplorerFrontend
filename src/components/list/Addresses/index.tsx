@@ -1,24 +1,24 @@
-import React, { useState, useMemo } from 'react';
+import React, { useMemo } from 'react';
 import { useEcho } from '@ricardo-jrm/echo';
 import { useEmpathy } from '@ricardo-jrm/empathy';
 import { Box } from '@mui/material';
-import { endpoints, TABLE_FILTERS, TABLE_ORDERBY, TABLE_ORDERDIR } from 'cfg';
-import { useTableParams } from 'hooks';
+import { endpoints, TABLE_FILTERS } from 'cfg';
+import { useTable } from 'hooks';
 import { TableDisplayCol, TableDisplayRow } from 'types/table';
 import { Table } from 'components/table';
 
 export const AddressesList = () => {
   const { echo } = useEcho();
 
-  const tableParams = useTableParams();
-
-  const [page, pageSet] = useState(tableParams.page);
-  const [pageSize, pageSizeSet] = useState(tableParams.pageSize);
+  const tableProps = useTable();
+  const { page, pageSize, orderBy, orderDirection } = tableProps;
 
   const { data } = useEmpathy<AddressResults>(
     endpoints['/addresses']({
       offset: (page - 1) * pageSize,
       limit: pageSize,
+      order_by: orderBy,
+      order_direction: orderDirection,
       with_total: 1,
     }),
   );
@@ -62,14 +62,7 @@ export const AddressesList = () => {
         cols={cols}
         rows={rows}
         total={data?.total_results || 0}
-        page={page}
-        pageSet={pageSet}
-        pageSize={pageSize}
-        pageSizeSet={pageSizeSet}
-        orderBy={TABLE_ORDERBY}
-        orderBySet={() => undefined}
-        orderDirection={TABLE_ORDERDIR}
-        orderDirectionSet={() => undefined}
+        {...tableProps}
         filters={TABLE_FILTERS}
       />
     </Box>
