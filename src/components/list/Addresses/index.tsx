@@ -5,6 +5,7 @@ import { Box } from '@mui/material';
 import { endpoints, TABLE_FILTERS } from 'cfg';
 import { useTable } from 'hooks';
 import { TableDisplayCol, TableDisplayRow } from 'types/table';
+import { AddressResults } from 'types/api';
 import { Table } from 'components/table';
 
 export const AddressesList = () => {

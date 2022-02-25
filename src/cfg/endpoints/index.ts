@@ -1,35 +1,7 @@
-import { objToQuery } from '../../scripts/objQuery';
+import { objToQuery } from 'scripts/objQuery';
+import { ExplorerApi } from 'types/endpoints';
 
 export const url = 'http://88.99.141.166:8000/api/v1';
-
-export type ExplorerEndpoints =
-  | '/addresses'
-  | '/chains'
-  | '/contracts'
-  | '/instructions'
-  | '/eventkinds'
-  | '/events'
-  | '/nfts'
-  | '/organizations'
-  | '/series'
-  | '/tokens'
-  | '/transactions';
-
-type ApiParams =
-  | AddressParams
-  | ChainParams
-  | ContractParams
-  | EventKindParams
-  | EventParams
-  | IntructionParams
-  | NftParams
-  | DaoParams
-  | TokenParams
-  | TransactionParams;
-
-type ExplorerApi = {
-  [key in ExplorerEndpoints]: (params?: ApiParams) => string;
-};
 
 export const endpoints: ExplorerApi = {
   '/addresses': (params) =>

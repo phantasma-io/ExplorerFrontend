@@ -1,4 +1,6 @@
-interface Series {
+import { ListParams, ListResults } from './list';
+
+export interface Series {
   id?: string;
   creator?: string;
   current_supply?: number;
@@ -17,7 +19,7 @@ interface Series {
   attrValue3?: string;
 }
 
-interface SeriesParams extends ListParams {
+export interface SeriesParams extends ListParams {
   id?: string;
   creator?: string;
   name?: string;
@@ -26,6 +28,6 @@ interface SeriesParams extends ListParams {
   symbol?: string;
 }
 
-interface SeriesResults extends ListResults {
+export interface SeriesResults extends ListResults {
   series?: Series[];
 }

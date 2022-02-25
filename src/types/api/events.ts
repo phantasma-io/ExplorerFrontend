@@ -1,4 +1,8 @@
-interface EventResult {
+import { ListParams, ListResults } from './list';
+import { NftMetadata } from './nfts';
+import { Series } from './series';
+
+export interface EventResult {
   chain?: string;
   contract?: string;
   date?: string;
@@ -21,7 +25,7 @@ interface EventResult {
   series?: Series;
 }
 
-interface EventParams extends ListParams {
+export interface EventParams extends ListParams {
   chain?: string;
   contract?: string;
   token_id?: string;
@@ -40,6 +44,6 @@ interface EventParams extends ListParams {
   fiat_currency?: string;
 }
 
-interface EventResults extends ListResults {
+export interface EventResults extends ListResults {
   events?: EventResult[];
 }

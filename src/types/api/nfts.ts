@@ -1,4 +1,8 @@
-interface NftMetadata {
+import { ListParams, ListResults } from './list';
+import { InfusedInto, Infusion } from './infusions';
+import { Series } from './series';
+
+export interface NftMetadata {
   description?: string;
   name?: string;
   image?: string;
@@ -10,13 +14,13 @@ interface NftMetadata {
   mint_number?: string;
 }
 
-interface NftOwner {
+export interface NftOwner {
   address?: string;
   onchain_name?: string;
   amount?: number;
 }
 
-interface Nft {
+export interface Nft {
   token_id?: string;
   chain?: string;
   symbol?: string;
@@ -30,7 +34,7 @@ interface Nft {
   infused_into?: InfusedInto;
 }
 
-interface NftParams extends ListParams {
+export interface NftParams extends ListParams {
   fiat_currency?: string;
   creator?: string;
   owner?: string;
@@ -43,6 +47,6 @@ interface NftParams extends ListParams {
   status?: string;
 }
 
-interface NftResults extends ListResults {
+export interface NftResults extends ListResults {
   nfts?: Nft[];
 }

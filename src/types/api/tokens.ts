@@ -1,4 +1,6 @@
-interface Token {
+import { ListParams, ListResults } from './list';
+
+export interface Token {
   symbol?: string;
   fungible?: boolean;
   transferable?: boolean;
@@ -16,10 +18,10 @@ interface Token {
   script_raw?: string;
 }
 
-interface TokenParams extends ListParams {
+export interface TokenParams extends ListParams {
   symbol?: string;
 }
 
-interface TokenResults extends ListResults {
+export interface TokenResults extends ListResults {
   tokens?: Token[];
 }
