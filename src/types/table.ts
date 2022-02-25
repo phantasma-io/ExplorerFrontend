@@ -1,3 +1,8 @@
+import React from 'react';
+import { GridSpacing } from '@mui/material';
+
+export type TableOrderDirection = 'asc' | 'desc';
+
 export interface TableDisplayCol {
   id: string;
   label: string;
@@ -14,7 +19,24 @@ export interface TableDisplayData {
   cols: TableDisplayCol[];
 }
 
-export interface TableParams {
+export interface TableUrlParams {
   page: number;
   pageSize: number;
+  total: number;
+  orderBy: string;
+  orderDirection: TableOrderDirection;
+  filters?: string;
+}
+
+export interface TableParamControls {
+  pageSet: React.Dispatch<React.SetStateAction<number>>;
+  pageSizeSet: React.Dispatch<React.SetStateAction<number>>;
+  orderBySet: React.Dispatch<React.SetStateAction<string>>;
+  orderDirectionSet: React.Dispatch<React.SetStateAction<TableOrderDirection>>;
+}
+
+export interface TableDisplayProps extends TableDisplayData {
+  height?: string;
+  spacing?: GridSpacing;
+  withDetails?: boolean;
 }

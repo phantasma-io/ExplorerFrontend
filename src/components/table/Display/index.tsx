@@ -1,17 +1,15 @@
 import React from 'react';
 import { Box } from '@mui/material';
-import { TableDisplayDesktop } from './desktop';
-import { TableDisplayMobile } from './mobile';
-import { TableDisplayData } from '../../../types/table';
-
-export interface TableDisplayProps extends TableDisplayData {
-  withDetails?: boolean;
-}
+import { TableDisplayProps } from 'types/table';
+import { TableDisplayDesktop } from './Desktop';
+import { TableDisplayMobile } from './Mobile';
 
 export const TableDisplay = ({
   rows,
   cols,
-  withDetails = true,
+  height,
+  spacing,
+  withDetails,
 }: TableDisplayProps) => {
   return (
     <Box>
@@ -20,6 +18,8 @@ export const TableDisplay = ({
         <TableDisplayDesktop
           rows={rows}
           cols={cols}
+          height={height}
+          spacing={spacing}
           withDetails={withDetails}
         />
       </Box>

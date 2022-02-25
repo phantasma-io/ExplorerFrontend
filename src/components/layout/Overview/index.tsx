@@ -1,7 +1,6 @@
 import React from 'react';
 import { Grid } from '@mui/material';
-import { Text, TextProps } from '../../display/Text';
-import { Link } from '../../display/Link';
+import { Text, TextProps, Link } from 'components/display';
 
 export interface OverviewItem extends TextProps {
   link?: {

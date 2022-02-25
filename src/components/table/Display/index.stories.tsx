@@ -1,7 +1,11 @@
 import React from 'react';
 import { Story, Meta } from '@storybook/react';
-import { TableDisplay, TableDisplayProps } from '.';
-import { TableDisplayCol, TableDisplayRow } from '../../../types/table';
+import {
+  TableDisplayCol,
+  TableDisplayRow,
+  TableDisplayProps,
+} from '../../../types/table';
+import { TableDisplay } from '.';
 
 export default {
   title: 'Components/Table/Display',

@@ -1,8 +1,8 @@
 import { useMemo } from 'react';
-import { TABLE_PAGE, TABLE_SIZE } from '../cfg';
-import { decode, queryToObj } from '../scripts';
+import { TABLE_PAGE, TABLE_SIZE } from 'cfg';
+import { decode, queryToObj } from 'scripts';
 
-export const usePageParams = () => {
+export const useTableParams = () => {
   let location: Location | undefined;
 
   if (typeof window !== 'undefined') {

@@ -2,15 +2,15 @@ import React, { useState, useMemo } from 'react';
 import { useEcho } from '@ricardo-jrm/echo';
 import { useEmpathy } from '@ricardo-jrm/empathy';
 import { Box } from '@mui/material';
-import { endpoints } from '../../../cfg';
-import { usePageParams } from '../../../hooks';
-import { Table } from '../../table';
-import { TableDisplayCol, TableDisplayRow } from '../../../types/table';
+import { endpoints, TABLE_FILTERS, TABLE_ORDERBY, TABLE_ORDERDIR } from 'cfg';
+import { useTableParams } from 'hooks';
+import { TableDisplayCol, TableDisplayRow } from 'types/table';
+import { Table } from 'components/table';
 
 export const AddressesList = () => {
   const { echo } = useEcho();
 
-  const { pageParam, pageSizeParam } = usePageParams();
+  const { pageParam, pageSizeParam } = useTableParams();
 
   const [page, pageSet] = useState(pageParam);
   const [pageSize, pageSizeSet] = useState(pageSizeParam);
@@ -62,6 +62,11 @@ export const AddressesList = () => {
         pageSet={pageSet}
         pageSize={pageSize}
         pageSizeSet={pageSizeSet}
+        orderBy={TABLE_ORDERBY}
+        orderBySet={() => undefined}
+        orderDirection={TABLE_ORDERDIR}
+        orderDirectionSet={() => undefined}
+        filters={TABLE_FILTERS}
       />
     </Box>
   );

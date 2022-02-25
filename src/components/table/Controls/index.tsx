@@ -1,28 +1,47 @@
 import React, { useMemo } from 'react';
 import { Box, Grid, NoSsr } from '@mui/material';
+import { TableUrlParams, TableParamControls } from 'types/table';
 import { TableEncoder } from './Encoder';
 import { TablePageSize } from './PageSize';
 import { TablePagination } from './Pagination';
-import { TableParams } from '../../../types/table';
 
-export interface TableControlsProps {
-  page: number;
-  pageSize: number;
-  pageSet: React.Dispatch<React.SetStateAction<number>>;
-  pageSizeSet: React.Dispatch<React.SetStateAction<number>>;
-  total: number;
-}
+export interface TableControlsProps
+  extends TableUrlParams,
+    TableParamControls {}
 
 export const TableControls = ({
   page,
   pageSet,
   pageSize,
   pageSizeSet,
+  orderBy,
+  orderBySet,
+  orderDirection,
+  orderDirectionSet,
+  filters,
   total,
 }: TableControlsProps) => {
-  const params = useMemo<TableParams>(
-    () => ({ page, pageSize }),
-    [page, pageSize],
+  const params = useMemo<TableUrlParams>(
+    () => ({
+      page,
+      pageSize,
+      orderBy,
+      orderBySet,
+      orderDirection,
+      orderDirectionSet,
+      total,
+      filters,
+    }),
+    [
+      page,
+      pageSize,
+      orderBy,
+      orderBySet,
+      orderDirection,
+      orderDirectionSet,
+      total,
+      filters,
+    ],
   );
 
   const pageCount = useMemo(

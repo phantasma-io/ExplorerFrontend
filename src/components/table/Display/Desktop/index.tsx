@@ -3,15 +3,15 @@ import { nanoid } from 'nanoid';
 import { useFury } from '@ricardo-jrm/fury';
 import { useEcho } from '@ricardo-jrm/echo';
 import { Box, Grid, Typography, Button } from '@mui/material';
-import { CellText, CellNumber } from '../_cells';
-import { Dialog } from '../../../layout/Dialog';
-import { TableRow } from './row';
+import { Dialog } from 'components/layout';
 import {
   TableDisplayProps,
   TableDisplayRow,
   TableDisplayCol,
   TableDisplayCell,
-} from '../../../../types/table';
+} from 'types/table';
+import { TableRow } from './row';
+import { CellText, CellNumber } from '../../Cells';
 
 export const TableDisplayDesktop = ({
   rows,

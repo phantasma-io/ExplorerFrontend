@@ -62,7 +62,7 @@ export const NavTabs = ({ tabs, tabsDefault }: NavTabsProps) => {
           ))}
         </Tabs>
       </Box>
-      <Box p={3}>
+      <Box px={2} py={1}>
         {Object.values(tabs).map(({ id, component }: NavTab) => (
           <Box key={`panel-${id}`}>{activeTab === id && component}</Box>
         ))}

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text } from '../../../display/Text';
+import { Text } from 'components/display';
 
 export interface CellTextProps {
   value: string;

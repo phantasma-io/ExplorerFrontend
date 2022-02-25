@@ -22,7 +22,7 @@ export const TablePagination = ({
 
   return (
     <Box>
-      <Grid container spacing={0.6}>
+      <Grid container spacing={{ xs: 0, md: 0.6 }} justifyContent="center">
         <Grid item>
           <Tooltip title={echo('table-firstpage')} placement="top">
             <IconButton

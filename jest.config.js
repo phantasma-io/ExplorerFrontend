@@ -12,4 +12,5 @@ module.exports = {
   },
   setupFilesAfterEnv: ['./src/jest.setup.ts'],
   modulePathIgnorePatterns: ['./dist', './out', './cypress'],
+  moduleDirectories: ['node_modules', 'src'],
 };

@@ -5,6 +5,10 @@ export {
   TABLE_PAGE,
   TABLE_SIZE,
   TABLE_HEIGHT,
+  TABLE_FILTERS,
+  TABLE_ORDERBY,
+  TABLE_ORDERDIR,
+  TABLE_SPACING,
 } from './layout';
 
 export { endpoints, url } from './endpoints';

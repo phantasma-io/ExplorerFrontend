@@ -1,12 +1,12 @@
 import React, { useState, useCallback } from 'react';
 import { Box, Grid, GridSpacing } from '@mui/material';
 import { useFury } from '@ricardo-jrm/fury';
-import { useDarkMode } from '../../../../hooks';
+import { useDarkMode } from 'hooks';
 import {
   TableDisplayRow,
   TableDisplayCol,
   TableDisplayCell,
-} from '../../../../types/table';
+} from 'types/table';
 
 export interface TableRowProps {
   row: TableDisplayRow;

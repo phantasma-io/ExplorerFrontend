@@ -9,7 +9,7 @@ import {
 } from '@mui/material';
 import { useEcho } from '@ricardo-jrm/echo';
 import CloseIcon from '@mui/icons-material/Close';
-import { Text } from '../../display/Text';
+import { Text } from 'components/display';
 
 export interface DialogProps {
   isOpen: boolean;

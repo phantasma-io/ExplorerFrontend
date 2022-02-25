@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { useEcho } from '@ricardo-jrm/echo';
-import { Text, NavTabs, NavTabsRecord } from '../../components';
-import { routes, Locales, ExplorerTabs } from '../../cfg';
+import { Text, NavTabs, NavTabsRecord } from 'components';
+import { routes, Locales, ExplorerTabs } from 'cfg';
 
 const ContractOverview = () => (
   <>
