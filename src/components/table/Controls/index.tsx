@@ -1,7 +1,9 @@
 import React, { useMemo } from 'react';
 import { nanoid } from 'nanoid';
-import { Box, Grid, NoSsr } from '@mui/material';
+import { Box, Grid, NoSsr, Typography } from '@mui/material';
 import { TableUrlParams, TableParamControls } from 'types/table';
+import { useEcho } from '@ricardo-jrm/echo';
+import { numberFormat } from '@ricardo-jrm/dervish';
 import { TableEncoder } from './Encoder';
 import { TablePageSize } from './PageSize';
 import { TablePagination } from './Pagination';
@@ -27,6 +29,8 @@ export const TableControls = ({
   filters,
   total,
 }: TableControlsProps) => {
+  const { echo } = useEcho();
+
   const params = useMemo<TableUrlParams>(
     () => ({
       page,
@@ -65,7 +69,12 @@ export const TableControls = ({
         <TableEncoder params={params} />
         <Grid container justifyContent={{ xs: 'center', md: 'space-between' }}>
           <Grid item xs={12} md="auto">
-            <Grid container alignItems="center" spacing={1}>
+            <Grid
+              container
+              alignItems="center"
+              alignContent="center"
+              spacing={1}
+            >
               <Grid item>
                 <TablePageSize
                   options={options}
@@ -79,6 +88,17 @@ export const TableControls = ({
               </Grid>
               <Grid item>
                 <TableFilters />
+              </Grid>
+              <Grid item>
+                <Box pb={0.39}>
+                  <Typography
+                    variant="caption"
+                    color="textSecondary"
+                    fontWeight={600}
+                  >
+                    {`(${numberFormat(total)} ${echo('table-results')})`}
+                  </Typography>
+                </Box>
               </Grid>
             </Grid>
           </Grid>

@@ -78,4 +78,5 @@ export const en: EchoMsgs = {
   'table-changePageSize': 'Change page size',
   'table-exportCsv': 'Export CSV',
   'table-openFilters': 'Filter data',
+  'table-results': 'Results',
 };

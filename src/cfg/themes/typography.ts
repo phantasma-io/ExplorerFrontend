@@ -62,6 +62,9 @@ export const typography: ThemeOptions['typography'] = {
     textTransform: 'none',
     fontWeight: 600,
   },
-  // caption: {},
+  caption: {
+    fontSize: '12px',
+    lineHeight: '12px',
+  },
   // overline: {},
 };
