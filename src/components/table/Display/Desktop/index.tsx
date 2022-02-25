@@ -11,7 +11,6 @@ import {
   TableDisplayCell,
 } from 'types/table';
 import csvDownload from 'json-to-csv-export';
-import { encode } from 'scripts';
 import { TableRow } from './row';
 import { CellText, CellNumber } from '../../Cells';
 
@@ -44,10 +43,7 @@ export const TableDisplayDesktop = ({
   );
   const closeDialog = useCallback(() => dialogOpenSet(false), [dialogOpenSet]);
 
-  const csvFilename = useMemo(
-    () => `${tableId}-${encode(raw)}.csv`,
-    [tableId, raw],
-  );
+  const csvFilename = useMemo(() => `${tableId}-${nanoid()}.csv`, [tableId]);
 
   const renderCell = useCallback(
     (type: TableDisplayCol['cell'], value: TableDisplayCell) => {

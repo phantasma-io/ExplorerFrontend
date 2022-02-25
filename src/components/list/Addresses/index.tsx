@@ -11,15 +11,15 @@ export const AddressesList = () => {
   const { echo } = useEcho();
 
   const tableProps = useTable();
-  const { page, pageSize, orderBy, orderDirection } = tableProps;
+  const { limit, order_by, order_direction, offset, with_total } = tableProps;
 
   const { data } = useEmpathy<AddressResults>(
     endpoints['/addresses']({
-      offset: (page - 1) * pageSize,
-      limit: pageSize,
-      order_by: orderBy,
-      order_direction: orderDirection,
-      with_total: 1,
+      offset,
+      limit,
+      order_by,
+      order_direction,
+      with_total,
     }),
   );
 

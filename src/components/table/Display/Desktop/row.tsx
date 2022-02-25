@@ -1,8 +1,8 @@
 import React, { useState, useCallback, useMemo } from 'react';
+import { nanoid } from 'nanoid';
 import { Box, Grid, GridSpacing, IconButton, Tooltip } from '@mui/material';
 import { useFury } from '@ricardo-jrm/fury';
 import { useDarkMode } from 'hooks';
-import { encode } from 'scripts';
 import {
   TableDisplayRow,
   TableDisplayCol,
@@ -51,10 +51,7 @@ export const TableRow = ({
     }
   }, [hasClick, openDialog, row, index]);
 
-  const csvFilename = useMemo(
-    () => `${tableId}-${encode(raw)}.csv`,
-    [tableId, raw],
-  );
+  const csvFilename = useMemo(() => `${tableId}-${nanoid}.csv`, [tableId]);
 
   return (
     <Box

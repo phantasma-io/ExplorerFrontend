@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
+import { nanoid } from 'nanoid';
 import { Box, Grid, NoSsr } from '@mui/material';
 import { TableUrlParams, TableParamControls } from 'types/table';
-import { encode } from 'scripts';
 import { TableEncoder } from './Encoder';
 import { TablePageSize } from './PageSize';
 import { TablePagination } from './Pagination';
@@ -49,11 +49,7 @@ export const TableControls = ({
     ],
   );
 
-  const encodedParams = useMemo(() => encode(params), [params]);
-  const csvFilename = useMemo(
-    () => `${tableId}-${encodedParams}.csv`,
-    [encodedParams, tableId],
-  );
+  const csvFilename = useMemo(() => `${tableId}-${nanoid()}.csv`, [tableId]);
 
   const pageCount = useMemo(
     () => Math.floor(total / pageSize),
