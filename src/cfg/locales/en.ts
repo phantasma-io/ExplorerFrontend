@@ -77,4 +77,5 @@ export const en: EchoMsgs = {
   'table-lastpage': 'Last page',
   'table-changePageSize': 'Change page size',
   'table-exportCsv': 'Export CSV',
+  'table-openFilters': 'Filter data',
 };

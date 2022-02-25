@@ -6,6 +6,7 @@ import { TableEncoder } from './Encoder';
 import { TablePageSize } from './PageSize';
 import { TablePagination } from './Pagination';
 import { TableExporter } from './Exporter';
+import { TableFilters } from './Filters';
 
 export interface TableControlsProps extends TableUrlParams, TableParamControls {
   tableId: string;
@@ -73,9 +74,11 @@ export const TableControls = ({
                   total={total}
                 />
               </Grid>
-              {/* <Grid item></Grid> */}
               <Grid item>
                 <TableExporter data={exportData} filename={csvFilename} />
+              </Grid>
+              <Grid item>
+                <TableFilters />
               </Grid>
             </Grid>
           </Grid>
