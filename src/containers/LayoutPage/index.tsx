@@ -1,9 +1,9 @@
 import React, { ReactNode } from 'react';
 import { Box, Container } from '@mui/material';
 import { useFury } from '@ricardo-jrm/fury';
-import { Header, Footer } from '../../components';
-import { TempNav } from '../../components/TempNav';
-import { FOOTER_HEIGHT, FOOTER_OFFSET, HEADER_HEIGHT } from '../../cfg';
+import { Header, Footer } from 'components';
+import { TempNav } from 'components/TempNav';
+import { FOOTER_HEIGHT, FOOTER_OFFSET, HEADER_HEIGHT } from 'cfg';
 
 export interface LayoutPageProps {
   children: ReactNode;
@@ -64,7 +64,7 @@ export const LayoutPage = ({ children }: LayoutPageProps) => {
       <Header height={HEADER_HEIGHT} />
       <Container>
         {children}
-        <TempNav />
+        {/* <TempNav /> */}
       </Container>
       <div
         style={{ width: '100%', height: `${FOOTER_HEIGHT + FOOTER_OFFSET}px` }}

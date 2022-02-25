@@ -7,13 +7,22 @@
     "node": true
   },
   "settings": {
+    "import/parsers": {
+      "@typescript-eslint/parser": [".ts", ".tsx"]
+    },
     "import/resolver": {
       "node": {
-        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+        "paths": ["src"],
+        "extensions": [".js", ".jsx", ".ts", ".tsx"],
+        "moduleDirectory": ["node_modules", "src"]
+      },
+      "typescript": {
+        "alwaysTryTypes": true,
+        "project": ["./tsconfig.json"]
       }
     }
   },
-  "plugins": ["@typescript-eslint", "jest", "testing-library"],
+  "plugins": ["@typescript-eslint", "jest", "testing-library", "import"],
   "extends": [
     "prettier",
     "airbnb",
@@ -23,7 +32,11 @@
     "plugin:storybook/recommended",
     "plugin:jest/recommended",
     "plugin:jest/style",
-    "plugin:cypress/recommended"
+    "plugin:cypress/recommended",
+    "plugin:import/recommended",
+    "plugin:import/errors",
+    "plugin:import/warnings",
+    "plugin:import/typescript"
   ],
   "ignorePatterns": ["node_modules", "dist", "out"],
   "globals": {
@@ -48,6 +61,8 @@
     }
   ],
   "rules": {
+    "react/jsx-key": 0,
+    "import/no-unresolved": "error",
     "import/prefer-default-export": 0,
     "import/extensions": 0,
     "no-unused-vars": "off",

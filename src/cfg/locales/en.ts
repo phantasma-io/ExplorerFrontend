@@ -63,4 +63,20 @@ export const en: EchoMsgs = {
   'tab-oracles': 'Oracles',
   'tab-script': 'Script',
   'tab-members': 'Members',
+  // TODO
+  // tab
+  'tab-addresses': 'Addresses',
+  // sys
+  name: 'Name',
+  details: 'Details',
+  all: 'All',
+  // table
+  'table-firstpage': 'First page',
+  'table-prevpage': 'Previous page',
+  'table-nextpage': 'Next page',
+  'table-lastpage': 'Last page',
+  'table-changePageSize': 'Change page size',
+  'table-exportCsv': 'Export CSV',
+  'table-openFilters': 'Filter data',
+  'table-results': 'Results',
 };

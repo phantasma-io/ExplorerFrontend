@@ -20,7 +20,7 @@ import {
 } from '@ricardo-jrm/dervish';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import EventIcon from '@mui/icons-material/Event';
-import { NUMBER_FORMAT, DATE_FORMAT } from '../../../cfg';
+import { NUMBER_FORMAT, DATE_FORMAT } from 'cfg';
 
 /**
  * Text props
@@ -129,12 +129,9 @@ export const Text = ({
 
     if (translate) {
       if (capitalize) {
-        return stringCapitalize(
-          echo(value as string),
-          capitalize === 'allWords',
-        );
+        return stringCapitalize(echo(`${value}`), capitalize === 'allWords');
       }
-      return echo(value as string);
+      return echo(`${value}`);
     }
 
     if (capitalize) {
@@ -190,7 +187,7 @@ export const Text = ({
       <Grid item>{children || result}</Grid>
       {formatDate && (
         <Grid item>
-          <Tooltip title={dateRelative(formatDate).fromNow}>
+          <Tooltip title={dateRelative(formatDate).fromNow} placement="right">
             <Typography variant={variant} {...propsTypo} sx={sx}>
               <CopyToClipboard text={copy}>
                 <IconButton
@@ -203,6 +200,7 @@ export const Text = ({
                   <EventIcon
                     style={{
                       fontSize: furyActive.typography[variant].fontSize,
+                      opacity: 0.45,
                     }}
                   />
                 </IconButton>
@@ -213,7 +211,7 @@ export const Text = ({
       )}
       {clipboard && (
         <Grid item>
-          <Tooltip title={echo('copy-to-clipboard')}>
+          <Tooltip title={echo('copy-to-clipboard')} placement="right">
             <Typography variant={variant} {...propsTypo} sx={sx}>
               <CopyToClipboard text={copy}>
                 <IconButton
@@ -226,6 +224,7 @@ export const Text = ({
                   <ContentCopyIcon
                     style={{
                       fontSize: furyActive.typography[variant].fontSize,
+                      opacity: 0.45,
                     }}
                   />
                 </IconButton>

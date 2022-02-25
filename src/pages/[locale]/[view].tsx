@@ -7,8 +7,9 @@ import type {
 } from 'next';
 import { ParsedUrlQuery } from 'querystring';
 import { EchoProvider } from '@ricardo-jrm/echo';
-import { LocalizedView } from '../../containers/LocalizedView';
-import { locales, localesKeys, Locales, routesViews } from '../../cfg';
+import { LocalizedView } from 'containers/LocalizedView';
+import { locales, localesKeys, routesViews } from 'cfg';
+import { Locales } from 'types/locales';
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const paths: (

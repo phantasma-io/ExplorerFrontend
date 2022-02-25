@@ -2,8 +2,9 @@ import React from 'react';
 import { Paper, Box, Grid } from '@mui/material';
 import { useFury } from '@ricardo-jrm/fury';
 import { useEcho } from '@ricardo-jrm/echo';
-import { routes, Locales } from '../../cfg';
-import { Link } from '../display/Link';
+import { routes } from 'cfg';
+import { Link } from 'components';
+import { Locales } from 'types/locales';
 
 export const TempNav = () => {
   const { furyActive } = useFury();
