@@ -4,12 +4,14 @@ import { TableUrlParams, TableParamControls } from 'types/table';
 import { TableEncoder } from './Encoder';
 import { TablePageSize } from './PageSize';
 import { TablePagination } from './Pagination';
+import { TableExporter } from './Exporter';
 
-export interface TableControlsProps
-  extends TableUrlParams,
-    TableParamControls {}
+export interface TableControlsProps extends TableUrlParams, TableParamControls {
+  exportData: string;
+}
 
 export const TableControls = ({
+  exportData,
   page,
   pageSet,
   pageSize,
@@ -67,7 +69,9 @@ export const TableControls = ({
                 />
               </Grid>
               {/* <Grid item></Grid> */}
-              {/* <Grid item></Grid> */}
+              <Grid item>
+                <TableExporter data={exportData} />
+              </Grid>
             </Grid>
           </Grid>
           <Grid item xs={12} md="auto">

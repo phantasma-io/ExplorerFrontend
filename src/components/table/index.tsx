@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Box } from '@mui/material';
 import {
   TableDisplayProps,
@@ -12,9 +12,13 @@ import { TableDisplay } from './Display';
 export interface TableProps
   extends TableDisplayProps,
     TableParamControls,
-    TableUrlParams {}
+    TableUrlParams {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  raw: any;
+}
 
 export const Table = ({
+  raw,
   rows,
   cols,
   total,
@@ -31,10 +35,13 @@ export const Table = ({
   height = TABLE_HEIGHT,
   spacing = TABLE_SPACING,
 }: TableProps) => {
+  const strData = useMemo(() => JSON.stringify(raw), [raw]);
+
   return (
     <Box p={1}>
       <Box mb={1}>
         <TableControls
+          exportData={strData}
           total={total}
           page={page}
           pageSet={pageSet}

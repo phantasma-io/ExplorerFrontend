@@ -20,9 +20,9 @@ export interface TableDisplayData {
 }
 
 export interface TableUrlParams {
+  total: number;
   page: number;
   pageSize: number;
-  total: number;
   orderBy: string;
   orderDirection: TableOrderDirection;
   filters?: string;

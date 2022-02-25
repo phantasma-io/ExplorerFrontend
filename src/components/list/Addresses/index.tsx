@@ -10,10 +10,10 @@ import { Table } from 'components/table';
 export const AddressesList = () => {
   const { echo } = useEcho();
 
-  const { pageParam, pageSizeParam } = useTableParams();
+  const tableParams = useTableParams();
 
-  const [page, pageSet] = useState(pageParam);
-  const [pageSize, pageSizeSet] = useState(pageSizeParam);
+  const [page, pageSet] = useState(tableParams.page);
+  const [pageSize, pageSizeSet] = useState(tableParams.pageSize);
 
   const { data } = useEmpathy<AddressResults>(
     endpoints['/addresses']({
@@ -55,6 +55,7 @@ export const AddressesList = () => {
   return (
     <Box>
       <Table
+        raw={data?.addresses || []}
         cols={cols}
         rows={rows}
         total={data?.total_results || 0}

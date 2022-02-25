@@ -9,6 +9,7 @@ export {
   TABLE_ORDERBY,
   TABLE_ORDERDIR,
   TABLE_SPACING,
+  TABLE_TOTAL,
 } from './layout';
 
 export { endpoints, url } from './endpoints';
