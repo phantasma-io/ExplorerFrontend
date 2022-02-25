@@ -28,18 +28,21 @@ const cols: TableDisplayCol[] = [
     label: 'Col1',
     size: 4,
     cell: 'text',
+    showDesktop: true,
   },
   {
     id: 'Col2',
     label: 'Col2',
     size: 4,
     cell: 'number',
+    showDesktop: true,
   },
   {
     id: 'Col3',
     label: 'Col3',
-    size: 4,
+    size: 3,
     cell: 'text',
+    showDesktop: true,
   },
 ];
 
@@ -53,9 +56,9 @@ const rows: TableDisplayRow[] = [
 ];
 
 export const Default: Story<TableDisplayProps> = () => {
-  return <TableDisplay rows={rows} cols={cols} />;
+  return <TableDisplay raw={{}} tableId="SB-TABLE" rows={rows} cols={cols} />;
 };
 
 export const WithDetails: Story<TableDisplayProps> = () => {
-  return <TableDisplay rows={rows} cols={cols} />;
+  return <TableDisplay raw={{}} tableId="SB-TABLE" rows={rows} cols={cols} />;
 };
