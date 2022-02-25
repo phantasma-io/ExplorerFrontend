@@ -13,7 +13,6 @@ export {
 } from './layout';
 
 export { endpoints, url } from './endpoints';
-export type { ExplorerEndpoints } from './endpoints';
 
 export { locales, localesKeys, localesDefault } from './locales';
 
