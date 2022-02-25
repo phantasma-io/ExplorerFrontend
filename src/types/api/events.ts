@@ -1,4 +1,4 @@
-import { ListParams, ListResults } from './list';
+import { ListParams, ListResults, WithOption } from './list';
 import { NftMetadata } from './nfts';
 import { Series } from './series';
 
@@ -39,8 +39,8 @@ export interface EventParams extends ListParams {
   show_events?: string;
   address?: string;
   address_partial?: string;
-  with_metadata?: number;
-  with_series?: number;
+  with_metadata?: WithOption;
+  with_series?: WithOption;
   fiat_currency?: string;
 }
 

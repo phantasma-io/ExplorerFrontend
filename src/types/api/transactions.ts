@@ -1,4 +1,4 @@
-import { ListParams, ListResults } from './list';
+import { ListParams, ListResults, WithOption } from './list';
 import { EventResult } from './events';
 
 export interface Transaction {
@@ -10,7 +10,7 @@ export interface Transaction {
 
 export interface TransactionParams extends ListParams {
   hash?: string;
-  with_nft?: number;
+  with_nft?: WithOption;
 }
 
 export interface TransactionResults extends ListResults {
