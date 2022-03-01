@@ -116,7 +116,7 @@ export const LocalizedView = ({ locale, route }: LocalizedViewProps) => {
             />
           </Box>
         )}
-        <Box mb={3}>{children}</Box>
+        <Box>{children}</Box>
       </Box>
     </AppLayout>
   );

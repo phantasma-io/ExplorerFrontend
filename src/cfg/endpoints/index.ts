@@ -1,6 +1,8 @@
 import { objToQuery } from 'scripts/objQuery';
 import { ExplorerApi } from 'types/endpoints';
 
+// prod 'https://88.99.141.166:8001/api/v1'
+// dev 'http://88.99.141.166:8000/api/v1'
 export const url = 'http://88.99.141.166:8000/api/v1';
 
 export const endpoints: ExplorerApi = {
