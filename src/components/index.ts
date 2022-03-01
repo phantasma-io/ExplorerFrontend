@@ -14,7 +14,16 @@ export { NotFound } from './layout/NotFound';
 export { Overview } from './layout/Overview';
 
 // list
-export { AddressesList } from './list';
+export {
+  AddressesList,
+  BlocksList,
+  ChainsList,
+  ContractsList,
+  DaosList,
+  NftsList,
+  TokensList,
+  TransactionsList,
+} from './list';
 
 // meta
 export { MetaDynamic } from './meta/MetaDynamic';

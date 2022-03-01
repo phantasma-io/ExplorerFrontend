@@ -16,6 +16,7 @@ import {
 
 export type ExplorerEndpoints =
   | '/addresses'
+  | '/blocks'
   | '/chains'
   | '/contracts'
   | '/instructions'

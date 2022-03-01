@@ -8,6 +8,7 @@ export const url = 'http://88.99.141.166:8000/api/v1';
 export const endpoints: ExplorerApi = {
   '/addresses': (params) =>
     `${url}/addresses${params ? objToQuery(params) : ''}`,
+  '/blocks': (params) => `${url}/blocks${params ? objToQuery(params) : ''}`,
   '/chains': (params) => `${url}/chains${params ? objToQuery(params) : ''}`,
   '/contracts': (params) =>
     `${url}/contracts${params ? objToQuery(params) : ''}`,
