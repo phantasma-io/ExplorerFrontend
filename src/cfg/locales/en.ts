@@ -70,6 +70,12 @@ export const en: EchoMsgs = {
   // app
   height: 'Height',
   symbol: 'Symbol',
+  prevHash: 'Previous Hash',
+  protocol: 'Protocol',
+  chainAddress: 'Chain Address',
+  validatorAddress: 'Validator Address',
+  oracles: 'Oracles',
+  transactions: 'Transactions',
   // sys
   name: 'Name',
   details: 'Details',
