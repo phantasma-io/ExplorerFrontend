@@ -37,6 +37,12 @@ export const ViewNexus = ({ tabForce = 'addresses' }: ViewNexusProps) => {
         href: routes['/nexus'](echoActiveId as Locales),
         component: <BlocksList />,
       },
+      contracts: {
+        id: 'contracts',
+        label: echo('tab-contracts'),
+        href: routes['/nexus'](echoActiveId as Locales),
+        component: <ContractsList />,
+      },
       daos: {
         id: 'daos',
         label: echo('tab-daos'),
@@ -61,18 +67,12 @@ export const ViewNexus = ({ tabForce = 'addresses' }: ViewNexusProps) => {
         href: routes['/nexus'](echoActiveId as Locales),
         component: <TransactionsList />,
       },
-      contracts: {
-        id: 'contracts',
-        label: echo('tab-contracts'),
-        href: routes['/nexus'](echoActiveId as Locales),
-        component: <ContractsList />,
-      },
-      chains: {
-        id: 'chains',
-        label: echo('tab-chains'),
-        href: routes['/nexus'](echoActiveId as Locales),
-        component: <ChainsList />,
-      },
+      // chains: {
+      //   id: 'chains',
+      //   label: echo('tab-chains'),
+      //   href: routes['/nexus'](echoActiveId as Locales),
+      //   component: <ChainsList />,
+      // },
     }),
     [echo, echoActiveId],
   );

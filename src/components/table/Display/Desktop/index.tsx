@@ -1,3 +1,4 @@
+/* eslint-disable no-confusing-arrow */
 import React, { useState, useCallback, useMemo } from 'react';
 import { nanoid } from 'nanoid';
 import { useFury } from '@ricardo-jrm/fury';
@@ -12,7 +13,7 @@ import {
 } from 'types/table';
 import csvDownload from 'json-to-csv-export';
 import { TableRow } from './row';
-import { CellText, CellNumber } from '../../Cells';
+import { CellText, CellNumber, CellBoolean, CellDate } from '../../Cells';
 
 export const TableDisplayDesktop = ({
   tableId,
@@ -49,6 +50,10 @@ export const TableDisplayDesktop = ({
     (type: TableDisplayCol['cell'], value: TableDisplayCell) => {
       if (value) {
         switch (type) {
+          case 'boolean':
+            return <CellBoolean value={value as boolean} />;
+          case 'date':
+            return <CellDate value={value as Date} />;
           case 'number':
             return <CellNumber value={value as number} />;
           case 'text':
@@ -66,23 +71,25 @@ export const TableDisplayDesktop = ({
       return (
         <Box py={spacing}>
           <Grid spacing={spacing} container>
-            {cols.map((col, i) => (
-              <Grid
-                container
-                spacing={spacing}
-                key={nanoid()}
-                item
-                xs={12}
-                alignItems="center"
-              >
-                <Grid item>
-                  <Typography variant="body2" fontWeight={600}>
-                    {`${col.label}:`}
-                  </Typography>
+            {cols.map((col, i) =>
+              selectedRow[i] ? (
+                <Grid
+                  container
+                  spacing={spacing}
+                  key={nanoid()}
+                  item
+                  xs={12}
+                  alignItems="center"
+                >
+                  <Grid item>
+                    <Typography variant="body2" fontWeight={600}>
+                      {`${col.label}:`}
+                    </Typography>
+                  </Grid>
+                  <Grid item>{renderCell(col.cell, selectedRow[i])}</Grid>
                 </Grid>
-                <Grid item>{renderCell(col.cell, selectedRow[i])}</Grid>
-              </Grid>
-            ))}
+              ) : null,
+            )}
           </Grid>
         </Box>
       );

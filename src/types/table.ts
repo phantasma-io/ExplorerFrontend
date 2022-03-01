@@ -6,12 +6,12 @@ export type TableOrderDirection = 'asc' | 'desc';
 export interface TableDisplayCol {
   id: string;
   label: string;
-  cell: 'text' | 'number' | 'link' | 'date';
+  cell: 'text' | 'number' | 'link' | 'date' | 'boolean';
   size: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
   showDesktop?: boolean;
 }
 
-export type TableDisplayCell = string | number;
+export type TableDisplayCell = string | number | boolean | Date;
 
 export type TableDisplayRow = TableDisplayCell[];
 
