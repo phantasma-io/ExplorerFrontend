@@ -66,6 +66,10 @@ export const en: EchoMsgs = {
   // TODO
   // tab
   'tab-addresses': 'Addresses',
+  'tab-nfts': 'NFTs',
+  // app
+  height: 'Height',
+  symbol: 'Symbol',
   // sys
   name: 'Name',
   details: 'Details',
