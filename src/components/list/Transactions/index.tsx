@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useEffect } from 'react';
 import { useEcho } from '@ricardo-jrm/echo';
 import { useEmpathy } from '@ricardo-jrm/empathy';
 import { Box } from '@mui/material';
@@ -12,7 +12,18 @@ export const TransactionsList = () => {
   const { echo } = useEcho();
 
   const tableProps = useTable();
-  const { limit, order_by, order_direction, offset, with_total } = tableProps;
+  const {
+    limit,
+    order_by,
+    order_direction,
+    orderDirectionSet,
+    offset,
+    with_total,
+  } = tableProps;
+
+  useEffect(() => {
+    orderDirectionSet('desc');
+  });
 
   const { data } = useEmpathy<TransactionResults>(
     endpoints['/transactions']({
@@ -30,7 +41,14 @@ export const TransactionsList = () => {
         id: 'hash',
         label: echo('hash'),
         cell: 'text',
-        size: 11,
+        size: 8,
+        showDesktop: true,
+      },
+      {
+        id: 'blockHeight',
+        label: echo('blockHeight'),
+        cell: 'number',
+        size: 3,
         showDesktop: true,
       },
     ],
@@ -41,6 +59,7 @@ export const TransactionsList = () => {
     if (data) {
       return data?.transactions?.map((item) => [
         item?.hash,
+        item?.blockHeight,
       ]) as TableDisplayRow[];
     }
 
