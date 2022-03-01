@@ -28,7 +28,7 @@ export const Dialog = ({
 }: DialogProps) => {
   const { echo } = useEcho();
   return (
-    <MuiDialog fullWidth open={isOpen} onClose={handleClose}>
+    <MuiDialog open={isOpen} onClose={handleClose} maxWidth="lg">
       <Paper>
         <Box py={1} px={2}>
           {/* header */}

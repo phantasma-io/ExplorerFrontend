@@ -5,7 +5,7 @@ import { TablePagination, TablePaginationProps } from '.';
 import { TablePageSize } from '../PageSize';
 
 export default {
-  title: 'Components/Table/Pagination',
+  title: 'Components/Table/Controls/Pagination',
   component: TablePagination,
   parameters: {
     componentSubtitle: 'Table Pagination Component',

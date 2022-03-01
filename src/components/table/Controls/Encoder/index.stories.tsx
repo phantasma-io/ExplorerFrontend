@@ -6,7 +6,7 @@ import { TablePageSize } from '../PageSize';
 import { TablePagination } from '../Pagination';
 
 export default {
-  title: 'Components/Table/Encoder',
+  title: 'Components/Table/Controls/Encoder',
   component: TableEncoder,
   parameters: {
     componentSubtitle: 'Table Encoder Component',

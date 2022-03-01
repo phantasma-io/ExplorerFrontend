@@ -58,7 +58,3 @@ const rows: TableDisplayRow[] = [
 export const Default: Story<TableDisplayProps> = () => {
   return <TableDisplay raw={{}} tableId="SB-TABLE" rows={rows} cols={cols} />;
 };
-
-export const WithDetails: Story<TableDisplayProps> = () => {
-  return <TableDisplay raw={{}} tableId="SB-TABLE" rows={rows} cols={cols} />;
-};
