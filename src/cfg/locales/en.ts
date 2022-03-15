@@ -91,6 +91,12 @@ export const en: EchoMsgs = {
   maxSupply: 'Max supply',
   burnedSupply: 'Burned supply',
   scriptRaw: 'Script raw',
+  stake: 'Stake',
+  unclaimed: 'Unclaimed',
+  // details
+  'details-address': 'Address details',
+  // explore
+  'explore-address': 'Explore address',
   // sys
   name: 'Name',
   details: 'Details',
