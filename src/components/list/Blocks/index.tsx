@@ -40,7 +40,7 @@ export const BlocksList = () => {
       {
         id: 'hash',
         label: echo('hash'),
-        cell: 'text',
+        cell: 'monospace',
         size: 8,
         showDesktop: true,
       },
@@ -54,7 +54,7 @@ export const BlocksList = () => {
       {
         id: 'previous_hash',
         label: echo('prevHash'),
-        cell: 'text',
+        cell: 'monospace',
         size: 12,
       },
       {
@@ -66,13 +66,13 @@ export const BlocksList = () => {
       {
         id: 'chain_address',
         label: echo('chainAddress'),
-        cell: 'text',
+        cell: 'monospace',
         size: 12,
       },
       {
         id: 'validator_address',
         label: echo('validatorAddress'),
-        cell: 'text',
+        cell: 'monospace',
         size: 12,
       },
     ],

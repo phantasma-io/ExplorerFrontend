@@ -1,14 +1,22 @@
 import React from 'react';
 import { GridSpacing } from '@mui/material';
+import { ExplorerRoutes } from './routes';
 
 export type TableOrderDirection = 'asc' | 'desc';
+
+export type CellLinkOptions = {
+  route: ExplorerRoutes;
+  key: string;
+  title: string;
+};
 
 export interface TableDisplayCol {
   id: string;
   label: string;
-  cell: 'text' | 'number' | 'link' | 'date' | 'boolean';
+  cell: 'text' | 'number' | 'link' | 'date' | 'boolean' | 'monospace';
   size: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
   showDesktop?: boolean;
+  linkOptions?: CellLinkOptions;
 }
 
 export type TableDisplayCell = string | number | boolean | Date;
@@ -43,4 +51,8 @@ export interface TableDisplayProps extends TableDisplayData {
   height?: string;
   spacing?: GridSpacing;
   withDetails?: boolean;
+  dialogOptions?: {
+    title: string;
+  };
+  linkOptions?: CellLinkOptions;
 }

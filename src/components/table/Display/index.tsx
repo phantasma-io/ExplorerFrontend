@@ -12,6 +12,8 @@ export const TableDisplay = ({
   height,
   spacing,
   withDetails,
+  linkOptions,
+  dialogOptions,
 }: TableDisplayProps) => {
   return (
     <Box>
@@ -25,6 +27,8 @@ export const TableDisplay = ({
           height={height}
           spacing={spacing}
           withDetails={withDetails}
+          linkOptions={linkOptions}
+          dialogOptions={dialogOptions}
         />
       </Box>
       {/* mobile */}

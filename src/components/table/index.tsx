@@ -32,6 +32,8 @@ export const Table = ({
   withDetails = true,
   height = TABLE_HEIGHT,
   spacing = TABLE_SPACING,
+  linkOptions,
+  dialogOptions,
 }: TableProps) => {
   const strData = useMemo(() => JSON.stringify(raw), [raw]);
 
@@ -62,6 +64,8 @@ export const Table = ({
           withDetails={withDetails}
           height={height}
           spacing={spacing}
+          linkOptions={linkOptions}
+          dialogOptions={dialogOptions}
         />
       </Box>
     </Box>
