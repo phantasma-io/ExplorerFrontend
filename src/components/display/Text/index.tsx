@@ -20,7 +20,9 @@ import {
 } from '@ricardo-jrm/dervish';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import EventIcon from '@mui/icons-material/Event';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { NUMBER_FORMAT, DATE_FORMAT } from 'cfg';
+import { Link } from '../Link';
 
 /**
  * Text props
@@ -90,6 +92,11 @@ export interface TextProps
    */
   capitalize?: boolean | 'allWords';
   wordBreak?: 'normal' | 'break-all' | 'keep-all' | 'break-word';
+  monospace?: boolean;
+  linkOptions?: {
+    link: string;
+    title: string;
+  };
 }
 
 /**
@@ -112,6 +119,8 @@ export const Text = ({
   capitalize,
   sx,
   wordBreak = 'normal',
+  monospace,
+  linkOptions,
   ...propsTypo
 }: TextProps) => {
   const { enqueueSnackbar } = useSnackbar();
@@ -162,12 +171,14 @@ export const Text = ({
         variant={variant}
         {...propsTypo}
         sx={sx}
-        style={{ wordBreak }}
+        style={
+          monospace ? { wordBreak, fontFamily: 'monospace' } : { wordBreak }
+        }
       >
         {strDisplay}
       </Typography>
     );
-  }, [variant, propsTypo, copy, truncate, sx, wordBreak]);
+  }, [variant, propsTypo, copy, truncate, sx, wordBreak, monospace]);
 
   return (
     <Grid
@@ -231,6 +242,28 @@ export const Text = ({
               </CopyToClipboard>
             </Typography>
           </Tooltip>
+        </Grid>
+      )}
+      {linkOptions && (
+        <Grid item>
+          <Link href={linkOptions.link} title={linkOptions.title}>
+            <Tooltip title={linkOptions.title} placement="right">
+              <IconButton
+                size="small"
+                onClick={(e) => {
+                  e.stopPropagation();
+                }}
+                color="primary"
+              >
+                <ArrowForwardIosIcon
+                  style={{
+                    fontSize: furyActive.typography[variant].fontSize,
+                    width: 'auto',
+                  }}
+                />
+              </IconButton>
+            </Tooltip>
+          </Link>
         </Grid>
       )}
     </Grid>
