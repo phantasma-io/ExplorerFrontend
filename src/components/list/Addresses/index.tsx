@@ -21,6 +21,10 @@ export const AddressesList = () => {
       order_by,
       order_direction,
       with_total,
+      with_balance: 0,
+      with_stakes: 0,
+      with_storage: 0,
+      with_transactions: 0,
     }),
   );
 
@@ -29,9 +33,14 @@ export const AddressesList = () => {
       {
         id: 'address',
         label: echo('address'),
-        cell: 'text',
+        cell: 'monospace',
         size: 8,
         showDesktop: true,
+        linkOptions: {
+          route: '/address',
+          key: 'address',
+          title: echo('explore-address'),
+        },
       },
       {
         id: 'name',
@@ -39,6 +48,18 @@ export const AddressesList = () => {
         cell: 'text',
         size: 3,
         showDesktop: true,
+      },
+      {
+        id: 'stake',
+        label: echo('stake'),
+        cell: 'number',
+        size: 10,
+      },
+      {
+        id: 'unclaimed',
+        label: echo('unclaimed'),
+        cell: 'number',
+        size: 10,
       },
     ],
     [echo],
@@ -49,6 +70,8 @@ export const AddressesList = () => {
       return data?.addresses?.map((item) => [
         item?.address,
         item?.address_name,
+        item?.stake,
+        item?.unclaimed,
       ]) as TableDisplayRow[];
     }
 
@@ -63,6 +86,14 @@ export const AddressesList = () => {
         cols={cols}
         rows={rows}
         total={data?.total_results || 0}
+        dialogOptions={{
+          title: echo('details-address'),
+        }}
+        linkOptions={{
+          route: '/address',
+          key: 'address',
+          title: echo('explore-address'),
+        }}
         {...tableProps}
         filters={TABLE_FILTERS}
       />
