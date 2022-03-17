@@ -43,6 +43,11 @@ export const BlocksList = () => {
         cell: 'monospace',
         size: 8,
         showDesktop: true,
+        linkOptions: {
+          route: '/block',
+          key: 'hash',
+          title: echo('explore-block'),
+        },
       },
       {
         id: 'height',
@@ -56,6 +61,11 @@ export const BlocksList = () => {
         label: echo('prevHash'),
         cell: 'monospace',
         size: 12,
+        linkOptions: {
+          route: '/block',
+          key: 'previous_hash',
+          title: echo('explore-block'),
+        },
       },
       {
         id: 'protocol',
@@ -102,6 +112,14 @@ export const BlocksList = () => {
         cols={cols}
         rows={rows}
         total={data?.total_results || 0}
+        dialogOptions={{
+          title: echo('details-block'),
+        }}
+        linkOptions={{
+          route: '/block',
+          key: 'hash',
+          title: echo('explore-block'),
+        }}
         {...tableProps}
         filters={TABLE_FILTERS}
       />
