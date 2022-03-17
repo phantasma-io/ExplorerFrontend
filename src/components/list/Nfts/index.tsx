@@ -29,7 +29,7 @@ export const NftsList = () => {
       {
         id: 'symbol',
         label: echo('symbol'),
-        cell: 'text',
+        type: 'text',
         size: 11,
         showDesktop: true,
       },

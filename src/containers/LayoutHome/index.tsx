@@ -2,7 +2,7 @@ import React, { ReactNode } from 'react';
 import { useFury } from '@ricardo-jrm/fury';
 import { Box, Container } from '@mui/material';
 import { FOOTER_HEIGHT, HEADER_HEIGHT } from 'cfg';
-import { Header, Footer } from 'components';
+import { Header, Footer } from 'components/layout';
 
 export interface LayoutHomeProps {
   children: ReactNode;

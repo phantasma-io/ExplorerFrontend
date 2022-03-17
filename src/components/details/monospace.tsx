@@ -2,20 +2,20 @@ import React, { useMemo } from 'react';
 import { useEcho } from '@ricardo-jrm/echo';
 import { Text } from 'components/display';
 import { routes } from 'cfg';
-import { CellLinkOptions } from 'types/table';
+import { DetailsLinkOptions } from 'types/components';
 import { Locales } from 'types/locales';
 
-export interface CellMonospaceProps {
+export interface DetailsMonospaceProps {
   value: string;
   label?: string;
-  linkOptions?: CellLinkOptions;
+  linkOptions?: DetailsLinkOptions;
 }
 
-export const CellMonospace = ({
+export const DetailsMonospace = ({
   value,
   label,
   linkOptions,
-}: CellMonospaceProps) => {
+}: DetailsMonospaceProps) => {
   const { echoActiveId } = useEcho();
 
   const link = useMemo(() => {

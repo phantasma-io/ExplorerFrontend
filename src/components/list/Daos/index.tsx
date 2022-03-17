@@ -29,7 +29,7 @@ export const DaosList = () => {
       {
         id: 'name',
         label: echo('name'),
-        cell: 'text',
+        type: 'text',
         size: 11,
         showDesktop: true,
       },

@@ -33,7 +33,7 @@ export const AddressesList = () => {
       {
         id: 'address',
         label: echo('address'),
-        cell: 'monospace',
+        type: 'monospace',
         size: 8,
         showDesktop: true,
         linkOptions: {
@@ -45,20 +45,20 @@ export const AddressesList = () => {
       {
         id: 'name',
         label: echo('name'),
-        cell: 'text',
+        type: 'text',
         size: 3,
         showDesktop: true,
       },
       {
         id: 'stake',
         label: echo('stake'),
-        cell: 'number',
+        type: 'number',
         size: 10,
       },
       {
         id: 'unclaimed',
         label: echo('unclaimed'),
-        cell: 'number',
+        type: 'number',
         size: 10,
       },
     ],

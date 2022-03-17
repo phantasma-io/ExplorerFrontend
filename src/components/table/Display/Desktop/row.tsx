@@ -3,14 +3,11 @@ import { nanoid } from 'nanoid';
 import { Box, Grid, GridSpacing, IconButton, Tooltip } from '@mui/material';
 import { useFury } from '@ricardo-jrm/fury';
 import { Link } from 'components/display';
-import { useDarkMode, useRenderCell } from 'hooks';
+import { useDarkMode, useRenderDetails } from 'hooks';
 import { routes } from 'cfg';
 import { Locales } from 'types/locales';
-import {
-  TableDisplayRow,
-  TableDisplayCol,
-  TableDisplayCell,
-} from 'types/table';
+import { TableDisplayRow, TableDisplayCol } from 'types/table';
+import { DetailsValue } from 'types/components';
 import { useEcho } from '@ricardo-jrm/echo';
 import csvDownload from 'json-to-csv-export';
 import FileDownloadIcon from '@mui/icons-material/FileDownload';
@@ -43,7 +40,7 @@ export const TableRow = ({
   const { echo, echoActiveId } = useEcho();
   const { furyActive } = useFury();
   const { isDark } = useDarkMode();
-  const renderCell = useRenderCell();
+  const renderCell = useRenderDetails();
 
   const [isHover, isHoverSet] = useState<boolean>(false);
 
@@ -74,11 +71,11 @@ export const TableRow = ({
     >
       <Grid container spacing={spacing}>
         {/* cols */}
-        {row.map((cell: TableDisplayCell, idx) => {
+        {row.map((cell: DetailsValue, idx) => {
           if (cols[idx].showDesktop) {
             return (
               <Grid item xs={cols[idx].size} key={`${cols[idx].label}-${cell}`}>
-                <Box px={1}>{renderCell(cols[idx].cell, cell)}</Box>
+                <Box px={1}>{renderCell(cols[idx].type, cell)}</Box>
               </Grid>
             );
           }

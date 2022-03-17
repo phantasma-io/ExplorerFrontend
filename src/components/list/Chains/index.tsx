@@ -29,14 +29,14 @@ export const ChainsList = () => {
       {
         id: 'chain_name',
         label: echo('chain'),
-        cell: 'text',
+        type: 'text',
         size: 8,
         showDesktop: true,
       },
       {
         id: 'chain_height',
         label: echo('height'),
-        cell: 'number',
+        type: 'number',
         size: 3,
         showDesktop: true,
       },

@@ -4,7 +4,8 @@ import { Box } from '@mui/material';
 import { useEcho } from '@ricardo-jrm/echo';
 import { Locales } from 'types/locales';
 import { ExplorerRoutes } from 'types/routes';
-import { Text, MetaDynamic } from 'components';
+import { Text } from 'components/display';
+import { MetaDynamic } from 'components/meta';
 import {
   AppLayout,
   ViewHome,

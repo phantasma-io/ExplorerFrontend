@@ -4,12 +4,12 @@ import { useFury } from '@ricardo-jrm/fury';
 import { Text } from 'components/display';
 import CheckIcon from '@mui/icons-material/Check';
 
-export interface CellBooleanProps {
+export interface DetailsBooleanProps {
   value: boolean;
   label?: string;
 }
 
-export const CellBoolean = ({ value, label }: CellBooleanProps) => {
+export const DetailsBoolean = ({ value, label }: DetailsBooleanProps) => {
   const { furyActive } = useFury();
   if (value) {
     return (

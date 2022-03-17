@@ -15,7 +15,7 @@ import {
 } from 'types/table';
 import { Locales } from 'types/locales';
 import csvDownload from 'json-to-csv-export';
-import { useRenderCell } from 'hooks';
+import { useRenderDetails } from 'hooks';
 import { TableRow } from './row';
 
 export const TableDisplayDesktop = ({
@@ -32,7 +32,7 @@ export const TableDisplayDesktop = ({
   const { echo, echoActiveId } = useEcho();
   const { furyActive } = useFury();
 
-  const renderCell = useRenderCell();
+  const renderCell = useRenderDetails();
 
   const [dialogOpen, dialogOpenSet] = useState(false);
   const [selectedRow, selectedRowSet] = useState<TableDisplayRow | undefined>(
@@ -70,7 +70,7 @@ export const TableDisplayDesktop = ({
                 >
                   <Grid item container>
                     {renderCell(
-                      col.cell,
+                      col.type,
                       selectedRow[i],
                       col.label,
                       col.linkOptions,

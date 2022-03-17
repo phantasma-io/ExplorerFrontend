@@ -40,7 +40,7 @@ export const BlocksList = () => {
       {
         id: 'hash',
         label: echo('hash'),
-        cell: 'monospace',
+        type: 'monospace',
         size: 8,
         showDesktop: true,
         linkOptions: {
@@ -52,14 +52,14 @@ export const BlocksList = () => {
       {
         id: 'height',
         label: echo('height'),
-        cell: 'number',
+        type: 'number',
         size: 3,
         showDesktop: true,
       },
       {
         id: 'previous_hash',
         label: echo('prevHash'),
-        cell: 'monospace',
+        type: 'monospace',
         size: 12,
         linkOptions: {
           route: '/block',
@@ -70,19 +70,19 @@ export const BlocksList = () => {
       {
         id: 'protocol',
         label: echo('protocol'),
-        cell: 'number',
+        type: 'number',
         size: 1,
       },
       {
         id: 'chain_address',
         label: echo('chainAddress'),
-        cell: 'monospace',
+        type: 'monospace',
         size: 12,
       },
       {
         id: 'validator_address',
         label: echo('validatorAddress'),
-        cell: 'monospace',
+        type: 'monospace',
         size: 12,
       },
     ],

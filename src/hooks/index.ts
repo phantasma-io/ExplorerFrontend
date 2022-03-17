@@ -4,4 +4,4 @@ export { useTable } from './useTable';
 
 export { useTableParams } from './useTableParams';
 
-export { useRenderCell } from './useRenderCell';
+export { useRenderDetails } from './useRenderDetails';

@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
 import { useRouter } from 'next/router';
 import Box from '@mui/material/Box';
-import { MetaTags } from 'components';
+import { MetaTags } from 'components/meta';
 import { routesHome } from 'cfg';
 import { LayoutHome } from '../LayoutHome';
 import { LayoutPage } from '../LayoutPage';

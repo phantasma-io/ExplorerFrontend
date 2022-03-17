@@ -1,17 +1,15 @@
 import React, { useMemo } from 'react';
 import { useEcho } from '@ricardo-jrm/echo';
+import { NavTabs, NavTabsRecord } from 'components/layout';
 import {
-  NavTabs,
-  NavTabsRecord,
   AddressesList,
   BlocksList,
-  ChainsList,
   ContractsList,
   DaosList,
   NftsList,
   TokensList,
   TransactionsList,
-} from 'components';
+} from 'components/list';
 import { routes } from 'cfg';
 import { Locales } from 'types/locales';
 import { ExplorerTabs } from 'types/routes';

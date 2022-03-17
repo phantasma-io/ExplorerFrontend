@@ -1,15 +1,15 @@
 import React from 'react';
 import { Text } from 'components/display';
 
-export interface CellTextProps {
-  value: string;
+export interface DetailsDateProps {
+  value: Date;
   label?: string;
 }
 
-export const CellText = ({ value, label }: CellTextProps) => {
+export const DetailsDate = ({ value, label }: DetailsDateProps) => {
   return (
     <Text
-      value={value}
+      formatDate={value}
       variant="body2"
       wordBreak="break-all"
       label={label}

@@ -40,14 +40,14 @@ export const TransactionsList = () => {
       {
         id: 'hash',
         label: echo('hash'),
-        cell: 'monospace',
+        type: 'monospace',
         size: 8,
         showDesktop: true,
       },
       {
         id: 'blockHeight',
         label: echo('blockHeight'),
-        cell: 'number',
+        type: 'number',
         size: 3,
         showDesktop: true,
       },
