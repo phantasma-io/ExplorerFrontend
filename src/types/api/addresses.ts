@@ -1,4 +1,4 @@
-import { ListParams, ListResults } from './list';
+import { ListParams, ListResults, WithOption } from './list';
 
 export interface Address {
   address?: string;
@@ -10,10 +10,10 @@ export interface Address {
 export interface AddressParams
   extends ListParams,
     Pick<Address, 'address' | 'address_name'> {
-  with_storage: 0 | 1;
-  with_stakes: 0 | 1;
-  with_balance: 0 | 1;
-  with_transactions: 0 | 1;
+  with_storage: WithOption;
+  with_stakes: WithOption;
+  with_balance: WithOption;
+  with_transactions: WithOption;
 }
 
 export interface AddressResults extends ListResults {
