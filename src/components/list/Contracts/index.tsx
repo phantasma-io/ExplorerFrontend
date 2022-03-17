@@ -71,6 +71,9 @@ export const ContractsList = () => {
         cols={cols}
         rows={rows}
         total={data?.total_results || 0}
+        dialogOptions={{
+          title: echo('details-contract'),
+        }}
         {...tableProps}
         filters={TABLE_FILTERS}
       />

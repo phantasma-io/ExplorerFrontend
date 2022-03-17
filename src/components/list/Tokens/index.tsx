@@ -117,7 +117,7 @@ export const TokensList = () => {
       {
         id: 'script_raw',
         label: echo('scriptRaw'),
-        cell: 'text',
+        cell: 'script',
         size: 12,
       },
     ],
@@ -156,6 +156,9 @@ export const TokensList = () => {
         cols={cols}
         rows={rows}
         total={data?.total_results || 0}
+        dialogOptions={{
+          title: echo('details-token'),
+        }}
         {...tableProps}
         filters={TABLE_FILTERS}
       />

@@ -53,6 +53,9 @@ export const NftsList = () => {
         cols={cols}
         rows={rows}
         total={data?.total_results || 0}
+        dialogOptions={{
+          title: echo('details-nft'),
+        }}
         {...tableProps}
         filters={TABLE_FILTERS}
       />

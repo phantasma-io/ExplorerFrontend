@@ -55,6 +55,9 @@ export const DaosList = () => {
         cols={cols}
         rows={rows}
         total={data?.total_results || 0}
+        dialogOptions={{
+          title: echo('details-dao'),
+        }}
         {...tableProps}
         filters={TABLE_FILTERS}
       />
