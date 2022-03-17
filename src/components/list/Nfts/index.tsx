@@ -12,14 +12,14 @@ export const NftsList = () => {
   const { echo } = useEcho();
 
   const tableProps = useTable();
-  const { limit, order_by, order_direction, offset, with_total } = tableProps;
+  const { limit, order_by, offset, with_total } = tableProps;
 
   const { data } = useEmpathy<NftResults>(
     endpoints['/nfts']({
       offset,
       limit,
       order_by,
-      order_direction,
+      order_direction: 'desc',
       with_total,
     }),
   );
@@ -30,7 +30,34 @@ export const NftsList = () => {
         id: 'symbol',
         label: echo('symbol'),
         type: 'text',
-        size: 11,
+        size: 3,
+        showDesktop: true,
+      },
+      {
+        id: 'creator_onchain_name',
+        label: echo('creator_onchain_name'),
+        type: 'text',
+        size: 3,
+        showDesktop: true,
+      },
+      {
+        id: 'creator_address',
+        label: echo('creator_address'),
+        type: 'monospace',
+        size: 3,
+      },
+      {
+        id: 'contract',
+        label: echo('contract'),
+        type: 'text',
+        size: 2,
+        showDesktop: true,
+      },
+      {
+        id: 'chain',
+        label: echo('chain'),
+        type: 'text',
+        size: 2,
         showDesktop: true,
       },
     ],
@@ -39,7 +66,13 @@ export const NftsList = () => {
 
   const rows = useMemo<TableDisplayRow[]>(() => {
     if (data) {
-      return data?.nfts?.map((item) => [item?.symbol]) as TableDisplayRow[];
+      return data?.nfts?.map((item) => [
+        item?.symbol,
+        item?.creator_onchain_name,
+        item?.creator_address,
+        item?.contract,
+        item?.chain,
+      ]) as TableDisplayRow[];
     }
 
     return [];

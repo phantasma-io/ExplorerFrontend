@@ -139,7 +139,8 @@ export const en: EchoMsgs = {
   attrValue2: 'Attribute 2 value',
   attrType3: 'Attribute 3 type',
   attrValue3: 'Attribute 3 value',
-
+  creator_onchain_name: 'Creator on-chain name',
+  creator_address: 'Creator address',
   // table
   'table-firstpage': 'First page',
   'table-prevpage': 'Previous page',
