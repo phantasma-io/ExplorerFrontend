@@ -95,8 +95,20 @@ export const en: EchoMsgs = {
   unclaimed: 'Unclaimed',
   // details
   'details-address': 'Address details',
+  'details-block': 'Block details',
+  'details-contract': 'Contract details',
+  'details-dao': 'DAO details',
+  'details-nft': 'NFT details',
+  'details-token': 'Token details',
+  'details-transaction': 'Transaction details',
   // explore
   'explore-address': 'Explore address',
+  'explore-block': 'Explore block',
+  'explore-contract': 'Explore contract',
+  'explore-dao': 'Explore DAO',
+  'explore-nft': 'Explore NFT',
+  'explore-token': 'Explore token',
+  'explore-transaction': 'Explore transaction',
   // sys
   name: 'Name',
   details: 'Details',
