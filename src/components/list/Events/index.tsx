@@ -39,12 +39,22 @@ export const EventsList = () => {
         type: 'monospace',
         size: 7,
         showDesktop: true,
+        // linkOptions: {
+        //   route: '/transaction',
+        //   key: 'transaction_hash',
+        //   title: echo('explore-transaction'),
+        // },
       },
       {
         id: 'address',
         label: echo('address'),
         type: 'monospace',
         size: 3,
+        // linkOptions: {
+        //   route: '/address',
+        //   key: 'address',
+        //   title: echo('explore-address'),
+        // },
       },
       {
         id: 'address_name',

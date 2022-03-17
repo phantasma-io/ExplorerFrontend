@@ -43,11 +43,11 @@ export const BlocksList = () => {
         type: 'monospace',
         size: 8,
         showDesktop: true,
-        linkOptions: {
-          route: '/block',
-          key: 'hash',
-          title: echo('explore-block'),
-        },
+        // linkOptions: {
+        //   route: '/block',
+        //   key: 'hash',
+        //   title: echo('explore-block'),
+        // },
       },
       {
         id: 'height',
@@ -61,11 +61,11 @@ export const BlocksList = () => {
         label: echo('prevHash'),
         type: 'monospace',
         size: 12,
-        linkOptions: {
-          route: '/block',
-          key: 'previous_hash',
-          title: echo('explore-block'),
-        },
+        // linkOptions: {
+        //   route: '/block',
+        //   key: 'previous_hash',
+        //   title: echo('explore-block'),
+        // },
       },
       {
         id: 'protocol',
@@ -115,11 +115,11 @@ export const BlocksList = () => {
         dialogOptions={{
           title: echo('details-block'),
         }}
-        linkOptions={{
-          route: '/block',
-          key: 'hash',
-          title: echo('explore-block'),
-        }}
+        // linkOptions={{
+        //   route: '/block',
+        //   key: 'hash',
+        //   title: echo('explore-block'),
+        // }}
         {...tableProps}
         filters={TABLE_FILTERS}
       />

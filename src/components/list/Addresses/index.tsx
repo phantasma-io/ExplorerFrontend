@@ -36,11 +36,11 @@ export const AddressesList = () => {
         type: 'monospace',
         size: 8,
         showDesktop: true,
-        linkOptions: {
-          route: '/address',
-          key: 'address',
-          title: echo('explore-address'),
-        },
+        // linkOptions: {
+        //   route: '/address',
+        //   key: 'address',
+        //   title: echo('explore-address'),
+        // },
       },
       {
         id: 'name',
@@ -89,11 +89,11 @@ export const AddressesList = () => {
         dialogOptions={{
           title: echo('details-address'),
         }}
-        linkOptions={{
-          route: '/address',
-          key: 'address',
-          title: echo('explore-address'),
-        }}
+        // linkOptions={{
+        //   route: '/address',
+        //   key: 'address',
+        //   title: echo('explore-address'),
+        // }}
         {...tableProps}
         filters={TABLE_FILTERS}
       />

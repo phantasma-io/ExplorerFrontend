@@ -11,6 +11,7 @@ import {
   TransactionsList,
   PlatformsList,
   EventsList,
+  SeriesList,
 } from 'components/list';
 import { routes } from 'cfg';
 import { Locales } from 'types/locales';
@@ -66,6 +67,12 @@ export const ViewNexus = ({ tabForce = 'addresses' }: ViewNexusProps) => {
         label: echo('tab-platforms'),
         href: routes['/nexus'](echoActiveId as Locales),
         component: <PlatformsList />,
+      },
+      series: {
+        id: 'series',
+        label: echo('tab-series'),
+        href: routes['/nexus'](echoActiveId as Locales),
+        component: <SeriesList />,
       },
       tokens: {
         id: 'tokens',

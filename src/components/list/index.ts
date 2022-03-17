@@ -10,6 +10,8 @@ export { DaosList } from './Daos';
 
 export { EventsList } from './Events';
 
+export { SeriesList } from './Series';
+
 export { PlatformsList } from './Platforms';
 
 export { NftsList } from './Nfts';
