@@ -11,7 +11,11 @@ export const TableFilters = ({ str }: TableFiltersProps) => {
   const { echo } = useEcho();
 
   return (
-    <Tooltip title={echo('table-openFilters')} placement="top">
+    <Tooltip
+      title={echo('table-openFilters')}
+      placement="top"
+      style={{ display: 'none' }}
+    >
       <IconButton size="small" onClick={() => undefined}>
         <FilterListIcon
           style={{
