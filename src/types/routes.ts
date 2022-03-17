@@ -24,6 +24,8 @@ export type ExplorerTabs =
   | 'transactions'
   | 'events'
   | 'oracles'
+  | 'platforms'
+  | 'series'
   | 'script'
   | 'members';
 

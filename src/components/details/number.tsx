@@ -1,17 +1,19 @@
 import React from 'react';
 import { Text } from 'components/display';
 
-export interface CellNumberProps {
+export interface DetailsNumberProps {
   value: number;
+  label?: string;
 }
 
-export const CellNumber = ({ value }: CellNumberProps) => {
+export const DetailsNumber = ({ value, label }: DetailsNumberProps) => {
   return (
     <Text
       formatNumber={value}
       variant="body2"
       wordBreak="break-all"
-      clipboard
+      label={label}
+      spacing={1}
     />
   );
 };

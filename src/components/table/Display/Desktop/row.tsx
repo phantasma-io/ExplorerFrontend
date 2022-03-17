@@ -2,15 +2,16 @@ import React, { useState, useCallback, useMemo } from 'react';
 import { nanoid } from 'nanoid';
 import { Box, Grid, GridSpacing, IconButton, Tooltip } from '@mui/material';
 import { useFury } from '@ricardo-jrm/fury';
-import { useDarkMode } from 'hooks';
-import {
-  TableDisplayRow,
-  TableDisplayCol,
-  TableDisplayCell,
-} from 'types/table';
+import { Link } from 'components/display';
+import { useDarkMode, useRenderDetails } from 'hooks';
+import { routes } from 'cfg';
+import { Locales } from 'types/locales';
+import { TableDisplayRow, TableDisplayCol } from 'types/table';
+import { DetailsValue } from 'types/components';
 import { useEcho } from '@ricardo-jrm/echo';
 import csvDownload from 'json-to-csv-export';
 import FileDownloadIcon from '@mui/icons-material/FileDownload';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
 export interface TableRowProps {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -22,10 +23,7 @@ export interface TableRowProps {
   spacing?: GridSpacing;
   hasClick?: boolean;
   openDialog: (row: TableDisplayRow, index: number) => void;
-  renderCell: (
-    type: TableDisplayCol['cell'],
-    value: TableDisplayCell,
-  ) => JSX.Element | null;
+  linkOptions?: TableDisplayCol['linkOptions'];
 }
 
 export const TableRow = ({
@@ -37,11 +35,12 @@ export const TableRow = ({
   spacing,
   hasClick = false,
   openDialog,
-  renderCell,
+  linkOptions,
 }: TableRowProps) => {
-  const { echo } = useEcho();
+  const { echo, echoActiveId } = useEcho();
   const { furyActive } = useFury();
   const { isDark } = useDarkMode();
+  const renderDetails = useRenderDetails();
 
   const [isHover, isHoverSet] = useState<boolean>(false);
 
@@ -72,11 +71,19 @@ export const TableRow = ({
     >
       <Grid container spacing={spacing}>
         {/* cols */}
-        {row.map((cell: TableDisplayCell, idx) => {
+        {row.map((cell: DetailsValue, idx) => {
           if (cols[idx].showDesktop) {
             return (
               <Grid item xs={cols[idx].size} key={`${cols[idx].label}-${cell}`}>
-                <Box px={1}>{renderCell(cols[idx].cell, cell)}</Box>
+                <Box px={1}>
+                  {renderDetails(
+                    cols[idx].type,
+                    cell,
+                    undefined,
+                    undefined,
+                    true,
+                  )}
+                </Box>
               </Grid>
             );
           }
@@ -85,24 +92,59 @@ export const TableRow = ({
 
         {/* actions */}
         <Grid item xs={1}>
-          <Box px={1} textAlign="center">
-            <Tooltip title={echo('table-exportCsv')} placement="top">
-              <IconButton
-                size="small"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  csvDownload([raw], csvFilename, ',');
-                }}
-                color="primary"
-              >
-                <FileDownloadIcon
-                  style={{
-                    height: '15px',
-                    width: 'auto',
-                  }}
-                />
-              </IconButton>
-            </Tooltip>
+          <Box>
+            <Grid
+              container
+              spacing={1}
+              justifyContent="center"
+              alignItems="center"
+            >
+              <Grid item>
+                <Tooltip title={echo('table-exportCsv')} placement="top">
+                  <IconButton
+                    size="small"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      csvDownload([raw], csvFilename, ',');
+                    }}
+                  >
+                    <FileDownloadIcon
+                      style={{
+                        height: '15px',
+                        width: 'auto',
+                      }}
+                    />
+                  </IconButton>
+                </Tooltip>
+              </Grid>
+              {linkOptions && (
+                <Grid item>
+                  <Link
+                    href={routes[linkOptions.route](echoActiveId as Locales, {
+                      id: raw[linkOptions.key],
+                    })}
+                    title={linkOptions.title}
+                  >
+                    <Tooltip title={linkOptions.title} placement="top">
+                      <IconButton
+                        size="small"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                        }}
+                        color="primary"
+                      >
+                        <ArrowForwardIosIcon
+                          style={{
+                            height: '15px',
+                            width: 'auto',
+                          }}
+                        />
+                      </IconButton>
+                    </Tooltip>
+                  </Link>
+                </Grid>
+              )}
+            </Grid>
           </Box>
         </Grid>
       </Grid>

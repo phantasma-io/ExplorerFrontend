@@ -1,19 +1,15 @@
 import React from 'react';
 import { GridSpacing } from '@mui/material';
+import { DetailsLinkOptions, DetailsItem, DetailsValue } from './components';
 
 export type TableOrderDirection = 'asc' | 'desc';
 
-export interface TableDisplayCol {
-  id: string;
-  label: string;
-  cell: 'text' | 'number' | 'link' | 'date';
+export interface TableDisplayCol extends DetailsItem {
   size: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
   showDesktop?: boolean;
 }
 
-export type TableDisplayCell = string | number;
-
-export type TableDisplayRow = TableDisplayCell[];
+export type TableDisplayRow = DetailsValue[];
 
 export interface TableDisplayData {
   rows: TableDisplayRow[];
@@ -43,4 +39,8 @@ export interface TableDisplayProps extends TableDisplayData {
   height?: string;
   spacing?: GridSpacing;
   withDetails?: boolean;
+  dialogOptions?: {
+    title: string;
+  };
+  linkOptions?: DetailsLinkOptions;
 }

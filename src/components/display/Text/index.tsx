@@ -2,6 +2,7 @@ import React, { useMemo } from 'react';
 import { useSnackbar } from 'notistack';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import {
+  Box,
   Typography,
   TypographyProps,
   Grid,
@@ -20,7 +21,10 @@ import {
 } from '@ricardo-jrm/dervish';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import EventIcon from '@mui/icons-material/Event';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { NUMBER_FORMAT, DATE_FORMAT } from 'cfg';
+import { useDarkMode } from 'hooks';
+import { Link } from '../Link';
 
 /**
  * Text props
@@ -66,6 +70,7 @@ export interface TextProps
    */
   formatDate?: Date;
   formatDateStr?: string;
+  formatDateIcon?: boolean;
   /**
    * Spacing between elements
    */
@@ -90,6 +95,12 @@ export interface TextProps
    */
   capitalize?: boolean | 'allWords';
   wordBreak?: 'normal' | 'break-all' | 'keep-all' | 'break-word';
+  monospace?: boolean;
+  script?: boolean;
+  linkOptions?: {
+    link: string;
+    title: string;
+  };
 }
 
 /**
@@ -104,6 +115,7 @@ export const Text = ({
   formatNumberStr = NUMBER_FORMAT,
   formatDate,
   formatDateStr = DATE_FORMAT,
+  formatDateIcon,
   spacing = 0,
   label,
   clipboard,
@@ -112,11 +124,15 @@ export const Text = ({
   capitalize,
   sx,
   wordBreak = 'normal',
+  monospace,
+  script,
+  linkOptions,
   ...propsTypo
 }: TextProps) => {
   const { enqueueSnackbar } = useSnackbar();
   const { furyActive } = useFury();
   const { echo } = useEcho();
+  const { isDark } = useDarkMode();
 
   const copy: string = useMemo(() => {
     if (formatDate) {
@@ -162,12 +178,14 @@ export const Text = ({
         variant={variant}
         {...propsTypo}
         sx={sx}
-        style={{ wordBreak }}
+        style={
+          monospace ? { wordBreak, fontFamily: 'monospace' } : { wordBreak }
+        }
       >
         {strDisplay}
       </Typography>
     );
-  }, [variant, propsTypo, copy, truncate, sx, wordBreak]);
+  }, [variant, propsTypo, copy, truncate, sx, wordBreak, monospace]);
 
   return (
     <Grid
@@ -184,8 +202,24 @@ export const Text = ({
           </Typography>
         </Grid>
       )}
-      <Grid item>{children || result}</Grid>
-      {formatDate && (
+      {script ? (
+        <Grid item>
+          <Box
+            p={0.5}
+            sx={{
+              borderRadius: '3px',
+              backgroundColor: isDark ? '#3a3a3a' : '#e5e5e5',
+              maxHeight: '300px',
+              overflowY: 'auto',
+            }}
+          >
+            {children || result}
+          </Box>
+        </Grid>
+      ) : (
+        <Grid item>{children || result}</Grid>
+      )}
+      {formatDate && formatDateIcon && (
         <Grid item>
           <Tooltip title={dateRelative(formatDate).fromNow} placement="right">
             <Typography variant={variant} {...propsTypo} sx={sx}>
@@ -231,6 +265,28 @@ export const Text = ({
               </CopyToClipboard>
             </Typography>
           </Tooltip>
+        </Grid>
+      )}
+      {linkOptions && (
+        <Grid item>
+          <Link href={linkOptions.link} title={linkOptions.title}>
+            <Tooltip title={linkOptions.title} placement="right">
+              <IconButton
+                size="small"
+                onClick={(e) => {
+                  e.stopPropagation();
+                }}
+                color="primary"
+              >
+                <ArrowForwardIosIcon
+                  style={{
+                    fontSize: furyActive.typography[variant].fontSize,
+                    width: 'auto',
+                  }}
+                />
+              </IconButton>
+            </Tooltip>
+          </Link>
         </Grid>
       )}
     </Grid>

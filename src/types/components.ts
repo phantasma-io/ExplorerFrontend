@@ -1,8 +1,23 @@
-import { TextProps } from 'components/display';
+import { ExplorerRoutes } from './routes';
 
-export interface OverviewItem extends TextProps {
-  link?: {
-    href: string;
-    external?: boolean;
-  };
+export type DetailsLinkOptions = {
+  route: ExplorerRoutes;
+  key: string;
+  title: string;
+};
+
+export interface DetailsItem {
+  id: string;
+  label: string;
+  type:
+    | 'text'
+    | 'number'
+    | 'link'
+    | 'date'
+    | 'boolean'
+    | 'monospace'
+    | 'script';
+  linkOptions?: DetailsLinkOptions;
 }
+
+export type DetailsValue = string | number | boolean | Date;

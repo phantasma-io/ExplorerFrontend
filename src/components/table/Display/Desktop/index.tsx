@@ -1,18 +1,22 @@
+/* eslint-disable operator-linebreak */
+/* eslint-disable no-confusing-arrow */
 import React, { useState, useCallback, useMemo } from 'react';
 import { nanoid } from 'nanoid';
 import { useFury } from '@ricardo-jrm/fury';
 import { useEcho } from '@ricardo-jrm/echo';
 import { Box, Grid, Typography, Button } from '@mui/material';
+import { Link } from 'components/display';
 import { Dialog } from 'components/layout';
+import { routes } from 'cfg';
 import {
   TableDisplayProps,
   TableDisplayRow,
   TableDisplayCol,
-  TableDisplayCell,
 } from 'types/table';
+import { Locales } from 'types/locales';
 import csvDownload from 'json-to-csv-export';
+import { useRenderDetails } from 'hooks';
 import { TableRow } from './row';
-import { CellText, CellNumber } from '../../Cells';
 
 export const TableDisplayDesktop = ({
   tableId,
@@ -22,9 +26,13 @@ export const TableDisplayDesktop = ({
   height,
   spacing,
   withDetails,
+  linkOptions,
+  dialogOptions,
 }: TableDisplayProps) => {
-  const { echo } = useEcho();
+  const { echo, echoActiveId } = useEcho();
   const { furyActive } = useFury();
+
+  const renderDialogDetails = useRenderDetails();
 
   const [dialogOpen, dialogOpenSet] = useState(false);
   const [selectedRow, selectedRowSet] = useState<TableDisplayRow | undefined>(
@@ -45,57 +53,50 @@ export const TableDisplayDesktop = ({
 
   const csvFilename = useMemo(() => `${tableId}-${nanoid()}.csv`, [tableId]);
 
-  const renderCell = useCallback(
-    (type: TableDisplayCol['cell'], value: TableDisplayCell) => {
-      if (value) {
-        switch (type) {
-          case 'number':
-            return <CellNumber value={value as number} />;
-          case 'text':
-          default:
-            return <CellText value={value as string} />;
-        }
-      }
-      return null;
-    },
-    [],
-  );
-
-  const renderDetails = useCallback(() => {
+  const renderDialogContent = useCallback(() => {
     if (selectedRow) {
       return (
         <Box py={spacing}>
           <Grid spacing={spacing} container>
-            {cols.map((col, i) => (
-              <Grid
-                container
-                spacing={spacing}
-                key={nanoid()}
-                item
-                xs={12}
-                alignItems="center"
-              >
-                <Grid item>
-                  <Typography variant="body2" fontWeight={600}>
-                    {`${col.label}:`}
-                  </Typography>
+            {cols.map((col, i) =>
+              selectedRow[i] ? (
+                <Grid
+                  container
+                  spacing={spacing}
+                  key={nanoid()}
+                  item
+                  xs={12}
+                  alignItems="center"
+                >
+                  <Grid item container>
+                    {renderDialogDetails(
+                      col.type,
+                      selectedRow[i],
+                      col.label,
+                      col.linkOptions,
+                    )}
+                  </Grid>
                 </Grid>
-                <Grid item>{renderCell(col.cell, selectedRow[i])}</Grid>
-              </Grid>
-            ))}
+              ) : null,
+            )}
           </Grid>
         </Box>
       );
     }
 
     return null;
-  }, [cols, selectedRow, renderCell, spacing]);
+  }, [cols, selectedRow, renderDialogDetails, spacing]);
 
-  const renderActions = useCallback(() => {
+  const renderDialogActions = useCallback(() => {
     if (withDetails) {
       return (
         <Box>
           <Grid container alignItems="center" spacing={1}>
+            {/* <Grid item>
+              <Button onClick={closeDialog} color="inherit">
+                {echo('close')}
+              </Button>
+            </Grid> */}
             {selectedRowIndex !== undefined && (
               <Grid item>
                 <Button
@@ -107,18 +108,42 @@ export const TableDisplayDesktop = ({
                 </Button>
               </Grid>
             )}
-            <Grid item>
-              <Button onClick={closeDialog} color="inherit">
-                {echo('close')}
-              </Button>
-            </Grid>
+            {selectedRowIndex !== undefined &&
+              raw[selectedRowIndex] &&
+              linkOptions && (
+                <Grid item>
+                  <Link
+                    href={routes[linkOptions.route](echoActiveId as Locales, {
+                      id: raw[selectedRowIndex][linkOptions.key],
+                    })}
+                    title={linkOptions.title}
+                  >
+                    <Button
+                      onClick={closeDialog}
+                      variant="contained"
+                      color="primary"
+                    >
+                      {linkOptions.title}
+                    </Button>
+                  </Link>
+                </Grid>
+              )}
           </Grid>
         </Box>
       );
     }
 
     return null;
-  }, [withDetails, echo, closeDialog, raw, csvFilename, selectedRowIndex]);
+  }, [
+    withDetails,
+    echo,
+    echoActiveId,
+    closeDialog,
+    raw,
+    csvFilename,
+    selectedRowIndex,
+    linkOptions,
+  ]);
 
   return (
     <Box>
@@ -133,7 +158,7 @@ export const TableDisplayDesktop = ({
               return (
                 <Grid item xs={col.size} key={`${col.label}-col`}>
                   <Box>
-                    <Typography variant="body1" fontWeight={600}>
+                    <Typography variant="body2" fontWeight={600}>
                       {col.label}
                     </Typography>
                   </Box>
@@ -158,7 +183,7 @@ export const TableDisplayDesktop = ({
             key={nanoid()}
             hasClick={!!withDetails}
             openDialog={openDialog}
-            renderCell={renderCell}
+            linkOptions={linkOptions}
           />
         ))}
       </Box>
@@ -168,10 +193,10 @@ export const TableDisplayDesktop = ({
         <Dialog
           isOpen={dialogOpen}
           handleClose={closeDialog}
-          title={echo('details')}
-          actions={renderActions()}
+          title={dialogOptions ? dialogOptions.title : echo('details')}
+          actions={renderDialogActions()}
         >
-          {renderDetails()}
+          {renderDialogContent()}
         </Dialog>
       )}
     </Box>

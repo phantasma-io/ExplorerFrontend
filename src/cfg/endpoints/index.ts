@@ -1,11 +1,12 @@
 import { objToQuery } from 'scripts/objQuery';
 import { ExplorerApi } from 'types/endpoints';
 
-export const url = 'http://88.99.141.166:8000/api/v1';
+export const url = 'https://api.phantasma.io:8001/api/v1';
 
 export const endpoints: ExplorerApi = {
   '/addresses': (params) =>
     `${url}/addresses${params ? objToQuery(params) : ''}`,
+  '/blocks': (params) => `${url}/blocks${params ? objToQuery(params) : ''}`,
   '/chains': (params) => `${url}/chains${params ? objToQuery(params) : ''}`,
   '/contracts': (params) =>
     `${url}/contracts${params ? objToQuery(params) : ''}`,
@@ -17,6 +18,8 @@ export const endpoints: ExplorerApi = {
   '/nfts': (params) => `${url}/nfts${params ? objToQuery(params) : ''}`,
   '/organizations': (params) =>
     `${url}/organizations${params ? objToQuery(params) : ''}`,
+  '/platforms': (params) =>
+    `${url}/platforms${params ? objToQuery(params) : ''}`,
   '/series': (params) => `${url}/series${params ? objToQuery(params) : ''}`,
   '/tokens': (params) => `${url}/tokens${params ? objToQuery(params) : ''}`,
   '/transactions': (params) =>

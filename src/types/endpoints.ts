@@ -16,6 +16,7 @@ import {
 
 export type ExplorerEndpoints =
   | '/addresses'
+  | '/blocks'
   | '/chains'
   | '/contracts'
   | '/instructions'
@@ -23,6 +24,7 @@ export type ExplorerEndpoints =
   | '/events'
   | '/nfts'
   | '/organizations'
+  | '/platforms'
   | '/series'
   | '/tokens'
   | '/transactions';

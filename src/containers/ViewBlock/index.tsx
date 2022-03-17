@@ -1,6 +1,7 @@
 import React, { useMemo } from 'react';
 import { useEcho } from '@ricardo-jrm/echo';
-import { Text, NavTabs, NavTabsRecord } from 'components';
+import { Text } from 'components/display';
+import { NavTabs, NavTabsRecord } from 'components/layout';
 import { routes } from 'cfg';
 import { Locales } from 'types/locales';
 import { ExplorerTabs } from 'types/routes';
