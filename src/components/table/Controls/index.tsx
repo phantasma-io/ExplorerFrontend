@@ -57,7 +57,7 @@ export const TableControls = ({
   const csvFilename = useMemo(() => `${tableId}-${nanoid()}.csv`, [tableId]);
 
   const pageCount = useMemo(
-    () => Math.floor(total / pageSize),
+    () => Math.ceil(total / pageSize),
     [pageSize, total],
   );
 

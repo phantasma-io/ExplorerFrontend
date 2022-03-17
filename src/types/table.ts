@@ -13,7 +13,14 @@ export type CellLinkOptions = {
 export interface TableDisplayCol {
   id: string;
   label: string;
-  cell: 'text' | 'number' | 'link' | 'date' | 'boolean' | 'monospace';
+  cell:
+    | 'text'
+    | 'number'
+    | 'link'
+    | 'date'
+    | 'boolean'
+    | 'monospace'
+    | 'script';
   size: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
   showDesktop?: boolean;
   linkOptions?: CellLinkOptions;

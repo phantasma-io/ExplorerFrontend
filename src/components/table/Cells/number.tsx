@@ -14,7 +14,6 @@ export const CellNumber = ({ value, label }: CellNumberProps) => {
       wordBreak="break-all"
       label={label}
       spacing={1}
-      clipboard
     />
   );
 };

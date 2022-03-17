@@ -5,6 +5,7 @@ import {
   CellMonospace,
   CellNumber,
   CellText,
+  CellScript,
 } from 'components/table/Cells';
 import { TableDisplayCell, TableDisplayCol } from 'types/table';
 
@@ -21,11 +22,13 @@ export const useRenderCell = () => {
       if (value) {
         switch (type) {
           case 'boolean':
-            return <CellBoolean value={value as boolean} />;
+            return <CellBoolean value={value as boolean} label={label} />;
           case 'date':
             return <CellDate value={value as Date} label={label} />;
           case 'number':
             return <CellNumber value={value as number} label={label} />;
+          case 'script':
+            return <CellScript value={value as string} label={label} />;
           case 'monospace':
             return (
               <CellMonospace

@@ -1,3 +1,4 @@
+/* eslint-disable operator-linebreak */
 /* eslint-disable no-confusing-arrow */
 import React, { useState, useCallback, useMemo } from 'react';
 import { nanoid } from 'nanoid';
@@ -107,24 +108,26 @@ export const TableDisplayDesktop = ({
                 </Button>
               </Grid>
             )}
-            {selectedRowIndex !== undefined && linkOptions && (
-              <Grid item>
-                <Link
-                  href={routes[linkOptions.route](echoActiveId as Locales, {
-                    id: raw[selectedRowIndex][linkOptions.key],
-                  })}
-                  title={linkOptions.title}
-                >
-                  <Button
-                    onClick={closeDialog}
-                    variant="contained"
-                    color="primary"
+            {selectedRowIndex !== undefined &&
+              raw[selectedRowIndex] &&
+              linkOptions && (
+                <Grid item>
+                  <Link
+                    href={routes[linkOptions.route](echoActiveId as Locales, {
+                      id: raw[selectedRowIndex][linkOptions.key],
+                    })}
+                    title={linkOptions.title}
                   >
-                    {linkOptions.title}
-                  </Button>
-                </Link>
-              </Grid>
-            )}
+                    <Button
+                      onClick={closeDialog}
+                      variant="contained"
+                      color="primary"
+                    >
+                      {linkOptions.title}
+                    </Button>
+                  </Link>
+                </Grid>
+              )}
           </Grid>
         </Box>
       );

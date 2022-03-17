@@ -1,12 +1,12 @@
 import React from 'react';
 import { Text } from 'components/display';
 
-export interface CellTextProps {
+export interface CellScriptProps {
   value: string;
   label?: string;
 }
 
-export const CellText = ({ value, label }: CellTextProps) => {
+export const CellScript = ({ value, label }: CellScriptProps) => {
   return (
     <Text
       value={value}
@@ -14,6 +14,9 @@ export const CellText = ({ value, label }: CellTextProps) => {
       wordBreak="break-all"
       label={label}
       spacing={1}
+      clipboard
+      monospace
+      script
     />
   );
 };
