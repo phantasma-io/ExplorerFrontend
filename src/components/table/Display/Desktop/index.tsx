@@ -32,7 +32,7 @@ export const TableDisplayDesktop = ({
   const { echo, echoActiveId } = useEcho();
   const { furyActive } = useFury();
 
-  const renderCell = useRenderDetails();
+  const renderDetails = useRenderDetails();
 
   const [dialogOpen, dialogOpenSet] = useState(false);
   const [selectedRow, selectedRowSet] = useState<TableDisplayRow | undefined>(
@@ -53,7 +53,7 @@ export const TableDisplayDesktop = ({
 
   const csvFilename = useMemo(() => `${tableId}-${nanoid()}.csv`, [tableId]);
 
-  const renderDetails = useCallback(() => {
+  const renderDialogContent = useCallback(() => {
     if (selectedRow) {
       return (
         <Box py={spacing}>
@@ -69,7 +69,7 @@ export const TableDisplayDesktop = ({
                   alignItems="center"
                 >
                   <Grid item container>
-                    {renderCell(
+                    {renderDetails(
                       col.type,
                       selectedRow[i],
                       col.label,
@@ -85,9 +85,9 @@ export const TableDisplayDesktop = ({
     }
 
     return null;
-  }, [cols, selectedRow, renderCell, spacing]);
+  }, [cols, selectedRow, renderDetails, spacing]);
 
-  const renderActions = useCallback(() => {
+  const renderDialogActions = useCallback(() => {
     if (withDetails) {
       return (
         <Box>
@@ -158,7 +158,7 @@ export const TableDisplayDesktop = ({
               return (
                 <Grid item xs={col.size} key={`${col.label}-col`}>
                   <Box>
-                    <Typography variant="body1" fontWeight={600}>
+                    <Typography variant="body2" fontWeight={600}>
                       {col.label}
                     </Typography>
                   </Box>
@@ -194,9 +194,9 @@ export const TableDisplayDesktop = ({
           isOpen={dialogOpen}
           handleClose={closeDialog}
           title={dialogOptions ? dialogOptions.title : echo('details')}
-          actions={renderActions()}
+          actions={renderDialogActions()}
         >
-          {renderDetails()}
+          {renderDialogContent()}
         </Dialog>
       )}
     </Box>

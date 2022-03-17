@@ -40,7 +40,7 @@ export const TableRow = ({
   const { echo, echoActiveId } = useEcho();
   const { furyActive } = useFury();
   const { isDark } = useDarkMode();
-  const renderCell = useRenderDetails();
+  const renderDetails = useRenderDetails();
 
   const [isHover, isHoverSet] = useState<boolean>(false);
 
@@ -75,7 +75,7 @@ export const TableRow = ({
           if (cols[idx].showDesktop) {
             return (
               <Grid item xs={cols[idx].size} key={`${cols[idx].label}-${cell}`}>
-                <Box px={1}>{renderCell(cols[idx].type, cell)}</Box>
+                <Box px={1}>{renderDetails(cols[idx].type, cell)}</Box>
               </Grid>
             );
           }
