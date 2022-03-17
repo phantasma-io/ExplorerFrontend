@@ -9,6 +9,7 @@ import {
   NftsList,
   TokensList,
   TransactionsList,
+  PlatformsList,
 } from 'components/list';
 import { routes } from 'cfg';
 import { Locales } from 'types/locales';
@@ -52,6 +53,12 @@ export const ViewNexus = ({ tabForce = 'addresses' }: ViewNexusProps) => {
         label: echo('tab-nfts'),
         href: routes['/nexus'](echoActiveId as Locales),
         component: <NftsList />,
+      },
+      platforms: {
+        id: 'platforms',
+        label: echo('tab-platforms'),
+        href: routes['/nexus'](echoActiveId as Locales),
+        component: <PlatformsList />,
       },
       tokens: {
         id: 'tokens',

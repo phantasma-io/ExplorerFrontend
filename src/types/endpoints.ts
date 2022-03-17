@@ -24,6 +24,7 @@ export type ExplorerEndpoints =
   | '/events'
   | '/nfts'
   | '/organizations'
+  | '/platforms'
   | '/series'
   | '/tokens'
   | '/transactions';

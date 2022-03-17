@@ -8,6 +8,8 @@ export { ContractsList } from './Contracts';
 
 export { DaosList } from './Daos';
 
+export { PlatformsList } from './Platforms';
+
 export { NftsList } from './Nfts';
 
 export { TokensList } from './Tokens';

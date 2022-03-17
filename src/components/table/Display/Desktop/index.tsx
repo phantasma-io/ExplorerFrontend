@@ -32,7 +32,7 @@ export const TableDisplayDesktop = ({
   const { echo, echoActiveId } = useEcho();
   const { furyActive } = useFury();
 
-  const renderDetails = useRenderDetails();
+  const renderDialogDetails = useRenderDetails();
 
   const [dialogOpen, dialogOpenSet] = useState(false);
   const [selectedRow, selectedRowSet] = useState<TableDisplayRow | undefined>(
@@ -69,7 +69,7 @@ export const TableDisplayDesktop = ({
                   alignItems="center"
                 >
                   <Grid item container>
-                    {renderDetails(
+                    {renderDialogDetails(
                       col.type,
                       selectedRow[i],
                       col.label,
@@ -85,7 +85,7 @@ export const TableDisplayDesktop = ({
     }
 
     return null;
-  }, [cols, selectedRow, renderDetails, spacing]);
+  }, [cols, selectedRow, renderDialogDetails, spacing]);
 
   const renderDialogActions = useCallback(() => {
     if (withDetails) {

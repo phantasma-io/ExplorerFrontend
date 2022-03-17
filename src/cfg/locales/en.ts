@@ -66,6 +66,8 @@ export const en: EchoMsgs = {
   // TODO
   // tab
   'tab-addresses': 'Addresses',
+  'tab-platforms': 'Platforms',
+  'tab-series': 'Series',
   'tab-nfts': 'NFTs',
   // app
   blockHeight: 'Block height',
@@ -98,6 +100,7 @@ export const en: EchoMsgs = {
   'details-block': 'Block details',
   'details-contract': 'Contract details',
   'details-dao': 'DAO details',
+  'details-platform': 'Platform details',
   'details-nft': 'NFT details',
   'details-token': 'Token details',
   'details-transaction': 'Transaction details',

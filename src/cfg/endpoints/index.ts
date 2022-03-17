@@ -18,6 +18,8 @@ export const endpoints: ExplorerApi = {
   '/nfts': (params) => `${url}/nfts${params ? objToQuery(params) : ''}`,
   '/organizations': (params) =>
     `${url}/organizations${params ? objToQuery(params) : ''}`,
+  '/platforms': (params) =>
+    `${url}/platforms${params ? objToQuery(params) : ''}`,
   '/series': (params) => `${url}/series${params ? objToQuery(params) : ''}`,
   '/tokens': (params) => `${url}/tokens${params ? objToQuery(params) : ''}`,
   '/transactions': (params) =>
