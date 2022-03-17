@@ -10,6 +10,7 @@ import {
   TokensList,
   TransactionsList,
   PlatformsList,
+  EventsList,
 } from 'components/list';
 import { routes } from 'cfg';
 import { Locales } from 'types/locales';
@@ -47,6 +48,12 @@ export const ViewNexus = ({ tabForce = 'addresses' }: ViewNexusProps) => {
         label: echo('tab-daos'),
         href: routes['/nexus'](echoActiveId as Locales),
         component: <DaosList />,
+      },
+      events: {
+        id: 'events',
+        label: echo('tab-events'),
+        href: routes['/nexus'](echoActiveId as Locales),
+        component: <EventsList />,
       },
       nfts: {
         id: 'nfts',

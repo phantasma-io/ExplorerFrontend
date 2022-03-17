@@ -75,7 +75,15 @@ export const TableRow = ({
           if (cols[idx].showDesktop) {
             return (
               <Grid item xs={cols[idx].size} key={`${cols[idx].label}-${cell}`}>
-                <Box px={1}>{renderDetails(cols[idx].type, cell)}</Box>
+                <Box px={1}>
+                  {renderDetails(
+                    cols[idx].type,
+                    cell,
+                    undefined,
+                    undefined,
+                    true,
+                  )}
+                </Box>
               </Grid>
             );
           }

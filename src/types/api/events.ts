@@ -20,6 +20,7 @@ export interface EventResult {
   source_address?: string;
   source_onchain_name?: string;
   address?: string;
+  address_name?: string;
   onchain_name?: string;
   nft_metadata?: NftMetadata;
   series?: Series;

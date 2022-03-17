@@ -20,4 +20,4 @@ export { themes } from './themes';
 
 export { routes, routesKeys, routesViews, routesHome } from './routes';
 
-export { DATE_FORMAT, NUMBER_FORMAT } from './formats';
+export { DATE_FORMAT, NUMBER_FORMAT, DATE_SHORT } from './formats';

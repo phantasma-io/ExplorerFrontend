@@ -14,17 +14,22 @@ type RenderDetails = (
   value: DetailsValue,
   label?: string,
   linkOptions?: DetailsItem['linkOptions'],
+  inTable?: boolean,
 ) => JSX.Element | null;
 
 export const useRenderDetails = () => {
   const renderDetails = useCallback<RenderDetails>(
-    (type, value, label, linkOptions) => {
+    (type, value, label, linkOptions, inTable) => {
       if (value) {
         switch (type) {
           case 'boolean':
             return <DetailsBoolean value={value as boolean} label={label} />;
           case 'date':
-            return <DetailsDate value={value as Date} label={label} />;
+            return inTable ? (
+              <DetailsDate value={value as Date} label={label} short />
+            ) : (
+              <DetailsDate value={value as Date} label={label} />
+            );
           case 'number':
             return <DetailsNumber value={value as number} label={label} />;
           case 'script':

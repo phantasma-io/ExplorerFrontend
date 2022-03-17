@@ -101,6 +101,7 @@ export const en: EchoMsgs = {
   'details-contract': 'Contract details',
   'details-dao': 'DAO details',
   'details-platform': 'Platform details',
+  'details-event': 'Event details',
   'details-nft': 'NFT details',
   'details-token': 'Token details',
   'details-transaction': 'Transaction details',
@@ -113,9 +114,14 @@ export const en: EchoMsgs = {
   'explore-token': 'Explore token',
   'explore-transaction': 'Explore transaction',
   // sys
+  date: 'Date',
   name: 'Name',
   details: 'Details',
   all: 'All',
+  // api
+  event_kind: 'Events Kind',
+  transaction_hash: 'Transaction hash',
+  address_name: 'Address name',
   // table
   'table-firstpage': 'First page',
   'table-prevpage': 'Previous page',

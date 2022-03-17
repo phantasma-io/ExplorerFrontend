@@ -70,6 +70,7 @@ export interface TextProps
    */
   formatDate?: Date;
   formatDateStr?: string;
+  formatDateIcon?: boolean;
   /**
    * Spacing between elements
    */
@@ -114,6 +115,7 @@ export const Text = ({
   formatNumberStr = NUMBER_FORMAT,
   formatDate,
   formatDateStr = DATE_FORMAT,
+  formatDateIcon,
   spacing = 0,
   label,
   clipboard,
@@ -217,7 +219,7 @@ export const Text = ({
       ) : (
         <Grid item>{children || result}</Grid>
       )}
-      {formatDate && (
+      {formatDate && formatDateIcon && (
         <Grid item>
           <Tooltip title={dateRelative(formatDate).fromNow} placement="right">
             <Typography variant={variant} {...propsTypo} sx={sx}>
