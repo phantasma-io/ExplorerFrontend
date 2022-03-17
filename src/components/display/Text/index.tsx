@@ -2,6 +2,7 @@ import React, { useMemo } from 'react';
 import { useSnackbar } from 'notistack';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import {
+  Box,
   Typography,
   TypographyProps,
   Grid,
@@ -22,6 +23,7 @@ import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import EventIcon from '@mui/icons-material/Event';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { NUMBER_FORMAT, DATE_FORMAT } from 'cfg';
+import { useDarkMode } from 'hooks';
 import { Link } from '../Link';
 
 /**
@@ -93,6 +95,7 @@ export interface TextProps
   capitalize?: boolean | 'allWords';
   wordBreak?: 'normal' | 'break-all' | 'keep-all' | 'break-word';
   monospace?: boolean;
+  script?: boolean;
   linkOptions?: {
     link: string;
     title: string;
@@ -120,12 +123,14 @@ export const Text = ({
   sx,
   wordBreak = 'normal',
   monospace,
+  script,
   linkOptions,
   ...propsTypo
 }: TextProps) => {
   const { enqueueSnackbar } = useSnackbar();
   const { furyActive } = useFury();
   const { echo } = useEcho();
+  const { isDark } = useDarkMode();
 
   const copy: string = useMemo(() => {
     if (formatDate) {
@@ -195,7 +200,23 @@ export const Text = ({
           </Typography>
         </Grid>
       )}
-      <Grid item>{children || result}</Grid>
+      {script ? (
+        <Grid item>
+          <Box
+            p={0.5}
+            sx={{
+              borderRadius: '3px',
+              backgroundColor: isDark ? '#3a3a3a' : '#e5e5e5',
+              maxHeight: '300px',
+              overflowY: 'auto',
+            }}
+          >
+            {children || result}
+          </Box>
+        </Grid>
+      ) : (
+        <Grid item>{children || result}</Grid>
+      )}
       {formatDate && (
         <Grid item>
           <Tooltip title={dateRelative(formatDate).fromNow} placement="right">
