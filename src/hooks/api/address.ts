@@ -42,6 +42,7 @@ export const useAddressData = (data?: AddressResults) => {
         },
       ];
     }
+
     return [];
   }, [echo, data]);
 
