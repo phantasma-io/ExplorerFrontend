@@ -77,7 +77,7 @@ export const ViewBlock = ({ tabForce = 'overview' }: ViewBlockProps) => {
         component: <TransactionsList />,
       },
     }),
-    [echo, echoActiveId, data],
+    [echo, echoActiveId, data, error, loading],
   );
 
   return <NavTabs tabs={tabs} tabsDefault={tabForce} />;

@@ -15,6 +15,12 @@ export const useTokenData = (data?: TokenResults) => {
           type: 'text',
           size: 2,
           showDesktop: true,
+          linkOptions: {
+            route: '/token',
+            key: 'symbol',
+            title: echo('explore-token'),
+            primary: true,
+          },
         },
         {
           id: 'current_supply',

@@ -1,16 +1,13 @@
 import React, { useMemo } from 'react';
+import { useRouter } from 'next/router';
+import { useEmpathy } from '@ricardo-jrm/empathy';
 import { useEcho } from '@ricardo-jrm/echo';
-import { Text } from 'components/display';
 import { NavTabs, NavTabsRecord } from 'components/layout';
-import { routes } from 'cfg';
+import { endpoints, routes } from 'cfg';
 import { Locales } from 'types/locales';
 import { ExplorerTabs } from 'types/routes';
-
-const TokenOverview = () => (
-  <>
-    <Text>TokenOverview</Text>
-  </>
-);
+import { TokenResults } from 'types/api';
+import { TokenOverview } from './overview';
 
 export interface ViewTokenProps {
   tabForce?: ExplorerTabs;
@@ -19,16 +16,26 @@ export interface ViewTokenProps {
 export const ViewToken = ({ tabForce = 'overview' }: ViewTokenProps) => {
   const { echo, echoActiveId } = useEcho();
 
+  const { query } = useRouter();
+
+  const { data, error, loading } = useEmpathy<TokenResults>(
+    endpoints['/tokens']({
+      symbol: (query?.id as string) || '',
+    }),
+  );
+
   const tabs: NavTabsRecord = useMemo(
     () => ({
       overview: {
         id: 'overview',
         label: echo('tab-overview'),
         href: routes['/token'](echoActiveId as Locales),
-        component: <TokenOverview />,
+        component: (
+          <TokenOverview data={data} loading={loading} error={error} />
+        ),
       },
     }),
-    [echo, echoActiveId],
+    [echo, echoActiveId, data, error, loading],
   );
 
   return <NavTabs tabs={tabs} tabsDefault={tabForce} />;

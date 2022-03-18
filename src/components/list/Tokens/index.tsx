@@ -37,6 +37,11 @@ export const TokensList = () => {
         dialogOptions={{
           title: echo('details-token'),
         }}
+        linkOptions={{
+          route: '/token',
+          key: 'symbol',
+          title: echo('explore-token'),
+        }}
         {...tableProps}
         filters={TABLE_FILTERS}
       />
