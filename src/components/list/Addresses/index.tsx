@@ -23,7 +23,7 @@ export const AddressesList = () => {
       with_total,
       with_balance: 0,
       with_stakes: 0,
-      with_storage: 0,
+      with_storage: 1,
       with_transactions: 0,
     }),
   );
