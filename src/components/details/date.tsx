@@ -13,6 +13,7 @@ export const DetailsDate = ({ value, label, short }: DetailsDateProps) => {
     <Text
       formatDate={value}
       formatDateStr={short ? DATE_SHORT : DATE_FORMAT}
+      formatDateIcon={!short}
       variant="body2"
       label={label}
       spacing={1}
