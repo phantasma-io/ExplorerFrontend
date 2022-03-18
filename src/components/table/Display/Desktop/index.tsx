@@ -92,11 +92,6 @@ export const TableDisplayDesktop = ({
       return (
         <Box>
           <Grid container alignItems="center" spacing={1}>
-            {/* <Grid item>
-              <Button onClick={closeDialog} color="inherit">
-                {echo('close')}
-              </Button>
-            </Grid> */}
             {selectedRowIndex !== undefined && (
               <Grid item>
                 <Button
@@ -171,7 +166,7 @@ export const TableDisplayDesktop = ({
       </Box>
 
       {/* body */}
-      <Box style={{ overflow: 'auto', height }}>
+      <Box sx={{ overflow: 'auto', height }}>
         {rows.map((row, i) => (
           <TableRow
             tableId={tableId}
