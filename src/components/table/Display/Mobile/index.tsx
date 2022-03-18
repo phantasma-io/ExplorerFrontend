@@ -1,5 +1,3 @@
-/* eslint-disable no-confusing-arrow */
-/* eslint-disable operator-linebreak */
 import React from 'react';
 import { nanoid } from 'nanoid';
 import { Box, Grid } from '@mui/material';

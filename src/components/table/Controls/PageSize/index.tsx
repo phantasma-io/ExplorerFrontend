@@ -1,4 +1,3 @@
-/* eslint-disable no-confusing-arrow */
 import React, { useCallback, useState } from 'react';
 import { useEcho } from '@ricardo-jrm/echo';
 import { numberFormat } from '@ricardo-jrm/dervish';

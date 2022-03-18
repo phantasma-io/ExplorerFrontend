@@ -1,5 +1,3 @@
-/* eslint-disable operator-linebreak */
-/* eslint-disable no-confusing-arrow */
 import React, { useState, useCallback, useMemo } from 'react';
 import { nanoid } from 'nanoid';
 import { useFury } from '@ricardo-jrm/fury';
