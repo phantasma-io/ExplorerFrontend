@@ -4,3 +4,4 @@ export { Fullscreen } from './Fullscreen';
 export { Header } from './Header';
 export { NavTabs } from './NavTabs';
 export type { NavTabsRecord } from './NavTabs';
+export { Wip } from './Wip';
