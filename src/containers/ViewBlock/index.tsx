@@ -48,8 +48,6 @@ export const ViewBlock = ({ tabForce = 'overview' }: ViewBlockProps) => {
     }),
   );
 
-  console.log({ data });
-
   const tabs: NavTabsRecord = useMemo(
     () => ({
       overview: {
