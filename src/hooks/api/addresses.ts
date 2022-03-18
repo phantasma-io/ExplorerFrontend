@@ -19,6 +19,7 @@ export const useAddressData = (data?: AddressResults) => {
             route: '/address',
             key: 'address',
             title: echo('explore-address'),
+            primary: true,
           },
         },
         {

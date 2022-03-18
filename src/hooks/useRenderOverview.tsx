@@ -26,7 +26,7 @@ export const useRenderOverview = () => {
                     col.type,
                     rows[0][i],
                     col.label,
-                    col.linkOptions,
+                    !col.linkOptions?.primary ? col.linkOptions : undefined,
                   )}
                 </Grid>
               </Grid>
