@@ -23,8 +23,8 @@ export const AddressBalances = ({ data }: AddressBalancesProps) => {
     return (
       <Box p={1}>
         {balances.map((item) => (
-          <Box p={1}>
-            <Grid item container xs={12} spacing={1} key={nanoid()}>
+          <Box p={1} key={nanoid()}>
+            <Grid item container xs={12} spacing={1}>
               {item?.amount && (
                 <Text
                   variant="body2"
