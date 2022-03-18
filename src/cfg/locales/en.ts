@@ -126,6 +126,9 @@ export const en: EchoMsgs = {
   type: 'Type',
   royalties: 'Royalties',
   creator: 'Creator',
+  //
+  'storage-available': 'Available in storage',
+  used: 'Used',
   // api
   event_kind: 'Event kind',
   transaction_hash: 'Transaction hash',
