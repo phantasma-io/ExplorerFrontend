@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { useRouter } from 'next/router';
-import { useEcho } from '@ricardo-jrm/echo';
 import { useEmpathy } from '@ricardo-jrm/empathy';
+import { useEcho } from '@ricardo-jrm/echo';
 import { NavTabs, NavTabsRecord } from 'components/layout';
 import { routes, endpoints } from 'cfg';
 import { AddressResults } from 'types/api';
@@ -26,7 +26,7 @@ export const ViewAddress = ({ tabForce = 'overview' }: ViewAddressProps) => {
       with_balance: 1,
       with_stakes: 0,
       with_storage: 1,
-      with_transactions: 1,
+      with_transactions: 0,
     }),
   );
 

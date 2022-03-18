@@ -19,6 +19,7 @@ export const useBlockData = (data?: BlockResults) => {
             route: '/block',
             key: 'hash',
             title: echo('explore-block'),
+            primary: true,
           },
         },
         {
