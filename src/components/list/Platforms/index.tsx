@@ -1,10 +1,10 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import { useEcho } from '@ricardo-jrm/echo';
 import { useEmpathy } from '@ricardo-jrm/empathy';
 import { Box } from '@mui/material';
 import { endpoints, TABLE_FILTERS } from 'cfg';
 import { useTable } from 'hooks';
-import { TableDisplayCol, TableDisplayRow } from 'types/table';
+import { usePlatformData } from 'hooks/api';
 import { PlatformResults } from 'types/api';
 import { Table } from 'components/table';
 
@@ -24,44 +24,7 @@ export const PlatformsList = () => {
     }),
   );
 
-  const cols = useMemo<TableDisplayCol[]>(
-    () => [
-      {
-        id: 'name',
-        label: echo('name'),
-        type: 'text',
-        size: 3,
-        showDesktop: true,
-      },
-      {
-        id: 'fuel',
-        label: echo('fuel'),
-        type: 'text',
-        size: 3,
-        showDesktop: true,
-      },
-      {
-        id: 'chain',
-        label: echo('chain'),
-        type: 'monospace',
-        size: 5,
-        showDesktop: true,
-      },
-    ],
-    [echo],
-  );
-
-  const rows = useMemo<TableDisplayRow[]>(() => {
-    if (data) {
-      return data?.platforms?.map((item) => [
-        item?.name,
-        item?.fuel,
-        item?.chain,
-      ]) as TableDisplayRow[];
-    }
-
-    return [];
-  }, [data]);
+  const { cols, rows } = usePlatformData(data);
 
   return (
     <Box>
