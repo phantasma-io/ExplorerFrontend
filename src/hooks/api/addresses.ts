@@ -40,6 +40,18 @@ export const useAddressData = (data?: AddressResults) => {
           type: 'number',
           size: 10,
         },
+        {
+          id: 'storage-available',
+          label: echo('storage-available'),
+          type: 'number',
+          size: 10,
+        },
+        {
+          id: 'storage-used',
+          label: echo('used'),
+          type: 'number',
+          size: 10,
+        },
       ];
     }
 
@@ -53,6 +65,8 @@ export const useAddressData = (data?: AddressResults) => {
         item?.address_name,
         item?.stake,
         item?.unclaimed,
+        item?.storage?.available,
+        item?.storage?.used,
       ]) as TableDisplayRow[];
     }
 
