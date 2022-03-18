@@ -48,7 +48,9 @@ export const Dialog = ({
           </Box>
 
           {/* children */}
-          <Box p={1}>{children}</Box>
+          <Box p={1} style={{ maxHeight: '66vh', overflowY: 'auto' }}>
+            {children}
+          </Box>
 
           {/* actions */}
           <Box pb={1}>

@@ -44,7 +44,13 @@ export const useRenderDetails = () => {
             );
           case 'text':
           default:
-            return <DetailsText value={value as string} label={label} />;
+            return (
+              <DetailsText
+                value={value as string}
+                label={label}
+                linkOptions={linkOptions}
+              />
+            );
         }
       }
       return null;

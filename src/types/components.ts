@@ -4,6 +4,7 @@ export type DetailsLinkOptions = {
   route: ExplorerRoutes;
   key: string;
   title: string;
+  primary?: boolean;
 };
 
 export interface DetailsItem {

@@ -33,7 +33,12 @@ export const TableDisplay = ({
       </Box>
       {/* mobile */}
       <Box mb={1} display={{ xs: 'block', md: 'none' }}>
-        <TableDisplayMobile />
+        <TableDisplayMobile
+          rows={rows}
+          cols={cols}
+          spacing={spacing}
+          height={height}
+        />
       </Box>
     </Box>
   );
