@@ -12,6 +12,7 @@ import {
   TransactionParams,
   BlockParams,
   PlatformParams,
+  HistoryPriceParams,
 } from './api';
 
 export type ExplorerEndpoints =
@@ -26,6 +27,7 @@ export type ExplorerEndpoints =
   | '/organizations'
   | '/platforms'
   | '/series'
+  | '/historyprices'
   | '/tokens'
   | '/transactions';
 
@@ -40,6 +42,7 @@ export type ApiParams =
   | NftParams
   | DaoParams
   | PlatformParams
+  | HistoryPriceParams
   | SeriesParams
   | TokenParams
   | TransactionParams;

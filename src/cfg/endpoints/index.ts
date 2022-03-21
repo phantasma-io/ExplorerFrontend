@@ -20,6 +20,8 @@ export const endpoints: ExplorerApi = {
     `${url}/organizations${params ? objToQuery(params) : ''}`,
   '/platforms': (params) =>
     `${url}/platforms${params ? objToQuery(params) : ''}`,
+  '/historyprices': (params) =>
+    `${url}/historyprices${params ? objToQuery(params) : ''}`,
   '/series': (params) => `${url}/series${params ? objToQuery(params) : ''}`,
   '/tokens': (params) => `${url}/tokens${params ? objToQuery(params) : ''}`,
   '/transactions': (params) =>

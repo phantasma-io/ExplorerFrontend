@@ -30,6 +30,15 @@ export type { Dao, DaoParams, DaoResults } from './organizations';
 
 export type { Platform, PlatformParams, PlatformResults } from './platforms';
 
+export type {
+  HistoryPrice,
+  HistoryPriceParams,
+  HistoryPriceResults,
+  TokenPrice,
+  FiatCurrencies,
+  FiatPrice,
+} from './historyprices';
+
 export type { Series, SeriesParams, SeriesResults } from './series';
 
 export type { Token, TokenParams, TokenResults } from './tokens';

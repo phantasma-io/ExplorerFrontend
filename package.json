@@ -108,6 +108,8 @@
     "@emotion/server": "^11.4.0",
     "@mui/icons-material": "^5.2.5",
     "@mui/material": "^5.2.3",
+    "@nivo/core": "^0.78.0",
+    "@nivo/line": "^0.78.0",
     "@ricardo-jrm/ace": "^1.2.2",
     "json-to-csv-export": "^1.1.0",
     "nanoid": "^3.3.1",
