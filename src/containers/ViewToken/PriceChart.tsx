@@ -5,6 +5,7 @@ import { ResponsiveLine } from '@nivo/line';
 import { useEmpathy } from '@ricardo-jrm/empathy';
 import { useLocalState } from '@ricardo-jrm/reaper';
 import { dateFormat } from '@ricardo-jrm/dervish';
+import { unixmsToDate } from 'scripts';
 import { HistoryPriceResults, FiatCurrencies } from 'types/api';
 import { endpoints, DATE_CHART } from 'cfg';
 
@@ -66,10 +67,7 @@ export const TokenPriceChart = () => {
         data.history_prices.reverse().forEach((item) => {
           if (item?.price && item?.price?.date && item?.price?.usd) {
             usd.data.push({
-              x: dateFormat(
-                new Date(parseInt(item.price.date, 10) * 1000),
-                DATE_CHART,
-              ),
+              x: dateFormat(unixmsToDate(item.price.date), DATE_CHART),
               y: item?.price?.usd,
             });
           }

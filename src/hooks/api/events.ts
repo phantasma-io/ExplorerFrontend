@@ -1,5 +1,6 @@
 import { useMemo } from 'react';
 import { useEcho } from '@ricardo-jrm/echo';
+import { unixmsToDate } from 'scripts';
 import { TableDisplayRow, TableDisplayCol } from 'types/table';
 import { EventResults } from 'types/api';
 
@@ -72,7 +73,7 @@ export const useEventData = (data?: EventResults) => {
         item?.address,
         item?.address_name,
         item?.chain,
-        item?.date ? new Date(parseInt(item.date, 10) * 1000) : undefined,
+        item?.date ? unixmsToDate(item.date) : undefined,
       ]) as TableDisplayRow[];
     }
 

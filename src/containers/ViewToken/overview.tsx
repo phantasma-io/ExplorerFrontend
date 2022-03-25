@@ -24,9 +24,7 @@ export const TokenOverview = ({ data }: TokenOverviewProps) => {
           {data && renderOverview(cols, rows)}
         </Grid>
         <Grid item xs={12} pb={1}>
-          <Box>
-            <TokenPriceChart />
-          </Box>
+          <Box>{/* <TokenPriceChart /> */}</Box>
         </Grid>
       </Grid>
     </Box>
