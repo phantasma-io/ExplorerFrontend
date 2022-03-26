@@ -66,7 +66,7 @@ export const TableControls = ({
   return (
     <Box>
       <NoSsr>
-        <TableEncoder params={params} />
+        {/* <TableEncoder params={params} /> */}
         <Grid container justifyContent={{ xs: 'center', md: 'space-between' }}>
           <Grid item xs={12} md="auto">
             <Grid
