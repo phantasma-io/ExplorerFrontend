@@ -25,7 +25,7 @@ export const TransactionsList = () => {
     orderDirectionSet('desc');
   });
 
-  const { data } = useEmpathy<TransactionResults>(
+  const { data, loading } = useEmpathy<TransactionResults>(
     endpoints['/transactions']({
       offset,
       limit,
@@ -35,7 +35,7 @@ export const TransactionsList = () => {
     }),
   );
 
-  const { cols, rows } = useTransactionData(data);
+  const { cols, rows, total } = useTransactionData(data, loading);
 
   return (
     <Box>
@@ -44,7 +44,7 @@ export const TransactionsList = () => {
         raw={data?.transactions || []}
         cols={cols}
         rows={rows}
-        total={data?.total_results || 0}
+        total={total}
         dialogOptions={{
           title: echo('details-transaction'),
         }}

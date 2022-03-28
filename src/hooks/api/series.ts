@@ -1,112 +1,116 @@
-import { useMemo } from 'react';
+import { useMemo, useState, useEffect } from 'react';
 import { useEcho } from '@ricardo-jrm/echo';
 import { TableDisplayRow, TableDisplayCol } from 'types/table';
 import { SeriesResults } from 'types/api';
 
-export const useSeriesData = (data?: SeriesResults) => {
+export const useSeriesData = (data?: SeriesResults, loading?: boolean) => {
   const { echo } = useEcho();
 
-  const cols = useMemo<TableDisplayCol[]>(() => {
-    if (data) {
-      return [
-        {
-          id: 'name',
-          label: echo('name'),
-          type: 'text',
-          size: 5,
-          showDesktop: true,
-        },
-        {
-          id: 'current_supply',
-          label: echo('current_supply'),
-          type: 'number',
-          size: 3,
-          showDesktop: true,
-        },
-        {
-          id: 'max_supply',
-          label: echo('max_supply'),
-          type: 'number',
-          size: 3,
-          showDesktop: true,
-        },
-        {
-          id: 'description',
-          label: echo('description'),
-          type: 'text',
-          size: 5,
-        },
-        {
-          id: 'creator',
-          label: echo('creator'),
-          type: 'monospace',
-          size: 5,
-        },
-        {
-          id: 'image',
-          label: echo('image'),
-          type: 'monospace',
-          size: 5,
-        },
-        {
-          id: 'mode_name',
-          label: echo('mode_name'),
-          type: 'text',
-          size: 5,
-        },
-        {
-          id: 'type',
-          label: echo('type'),
-          type: 'text',
-          size: 5,
-        },
-        {
-          id: 'royalties',
-          label: echo('royalties'),
-          type: 'text',
-          size: 5,
-        },
-        {
-          id: 'attrType1',
-          label: echo('attrType1'),
-          type: 'text',
-          size: 5,
-        },
-        {
-          id: 'attrValue1',
-          label: echo('attrValue1'),
-          type: 'text',
-          size: 5,
-        },
-        {
-          id: 'attrType2',
-          label: echo('attrType2'),
-          type: 'text',
-          size: 5,
-        },
-        {
-          id: 'attrValue2',
-          label: echo('attrValue2'),
-          type: 'text',
-          size: 5,
-        },
-        {
-          id: 'attrType3',
-          label: echo('attrType3'),
-          type: 'text',
-          size: 5,
-        },
-        {
-          id: 'attrValue3',
-          label: echo('attrValue3'),
-          type: 'text',
-          size: 5,
-        },
-      ];
-    }
+  const [total, totalSet] = useState<number>(0);
 
-    return [];
-  }, [echo, data]);
+  useEffect(() => {
+    if (data?.total_results && !loading) {
+      totalSet(data.total_results);
+    }
+  }, [data, loading]);
+
+  const cols = useMemo<TableDisplayCol[]>(() => {
+    return [
+      {
+        id: 'name',
+        label: echo('name'),
+        type: 'text',
+        size: 5,
+        showDesktop: true,
+      },
+      {
+        id: 'current_supply',
+        label: echo('current_supply'),
+        type: 'number',
+        size: 3,
+        showDesktop: true,
+      },
+      {
+        id: 'max_supply',
+        label: echo('max_supply'),
+        type: 'number',
+        size: 3,
+        showDesktop: true,
+      },
+      {
+        id: 'description',
+        label: echo('description'),
+        type: 'text',
+        size: 5,
+      },
+      {
+        id: 'creator',
+        label: echo('creator'),
+        type: 'monospace',
+        size: 5,
+      },
+      {
+        id: 'image',
+        label: echo('image'),
+        type: 'monospace',
+        size: 5,
+      },
+      {
+        id: 'mode_name',
+        label: echo('mode_name'),
+        type: 'text',
+        size: 5,
+      },
+      {
+        id: 'type',
+        label: echo('type'),
+        type: 'text',
+        size: 5,
+      },
+      {
+        id: 'royalties',
+        label: echo('royalties'),
+        type: 'text',
+        size: 5,
+      },
+      {
+        id: 'attrType1',
+        label: echo('attrType1'),
+        type: 'text',
+        size: 5,
+      },
+      {
+        id: 'attrValue1',
+        label: echo('attrValue1'),
+        type: 'text',
+        size: 5,
+      },
+      {
+        id: 'attrType2',
+        label: echo('attrType2'),
+        type: 'text',
+        size: 5,
+      },
+      {
+        id: 'attrValue2',
+        label: echo('attrValue2'),
+        type: 'text',
+        size: 5,
+      },
+      {
+        id: 'attrType3',
+        label: echo('attrType3'),
+        type: 'text',
+        size: 5,
+      },
+      {
+        id: 'attrValue3',
+        label: echo('attrValue3'),
+        type: 'text',
+        size: 5,
+      },
+    ];
+  }, [echo]);
 
   const rows = useMemo<TableDisplayRow[]>(() => {
     if (data) {
@@ -136,8 +140,9 @@ export const useSeriesData = (data?: SeriesResults) => {
     () => ({
       cols,
       rows,
+      total,
     }),
-    [cols, rows],
+    [cols, rows, total],
   );
 
   return ctx;

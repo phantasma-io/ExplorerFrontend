@@ -14,7 +14,7 @@ export const PlatformsList = () => {
   const tableProps = useTable();
   const { limit, order_by, order_direction, offset, with_total } = tableProps;
 
-  const { data } = useEmpathy<PlatformResults>(
+  const { data, loading } = useEmpathy<PlatformResults>(
     endpoints['/platforms']({
       offset,
       limit,
@@ -24,7 +24,7 @@ export const PlatformsList = () => {
     }),
   );
 
-  const { cols, rows } = usePlatformData(data);
+  const { cols, rows, total } = usePlatformData(data, loading);
 
   return (
     <Box>
@@ -33,7 +33,7 @@ export const PlatformsList = () => {
         raw={data?.platforms || []}
         cols={cols}
         rows={rows}
-        total={data?.total_results || 0}
+        total={total}
         dialogOptions={{
           title: echo('details-platform'),
         }}

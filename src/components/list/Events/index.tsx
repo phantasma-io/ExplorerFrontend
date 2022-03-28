@@ -14,7 +14,7 @@ export const EventsList = () => {
   const tableProps = useTable();
   const { limit, offset, with_total } = tableProps;
 
-  const { data } = useEmpathy<EventResults>(
+  const { data, loading } = useEmpathy<EventResults>(
     endpoints['/events']({
       offset,
       limit,
@@ -24,7 +24,7 @@ export const EventsList = () => {
     }),
   );
 
-  const { cols, rows } = useEventData(data);
+  const { cols, rows, total } = useEventData(data, loading);
 
   return (
     <Box>
@@ -33,7 +33,7 @@ export const EventsList = () => {
         raw={data?.events || []}
         cols={cols}
         rows={rows}
-        total={data?.total_results || 0}
+        total={total}
         dialogOptions={{
           title: echo('details-event'),
         }}

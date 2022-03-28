@@ -14,7 +14,7 @@ export const TokensList = () => {
   const tableProps = useTable();
   const { limit, order_by, order_direction, offset, with_total } = tableProps;
 
-  const { data } = useEmpathy<TokenResults>(
+  const { data, loading } = useEmpathy<TokenResults>(
     endpoints['/tokens']({
       offset,
       limit,
@@ -24,7 +24,7 @@ export const TokensList = () => {
     }),
   );
 
-  const { cols, rows } = useTokenData(data);
+  const { cols, rows, total } = useTokenData(data, loading);
 
   return (
     <Box>
@@ -33,7 +33,7 @@ export const TokensList = () => {
         raw={data?.tokens || []}
         cols={cols}
         rows={rows}
-        total={data?.total_results || 0}
+        total={total}
         dialogOptions={{
           title: echo('details-token'),
         }}

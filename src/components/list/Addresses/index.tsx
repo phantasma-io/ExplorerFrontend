@@ -14,7 +14,7 @@ export const AddressesList = () => {
   const tableProps = useTable();
   const { limit, order_by, order_direction, offset, with_total } = tableProps;
 
-  const { data } = useEmpathy<AddressResults>(
+  const { data, loading } = useEmpathy<AddressResults>(
     endpoints['/addresses']({
       offset,
       limit,
@@ -28,7 +28,7 @@ export const AddressesList = () => {
     }),
   );
 
-  const { cols, rows } = useAddressData(data);
+  const { cols, rows, total } = useAddressData(data, loading);
 
   return (
     <Box>
@@ -37,7 +37,7 @@ export const AddressesList = () => {
         raw={data?.addresses || []}
         cols={cols}
         rows={rows}
-        total={data?.total_results || 0}
+        total={total}
         dialogOptions={{
           title: echo('details-address'),
         }}

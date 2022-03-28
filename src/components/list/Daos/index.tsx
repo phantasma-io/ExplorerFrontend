@@ -14,7 +14,7 @@ export const DaosList = () => {
   const tableProps = useTable();
   const { limit, order_by, order_direction, offset, with_total } = tableProps;
 
-  const { data } = useEmpathy<DaoResults>(
+  const { data, loading } = useEmpathy<DaoResults>(
     endpoints['/organizations']({
       offset,
       limit,
@@ -24,7 +24,7 @@ export const DaosList = () => {
     }),
   );
 
-  const { cols, rows } = useDaoData(data);
+  const { cols, rows, total } = useDaoData(data, loading);
 
   return (
     <Box>
@@ -33,7 +33,7 @@ export const DaosList = () => {
         raw={data?.organizations || []}
         cols={cols}
         rows={rows}
-        total={data?.total_results || 0}
+        total={total}
         dialogOptions={{
           title: echo('details-dao'),
         }}

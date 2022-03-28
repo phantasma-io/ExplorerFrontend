@@ -14,7 +14,7 @@ export const SeriesList = () => {
   const tableProps = useTable();
   const { limit, order_by, offset, with_total } = tableProps;
 
-  const { data } = useEmpathy<SeriesResults>(
+  const { data, loading } = useEmpathy<SeriesResults>(
     endpoints['/series']({
       offset,
       limit,
@@ -24,7 +24,7 @@ export const SeriesList = () => {
     }),
   );
 
-  const { cols, rows } = useSeriesData(data);
+  const { cols, rows, total } = useSeriesData(data, loading);
 
   return (
     <Box>
@@ -33,7 +33,7 @@ export const SeriesList = () => {
         raw={data?.series || []}
         cols={cols}
         rows={rows}
-        total={data?.total_results || 0}
+        total={total}
         dialogOptions={{
           title: echo('details-series'),
         }}

@@ -1,53 +1,57 @@
-import { useMemo } from 'react';
+import { useMemo, useState, useEffect } from 'react';
 import { useEcho } from '@ricardo-jrm/echo';
 import { TableDisplayRow, TableDisplayCol } from 'types/table';
 import { NftResults } from 'types/api';
 
-export const useNftData = (data?: NftResults) => {
+export const useNftData = (data?: NftResults, loading?: boolean) => {
   const { echo } = useEcho();
 
-  const cols = useMemo<TableDisplayCol[]>(() => {
-    if (data) {
-      return [
-        {
-          id: 'symbol',
-          label: echo('symbol'),
-          type: 'text',
-          size: 3,
-          showDesktop: true,
-        },
-        {
-          id: 'creator_onchain_name',
-          label: echo('creator_onchain_name'),
-          type: 'text',
-          size: 4,
-          showDesktop: true,
-        },
-        {
-          id: 'creator_address',
-          label: echo('creator_address'),
-          type: 'monospace',
-          size: 3,
-        },
-        {
-          id: 'contract',
-          label: echo('contract'),
-          type: 'text',
-          size: 2,
-          showDesktop: true,
-        },
-        {
-          id: 'chain',
-          label: echo('chain'),
-          type: 'text',
-          size: 2,
-          showDesktop: true,
-        },
-      ];
-    }
+  const [total, totalSet] = useState<number>(0);
 
-    return [];
-  }, [echo, data]);
+  useEffect(() => {
+    if (data?.total_results && !loading) {
+      totalSet(data.total_results);
+    }
+  }, [data, loading]);
+
+  const cols = useMemo<TableDisplayCol[]>(() => {
+    return [
+      {
+        id: 'symbol',
+        label: echo('symbol'),
+        type: 'text',
+        size: 3,
+        showDesktop: true,
+      },
+      {
+        id: 'creator_onchain_name',
+        label: echo('creator_onchain_name'),
+        type: 'text',
+        size: 4,
+        showDesktop: true,
+      },
+      {
+        id: 'creator_address',
+        label: echo('creator_address'),
+        type: 'monospace',
+        size: 3,
+      },
+      {
+        id: 'contract',
+        label: echo('contract'),
+        type: 'text',
+        size: 2,
+        showDesktop: true,
+      },
+      {
+        id: 'chain',
+        label: echo('chain'),
+        type: 'text',
+        size: 2,
+        showDesktop: true,
+      },
+    ];
+  }, [echo]);
 
   const rows = useMemo<TableDisplayRow[]>(() => {
     if (data) {
@@ -67,8 +71,9 @@ export const useNftData = (data?: NftResults) => {
     () => ({
       cols,
       rows,
+      total,
     }),
-    [cols, rows],
+    [cols, rows, total],
   );
 
   return ctx;

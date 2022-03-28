@@ -14,7 +14,7 @@ export const ContractsList = () => {
   const tableProps = useTable();
   const { limit, order_by, order_direction, offset, with_total } = tableProps;
 
-  const { data } = useEmpathy<ContractResults>(
+  const { data, loading } = useEmpathy<ContractResults>(
     endpoints['/contracts']({
       offset,
       limit,
@@ -24,7 +24,7 @@ export const ContractsList = () => {
     }),
   );
 
-  const { cols, rows } = useContractData(data);
+  const { cols, rows, total } = useContractData(data, loading);
 
   return (
     <Box>
@@ -33,7 +33,7 @@ export const ContractsList = () => {
         raw={data?.contracts || []}
         cols={cols}
         rows={rows}
-        total={data?.total_results || 0}
+        total={total}
         dialogOptions={{
           title: echo('details-contract'),
         }}
