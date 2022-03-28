@@ -154,5 +154,7 @@ export const en: EchoMsgs = {
   'table-openFilters': 'Filter data',
   'table-results': 'Results',
   //
+  error: 'Error',
   loading: 'Loading...',
+  'no-results': 'No Results',
 };
