@@ -2,6 +2,7 @@ import React, { useMemo } from 'react';
 import { nanoid } from 'nanoid';
 import { Box, Grid } from '@mui/material';
 import { Text } from 'components/display';
+import { Empty } from 'components/layout';
 import { Address, AddressResults } from 'types/api';
 
 export interface AddressBalancesProps {
@@ -22,6 +23,7 @@ export const AddressBalances = ({ data }: AddressBalancesProps) => {
   if (balances) {
     return (
       <Box p={1}>
+        {balances.length === 0 && <Empty />}
         {balances.map((item) => (
           <Box p={1} key={nanoid()}>
             <Grid item container xs={12} spacing={1}>
