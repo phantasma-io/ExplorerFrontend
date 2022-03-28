@@ -14,7 +14,7 @@ export const SeriesList = () => {
   const tableProps = useTable();
   const { limit, order_by, offset, with_total } = tableProps;
 
-  const { data, loading } = useEmpathy<SeriesResults>(
+  const { data, loading, error } = useEmpathy<SeriesResults>(
     endpoints['/series']({
       offset,
       limit,
@@ -39,6 +39,8 @@ export const SeriesList = () => {
         }}
         {...tableProps}
         filters={TABLE_FILTERS}
+        loading={loading}
+        error={error}
       />
     </Box>
   );

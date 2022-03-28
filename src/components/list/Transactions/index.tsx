@@ -25,7 +25,7 @@ export const TransactionsList = () => {
     orderDirectionSet('desc');
   });
 
-  const { data, loading } = useEmpathy<TransactionResults>(
+  const { data, loading, error } = useEmpathy<TransactionResults>(
     endpoints['/transactions']({
       offset,
       limit,
@@ -50,6 +50,8 @@ export const TransactionsList = () => {
         }}
         {...tableProps}
         filters={TABLE_FILTERS}
+        loading={loading}
+        error={error}
       />
     </Box>
   );

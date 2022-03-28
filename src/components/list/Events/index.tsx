@@ -14,7 +14,7 @@ export const EventsList = () => {
   const tableProps = useTable();
   const { limit, offset, with_total } = tableProps;
 
-  const { data, loading } = useEmpathy<EventResults>(
+  const { data, loading, error } = useEmpathy<EventResults>(
     endpoints['/events']({
       offset,
       limit,
@@ -39,6 +39,8 @@ export const EventsList = () => {
         }}
         {...tableProps}
         filters={TABLE_FILTERS}
+        loading={loading}
+        error={error}
       />
     </Box>
   );

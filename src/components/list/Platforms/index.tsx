@@ -14,7 +14,7 @@ export const PlatformsList = () => {
   const tableProps = useTable();
   const { limit, order_by, order_direction, offset, with_total } = tableProps;
 
-  const { data, loading } = useEmpathy<PlatformResults>(
+  const { data, loading, error } = useEmpathy<PlatformResults>(
     endpoints['/platforms']({
       offset,
       limit,
@@ -39,6 +39,8 @@ export const PlatformsList = () => {
         }}
         {...tableProps}
         filters={TABLE_FILTERS}
+        loading={loading}
+        error={error}
       />
     </Box>
   );

@@ -4,7 +4,7 @@ import { useFury } from '@ricardo-jrm/fury';
 import { useEcho } from '@ricardo-jrm/echo';
 import { Box, Grid, Typography, Button } from '@mui/material';
 import { Link } from 'components/display';
-import { Dialog, Loading } from 'components/layout';
+import { Dialog, Loading, Empty, Error } from 'components/layout';
 import { routes } from 'cfg';
 import {
   TableDisplayProps,
@@ -169,6 +169,8 @@ export const TableDisplayDesktop = ({
 
       {/* body */}
       <Box sx={{ overflow: 'auto', height }}>
+        {rows.length === 0 && !loading && !error && <Empty />}
+        {error && !loading && <Error />}
         {loading && <Loading />}
         {isSuccess &&
           rows.map((row, i) => (

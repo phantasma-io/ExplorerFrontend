@@ -14,7 +14,7 @@ export const TokensList = () => {
   const tableProps = useTable();
   const { limit, order_by, order_direction, offset, with_total } = tableProps;
 
-  const { data, loading } = useEmpathy<TokenResults>(
+  const { data, loading, error } = useEmpathy<TokenResults>(
     endpoints['/tokens']({
       offset,
       limit,
@@ -44,6 +44,8 @@ export const TokensList = () => {
         }}
         {...tableProps}
         filters={TABLE_FILTERS}
+        loading={loading}
+        error={error}
       />
     </Box>
   );

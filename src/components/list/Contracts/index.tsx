@@ -14,7 +14,7 @@ export const ContractsList = () => {
   const tableProps = useTable();
   const { limit, order_by, order_direction, offset, with_total } = tableProps;
 
-  const { data, loading } = useEmpathy<ContractResults>(
+  const { data, loading, error } = useEmpathy<ContractResults>(
     endpoints['/contracts']({
       offset,
       limit,
@@ -39,6 +39,8 @@ export const ContractsList = () => {
         }}
         {...tableProps}
         filters={TABLE_FILTERS}
+        loading={loading}
+        error={error}
       />
     </Box>
   );

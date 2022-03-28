@@ -14,7 +14,7 @@ export const NftsList = () => {
   const tableProps = useTable();
   const { limit, order_by, offset, with_total } = tableProps;
 
-  const { data, loading } = useEmpathy<NftResults>(
+  const { data, loading, error } = useEmpathy<NftResults>(
     endpoints['/nfts']({
       offset,
       limit,
@@ -39,6 +39,8 @@ export const NftsList = () => {
         }}
         {...tableProps}
         filters={TABLE_FILTERS}
+        loading={loading}
+        error={error}
       />
     </Box>
   );

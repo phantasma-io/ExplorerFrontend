@@ -25,7 +25,7 @@ export const BlocksList = () => {
     orderDirectionSet('desc');
   });
 
-  const { data, loading } = useEmpathy<BlockResults>(
+  const { data, loading, error } = useEmpathy<BlockResults>(
     endpoints['/blocks']({
       offset,
       limit,
@@ -55,6 +55,8 @@ export const BlocksList = () => {
         }}
         {...tableProps}
         filters={TABLE_FILTERS}
+        loading={loading}
+        error={error}
       />
     </Box>
   );
