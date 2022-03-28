@@ -14,7 +14,7 @@ export const AddressesList = () => {
   const tableProps = useTable();
   const { limit, order_by, order_direction, offset, with_total } = tableProps;
 
-  const { data, loading } = useEmpathy<AddressResults>(
+  const { data, loading, error } = useEmpathy<AddressResults>(
     endpoints['/addresses']({
       offset,
       limit,
@@ -24,7 +24,6 @@ export const AddressesList = () => {
       with_balance: 0,
       with_stakes: 0,
       with_storage: 1,
-      with_transactions: 0,
     }),
   );
 
@@ -48,6 +47,8 @@ export const AddressesList = () => {
         }}
         {...tableProps}
         filters={TABLE_FILTERS}
+        loading={loading}
+        error={error}
       />
     </Box>
   );

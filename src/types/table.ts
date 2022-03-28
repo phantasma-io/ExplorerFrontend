@@ -43,4 +43,6 @@ export interface TableDisplayProps extends TableDisplayData {
     title: string;
   };
   linkOptions?: DetailsLinkOptions;
+  loading?: boolean;
+  error?: any;
 }

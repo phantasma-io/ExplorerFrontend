@@ -153,4 +153,6 @@ export const en: EchoMsgs = {
   'table-exportCsv': 'Export CSV',
   'table-openFilters': 'Filter data',
   'table-results': 'Results',
+  //
+  loading: 'Loading...',
 };

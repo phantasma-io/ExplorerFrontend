@@ -4,7 +4,7 @@ import { useFury } from '@ricardo-jrm/fury';
 import { useEcho } from '@ricardo-jrm/echo';
 import { Box, Grid, Typography, Button } from '@mui/material';
 import { Link } from 'components/display';
-import { Dialog } from 'components/layout';
+import { Dialog, Loading } from 'components/layout';
 import { routes } from 'cfg';
 import {
   TableDisplayProps,
@@ -26,9 +26,13 @@ export const TableDisplayDesktop = ({
   withDetails,
   linkOptions,
   dialogOptions,
+  loading,
+  error,
 }: TableDisplayProps) => {
   const { echo, echoActiveId } = useEcho();
   const { furyActive } = useFury();
+
+  const isSuccess = useMemo(() => !loading && !error, [loading, error]);
 
   const renderDialogDetails = useRenderDetails();
 
@@ -165,20 +169,22 @@ export const TableDisplayDesktop = ({
 
       {/* body */}
       <Box sx={{ overflow: 'auto', height }}>
-        {rows.map((row, i) => (
-          <TableRow
-            tableId={tableId}
-            index={i}
-            raw={raw[i]}
-            row={row}
-            spacing={spacing}
-            cols={cols}
-            key={nanoid()}
-            hasClick={!!withDetails}
-            openDialog={openDialog}
-            linkOptions={linkOptions}
-          />
-        ))}
+        {loading && <Loading />}
+        {isSuccess &&
+          rows.map((row, i) => (
+            <TableRow
+              tableId={tableId}
+              index={i}
+              raw={raw[i]}
+              row={row}
+              spacing={spacing}
+              cols={cols}
+              key={nanoid()}
+              hasClick={!!withDetails}
+              openDialog={openDialog}
+              linkOptions={linkOptions}
+            />
+          ))}
       </Box>
 
       {/* dialog */}
