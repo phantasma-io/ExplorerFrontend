@@ -35,7 +35,7 @@ export const Dialog = ({
           <Box>
             <Grid container justifyContent="space-between" alignItems="center">
               <Grid item>
-                <Text variant="h6" value={title} />
+                <Text variant="subtitle2" value={title} />
               </Grid>
               <Grid item>
                 <Tooltip title={echo('close')}>

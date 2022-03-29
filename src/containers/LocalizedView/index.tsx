@@ -109,9 +109,12 @@ export const LocalizedView = ({ locale, route }: LocalizedViewProps) => {
       <Box>
         <MetaDynamic title={title} description={description} />
         {route !== '/' && (
-          <Box pt={{ xs: 3, lg: 6 }} pb={route === '/nexus' ? 2 : 1}>
+          <Box
+            pt={{ xs: 3, lg: 6 }}
+            pb={{ xs: 3, lg: route === '/nexus' ? 3 : 0.5 }}
+          >
             <Text
-              variant={route === '/nexus' ? 'h3' : 'h4'}
+              variant={route === '/nexus' ? 'h2' : 'h4'}
               sx={{ color: '#fff' }}
               value={echo(`title-${query?.view as string}`)}
             />

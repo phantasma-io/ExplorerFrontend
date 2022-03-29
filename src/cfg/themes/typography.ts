@@ -20,38 +20,38 @@ export const typography: ThemeOptions['typography'] = {
   ].join(','),
   h1: {
     fontWeight: 600,
-    fontSize: '69px',
-    lineHeight: '69px',
+    fontSize: '48px',
+    lineHeight: '48px',
     [breakpoints.down('sm')]: {
-      fontSize: '66px',
-      lineHeight: '66px',
+      fontSize: '27px',
+      lineHeight: '27px',
     },
   },
   h2: {
     fontWeight: 600,
-    fontSize: '60px',
-    lineHeight: '60px',
+    fontSize: '45px',
+    lineHeight: '45px',
     [breakpoints.down('sm')]: {
-      fontSize: '45px',
-      lineHeight: '45px',
+      fontSize: '26px',
+      lineHeight: '26px',
     },
   },
   h3: {
     fontWeight: 600,
-    fontSize: '45px',
-    lineHeight: '45px',
+    fontSize: '42px',
+    lineHeight: '42px',
     [breakpoints.down('sm')]: {
-      fontSize: '36px',
-      lineHeight: '36px',
+      fontSize: '25px',
+      lineHeight: '25px',
     },
   },
   h4: {
     fontWeight: 600,
-    fontSize: '39px',
-    lineHeight: '39px',
+    fontSize: '36px',
+    lineHeight: '36px',
     [breakpoints.down('sm')]: {
-      fontSize: '30px',
-      lineHeight: '30px',
+      fontSize: '24px',
+      lineHeight: '24px',
     },
   },
   h5: {
@@ -59,8 +59,8 @@ export const typography: ThemeOptions['typography'] = {
     fontSize: '30px',
     lineHeight: '30px',
     [breakpoints.down('sm')]: {
-      fontSize: '27px',
-      lineHeight: '27px',
+      fontSize: '20px',
+      lineHeight: '20px',
     },
   },
   h6: {
@@ -68,8 +68,8 @@ export const typography: ThemeOptions['typography'] = {
     fontSize: '24px',
     lineHeight: '24px',
     [breakpoints.down('sm')]: {
-      fontSize: '21px',
-      lineHeight: '21px',
+      fontSize: '19px',
+      lineHeight: '19px',
     },
   },
   subtitle1: {
@@ -86,8 +86,8 @@ export const typography: ThemeOptions['typography'] = {
     fontSize: '18px',
     lineHeight: '18px',
     [breakpoints.down('sm')]: {
-      fontSize: '15px',
-      lineHeight: '15px',
+      fontSize: '17px',
+      lineHeight: '17px',
     },
   },
   body1: {

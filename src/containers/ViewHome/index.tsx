@@ -28,7 +28,7 @@ export const ViewHome = () => {
             <Image
               src="/static/v1/img/phantasma-logo-icon-white.png"
               responsive
-              height={furyActive.typography.h1.fontSize as string}
+              height="99px"
               title="Phantasma Team"
               alt="Phantasma.io"
             />
