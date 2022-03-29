@@ -31,6 +31,7 @@ export const AddressOverview = ({ data }: AddressOverviewProps) => {
           <Box textAlign="right" pt={{ xs: 1.5, lg: 0 }}>
             <Button
               variant="contained"
+              color="secondary"
               onClick={() =>
                 csvDownload(
                   [raw[0]],

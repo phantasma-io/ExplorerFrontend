@@ -54,6 +54,20 @@ export const Breadcrumbs = ({ crumbs }: BreadcrumbsProps) => {
         <Grid item>
           <Box pt={0.3}>
             <Typography variant="body1" sx={{ color: '#fff', fontWeight: 600 }}>
+              ID
+            </Typography>
+          </Box>
+        </Grid>
+        <Grid item>
+          <Box pt={0.3}>
+            <Typography variant="body1" sx={{ color: '#fff', fontWeight: 600 }}>
+              <NavigateNextIcon />
+            </Typography>
+          </Box>
+        </Grid>
+        <Grid item>
+          <Box pt={0.3}>
+            <Typography variant="body1" sx={{ color: '#fff', fontWeight: 600 }}>
               TAB
             </Typography>
           </Box>
