@@ -1,5 +1,8 @@
 import React from 'react';
-import { Box } from '@mui/material';
+import { nanoid } from 'nanoid';
+import csvDownload from 'json-to-csv-export';
+import { Box, Grid, Button } from '@mui/material';
+import { useEcho } from '@ricardo-jrm/echo';
 import { useRenderOverview } from 'hooks/useRenderOverview';
 import { useAddressData } from 'hooks/api';
 import { AddressResults } from 'types/api';
@@ -12,9 +15,35 @@ export interface AddressOverviewProps {
 }
 
 export const AddressOverview = ({ data }: AddressOverviewProps) => {
+  const { echo } = useEcho();
+
   const renderOverview = useRenderOverview();
 
-  const { cols, rows } = useAddressData(data);
+  const { cols, rows, raw } = useAddressData(data);
 
-  return <Box p={1}>{data && renderOverview(cols, rows)}</Box>;
+  return (
+    <Box p={1}>
+      <Grid container>
+        <Grid item xs={12} lg={10}>
+          <Box>{data && renderOverview(cols, rows)}</Box>
+        </Grid>
+        <Grid item xs={12} lg={2}>
+          <Box textAlign="right">
+            <Button
+              variant="contained"
+              onClick={() =>
+                csvDownload(
+                  [raw[0]],
+                  `PhantasmaExplorer-Address-${nanoid()}`,
+                  ',',
+                )
+              }
+            >
+              {echo('table-exportCsv')}
+            </Button>
+          </Box>
+        </Grid>
+      </Grid>
+    </Box>
+  );
 };

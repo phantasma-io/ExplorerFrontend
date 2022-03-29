@@ -78,13 +78,16 @@ export const useAddressData = (data?: AddressResults, loading?: boolean) => {
     return [];
   }, [data]);
 
+  const raw = useMemo(() => data?.addresses || [], [data]);
+
   const ctx = useMemo(
     () => ({
       cols,
       rows,
       total,
+      raw,
     }),
-    [cols, rows, total],
+    [cols, rows, total, raw],
   );
 
   return ctx;
