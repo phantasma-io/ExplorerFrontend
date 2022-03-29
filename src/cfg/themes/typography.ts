@@ -20,14 +20,20 @@ export const typography: ThemeOptions['typography'] = {
   ].join(','),
   h1: {
     fontWeight: 600,
+    fontSize: '69px',
+    lineHeight: '69px',
+    [breakpoints.down('sm')]: {
+      fontSize: '66px',
+      lineHeight: '66px',
+    },
   },
   h2: {
     fontWeight: 600,
     fontSize: '60px',
     lineHeight: '60px',
     [breakpoints.down('sm')]: {
-      fontSize: '30px',
-      lineHeight: '30px',
+      fontSize: '45px',
+      lineHeight: '45px',
     },
   },
   h3: {
@@ -35,29 +41,71 @@ export const typography: ThemeOptions['typography'] = {
     fontSize: '45px',
     lineHeight: '45px',
     [breakpoints.down('sm')]: {
-      fontSize: '25px',
-      lineHeight: '25px',
+      fontSize: '36px',
+      lineHeight: '36px',
     },
   },
   h4: {
     fontWeight: 600,
+    fontSize: '39px',
+    lineHeight: '39px',
+    [breakpoints.down('sm')]: {
+      fontSize: '30px',
+      lineHeight: '30px',
+    },
+  },
+  h5: {
+    fontWeight: 600,
     fontSize: '30px',
     lineHeight: '30px',
+    [breakpoints.down('sm')]: {
+      fontSize: '27px',
+      lineHeight: '27px',
+    },
+  },
+  h6: {
+    fontWeight: 600,
+    fontSize: '24px',
+    lineHeight: '24px',
     [breakpoints.down('sm')]: {
       fontSize: '21px',
       lineHeight: '21px',
     },
   },
-  h5: {
+  subtitle1: {
     fontWeight: 600,
+    fontSize: '21px',
+    lineHeight: '21px',
+    [breakpoints.down('sm')]: {
+      fontSize: '18px',
+      lineHeight: '18px',
+    },
   },
-  h6: {
+  subtitle2: {
     fontWeight: 600,
+    fontSize: '18px',
+    lineHeight: '18px',
+    [breakpoints.down('sm')]: {
+      fontSize: '15px',
+      lineHeight: '15px',
+    },
   },
-  // subtitle1: {},
-  // subtitle2: {},
-  // body1: {},
-  // body2: {},
+  body1: {
+    fontSize: '16px',
+    lineHeight: '16px',
+    [breakpoints.down('sm')]: {
+      fontSize: '15px',
+      lineHeight: '15px',
+    },
+  },
+  body2: {
+    fontSize: '14px',
+    lineHeight: '14px',
+    [breakpoints.down('sm')]: {
+      fontSize: '13px',
+      lineHeight: '13px',
+    },
+  },
   button: {
     textTransform: 'none',
     fontWeight: 600,
@@ -66,5 +114,4 @@ export const typography: ThemeOptions['typography'] = {
     fontSize: '12px',
     lineHeight: '12px',
   },
-  // overline: {},
 };
