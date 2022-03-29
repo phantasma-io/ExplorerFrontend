@@ -4,9 +4,10 @@ import { Text } from 'components/display';
 export interface DetailsNumberProps {
   value: number;
   label?: string;
+  height?: string;
 }
 
-export const DetailsNumber = ({ value, label }: DetailsNumberProps) => {
+export const DetailsNumber = ({ value, label, height }: DetailsNumberProps) => {
   return (
     <Text
       formatNumber={value}
@@ -14,6 +15,7 @@ export const DetailsNumber = ({ value, label }: DetailsNumberProps) => {
       wordBreak="break-all"
       label={label}
       spacing={1}
+      height={height}
     />
   );
 };

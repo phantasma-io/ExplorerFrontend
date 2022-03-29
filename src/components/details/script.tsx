@@ -4,9 +4,10 @@ import { Text } from 'components/display';
 export interface DetailsScriptProps {
   value: string;
   label?: string;
+  height?: string;
 }
 
-export const DetailsScript = ({ value, label }: DetailsScriptProps) => {
+export const DetailsScript = ({ value, label, height }: DetailsScriptProps) => {
   return (
     <Text
       value={value}
@@ -17,6 +18,7 @@ export const DetailsScript = ({ value, label }: DetailsScriptProps) => {
       clipboard
       monospace
       script
+      height={height}
     />
   );
 };

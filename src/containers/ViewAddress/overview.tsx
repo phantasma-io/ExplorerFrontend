@@ -28,7 +28,7 @@ export const AddressOverview = ({ data }: AddressOverviewProps) => {
           <Box>{data && renderOverview(cols, rows)}</Box>
         </Grid>
         <Grid item xs={12} lg={2}>
-          <Box textAlign="right">
+          <Box textAlign="right" pt={{ xs: 1.5, lg: 0 }}>
             <Button
               variant="contained"
               onClick={() =>

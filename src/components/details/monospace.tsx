@@ -9,12 +9,14 @@ export interface DetailsMonospaceProps {
   value: string;
   label?: string;
   linkOptions?: DetailsLinkOptions;
+  height?: string;
 }
 
 export const DetailsMonospace = ({
   value,
   label,
   linkOptions,
+  height,
 }: DetailsMonospaceProps) => {
   const { echoActiveId } = useEcho();
 
@@ -36,6 +38,7 @@ export const DetailsMonospace = ({
       spacing={1}
       clipboard
       monospace
+      height={height}
       linkOptions={
         link
           ? {

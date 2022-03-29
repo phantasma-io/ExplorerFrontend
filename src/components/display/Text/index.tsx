@@ -127,6 +127,7 @@ export const Text = ({
   monospace,
   script,
   linkOptions,
+  height,
   ...propsTypo
 }: TextProps) => {
   const { enqueueSnackbar } = useSnackbar();
@@ -193,7 +194,7 @@ export const Text = ({
       spacing={spacing}
       alignItems="center"
       justifyContent={justify}
-      sx={{ width: '100%' }}
+      sx={{ width: '100%', minHeight: height }}
     >
       {label && (
         <Grid item>
