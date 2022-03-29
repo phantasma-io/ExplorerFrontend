@@ -1,9 +1,12 @@
 import React, { useMemo } from 'react';
 import { nanoid } from 'nanoid';
+import { useEcho } from '@ricardo-jrm/echo';
 import { Box, Grid } from '@mui/material';
 import { Text } from 'components/display';
 import { Empty } from 'components/layout';
 import { Address, AddressResults } from 'types/api';
+import { Locales } from 'types/locales';
+import { routes } from 'cfg';
 
 export interface AddressBalancesProps {
   data?: AddressResults;
@@ -13,6 +16,8 @@ export interface AddressBalancesProps {
 }
 
 export const AddressBalances = ({ data }: AddressBalancesProps) => {
+  const { echo, echoActiveId } = useEcho();
+
   const balances = useMemo<Address['balances']>(() => {
     if (data?.addresses && data.addresses[0] && data.addresses[0].balances) {
       return data.addresses[0].balances;
@@ -33,6 +38,12 @@ export const AddressBalances = ({ data }: AddressBalancesProps) => {
                   label={item?.token?.symbol}
                   formatNumber={parseInt(item.amount, 10)}
                   spacing={1}
+                  linkOptions={{
+                    link: routes['/token'](echoActiveId as Locales, {
+                      id: item?.token?.symbol,
+                    }),
+                    title: echo('explore-token'),
+                  }}
                 />
               )}
             </Grid>

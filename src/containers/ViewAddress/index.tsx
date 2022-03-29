@@ -24,9 +24,8 @@ export const ViewAddress = ({ tabForce = 'overview' }: ViewAddressProps) => {
     endpoints['/addresses']({
       address: (query?.id as string) || '',
       with_balance: 1,
-      with_stakes: 0,
+      with_stakes: 1,
       with_storage: 1,
-      with_transactions: 0,
     }),
   );
 

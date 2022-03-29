@@ -21,8 +21,8 @@ export const AddressesList = () => {
       order_by,
       order_direction,
       with_total,
-      with_balance: 0,
-      with_stakes: 0,
+      with_balance: 1,
+      with_stakes: 1,
       with_storage: 1,
     }),
   );
