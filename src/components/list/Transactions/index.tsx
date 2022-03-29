@@ -8,7 +8,11 @@ import { TransactionResults } from 'types/api';
 import { Table } from 'components/table';
 import { useTransactionData } from 'hooks/api';
 
-export const TransactionsList = () => {
+export interface TransactionsListProps {
+  address?: string;
+}
+
+export const TransactionsList = ({ address }: TransactionsListProps) => {
   const { echo } = useEcho();
 
   const tableProps = useTable();
@@ -32,6 +36,7 @@ export const TransactionsList = () => {
       order_by,
       order_direction,
       with_total,
+      address,
     }),
   );
 

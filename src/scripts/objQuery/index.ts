@@ -14,7 +14,9 @@ export const objToQuery: ObjToQueryType = (obj) => {
   let str = '?';
 
   Object.entries(obj).forEach((entry) => {
-    str += `${entry[0]}=${entry[1]}&`;
+    if (entry[1]) {
+      str += `${entry[0]}=${entry[1]}&`;
+    }
   });
 
   str = str.substring(0, str.length - 1);

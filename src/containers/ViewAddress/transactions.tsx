@@ -1,10 +1,9 @@
 import React from 'react';
-import { Wip } from 'components/layout';
+import { useRouter } from 'next/router';
+import { TransactionsList } from 'components/list';
 
 export const AddressTransactions = () => {
-  return (
-    <>
-      <Wip />
-    </>
-  );
+  const { query } = useRouter();
+
+  return <TransactionsList address={query?.id as string | undefined} />;
 };
