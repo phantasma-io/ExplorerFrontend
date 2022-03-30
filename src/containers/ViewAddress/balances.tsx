@@ -3,7 +3,7 @@ import { nanoid } from 'nanoid';
 import { useEcho } from '@ricardo-jrm/echo';
 import { Box, Grid } from '@mui/material';
 import { Text } from 'components/display';
-import { Empty } from 'components/layout';
+import { Empty, Error, Loading } from 'components/layout';
 import { Address, AddressResults } from 'types/api';
 import { Locales } from 'types/locales';
 import { routes } from 'cfg';
@@ -15,7 +15,11 @@ export interface AddressBalancesProps {
   error?: any;
 }
 
-export const AddressBalances = ({ data }: AddressBalancesProps) => {
+export const AddressBalances = ({
+  data,
+  loading,
+  error,
+}: AddressBalancesProps) => {
   const { echo, echoActiveId } = useEcho();
 
   const balances = useMemo<Address['balances']>(() => {
@@ -24,6 +28,14 @@ export const AddressBalances = ({ data }: AddressBalancesProps) => {
     }
     return undefined;
   }, [data]);
+
+  if (loading) {
+    return <Loading />;
+  }
+
+  if (error) {
+    return <Error />;
+  }
 
   if (balances) {
     return (

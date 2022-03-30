@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { nanoid } from 'nanoid';
 import csvDownload from 'json-to-csv-export';
 import { Box, Grid, Button } from '@mui/material';
@@ -6,6 +6,7 @@ import { useEcho } from '@ricardo-jrm/echo';
 import { useRenderOverview } from 'hooks/useRenderOverview';
 import { useAddressData } from 'hooks/api';
 import { AddressResults } from 'types/api';
+import { Loading, Error, Empty } from 'components/layout';
 
 export interface AddressOverviewProps {
   data?: AddressResults;
@@ -14,15 +15,31 @@ export interface AddressOverviewProps {
   error?: any;
 }
 
-export const AddressOverview = ({ data }: AddressOverviewProps) => {
+export const AddressOverview = ({
+  data,
+  loading,
+  error,
+}: AddressOverviewProps) => {
   const { echo } = useEcho();
 
   const renderOverview = useRenderOverview();
 
   const { cols, rows, raw } = useAddressData(data);
 
-  return (
-    <Box p={1}>
+  const content = useMemo(() => {
+    if (loading) {
+      return <Loading />;
+    }
+
+    if (error) {
+      return <Error />;
+    }
+
+    if (rows.length === 0 && !loading) {
+      return <Empty />;
+    }
+
+    return (
       <Grid container>
         <Grid item xs={12} lg={10}>
           <Box>{data && renderOverview(cols, rows)}</Box>
@@ -45,6 +62,8 @@ export const AddressOverview = ({ data }: AddressOverviewProps) => {
           </Box>
         </Grid>
       </Grid>
-    </Box>
-  );
+    );
+  }, [loading, error, rows, data, renderOverview, cols, echo, raw]);
+
+  return <Box p={1}>{content}</Box>;
 };
