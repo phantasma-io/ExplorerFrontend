@@ -12,14 +12,14 @@ export const EventsList = () => {
   const { echo } = useEcho();
 
   const tableProps = useTable();
-  const { limit, offset, with_total } = tableProps;
+  const { limit, offset, with_total, order_direction } = tableProps;
 
   const { data, loading, error } = useEmpathy<EventResults>(
     endpoints['/events']({
       offset,
       limit,
       order_by: 'date',
-      order_direction: 'desc',
+      order_direction,
       with_total,
     }),
   );

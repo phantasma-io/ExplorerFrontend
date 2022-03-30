@@ -10,5 +10,5 @@ export const TABLE_TOTAL = 0;
 export const TABLE_PAGE = 1;
 export const TABLE_SIZE = 50;
 export const TABLE_ORDERBY = 'id';
-export const TABLE_ORDERDIR = 'asc';
+export const TABLE_ORDERDIR = 'desc';
 export const TABLE_FILTERS = undefined;

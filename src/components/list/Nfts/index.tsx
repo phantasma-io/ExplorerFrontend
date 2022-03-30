@@ -12,14 +12,14 @@ export const NftsList = () => {
   const { echo } = useEcho();
 
   const tableProps = useTable();
-  const { limit, order_by, offset, with_total } = tableProps;
+  const { limit, order_by, offset, with_total, order_direction } = tableProps;
 
   const { data, loading, error } = useEmpathy<NftResults>(
     endpoints['/nfts']({
       offset,
       limit,
       order_by,
-      order_direction: 'desc',
+      order_direction,
       with_total,
     }),
   );
