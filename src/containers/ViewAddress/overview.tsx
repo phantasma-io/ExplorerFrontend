@@ -52,7 +52,7 @@ export const AddressOverview = ({
               onClick={() =>
                 csvDownload(
                   [raw[0]],
-                  `PhantasmaExplorer-Address-${nanoid()}`,
+                  `PhantasmaExplorer-Address-${nanoid()}.csv`,
                   ',',
                 )
               }
