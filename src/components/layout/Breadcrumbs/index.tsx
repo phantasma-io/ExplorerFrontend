@@ -1,22 +1,21 @@
 import React from 'react';
+import { useRouter } from 'next/router';
 import { Typography, Box, Grid } from '@mui/material';
 import { useEcho } from '@ricardo-jrm/echo';
 import { Link } from 'components/display';
 import { routes } from 'cfg';
 import { Locales } from 'types/locales';
+import { ExplorerTabs } from 'types/routes';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 
-type Crumb = {
-  text: string;
-  link: string;
-};
-
 export interface BreadcrumbsProps {
-  crumbs?: Crumb[];
+  tab: ExplorerTabs;
+  label: string;
 }
 
-export const Breadcrumbs = ({ crumbs }: BreadcrumbsProps) => {
+export const Breadcrumbs = ({ tab, label }: BreadcrumbsProps) => {
   const { echoActiveId } = useEcho();
+  const { query } = useRouter();
 
   return (
     <Box pb={1} display={{ xs: 'none', lg: 'block' }}>
@@ -24,10 +23,12 @@ export const Breadcrumbs = ({ crumbs }: BreadcrumbsProps) => {
         <Grid item>
           <Link
             variant="body1"
-            href={routes['/nexus'](echoActiveId as Locales)}
+            href={routes['/nexus'](echoActiveId as Locales, {
+              tab,
+            })}
             sx={{ color: '#fff', fontWeight: 600 }}
           >
-            Nexus
+            {label}
           </Link>
         </Grid>
         <Grid item>
@@ -40,35 +41,7 @@ export const Breadcrumbs = ({ crumbs }: BreadcrumbsProps) => {
         <Grid item>
           <Box pt={0.3}>
             <Typography variant="body1" sx={{ color: '#fff', fontWeight: 600 }}>
-              PAGE
-            </Typography>
-          </Box>
-        </Grid>
-        <Grid item>
-          <Box pt={0.3}>
-            <Typography variant="body1" sx={{ color: '#fff', fontWeight: 600 }}>
-              <NavigateNextIcon />
-            </Typography>
-          </Box>
-        </Grid>
-        <Grid item>
-          <Box pt={0.3}>
-            <Typography variant="body1" sx={{ color: '#fff', fontWeight: 600 }}>
-              ID
-            </Typography>
-          </Box>
-        </Grid>
-        <Grid item>
-          <Box pt={0.3}>
-            <Typography variant="body1" sx={{ color: '#fff', fontWeight: 600 }}>
-              <NavigateNextIcon />
-            </Typography>
-          </Box>
-        </Grid>
-        <Grid item>
-          <Box pt={0.3}>
-            <Typography variant="body1" sx={{ color: '#fff', fontWeight: 600 }}>
-              TAB
+              {query?.id || ''}
             </Typography>
           </Box>
         </Grid>

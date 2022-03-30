@@ -4,7 +4,8 @@ import { ExplorerRouter } from 'types/routes';
 
 export const routes: ExplorerRouter = {
   '/': (locale) => `/${locale}`,
-  '/nexus': (locale) => `/${locale}/nexus`,
+  '/nexus': (locale, params) =>
+    `/${locale}/nexus${params ? objToQuery(params) : ''}`,
   '/chain': (locale, params) =>
     `/${locale}/chain${params ? objToQuery(params) : ''}`,
   '/address': (locale, params) =>

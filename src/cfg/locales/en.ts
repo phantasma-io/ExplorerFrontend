@@ -96,6 +96,7 @@ export const en: EchoMsgs = {
   stake: 'Stake',
   unclaimed: 'Unclaimed',
   // details
+  'details-nexus': 'Welcome to the Nexus',
   'details-address': 'Address details',
   'details-block': 'Block details',
   'details-contract': 'Contract details',

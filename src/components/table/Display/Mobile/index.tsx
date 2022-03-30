@@ -36,7 +36,7 @@ export const TableDisplayMobile = ({
         rows.map((row) => (
           <Box
             key={nanoid()}
-            py={spacing}
+            py={2}
             sx={{ borderTop: `1px solid ${furyActive.palette.divider}` }}
           >
             <Grid spacing={spacing} container>

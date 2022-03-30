@@ -114,9 +114,9 @@ export const LocalizedView = ({ locale, route }: LocalizedViewProps) => {
             pb={{ xs: 3, lg: route === '/nexus' ? 3 : 0.5 }}
           >
             <Text
-              variant={route === '/nexus' ? 'h2' : 'h4'}
+              variant={route === '/nexus' ? 'h1' : 'h4'}
               sx={{ color: '#fff' }}
-              value={echo(`title-${query?.view as string}`)}
+              value={echo(`details-${query?.view as string}`)}
             />
           </Box>
         )}
