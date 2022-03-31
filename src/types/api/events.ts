@@ -27,22 +27,23 @@ export interface EventResult {
 }
 
 export interface EventParams extends ListParams {
+  address?: string;
+  block_hash?: string;
+  block_height?: string;
+  transaction_hash?: string;
   chain?: string;
   contract?: string;
   token_id?: string;
+  event_kind?: string;
   date_day?: string;
   date_less?: string;
   date_greater?: string;
-  event_kind?: string;
-  event_kind_partial?: string;
-  nft_name_partial?: string;
-  nft_description_partial?: string;
-  show_events?: string;
-  address?: string;
-  address_partial?: string;
+  with_event_data?: WithOption;
   with_metadata?: WithOption;
   with_series?: WithOption;
-  fiat_currency?: string;
+  with_fiat?: WithOption;
+  with_nsfw?: WithOption;
+  with_blacklisted?: WithOption;
 }
 
 export interface EventResults extends ListResults {

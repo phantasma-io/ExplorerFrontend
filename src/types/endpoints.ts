@@ -13,6 +13,7 @@ import {
   BlockParams,
   PlatformParams,
   HistoryPriceParams,
+  OracleParams,
 } from './api';
 
 export type ExplorerEndpoints =
@@ -24,6 +25,7 @@ export type ExplorerEndpoints =
   | '/eventkinds'
   | '/events'
   | '/nfts'
+  | '/oracles'
   | '/organizations'
   | '/platforms'
   | '/series'
@@ -40,6 +42,7 @@ export type ApiParams =
   | EventParams
   | IntructionParams
   | NftParams
+  | OracleParams
   | DaoParams
   | PlatformParams
   | HistoryPriceParams

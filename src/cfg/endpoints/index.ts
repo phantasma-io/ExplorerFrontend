@@ -16,6 +16,7 @@ export const endpoints: ExplorerApi = {
     `${url}/eventkinds${params ? objToQuery(params) : ''}`,
   '/events': (params) => `${url}/events${params ? objToQuery(params) : ''}`,
   '/nfts': (params) => `${url}/nfts${params ? objToQuery(params) : ''}`,
+  '/oracles': (params) => `${url}/oracles${params ? objToQuery(params) : ''}`,
   '/organizations': (params) =>
     `${url}/organizations${params ? objToQuery(params) : ''}`,
   '/platforms': (params) =>

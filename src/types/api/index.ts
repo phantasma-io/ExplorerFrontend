@@ -1,6 +1,6 @@
 export type { Address, AddressParams, AddressResults } from './addresses';
 
-export type { Block, BlockParams, BlockResults, Oracle } from './blocks';
+export type { Block, BlockParams, BlockResults } from './blocks';
 
 export type { Chain, ChainParams, ChainResults } from './chains';
 
@@ -25,6 +25,8 @@ export type {
 export type { ListParams, ListResults, WithOption } from './list';
 
 export type { Nft, NftMetadata, NftOwner, NftParams, NftResults } from './nfts';
+
+export type { Oracle, OracleParams, OracleResults } from './oracles';
 
 export type { Dao, DaoParams, DaoResults } from './organizations';
 
