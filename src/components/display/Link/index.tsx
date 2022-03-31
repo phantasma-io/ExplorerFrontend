@@ -25,12 +25,7 @@ export const Link = ({
     : {};
 
   const linkComponent = (
-    <MuiLink
-      href={href}
-      {...linkProps}
-      sx={sx}
-      style={{ textDecoration: 'none' }}
-    >
+    <MuiLink href={href} {...linkProps} sx={{ textDecoration: 'none', ...sx }}>
       {children}
     </MuiLink>
   );

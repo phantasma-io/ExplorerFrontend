@@ -13,6 +13,9 @@ import { TableFilters } from './Filters';
 export interface TableControlsProps extends TableUrlParams, TableParamControls {
   tableId: string;
   exportData: string;
+  loading?: boolean;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  error?: any;
 }
 
 export const TableControls = ({
@@ -28,6 +31,8 @@ export const TableControls = ({
   // orderDirectionSet,
   // filters,
   total,
+  loading,
+  error,
 }: TableControlsProps) => {
   const { echo } = useEcho();
 
@@ -90,15 +95,17 @@ export const TableControls = ({
                 <TableFilters />
               </Grid>
               <Grid item>
-                <Box pb={0.39}>
-                  <Typography
-                    variant="caption"
-                    color="textSecondary"
-                    fontWeight={600}
-                  >
-                    {`(${numberFormat(total)} ${echo('table-results')})`}
-                  </Typography>
-                </Box>
+                {!loading && !error && (
+                  <Box pb={0.39}>
+                    <Typography
+                      variant="caption"
+                      color="textSecondary"
+                      fontWeight={600}
+                    >
+                      {`(${numberFormat(total)} ${echo('table-results')})`}
+                    </Typography>
+                  </Box>
+                )}
               </Grid>
             </Grid>
           </Grid>

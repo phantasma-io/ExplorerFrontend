@@ -26,7 +26,7 @@ export const Breadcrumbs = ({ tab, label }: BreadcrumbsProps) => {
             href={routes['/nexus'](echoActiveId as Locales, {
               tab,
             })}
-            sx={{ color: '#fff', fontWeight: 600 }}
+            sx={{ color: '#fff', fontWeight: 600, textDecoration: 'underline' }}
           >
             {label}
           </Link>
