@@ -128,6 +128,7 @@ export const en: EchoMsgs = {
   royalties: 'Royalties',
   creator: 'Creator',
   //
+  storage: 'Storage',
   'storage-available': 'Available in storage',
   used: 'Used',
   // api

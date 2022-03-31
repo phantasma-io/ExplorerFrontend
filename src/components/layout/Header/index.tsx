@@ -24,7 +24,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import CloseIcon from '@mui/icons-material/Close';
 import { routes } from 'cfg';
-import { Text, Image } from 'components/display';
+import { Text, Image, Link } from 'components/display';
 import { Locales } from 'types/locales';
 
 /**
@@ -144,10 +144,12 @@ export const Header = ({ height }: HeaderProps) => {
             <Grid item>
               <Box pt={0.5}>
                 <Tooltip title={echo('tooltip-nav-homepage')}>
-                  <Box>
+                  <Link
+                    href={routes['/'](echoActiveId as Locales)}
+                    title={echo('tooltip-nav-homepage')}
+                  >
                     <Box
                       display={{ xs: 'none', md: 'block' }}
-                      onClick={() => push(routes['/'](echoActiveId as Locales))}
                       style={{
                         cursor: 'pointer',
                       }}
@@ -161,7 +163,6 @@ export const Header = ({ height }: HeaderProps) => {
                     </Box>
                     <Box
                       display={{ xs: 'block', md: 'none' }}
-                      onClick={() => push(routes['/'](echoActiveId as Locales))}
                       style={{
                         cursor: 'pointer',
                       }}
@@ -173,7 +174,7 @@ export const Header = ({ height }: HeaderProps) => {
                         alt="Phantasma Team"
                       />
                     </Box>
-                  </Box>
+                  </Link>
                 </Tooltip>
               </Box>
             </Grid>

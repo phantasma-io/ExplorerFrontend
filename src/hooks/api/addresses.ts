@@ -20,7 +20,7 @@ export const useAddressData = (data?: AddressResults, loading?: boolean) => {
         id: 'address',
         label: echo('address'),
         type: 'monospace',
-        size: 8,
+        size: 6,
         showDesktop: true,
         linkOptions: {
           route: '/address',
@@ -33,7 +33,7 @@ export const useAddressData = (data?: AddressResults, loading?: boolean) => {
         id: 'name',
         label: echo('name'),
         type: 'text',
-        size: 3,
+        size: 2,
         showDesktop: true,
       },
       {
@@ -49,10 +49,11 @@ export const useAddressData = (data?: AddressResults, loading?: boolean) => {
         size: 10,
       },
       {
-        id: 'storage-available',
-        label: echo('storage-available'),
+        id: 'storage',
+        label: echo('storage'),
         type: 'number',
-        size: 10,
+        size: 3,
+        showDesktop: true,
       },
       {
         id: 'storage-used',
