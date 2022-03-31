@@ -216,7 +216,7 @@ export const Footer = ({
                   textDecoration: 'none',
                 }}
               >
-                {'Copyright © Phantasma Team 2021-2022'}
+                {'Copyright © Phantasma 2021-2022'}
               </Link>
             </Grid>
           </Grid>
