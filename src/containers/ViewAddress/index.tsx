@@ -11,6 +11,7 @@ import { ExplorerTabs } from 'types/routes';
 import { AddressOverview } from './overview';
 import { AddressBalances } from './balances';
 import { AddressTransactions } from './transactions';
+import { AddressEvents } from './events';
 
 export interface ViewAddressProps {
   tabForce?: ExplorerTabs;
@@ -47,6 +48,12 @@ export const ViewAddress = ({ tabForce = 'overview' }: ViewAddressProps) => {
         component: (
           <AddressBalances data={data} loading={loading} error={error} />
         ),
+      },
+      events: {
+        id: 'events',
+        label: echo('tab-events'),
+        href: routes['/address'](echoActiveId as Locales),
+        component: <AddressEvents />,
       },
       transactions: {
         id: 'transactions',

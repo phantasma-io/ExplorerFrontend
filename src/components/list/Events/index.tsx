@@ -8,7 +8,11 @@ import { useEventData } from 'hooks/api';
 import { EventResults } from 'types/api';
 import { Table } from 'components/table';
 
-export const EventsList = () => {
+export interface EventsListProps {
+  address?: string;
+}
+
+export const EventsList = ({ address }: EventsListProps) => {
   const { echo } = useEcho();
 
   const tableProps = useTable();
@@ -21,6 +25,7 @@ export const EventsList = () => {
       order_by: 'date',
       order_direction,
       with_total,
+      address,
     }),
   );
 
