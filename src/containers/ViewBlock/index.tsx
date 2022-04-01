@@ -9,6 +9,8 @@ import { Locales } from 'types/locales';
 import { ExplorerTabs } from 'types/routes';
 import { BlockResults } from 'types/api';
 import { BlockOverview } from './overview';
+import { BlockEvents } from './events';
+import { BlockTransactions } from './transactions';
 
 export interface ViewBlockProps {
   tabForce?: ExplorerTabs;
@@ -22,11 +24,6 @@ export const ViewBlock = ({ tabForce = 'overview' }: ViewBlockProps) => {
   const { data, loading, error } = useEmpathy<BlockResults>(
     endpoints['/blocks']({
       hash: (query?.id as string) || '',
-      with_oracles: 1,
-      with_transactions: 0,
-      with_events: 0,
-      with_event_data: 0,
-      with_nft: 0,
       with_fiat: 1,
     }),
   );
@@ -41,24 +38,24 @@ export const ViewBlock = ({ tabForce = 'overview' }: ViewBlockProps) => {
           <BlockOverview data={data} loading={loading} error={error} />
         ),
       },
-      // events: {
-      //   id: 'events',
-      //   label: echo('tab-events'),
-      //   href: routes['/block'](echoActiveId as Locales),
-      //   component: <EventsList />,
-      // },
       // oracles: {
       //   id: 'oracles',
       //   label: echo('tab-oracles'),
       //   href: routes['/block'](echoActiveId as Locales),
       //   component: <OraclesList />,
       // },
-      // transactions: {
-      //   id: 'transactions',
-      //   label: echo('tab-transactions'),
-      //   href: routes['/block'](echoActiveId as Locales),
-      //   component: <TransactionsList />,
-      // },
+      events: {
+        id: 'events',
+        label: echo('tab-events'),
+        href: routes['/block'](echoActiveId as Locales),
+        component: <BlockEvents />,
+      },
+      transactions: {
+        id: 'transactions',
+        label: echo('tab-transactions'),
+        href: routes['/block'](echoActiveId as Locales),
+        component: <BlockTransactions />,
+      },
     }),
     [echo, echoActiveId, data, error, loading],
   );

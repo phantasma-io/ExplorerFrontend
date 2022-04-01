@@ -1,10 +1,11 @@
 import { ListParams, ListResults, WithOption } from './list';
+import { Contract } from './contracts';
 import { NftMetadata } from './nfts';
 import { Series } from './series';
 
 export interface EventResult {
   chain?: string;
-  contract?: string;
+  contract?: Contract;
   date?: string;
   transaction_hash?: string;
   token_id?: string;

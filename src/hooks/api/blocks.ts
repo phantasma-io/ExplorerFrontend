@@ -2,6 +2,7 @@ import { useMemo, useState, useEffect } from 'react';
 import { useEcho } from '@ricardo-jrm/echo';
 import { TableDisplayRow, TableDisplayCol } from 'types/table';
 import { BlockResults } from 'types/api';
+import { unixmsToDate } from 'scripts';
 
 export const useBlockData = (data?: BlockResults, loading?: boolean) => {
   const { echo } = useEcho();
@@ -37,17 +38,6 @@ export const useBlockData = (data?: BlockResults, loading?: boolean) => {
         showDesktop: true,
       },
       {
-        id: 'previous_hash',
-        label: echo('prevHash'),
-        type: 'monospace',
-        size: 12,
-        linkOptions: {
-          route: '/block',
-          key: 'previous_hash',
-          title: echo('explore-block'),
-        },
-      },
-      {
         id: 'protocol',
         label: echo('protocol'),
         type: 'number',
@@ -66,6 +56,17 @@ export const useBlockData = (data?: BlockResults, loading?: boolean) => {
         size: 12,
       },
       {
+        id: 'previous_hash',
+        label: echo('prevHash'),
+        type: 'monospace',
+        size: 12,
+        linkOptions: {
+          route: '/block',
+          key: 'previous_hash',
+          title: echo('explore-block'),
+        },
+      },
+      {
         id: 'date',
         label: echo('date'),
         type: 'date',
@@ -80,11 +81,11 @@ export const useBlockData = (data?: BlockResults, loading?: boolean) => {
       return data?.blocks?.map((item) => [
         item?.hash,
         item?.height,
-        item?.previous_hash,
         item?.protocol,
         item?.chain_address,
         item?.validator_address,
-        item?.date,
+        item?.previous_hash,
+        item?.date ? unixmsToDate(item.date) : undefined,
       ]) as TableDisplayRow[];
     }
 

@@ -10,9 +10,10 @@ import { useTransactionData } from 'hooks/api';
 
 export interface TransactionsListProps {
   address?: string;
+  block?: string;
 }
 
-export const TransactionsList = ({ address }: TransactionsListProps) => {
+export const TransactionsList = ({ address, block }: TransactionsListProps) => {
   const { echo } = useEcho();
 
   const tableProps = useTable();
@@ -37,6 +38,7 @@ export const TransactionsList = ({ address }: TransactionsListProps) => {
       order_direction,
       with_total,
       address,
+      block_hash: block,
     }),
   );
 

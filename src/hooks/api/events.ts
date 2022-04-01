@@ -60,6 +60,12 @@ export const useEventData = (data?: EventResults, loading?: boolean) => {
         size: 3,
       },
       {
+        id: 'contract',
+        label: echo('contract'),
+        type: 'text',
+        size: 3,
+      },
+      {
         id: 'date',
         label: echo('date'),
         type: 'date',
@@ -77,6 +83,7 @@ export const useEventData = (data?: EventResults, loading?: boolean) => {
         item?.address,
         item?.address_name,
         item?.chain,
+        item?.contract?.name,
         item?.date ? unixmsToDate(item.date) : undefined,
       ]) as TableDisplayRow[];
     }

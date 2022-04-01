@@ -2,6 +2,7 @@ import { useMemo, useState, useEffect } from 'react';
 import { useEcho } from '@ricardo-jrm/echo';
 import { TableDisplayRow, TableDisplayCol } from 'types/table';
 import { TransactionResults } from 'types/api';
+import { unixmsToDate } from 'scripts';
 
 export const useTransactionData = (
   data?: TransactionResults,
@@ -48,7 +49,7 @@ export const useTransactionData = (
       return data?.transactions?.map((item) => [
         item?.hash,
         item?.blockHeight,
-        item?.date,
+        item?.date ? unixmsToDate(item.date) : undefined,
       ]) as TableDisplayRow[];
     }
 
