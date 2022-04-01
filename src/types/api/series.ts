@@ -11,12 +11,12 @@ export interface Series {
   image?: string;
   royalties?: string;
   type?: number;
-  attrType1?: string;
-  attrValue1?: string;
-  attrType2?: string;
-  attrValue2?: string;
-  attrType3?: string;
-  attrValue3?: string;
+  attr_type_1?: string;
+  attr_value_1?: string;
+  attr_type_2?: string;
+  attr_value_2?: string;
+  attr_type_3?: string;
+  attr_value_3?: string;
 }
 
 export interface SeriesParams extends ListParams {
