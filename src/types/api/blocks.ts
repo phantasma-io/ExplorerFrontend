@@ -7,6 +7,7 @@ export interface Block {
   protocol?: number;
   chain_address?: string;
   validator_address?: string;
+  date?: string;
 }
 
 export interface BlockParams extends ListParams {

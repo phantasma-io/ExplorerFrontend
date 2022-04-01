@@ -6,16 +6,10 @@ export const routes: ExplorerRouter = {
   '/': (locale) => `/${locale}`,
   '/nexus': (locale, params) =>
     `/${locale}/nexus${params ? objToQuery(params) : ''}`,
-  '/chain': (locale, params) =>
-    `/${locale}/chain${params ? objToQuery(params) : ''}`,
   '/address': (locale, params) =>
     `/${locale}/address${params ? objToQuery(params) : ''}`,
   '/block': (locale, params) =>
     `/${locale}/block${params ? objToQuery(params) : ''}`,
-  '/contract': (locale, params) =>
-    `/${locale}/contract${params ? objToQuery(params) : ''}`,
-  '/dao': (locale, params) =>
-    `/${locale}/dao${params ? objToQuery(params) : ''}`,
   '/token': (locale, params) =>
     `/${locale}/token${params ? objToQuery(params) : ''}`,
   '/transaction': (locale, params) =>

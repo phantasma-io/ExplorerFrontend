@@ -20,7 +20,7 @@ export const useBlockData = (data?: BlockResults, loading?: boolean) => {
         id: 'hash',
         label: echo('hash'),
         type: 'monospace',
-        size: 8,
+        size: 7,
         showDesktop: true,
         linkOptions: {
           route: '/block',
@@ -33,7 +33,7 @@ export const useBlockData = (data?: BlockResults, loading?: boolean) => {
         id: 'height',
         label: echo('height'),
         type: 'number',
-        size: 3,
+        size: 2,
         showDesktop: true,
       },
       {
@@ -65,6 +65,13 @@ export const useBlockData = (data?: BlockResults, loading?: boolean) => {
         type: 'monospace',
         size: 12,
       },
+      {
+        id: 'date',
+        label: echo('date'),
+        type: 'date',
+        size: 2,
+        showDesktop: true,
+      },
     ];
   }, [echo]);
 
@@ -77,6 +84,7 @@ export const useBlockData = (data?: BlockResults, loading?: boolean) => {
         item?.protocol,
         item?.chain_address,
         item?.validator_address,
+        item?.date,
       ]) as TableDisplayRow[];
     }
 

@@ -4,6 +4,7 @@ export interface Transaction {
   hash?: string;
   blockHeight?: string;
   index?: number;
+  date?: string;
 }
 
 export interface TransactionParams extends ListParams {

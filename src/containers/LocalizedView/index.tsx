@@ -11,9 +11,6 @@ import {
   ViewHome,
   ViewAddress,
   ViewBlock,
-  ViewChain,
-  ViewContract,
-  ViewDao,
   ViewNexus,
   ViewToken,
   ViewTransaction,
@@ -34,18 +31,12 @@ export const LocalizedView = ({ locale, route }: LocalizedViewProps) => {
 
   const title = useMemo(() => {
     switch (route) {
+      case '/nexus':
+        return `${echo('nexus')} | ${echo('meta-title')}`;
       case '/address':
         return `${echo('address')} | ${echo('meta-title')}`;
       case '/block':
         return `${echo('block')} | ${echo('meta-title')}`;
-      case '/chain':
-        return `${echo('chain')} | ${echo('meta-title')}`;
-      case '/contract':
-        return `${echo('contract')} | ${echo('meta-title')}`;
-      case '/dao':
-        return `${echo('dao')} | ${echo('meta-title')}`;
-      case '/nexus':
-        return `${echo('nexus')} | ${echo('meta-title')}`;
       case '/token':
         return `${echo('token')} | ${echo('meta-title')}`;
       case '/transaction':
@@ -58,18 +49,12 @@ export const LocalizedView = ({ locale, route }: LocalizedViewProps) => {
 
   const description = useMemo(() => {
     switch (route) {
+      case '/nexus':
+        return `${echo('meta-nexus')}`;
       case '/address':
         return `${echo('meta-address')}`;
       case '/block':
         return `${echo('meta-block')}`;
-      case '/chain':
-        return `${echo('meta-chain')}`;
-      case '/contract':
-        return `${echo('meta-contract')}`;
-      case '/dao':
-        return `${echo('meta-dao')}`;
-      case '/nexus':
-        return `${echo('meta-nexus')}`;
       case '/token':
         return `${echo('meta-token')}`;
       case '/transaction':
@@ -82,18 +67,12 @@ export const LocalizedView = ({ locale, route }: LocalizedViewProps) => {
 
   const children = useMemo(() => {
     switch (route) {
+      case '/nexus':
+        return <ViewNexus />;
       case '/address':
         return <ViewAddress />;
       case '/block':
         return <ViewBlock />;
-      case '/chain':
-        return <ViewChain />;
-      case '/contract':
-        return <ViewContract />;
-      case '/dao':
-        return <ViewDao />;
-      case '/nexus':
-        return <ViewNexus />;
       case '/token':
         return <ViewToken />;
       case '/transaction':

@@ -23,14 +23,21 @@ export const useTransactionData = (
         id: 'hash',
         label: echo('hash'),
         type: 'monospace',
-        size: 8,
+        size: 7,
         showDesktop: true,
       },
       {
         id: 'blockHeight',
         label: echo('blockHeight'),
         type: 'number',
-        size: 3,
+        size: 2,
+        showDesktop: true,
+      },
+      {
+        id: 'date',
+        label: echo('date'),
+        type: 'date',
+        size: 2,
         showDesktop: true,
       },
     ];
@@ -41,6 +48,7 @@ export const useTransactionData = (
       return data?.transactions?.map((item) => [
         item?.hash,
         item?.blockHeight,
+        item?.date,
       ]) as TableDisplayRow[];
     }
 
