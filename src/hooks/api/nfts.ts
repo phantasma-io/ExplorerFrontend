@@ -2,6 +2,7 @@ import { useMemo, useState, useEffect } from 'react';
 import { useEcho } from '@ricardo-jrm/echo';
 import { TableDisplayRow, TableDisplayCol } from 'types/table';
 import { NftResults } from 'types/api';
+import { unixmsToDate } from 'scripts';
 
 export const useNftData = (data?: NftResults, loading?: boolean) => {
   const { echo } = useEcho();
@@ -197,7 +198,9 @@ export const useNftData = (data?: NftResults, loading?: boolean) => {
         item?.nft_metadata?.description,
         item?.nft_metadata?.image,
         item?.nft_metadata?.mint_number,
-        item?.nft_metadata?.mint_date,
+        item?.nft_metadata?.mint_date
+          ? unixmsToDate(item?.nft_metadata?.mint_date)
+          : undefined,
         item?.nft_metadata?.ram,
         item?.nft_metadata?.rom,
         // root
