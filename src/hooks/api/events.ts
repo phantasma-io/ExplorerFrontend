@@ -25,18 +25,6 @@ export const useEventData = (data?: EventResults, loading?: boolean) => {
         showDesktop: true,
       },
       {
-        id: 'transaction_hash',
-        label: echo('transaction_hash'),
-        type: 'monospace',
-        size: 7,
-        showDesktop: true,
-        linkOptions: {
-          route: '/transaction',
-          key: 'transaction_hash',
-          title: echo('explore-transaction'),
-        },
-      },
-      {
         id: 'address',
         label: echo('address'),
         type: 'monospace',
@@ -52,6 +40,29 @@ export const useEventData = (data?: EventResults, loading?: boolean) => {
         label: echo('address_name'),
         type: 'text',
         size: 3,
+      },
+      {
+        id: 'block_hash',
+        label: echo('block_hash'),
+        type: 'monospace',
+        size: 7,
+        linkOptions: {
+          route: '/block',
+          key: 'block_hash',
+          title: echo('explore-block'),
+        },
+      },
+      {
+        id: 'transaction_hash',
+        label: echo('transaction_hash'),
+        type: 'monospace',
+        size: 7,
+        showDesktop: true,
+        linkOptions: {
+          route: '/transaction',
+          key: 'transaction_hash',
+          title: echo('explore-transaction'),
+        },
       },
       {
         id: 'chain',
@@ -79,9 +90,10 @@ export const useEventData = (data?: EventResults, loading?: boolean) => {
     if (data) {
       return data?.events?.map((item) => [
         item?.event_kind,
-        item?.transaction_hash,
         item?.address,
         item?.address_name,
+        item?.block_hash,
+        item?.transaction_hash,
         item?.chain,
         item?.contract?.name,
         item?.date ? unixmsToDate(item.date) : undefined,

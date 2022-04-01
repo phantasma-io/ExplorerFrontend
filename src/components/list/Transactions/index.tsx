@@ -55,6 +55,11 @@ export const TransactionsList = ({ address, block }: TransactionsListProps) => {
         dialogOptions={{
           title: echo('details-transaction'),
         }}
+        linkOptions={{
+          route: '/transaction',
+          key: 'hash',
+          title: echo('explore-transaction'),
+        }}
         {...tableProps}
         filters={TABLE_FILTERS}
         loading={loading}

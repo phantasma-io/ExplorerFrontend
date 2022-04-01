@@ -8,6 +8,7 @@ export interface EventResult {
   contract?: Contract;
   date?: string;
   transaction_hash?: string;
+  block_hash?: string;
   token_id?: string;
   token_amount?: number;
   event_kind?: string;

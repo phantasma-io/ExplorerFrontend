@@ -223,7 +223,7 @@ export const Header = ({ height }: HeaderProps) => {
                 </IconButton>
               </Tooltip>
             </Box>
-            <Box display="inline-block">
+            {/* <Box display="inline-block">
               <Tooltip title={echo('tooltip-locale')}>
                 <Button
                   size="small"
@@ -239,7 +239,7 @@ export const Header = ({ height }: HeaderProps) => {
                   {echoActiveId === 'fr' && 'Français'}
                 </Button>
               </Tooltip>
-            </Box>
+            </Box> */}
           </Box>
         </Grid>
       </Grid>

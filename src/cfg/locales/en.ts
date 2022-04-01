@@ -134,6 +134,7 @@ export const en: EchoMsgs = {
   // api
   event_kind: 'Event kind',
   transaction_hash: 'Transaction hash',
+  block_hash: 'Block hash',
   address_name: 'Address name',
   current_supply: 'Current supply',
   max_supply: 'Max supply',

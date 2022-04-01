@@ -11,9 +11,14 @@ import { Table } from 'components/table';
 export interface EventsListProps {
   address?: string;
   block?: string;
+  transaction?: string;
 }
 
-export const EventsList = ({ address, block }: EventsListProps) => {
+export const EventsList = ({
+  address,
+  block,
+  transaction,
+}: EventsListProps) => {
   const { echo } = useEcho();
 
   const tableProps = useTable();
@@ -28,6 +33,7 @@ export const EventsList = ({ address, block }: EventsListProps) => {
       with_total,
       address,
       block_hash: block,
+      transaction_hash: transaction,
     }),
   );
 

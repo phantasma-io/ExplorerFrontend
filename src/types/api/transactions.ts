@@ -2,6 +2,7 @@ import { ListParams, ListResults } from './list';
 
 export interface Transaction {
   hash?: string;
+  block_hash?: string;
   blockHeight?: string;
   index?: number;
   date?: string;

@@ -26,6 +26,23 @@ export const useTransactionData = (
         type: 'monospace',
         size: 7,
         showDesktop: true,
+        linkOptions: {
+          route: '/transaction',
+          key: 'hash',
+          title: echo('explore-transaction'),
+          primary: true,
+        },
+      },
+      {
+        id: 'block_hash',
+        label: echo('block_hash'),
+        type: 'number',
+        size: 2,
+        linkOptions: {
+          route: '/block',
+          key: 'block_hash',
+          title: echo('explore-block'),
+        },
       },
       {
         id: 'blockHeight',
@@ -48,6 +65,7 @@ export const useTransactionData = (
     if (data) {
       return data?.transactions?.map((item) => [
         item?.hash,
+        item?.block_hash,
         item?.blockHeight,
         item?.date ? unixmsToDate(item.date) : undefined,
       ]) as TableDisplayRow[];
@@ -56,13 +74,16 @@ export const useTransactionData = (
     return [];
   }, [data]);
 
+  const raw = useMemo(() => data?.transactions || [], [data]);
+
   const ctx = useMemo(
     () => ({
       cols,
       rows,
       total,
+      raw,
     }),
-    [cols, rows, total],
+    [cols, rows, total, raw],
   );
 
   return ctx;
