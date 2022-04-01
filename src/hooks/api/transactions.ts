@@ -36,7 +36,7 @@ export const useTransactionData = (
       {
         id: 'block_hash',
         label: echo('block_hash'),
-        type: 'number',
+        type: 'monospace',
         size: 2,
         linkOptions: {
           route: '/block',
