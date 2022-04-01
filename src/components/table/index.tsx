@@ -55,8 +55,6 @@ export const Table = ({
           orderDirection={orderDirection}
           orderDirectionSet={orderDirectionSet}
           filters={filters}
-          loading={loading}
-          error={error}
         />
       </Box>
       <Box>
