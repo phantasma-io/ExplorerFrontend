@@ -103,20 +103,12 @@ export const Header = ({ height }: HeaderProps) => {
         return routes['/address'](echoActiveId as Locales, {
           id: searchValue,
         });
-      case 'contract':
-        return routes['/contract'](echoActiveId as Locales, {
-          id: searchValue,
-        });
       case 'transaction':
         return routes['/transaction'](echoActiveId as Locales, {
           id: searchValue,
         });
       case 'block':
         return routes['/block'](echoActiveId as Locales, {
-          id: searchValue,
-        });
-      case 'dao':
-        return routes['/dao'](echoActiveId as Locales, {
           id: searchValue,
         });
       case 'token':
@@ -272,7 +264,7 @@ export const Header = ({ height }: HeaderProps) => {
         >
           <Grid container alignItems="center" spacing={1}>
             <Grid item>
-              <Box pt={1}>
+              <Box pt={0.4}>
                 <Image
                   src="/static/v1/img/soul.png"
                   height="1.2rem"
@@ -295,7 +287,7 @@ export const Header = ({ height }: HeaderProps) => {
         >
           <Grid container alignItems="center" spacing={1}>
             <Grid item>
-              <Box pt={0.6}>
+              <Box pt={0}>
                 <Image
                   src="/static/v1/img/kcal.png"
                   height="1.2rem"
