@@ -3,7 +3,7 @@ import { ListParams, ListResults } from './list';
 export interface Transaction {
   hash?: string;
   block_hash?: string;
-  blockHeight?: string;
+  block_height?: string;
   index?: number;
   date?: string;
 }

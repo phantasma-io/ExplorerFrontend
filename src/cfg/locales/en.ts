@@ -70,7 +70,7 @@ export const en: EchoMsgs = {
   'tab-series': 'Series',
   'tab-nfts': 'NFTs',
   // app
-  blockHeight: 'Block height',
+  block_height: 'Block height',
   height: 'Height',
   symbol: 'Symbol',
   prevHash: 'Previous Hash',

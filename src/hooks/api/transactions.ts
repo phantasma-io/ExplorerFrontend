@@ -45,8 +45,8 @@ export const useTransactionData = (
         },
       },
       {
-        id: 'blockHeight',
-        label: echo('blockHeight'),
+        id: 'block_height',
+        label: echo('block_height'),
         type: 'number',
         size: 2,
         showDesktop: true,
@@ -66,7 +66,7 @@ export const useTransactionData = (
       return data?.transactions?.map((item) => [
         item?.hash,
         item?.block_hash,
-        item?.blockHeight,
+        item?.block_height,
         item?.date ? unixmsToDate(item.date) : undefined,
       ]) as TableDisplayRow[];
     }
