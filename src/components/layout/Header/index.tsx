@@ -24,7 +24,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import CloseIcon from '@mui/icons-material/Close';
 import { routes } from 'cfg';
-import { Text, Image } from 'components/display';
+import { Text, Image, Link } from 'components/display';
 import { Locales } from 'types/locales';
 
 /**
@@ -103,20 +103,12 @@ export const Header = ({ height }: HeaderProps) => {
         return routes['/address'](echoActiveId as Locales, {
           id: searchValue,
         });
-      case 'contract':
-        return routes['/contract'](echoActiveId as Locales, {
-          id: searchValue,
-        });
       case 'transaction':
         return routes['/transaction'](echoActiveId as Locales, {
           id: searchValue,
         });
       case 'block':
         return routes['/block'](echoActiveId as Locales, {
-          id: searchValue,
-        });
-      case 'dao':
-        return routes['/dao'](echoActiveId as Locales, {
           id: searchValue,
         });
       case 'token':
@@ -144,10 +136,12 @@ export const Header = ({ height }: HeaderProps) => {
             <Grid item>
               <Box pt={0.5}>
                 <Tooltip title={echo('tooltip-nav-homepage')}>
-                  <Box>
+                  <Link
+                    href={routes['/'](echoActiveId as Locales)}
+                    title={echo('tooltip-nav-homepage')}
+                  >
                     <Box
                       display={{ xs: 'none', md: 'block' }}
-                      onClick={() => push(routes['/'](echoActiveId as Locales))}
                       style={{
                         cursor: 'pointer',
                       }}
@@ -161,7 +155,6 @@ export const Header = ({ height }: HeaderProps) => {
                     </Box>
                     <Box
                       display={{ xs: 'block', md: 'none' }}
-                      onClick={() => push(routes['/'](echoActiveId as Locales))}
                       style={{
                         cursor: 'pointer',
                       }}
@@ -173,7 +166,7 @@ export const Header = ({ height }: HeaderProps) => {
                         alt="Phantasma Team"
                       />
                     </Box>
-                  </Box>
+                  </Link>
                 </Tooltip>
               </Box>
             </Grid>
@@ -230,7 +223,7 @@ export const Header = ({ height }: HeaderProps) => {
                 </IconButton>
               </Tooltip>
             </Box>
-            <Box display="inline-block">
+            {/* <Box display="inline-block">
               <Tooltip title={echo('tooltip-locale')}>
                 <Button
                   size="small"
@@ -246,7 +239,7 @@ export const Header = ({ height }: HeaderProps) => {
                   {echoActiveId === 'fr' && 'Français'}
                 </Button>
               </Tooltip>
-            </Box>
+            </Box> */}
           </Box>
         </Grid>
       </Grid>
@@ -271,7 +264,7 @@ export const Header = ({ height }: HeaderProps) => {
         >
           <Grid container alignItems="center" spacing={1}>
             <Grid item>
-              <Box pt={1}>
+              <Box pt={0.4}>
                 <Image
                   src="/static/v1/img/soul.png"
                   height="1.2rem"
@@ -294,7 +287,7 @@ export const Header = ({ height }: HeaderProps) => {
         >
           <Grid container alignItems="center" spacing={1}>
             <Grid item>
-              <Box pt={0.6}>
+              <Box pt={0}>
                 <Image
                   src="/static/v1/img/kcal.png"
                   height="1.2rem"

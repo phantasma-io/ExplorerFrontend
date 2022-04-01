@@ -14,6 +14,8 @@ export const TableDisplay = ({
   withDetails,
   linkOptions,
   dialogOptions,
+  loading,
+  error,
 }: TableDisplayProps) => {
   return (
     <Box>
@@ -29,6 +31,8 @@ export const TableDisplay = ({
           withDetails={withDetails}
           linkOptions={linkOptions}
           dialogOptions={dialogOptions}
+          loading={loading}
+          error={error}
         />
       </Box>
       {/* mobile */}
@@ -38,6 +42,8 @@ export const TableDisplay = ({
           cols={cols}
           spacing={spacing}
           height={height}
+          loading={loading}
+          error={error}
         />
       </Box>
     </Box>

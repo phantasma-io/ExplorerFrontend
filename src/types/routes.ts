@@ -3,18 +3,14 @@ import { Locales } from 'types/locales';
 export type ExplorerRoutes =
   | '/'
   | '/nexus'
-  | '/chain'
   | '/address'
   | '/block'
-  | '/contract'
-  | '/dao'
   | '/token'
   | '/transaction';
 
 export type ExplorerTabs =
   | 'overview'
   | 'addresses'
-  | 'chains'
   | 'tokens'
   | 'nfts'
   | 'daos'
@@ -25,9 +21,7 @@ export type ExplorerTabs =
   | 'events'
   | 'oracles'
   | 'platforms'
-  | 'series'
-  | 'script'
-  | 'members';
+  | 'series';
 
 export type RouterParams = {
   id?: string;

@@ -23,23 +23,51 @@ export const useRenderDetails = () => {
       if (value) {
         switch (type) {
           case 'boolean':
-            return <DetailsBoolean value={value as boolean} label={label} />;
+            return (
+              <DetailsBoolean
+                value={value as boolean}
+                label={label}
+                height={inTable ? undefined : '30px'}
+              />
+            );
           case 'date':
             return inTable ? (
-              <DetailsDate value={value as Date} label={label} short />
+              <DetailsDate
+                value={value as Date}
+                label={label}
+                short
+                height={inTable ? undefined : '30px'}
+              />
             ) : (
-              <DetailsDate value={value as Date} label={label} />
+              <DetailsDate
+                value={value as Date}
+                label={label}
+                height={inTable ? undefined : '30px'}
+              />
             );
           case 'number':
-            return <DetailsNumber value={value as number} label={label} />;
+            return (
+              <DetailsNumber
+                value={value as number}
+                label={label}
+                height={inTable ? undefined : '30px'}
+              />
+            );
           case 'script':
-            return <DetailsScript value={value as string} label={label} />;
+            return (
+              <DetailsScript
+                value={value as string}
+                label={label}
+                height={inTable ? undefined : '30px'}
+              />
+            );
           case 'monospace':
             return (
               <DetailsMonospace
                 value={value as string}
                 label={label}
                 linkOptions={linkOptions}
+                height={inTable ? undefined : '30px'}
               />
             );
           case 'text':
@@ -49,6 +77,7 @@ export const useRenderDetails = () => {
                 value={value as string}
                 label={label}
                 linkOptions={linkOptions}
+                height={inTable ? undefined : '30px'}
               />
             );
         }

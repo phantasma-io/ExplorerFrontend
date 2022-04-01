@@ -1,26 +1,30 @@
-import { useMemo } from 'react';
+import { useMemo, useState, useEffect } from 'react';
 import { useEcho } from '@ricardo-jrm/echo';
 import { TableDisplayRow, TableDisplayCol } from 'types/table';
 import { DaoResults } from 'types/api';
 
-export const useDaoData = (data?: DaoResults) => {
+export const useDaoData = (data?: DaoResults, loading?: boolean) => {
   const { echo } = useEcho();
 
-  const cols = useMemo<TableDisplayCol[]>(() => {
-    if (data) {
-      return [
-        {
-          id: 'name',
-          label: echo('name'),
-          type: 'text',
-          size: 11,
-          showDesktop: true,
-        },
-      ];
-    }
+  const [total, totalSet] = useState<number>(0);
 
-    return [];
-  }, [echo, data]);
+  useEffect(() => {
+    if (data?.total_results && !loading) {
+      totalSet(data.total_results);
+    }
+  }, [data, loading]);
+
+  const cols = useMemo<TableDisplayCol[]>(() => {
+    return [
+      {
+        id: 'name',
+        label: echo('name'),
+        type: 'text',
+        size: 11,
+        showDesktop: true,
+      },
+    ];
+  }, [echo]);
 
   const rows = useMemo<TableDisplayRow[]>(() => {
     if (data) {
@@ -36,8 +40,9 @@ export const useDaoData = (data?: DaoResults) => {
     () => ({
       cols,
       rows,
+      total,
     }),
-    [cols, rows],
+    [cols, rows, total],
   );
 
   return ctx;

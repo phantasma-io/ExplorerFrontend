@@ -6,9 +6,15 @@ export interface DetailsDateProps {
   value: Date;
   label?: string;
   short?: boolean;
+  height?: string;
 }
 
-export const DetailsDate = ({ value, label, short }: DetailsDateProps) => {
+export const DetailsDate = ({
+  value,
+  label,
+  short,
+  height,
+}: DetailsDateProps) => {
   return (
     <Text
       formatDate={value}
@@ -17,6 +23,7 @@ export const DetailsDate = ({ value, label, short }: DetailsDateProps) => {
       variant="body2"
       label={label}
       spacing={1}
+      height={height}
     />
   );
 };

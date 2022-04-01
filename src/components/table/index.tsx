@@ -34,6 +34,8 @@ export const Table = ({
   spacing = TABLE_SPACING,
   linkOptions,
   dialogOptions,
+  loading,
+  error,
 }: TableProps) => {
   const strData = useMemo(() => JSON.stringify(raw), [raw]);
 
@@ -66,6 +68,8 @@ export const Table = ({
           spacing={spacing}
           linkOptions={linkOptions}
           dialogOptions={dialogOptions}
+          loading={loading}
+          error={error}
         />
       </Box>
     </Box>

@@ -8,23 +8,36 @@ import { useEventData } from 'hooks/api';
 import { EventResults } from 'types/api';
 import { Table } from 'components/table';
 
-export const EventsList = () => {
+export interface EventsListProps {
+  address?: string;
+  block?: string;
+  transaction?: string;
+}
+
+export const EventsList = ({
+  address,
+  block,
+  transaction,
+}: EventsListProps) => {
   const { echo } = useEcho();
 
   const tableProps = useTable();
-  const { limit, offset, with_total } = tableProps;
+  const { limit, offset, with_total, order_direction } = tableProps;
 
-  const { data } = useEmpathy<EventResults>(
+  const { data, loading, error } = useEmpathy<EventResults>(
     endpoints['/events']({
       offset,
       limit,
       order_by: 'date',
-      order_direction: 'desc',
+      order_direction,
       with_total,
+      address,
+      block_hash: block,
+      transaction_hash: transaction,
     }),
   );
 
-  const { cols, rows } = useEventData(data);
+  const { cols, rows, total } = useEventData(data, loading);
 
   return (
     <Box>
@@ -33,12 +46,14 @@ export const EventsList = () => {
         raw={data?.events || []}
         cols={cols}
         rows={rows}
-        total={data?.total_results || 0}
+        total={total}
         dialogOptions={{
           title: echo('details-event'),
         }}
         {...tableProps}
         filters={TABLE_FILTERS}
+        loading={loading}
+        error={error}
       />
     </Box>
   );

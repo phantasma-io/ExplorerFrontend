@@ -7,9 +7,14 @@ import CheckIcon from '@mui/icons-material/Check';
 export interface DetailsBooleanProps {
   value: boolean;
   label?: string;
+  height?: string;
 }
 
-export const DetailsBoolean = ({ value, label }: DetailsBooleanProps) => {
+export const DetailsBoolean = ({
+  value,
+  label,
+  height,
+}: DetailsBooleanProps) => {
   const { furyActive } = useFury();
   if (value) {
     return (
@@ -19,6 +24,7 @@ export const DetailsBoolean = ({ value, label }: DetailsBooleanProps) => {
         wordBreak="break-all"
         label={label}
         spacing={1}
+        height={height}
       >
         <Typography variant="body2" color="primary">
           <CheckIcon style={{ height: furyActive.typography.h6.fontSize }} />

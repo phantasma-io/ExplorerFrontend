@@ -1,8 +1,12 @@
-import React from 'react';
-import { Box } from '@mui/material';
+import React, { useMemo } from 'react';
+import { nanoid } from 'nanoid';
+import csvDownload from 'json-to-csv-export';
+import { useEcho } from '@ricardo-jrm/echo';
+import { Box, Grid, Button } from '@mui/material';
 import { useRenderOverview } from 'hooks/useRenderOverview';
 import { useBlockData } from 'hooks/api';
 import { BlockResults } from 'types/api';
+import { Error, Empty, Loading } from 'components/layout';
 
 export interface BlockOverviewProps {
   data?: BlockResults;
@@ -11,10 +15,51 @@ export interface BlockOverviewProps {
   error?: any;
 }
 
-export const BlockOverview = ({ data }: BlockOverviewProps) => {
+export const BlockOverview = ({ data, error, loading }: BlockOverviewProps) => {
+  const { echo } = useEcho();
+
   const renderOverview = useRenderOverview();
 
-  const { cols, rows } = useBlockData(data);
+  const { cols, rows, raw } = useBlockData(data);
 
-  return <Box p={1}>{data && renderOverview(cols, rows)}</Box>;
+  const content = useMemo(() => {
+    if (loading) {
+      return <Loading />;
+    }
+
+    if (error) {
+      return <Error />;
+    }
+
+    if (rows.length === 0 && !loading) {
+      return <Empty />;
+    }
+
+    return (
+      <Grid container>
+        <Grid item xs={12} lg={10}>
+          <Box>{data && renderOverview(cols, rows)}</Box>
+        </Grid>
+        <Grid item xs={12} lg={2}>
+          <Box textAlign="right" pt={{ xs: 1.5, lg: 0 }}>
+            <Button
+              variant="contained"
+              color="secondary"
+              onClick={() =>
+                csvDownload(
+                  [raw[0]],
+                  `PhantasmaExplorer-Block-${nanoid()}.csv`,
+                  ',',
+                )
+              }
+            >
+              {echo('table-exportCsv')}
+            </Button>
+          </Box>
+        </Grid>
+      </Grid>
+    );
+  }, [loading, error, rows, data, renderOverview, cols, echo, raw]);
+
+  return <Box p={1}>{content}</Box>;
 };

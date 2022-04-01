@@ -1,8 +1,9 @@
 import React, { useMemo } from 'react';
+import { Box } from '@mui/material';
 import { useRouter } from 'next/router';
 import { useEmpathy } from '@ricardo-jrm/empathy';
 import { useEcho } from '@ricardo-jrm/echo';
-import { NavTabs, NavTabsRecord } from 'components/layout';
+import { NavTabs, NavTabsRecord, Breadcrumbs } from 'components/layout';
 import { routes, endpoints } from 'cfg';
 import { AddressResults } from 'types/api';
 import { Locales } from 'types/locales';
@@ -10,6 +11,7 @@ import { ExplorerTabs } from 'types/routes';
 import { AddressOverview } from './overview';
 import { AddressBalances } from './balances';
 import { AddressTransactions } from './transactions';
+import { AddressEvents } from './events';
 
 export interface ViewAddressProps {
   tabForce?: ExplorerTabs;
@@ -24,9 +26,8 @@ export const ViewAddress = ({ tabForce = 'overview' }: ViewAddressProps) => {
     endpoints['/addresses']({
       address: (query?.id as string) || '',
       with_balance: 1,
-      with_stakes: 0,
+      with_stakes: 1,
       with_storage: 1,
-      with_transactions: 0,
     }),
   );
 
@@ -48,6 +49,12 @@ export const ViewAddress = ({ tabForce = 'overview' }: ViewAddressProps) => {
           <AddressBalances data={data} loading={loading} error={error} />
         ),
       },
+      events: {
+        id: 'events',
+        label: echo('tab-events'),
+        href: routes['/address'](echoActiveId as Locales),
+        component: <AddressEvents />,
+      },
       transactions: {
         id: 'transactions',
         label: echo('tab-transactions'),
@@ -58,5 +65,14 @@ export const ViewAddress = ({ tabForce = 'overview' }: ViewAddressProps) => {
     [echo, echoActiveId, data, error, loading],
   );
 
-  return <NavTabs tabs={tabs} tabsDefault={tabForce} />;
+  return (
+    <Box>
+      <Box>
+        <Breadcrumbs tab="addresses" label={echo('tab-addresses')} />
+      </Box>
+      <Box>
+        <NavTabs tabs={tabs} tabsDefault={tabForce} />
+      </Box>
+    </Box>
+  );
 };

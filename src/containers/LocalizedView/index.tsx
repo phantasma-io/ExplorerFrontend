@@ -11,9 +11,6 @@ import {
   ViewHome,
   ViewAddress,
   ViewBlock,
-  ViewChain,
-  ViewContract,
-  ViewDao,
   ViewNexus,
   ViewToken,
   ViewTransaction,
@@ -34,18 +31,12 @@ export const LocalizedView = ({ locale, route }: LocalizedViewProps) => {
 
   const title = useMemo(() => {
     switch (route) {
+      case '/nexus':
+        return `${echo('nexus')} | ${echo('meta-title')}`;
       case '/address':
         return `${echo('address')} | ${echo('meta-title')}`;
       case '/block':
         return `${echo('block')} | ${echo('meta-title')}`;
-      case '/chain':
-        return `${echo('chain')} | ${echo('meta-title')}`;
-      case '/contract':
-        return `${echo('contract')} | ${echo('meta-title')}`;
-      case '/dao':
-        return `${echo('dao')} | ${echo('meta-title')}`;
-      case '/nexus':
-        return `${echo('nexus')} | ${echo('meta-title')}`;
       case '/token':
         return `${echo('token')} | ${echo('meta-title')}`;
       case '/transaction':
@@ -58,18 +49,12 @@ export const LocalizedView = ({ locale, route }: LocalizedViewProps) => {
 
   const description = useMemo(() => {
     switch (route) {
+      case '/nexus':
+        return `${echo('meta-nexus')}`;
       case '/address':
         return `${echo('meta-address')}`;
       case '/block':
         return `${echo('meta-block')}`;
-      case '/chain':
-        return `${echo('meta-chain')}`;
-      case '/contract':
-        return `${echo('meta-contract')}`;
-      case '/dao':
-        return `${echo('meta-dao')}`;
-      case '/nexus':
-        return `${echo('meta-nexus')}`;
       case '/token':
         return `${echo('meta-token')}`;
       case '/transaction':
@@ -82,18 +67,12 @@ export const LocalizedView = ({ locale, route }: LocalizedViewProps) => {
 
   const children = useMemo(() => {
     switch (route) {
+      case '/nexus':
+        return <ViewNexus />;
       case '/address':
         return <ViewAddress />;
       case '/block':
         return <ViewBlock />;
-      case '/chain':
-        return <ViewChain />;
-      case '/contract':
-        return <ViewContract />;
-      case '/dao':
-        return <ViewDao />;
-      case '/nexus':
-        return <ViewNexus />;
       case '/token':
         return <ViewToken />;
       case '/transaction':
@@ -109,11 +88,14 @@ export const LocalizedView = ({ locale, route }: LocalizedViewProps) => {
       <Box>
         <MetaDynamic title={title} description={description} />
         {route !== '/' && (
-          <Box pt={{ xs: 3, lg: 6 }} pb={3}>
+          <Box
+            pt={{ xs: 3, lg: 6 }}
+            pb={{ xs: 3, lg: route === '/nexus' ? 3 : 0.5 }}
+          >
             <Text
-              variant="h3"
+              variant={route === '/nexus' ? 'h1' : 'h4'}
               sx={{ color: '#fff' }}
-              value={echo(`title-${query?.view as string}`)}
+              value={echo(`details-${query?.view as string}`)}
             />
           </Box>
         )}

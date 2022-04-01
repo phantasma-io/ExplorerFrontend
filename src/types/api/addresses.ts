@@ -26,7 +26,6 @@ export interface AddressParams
   with_storage: WithOption;
   with_stakes: WithOption;
   with_balance: WithOption;
-  with_transactions: WithOption;
 }
 
 export interface AddressResults extends ListResults {

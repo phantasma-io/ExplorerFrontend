@@ -1,51 +1,89 @@
-import { useMemo } from 'react';
+import { useMemo, useState, useEffect } from 'react';
 import { useEcho } from '@ricardo-jrm/echo';
 import { TableDisplayRow, TableDisplayCol } from 'types/table';
 import { TransactionResults } from 'types/api';
+import { unixmsToDate } from 'scripts';
 
-export const useTransactionData = (data?: TransactionResults) => {
+export const useTransactionData = (
+  data?: TransactionResults,
+  loading?: boolean,
+) => {
   const { echo } = useEcho();
 
-  const cols = useMemo<TableDisplayCol[]>(() => {
-    if (data) {
-      return [
-        {
-          id: 'hash',
-          label: echo('hash'),
-          type: 'monospace',
-          size: 8,
-          showDesktop: true,
-        },
-        {
-          id: 'blockHeight',
-          label: echo('blockHeight'),
-          type: 'number',
-          size: 3,
-          showDesktop: true,
-        },
-      ];
-    }
+  const [total, totalSet] = useState<number>(0);
 
-    return [];
-  }, [echo, data]);
+  useEffect(() => {
+    if (data?.total_results && !loading) {
+      totalSet(data.total_results);
+    }
+  }, [data, loading]);
+
+  const cols = useMemo<TableDisplayCol[]>(() => {
+    return [
+      {
+        id: 'hash',
+        label: echo('hash'),
+        type: 'monospace',
+        size: 7,
+        showDesktop: true,
+        linkOptions: {
+          route: '/transaction',
+          key: 'hash',
+          title: echo('explore-transaction'),
+          primary: true,
+        },
+      },
+      {
+        id: 'block_hash',
+        label: echo('block_hash'),
+        type: 'number',
+        size: 2,
+        linkOptions: {
+          route: '/block',
+          key: 'block_hash',
+          title: echo('explore-block'),
+        },
+      },
+      {
+        id: 'blockHeight',
+        label: echo('blockHeight'),
+        type: 'number',
+        size: 2,
+        showDesktop: true,
+      },
+      {
+        id: 'date',
+        label: echo('date'),
+        type: 'date',
+        size: 2,
+        showDesktop: true,
+      },
+    ];
+  }, [echo]);
 
   const rows = useMemo<TableDisplayRow[]>(() => {
     if (data) {
       return data?.transactions?.map((item) => [
         item?.hash,
+        item?.block_hash,
         item?.blockHeight,
+        item?.date ? unixmsToDate(item.date) : undefined,
       ]) as TableDisplayRow[];
     }
 
     return [];
   }, [data]);
 
+  const raw = useMemo(() => data?.transactions || [], [data]);
+
   const ctx = useMemo(
     () => ({
       cols,
       rows,
+      total,
+      raw,
     }),
-    [cols, rows],
+    [cols, rows, total, raw],
   );
 
   return ctx;

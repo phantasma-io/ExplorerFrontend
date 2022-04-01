@@ -1,63 +1,68 @@
-import { useMemo } from 'react';
+import { useMemo, useState, useEffect } from 'react';
 import { useEcho } from '@ricardo-jrm/echo';
 import { TableDisplayRow, TableDisplayCol } from 'types/table';
 import { AddressResults } from 'types/api';
 
-export const useAddressData = (data?: AddressResults) => {
+export const useAddressData = (data?: AddressResults, loading?: boolean) => {
   const { echo } = useEcho();
 
-  const cols = useMemo<TableDisplayCol[]>(() => {
-    if (data) {
-      return [
-        {
-          id: 'address',
-          label: echo('address'),
-          type: 'monospace',
-          size: 8,
-          showDesktop: true,
-          linkOptions: {
-            route: '/address',
-            key: 'address',
-            title: echo('explore-address'),
-            primary: true,
-          },
-        },
-        {
-          id: 'name',
-          label: echo('name'),
-          type: 'text',
-          size: 3,
-          showDesktop: true,
-        },
-        {
-          id: 'stake',
-          label: echo('stake'),
-          type: 'number',
-          size: 10,
-        },
-        {
-          id: 'unclaimed',
-          label: echo('unclaimed'),
-          type: 'number',
-          size: 10,
-        },
-        {
-          id: 'storage-available',
-          label: echo('storage-available'),
-          type: 'number',
-          size: 10,
-        },
-        {
-          id: 'storage-used',
-          label: echo('used'),
-          type: 'number',
-          size: 10,
-        },
-      ];
-    }
+  const [total, totalSet] = useState<number>(0);
 
-    return [];
-  }, [echo, data]);
+  useEffect(() => {
+    if (data?.total_results && !loading) {
+      totalSet(data.total_results);
+    }
+  }, [data, loading]);
+
+  const cols = useMemo<TableDisplayCol[]>(() => {
+    return [
+      {
+        id: 'address',
+        label: echo('address'),
+        type: 'monospace',
+        size: 6,
+        showDesktop: true,
+        linkOptions: {
+          route: '/address',
+          key: 'address',
+          title: echo('explore-address'),
+          primary: true,
+        },
+      },
+      {
+        id: 'name',
+        label: echo('name'),
+        type: 'text',
+        size: 2,
+        showDesktop: true,
+      },
+      {
+        id: 'stake',
+        label: echo('stake'),
+        type: 'number',
+        size: 10,
+      },
+      {
+        id: 'unclaimed',
+        label: echo('unclaimed'),
+        type: 'number',
+        size: 10,
+      },
+      {
+        id: 'storage',
+        label: echo('storage'),
+        type: 'number',
+        size: 3,
+        showDesktop: true,
+      },
+      {
+        id: 'storage-used',
+        label: echo('used'),
+        type: 'number',
+        size: 10,
+      },
+    ];
+  }, [echo]);
 
   const rows = useMemo<TableDisplayRow[]>(() => {
     if (data) {
@@ -74,12 +79,16 @@ export const useAddressData = (data?: AddressResults) => {
     return [];
   }, [data]);
 
+  const raw = useMemo(() => data?.addresses || [], [data]);
+
   const ctx = useMemo(
     () => ({
       cols,
       rows,
+      total,
+      raw,
     }),
-    [cols, rows],
+    [cols, rows, total, raw],
   );
 
   return ctx;

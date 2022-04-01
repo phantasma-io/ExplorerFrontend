@@ -1,13 +1,12 @@
 import { ListParams, ListResults } from './list';
-import { Address } from './addresses';
 
 export interface Dao {
   name?: string;
-  addresses?: Address[];
 }
 
 export interface DaoParams extends ListParams {
-  name?: string;
+  organization_name?: string;
+  organization_name_partial?: string;
 }
 
 export interface DaoResults extends ListResults {

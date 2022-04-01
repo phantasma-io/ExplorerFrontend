@@ -1,24 +1,18 @@
 import { objToQuery } from 'scripts/objQuery';
 import { localesKeys } from 'cfg/locales';
-import { ExplorerRouter } from 'types/routes';
+import { ExplorerRouter, RouterParams } from 'types/routes';
+
+const parseParams = (params: RouterParams | undefined) =>
+  params ? objToQuery(params) : '';
 
 export const routes: ExplorerRouter = {
   '/': (locale) => `/${locale}`,
-  '/nexus': (locale) => `/${locale}/nexus`,
-  '/chain': (locale, params) =>
-    `/${locale}/chain${params ? objToQuery(params) : ''}`,
-  '/address': (locale, params) =>
-    `/${locale}/address${params ? objToQuery(params) : ''}`,
-  '/block': (locale, params) =>
-    `/${locale}/block${params ? objToQuery(params) : ''}`,
-  '/contract': (locale, params) =>
-    `/${locale}/contract${params ? objToQuery(params) : ''}`,
-  '/dao': (locale, params) =>
-    `/${locale}/dao${params ? objToQuery(params) : ''}`,
-  '/token': (locale, params) =>
-    `/${locale}/token${params ? objToQuery(params) : ''}`,
+  '/nexus': (locale, params) => `/${locale}/nexus${parseParams(params)}`,
+  '/address': (locale, params) => `/${locale}/address${parseParams(params)}`,
+  '/block': (locale, params) => `/${locale}/block${parseParams(params)}`,
+  '/token': (locale, params) => `/${locale}/token${parseParams(params)}`,
   '/transaction': (locale, params) =>
-    `/${locale}/transaction${params ? objToQuery(params) : ''}`,
+    `/${locale}/transaction${parseParams(params)}`,
 };
 
 export const routesKeys = Object.keys(routes);

@@ -8,7 +8,12 @@ import { TransactionResults } from 'types/api';
 import { Table } from 'components/table';
 import { useTransactionData } from 'hooks/api';
 
-export const TransactionsList = () => {
+export interface TransactionsListProps {
+  address?: string;
+  block?: string;
+}
+
+export const TransactionsList = ({ address, block }: TransactionsListProps) => {
   const { echo } = useEcho();
 
   const tableProps = useTable();
@@ -25,17 +30,19 @@ export const TransactionsList = () => {
     orderDirectionSet('desc');
   });
 
-  const { data } = useEmpathy<TransactionResults>(
+  const { data, loading, error } = useEmpathy<TransactionResults>(
     endpoints['/transactions']({
       offset,
       limit,
       order_by,
       order_direction,
       with_total,
+      address,
+      block_hash: block,
     }),
   );
 
-  const { cols, rows } = useTransactionData(data);
+  const { cols, rows, total } = useTransactionData(data, loading);
 
   return (
     <Box>
@@ -44,12 +51,19 @@ export const TransactionsList = () => {
         raw={data?.transactions || []}
         cols={cols}
         rows={rows}
-        total={data?.total_results || 0}
+        total={total}
         dialogOptions={{
           title: echo('details-transaction'),
         }}
+        linkOptions={{
+          route: '/transaction',
+          key: 'hash',
+          title: echo('explore-transaction'),
+        }}
         {...tableProps}
         filters={TABLE_FILTERS}
+        loading={loading}
+        error={error}
       />
     </Box>
   );

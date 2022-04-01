@@ -12,19 +12,19 @@ export const NftsList = () => {
   const { echo } = useEcho();
 
   const tableProps = useTable();
-  const { limit, order_by, offset, with_total } = tableProps;
+  const { limit, order_by, offset, with_total, order_direction } = tableProps;
 
-  const { data } = useEmpathy<NftResults>(
+  const { data, loading, error } = useEmpathy<NftResults>(
     endpoints['/nfts']({
       offset,
       limit,
       order_by,
-      order_direction: 'desc',
+      order_direction,
       with_total,
     }),
   );
 
-  const { cols, rows } = useNftData(data);
+  const { cols, rows, total } = useNftData(data, loading);
 
   return (
     <Box>
@@ -33,12 +33,14 @@ export const NftsList = () => {
         raw={data?.nfts || []}
         cols={cols}
         rows={rows}
-        total={data?.total_results || 0}
+        total={total}
         dialogOptions={{
           title: echo('details-nft'),
         }}
         {...tableProps}
         filters={TABLE_FILTERS}
+        loading={loading}
+        error={error}
       />
     </Box>
   );

@@ -69,7 +69,7 @@ export const TableRow = ({
       }}
       onClick={shouldOpenDialog}
     >
-      <Grid container spacing={spacing}>
+      <Grid container spacing={spacing} alignItems="center">
         {/* cols */}
         {row.map((cell: DetailsValue, idx) => {
           if (cols[idx].showDesktop) {

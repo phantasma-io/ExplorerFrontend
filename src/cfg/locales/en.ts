@@ -96,6 +96,7 @@ export const en: EchoMsgs = {
   stake: 'Stake',
   unclaimed: 'Unclaimed',
   // details
+  'details-nexus': 'Welcome to the Nexus',
   'details-address': 'Address details',
   'details-block': 'Block details',
   'details-contract': 'Contract details',
@@ -127,11 +128,13 @@ export const en: EchoMsgs = {
   royalties: 'Royalties',
   creator: 'Creator',
   //
+  storage: 'Storage',
   'storage-available': 'Available in storage',
   used: 'Used',
   // api
   event_kind: 'Event kind',
   transaction_hash: 'Transaction hash',
+  block_hash: 'Block hash',
   address_name: 'Address name',
   current_supply: 'Current supply',
   max_supply: 'Max supply',
@@ -153,4 +156,15 @@ export const en: EchoMsgs = {
   'table-exportCsv': 'Export CSV',
   'table-openFilters': 'Filter data',
   'table-results': 'Results',
+  //
+  error: 'Error',
+  loading: 'Loading...',
+  'no-results': 'No Results',
+  series_name: 'Series name',
+  series_desc: 'Series description',
+  series_creator: 'Series creator',
+  mint_date: 'Mint date',
+  mint_number: 'Mint #',
+  ram: 'RAM',
+  rom: 'ROM',
 };

@@ -25,7 +25,7 @@ export const BlocksList = () => {
     orderDirectionSet('desc');
   });
 
-  const { data } = useEmpathy<BlockResults>(
+  const { data, loading, error } = useEmpathy<BlockResults>(
     endpoints['/blocks']({
       offset,
       limit,
@@ -35,7 +35,7 @@ export const BlocksList = () => {
     }),
   );
 
-  const { cols, rows } = useBlockData(data);
+  const { cols, rows, total } = useBlockData(data, loading);
 
   return (
     <Box>
@@ -44,7 +44,7 @@ export const BlocksList = () => {
         raw={data?.blocks || []}
         cols={cols}
         rows={rows}
-        total={data?.total_results || 0}
+        total={total}
         dialogOptions={{
           title: echo('details-block'),
         }}
@@ -55,6 +55,8 @@ export const BlocksList = () => {
         }}
         {...tableProps}
         filters={TABLE_FILTERS}
+        loading={loading}
+        error={error}
       />
     </Box>
   );
