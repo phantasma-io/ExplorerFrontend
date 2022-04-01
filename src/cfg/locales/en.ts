@@ -160,4 +160,11 @@ export const en: EchoMsgs = {
   error: 'Error',
   loading: 'Loading...',
   'no-results': 'No Results',
+  series_name: 'Series name',
+  series_desc: 'Series description',
+  series_creator: 'Series creator',
+  mint_date: 'Mint date',
+  mint_number: 'Mint #',
+  ram: 'RAM',
+  rom: 'ROM',
 };

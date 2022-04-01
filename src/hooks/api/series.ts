@@ -20,7 +20,7 @@ export const useSeriesData = (data?: SeriesResults, loading?: boolean) => {
         id: 'name',
         label: echo('name'),
         type: 'text',
-        size: 5,
+        size: 4,
         showDesktop: true,
       },
       {
@@ -28,14 +28,12 @@ export const useSeriesData = (data?: SeriesResults, loading?: boolean) => {
         label: echo('current_supply'),
         type: 'number',
         size: 3,
-        showDesktop: true,
       },
       {
         id: 'max_supply',
         label: echo('max_supply'),
         type: 'number',
         size: 3,
-        showDesktop: true,
       },
       {
         id: 'description',
@@ -47,7 +45,7 @@ export const useSeriesData = (data?: SeriesResults, loading?: boolean) => {
         id: 'creator',
         label: echo('creator'),
         type: 'monospace',
-        size: 5,
+        size: 1,
       },
       {
         id: 'image',
@@ -65,7 +63,8 @@ export const useSeriesData = (data?: SeriesResults, loading?: boolean) => {
         id: 'type',
         label: echo('type'),
         type: 'text',
-        size: 5,
+        size: 1,
+        showDesktop: true,
       },
       {
         id: 'royalties',
@@ -83,7 +82,8 @@ export const useSeriesData = (data?: SeriesResults, loading?: boolean) => {
         id: 'attrValue1',
         label: echo('attrValue1'),
         type: 'text',
-        size: 5,
+        size: 2,
+        showDesktop: true,
       },
       {
         id: 'attrType2',
@@ -95,7 +95,8 @@ export const useSeriesData = (data?: SeriesResults, loading?: boolean) => {
         id: 'attrValue2',
         label: echo('attrValue2'),
         type: 'text',
-        size: 5,
+        size: 2,
+        showDesktop: true,
       },
       {
         id: 'attrType3',
@@ -107,7 +108,8 @@ export const useSeriesData = (data?: SeriesResults, loading?: boolean) => {
         id: 'attrValue3',
         label: echo('attrValue3'),
         type: 'text',
-        size: 5,
+        size: 2,
+        showDesktop: true,
       },
     ];
   }, [echo]);
