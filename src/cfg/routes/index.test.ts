@@ -9,10 +9,6 @@ describe('test en router', () => {
     expect(routes['/nexus']('en')).toBe('/en/nexus');
   });
 
-  it('should return "/en/chain"', () => {
-    expect(routes['/chain']('en')).toBe('/en/chain');
-  });
-
   it('should return "/en/address?id=S3d7TbZxtNPdXy11hfmBLJLYn67gZTG2ibL7fJBcVdihWU4"', () => {
     expect(
       routes['/address']('en', {
@@ -29,24 +25,6 @@ describe('test en router', () => {
     ).toBe(
       '/en/block?id=9AD4C0C9602FBA780496D0569DDEF9FD64BA7FC6B1FB13CC35AD5CD6FA1C72C0',
     );
-  });
-
-  it('should return "/en/contract?id=account&tab=overview"', () => {
-    expect(
-      routes['/contract']('en', {
-        id: 'account',
-        tab: 'overview',
-      }),
-    ).toBe('/en/contract?id=account&tab=overview');
-  });
-
-  it('should return "/en/dao?id=masters&tab=overview"', () => {
-    expect(
-      routes['/dao']('en', {
-        id: 'masters',
-        tab: 'overview',
-      }),
-    ).toBe('/en/dao?id=masters&tab=overview');
   });
 
   it('should return "/en/token?id=soul&tab=overview"', () => {
@@ -78,10 +56,6 @@ describe('test pt router', () => {
     expect(routes['/nexus']('pt')).toBe('/pt/nexus');
   });
 
-  it('should return "/pt/chain"', () => {
-    expect(routes['/chain']('pt')).toBe('/pt/chain');
-  });
-
   it('should return "/pt/address?id=S3d7TbZxtNPdXy11hfmBLJLYn67gZTG2ibL7fJBcVdihWU4"', () => {
     expect(
       routes['/address']('pt', {
@@ -98,24 +72,6 @@ describe('test pt router', () => {
     ).toBe(
       '/pt/block?id=9AD4C0C9602FBA780496D0569DDEF9FD64BA7FC6B1FB13CC35AD5CD6FA1C72C0',
     );
-  });
-
-  it('should return "/pt/contract?id=account&tab=overview"', () => {
-    expect(
-      routes['/contract']('pt', {
-        id: 'account',
-        tab: 'overview',
-      }),
-    ).toBe('/pt/contract?id=account&tab=overview');
-  });
-
-  it('should return "/pt/dao?id=masters&tab=overview"', () => {
-    expect(
-      routes['/dao']('pt', {
-        id: 'masters',
-        tab: 'overview',
-      }),
-    ).toBe('/pt/dao?id=masters&tab=overview');
   });
 
   it('should return "/pt/token?id=soul&tab=overview"', () => {
@@ -147,10 +103,6 @@ describe('test de router', () => {
     expect(routes['/nexus']('de')).toBe('/de/nexus');
   });
 
-  it('should return "/de/chain"', () => {
-    expect(routes['/chain']('de')).toBe('/de/chain');
-  });
-
   it('should return "/de/address?id=S3d7TbZxtNPdXy11hfmBLJLYn67gZTG2ibL7fJBcVdihWU4"', () => {
     expect(
       routes['/address']('de', {
@@ -167,24 +119,6 @@ describe('test de router', () => {
     ).toBe(
       '/de/block?id=9AD4C0C9602FBA780496D0569DDEF9FD64BA7FC6B1FB13CC35AD5CD6FA1C72C0',
     );
-  });
-
-  it('should return "/de/contract?id=account&tab=overview"', () => {
-    expect(
-      routes['/contract']('de', {
-        id: 'account',
-        tab: 'overview',
-      }),
-    ).toBe('/de/contract?id=account&tab=overview');
-  });
-
-  it('should return "/de/dao?id=masters&tab=overview"', () => {
-    expect(
-      routes['/dao']('de', {
-        id: 'masters',
-        tab: 'overview',
-      }),
-    ).toBe('/de/dao?id=masters&tab=overview');
   });
 
   it('should return "/de/token?id=soul&tab=overview"', () => {
@@ -216,10 +150,6 @@ describe('test fr router', () => {
     expect(routes['/nexus']('fr')).toBe('/fr/nexus');
   });
 
-  it('should return "/fr/chain"', () => {
-    expect(routes['/chain']('fr')).toBe('/fr/chain');
-  });
-
   it('should return "/fr/address?id=S3d7TbZxtNPdXy11hfmBLJLYn67gZTG2ibL7fJBcVdihWU4"', () => {
     expect(
       routes['/address']('fr', {
@@ -236,24 +166,6 @@ describe('test fr router', () => {
     ).toBe(
       '/fr/block?id=9AD4C0C9602FBA780496D0569DDEF9FD64BA7FC6B1FB13CC35AD5CD6FA1C72C0',
     );
-  });
-
-  it('should return "/fr/contract?id=account&tab=overview"', () => {
-    expect(
-      routes['/contract']('fr', {
-        id: 'account',
-        tab: 'overview',
-      }),
-    ).toBe('/fr/contract?id=account&tab=overview');
-  });
-
-  it('should return "/fr/dao?id=masters&tab=overview"', () => {
-    expect(
-      routes['/dao']('fr', {
-        id: 'masters',
-        tab: 'overview',
-      }),
-    ).toBe('/fr/dao?id=masters&tab=overview');
   });
 
   it('should return "/fr/token?id=soul&tab=overview"', () => {
