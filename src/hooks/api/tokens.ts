@@ -33,14 +33,7 @@ export const useTokenData = (data?: TokenResults, loading?: boolean) => {
         id: 'current_supply',
         label: echo('currentSupply'),
         type: 'number',
-        size: 4,
-        showDesktop: true,
-      },
-      {
-        id: 'max_supply',
-        label: echo('maxSupply'),
-        type: 'number',
-        size: 4,
+        size: 3,
         showDesktop: true,
       },
       {
@@ -48,6 +41,14 @@ export const useTokenData = (data?: TokenResults, loading?: boolean) => {
         label: echo('burnedSupply'),
         type: 'number',
         size: 3,
+        showDesktop: true,
+      },
+      {
+        id: 'max_supply',
+        label: echo('maxSupply'),
+        type: 'number',
+        size: 3,
+        showDesktop: true,
       },
       {
         id: 'decimals',
@@ -60,7 +61,6 @@ export const useTokenData = (data?: TokenResults, loading?: boolean) => {
         label: echo('fungible'),
         type: 'boolean',
         size: 1,
-        showDesktop: true,
       },
       {
         id: 'transferable',
@@ -124,8 +124,8 @@ export const useTokenData = (data?: TokenResults, loading?: boolean) => {
       return data?.tokens?.map((item) => [
         item?.symbol,
         item?.current_supply,
-        item?.max_supply,
         item?.burned_supply,
+        item?.max_supply,
         item?.decimals,
         item?.fungible,
         item?.transferable,

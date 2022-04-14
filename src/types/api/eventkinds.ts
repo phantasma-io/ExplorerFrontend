@@ -1,7 +1,46 @@
 import { ListParams, ListResults } from './list';
 
+export type EventKinds =
+  | 'AddressMigration'
+  | 'AddressRegister'
+  | 'AddressUnregister'
+  | 'ChainSwap'
+  | 'ContractDeploy'
+  | 'ContractUpgrade'
+  | 'Crowdsale'
+  | 'CrownRewards'
+  | 'Custom'
+  | 'FileCreate'
+  | 'FileDelete'
+  | 'GasEscrow'
+  | 'GasPayment'
+  | 'Inflation'
+  | 'Infusion'
+  | 'Log'
+  | 'OrderBid'
+  | 'OrderCancelled'
+  | 'OrderCreated'
+  | 'OrderFilled'
+  | 'OrganizationAdd'
+  | 'OrganizationCreate'
+  | 'OrganizationRemove'
+  | 'OwnerAdded'
+  | 'OwnerRemoved'
+  | 'PlatformCreate'
+  | 'TokenBurn'
+  | 'TokenClaim'
+  | 'TokenCreate'
+  | 'TokenMint'
+  | 'TokenReceive'
+  | 'TokenSend'
+  | 'TokenStake'
+  | 'ValidatorElect'
+  | 'ValidatorRemove'
+  | 'ValueCreate'
+  | 'ValueUpdate';
+
 export interface EventKind {
-  kind?: string;
+  kind?: EventKinds;
 }
 
 export interface EventKindParams extends ListParams {
