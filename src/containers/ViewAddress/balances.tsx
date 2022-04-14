@@ -48,7 +48,23 @@ export const AddressBalances = ({
                 <Text
                   variant="body2"
                   label={item?.token?.symbol}
-                  formatNumber={parseInt(item.amount, 10)}
+                  formatNumber={(() => {
+                    const result =
+                      parseInt(item.amount, 10) /
+                      10 ** (item?.token?.decimals || 0);
+                    return result;
+                  })()}
+                  formatNumberStr={(() => {
+                    let formatStr = '0,0';
+                    if (item?.token?.decimals) {
+                      const decimals = `${10 ** (item?.token?.decimals || 0)}`;
+                      formatStr = `${formatStr}.${decimals.substring(
+                        1,
+                        (item?.token?.decimals as number) + 1,
+                      )}`;
+                    }
+                    return formatStr;
+                  })()}
                   spacing={1}
                   linkOptions={{
                     link: routes['/token'](echoActiveId as Locales, {

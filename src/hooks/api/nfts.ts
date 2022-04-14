@@ -38,17 +38,24 @@ export const useNftData = (data?: NftResults, loading?: boolean) => {
         size: 2,
       },
       {
+        id: 'contract',
+        label: echo('contract'),
+        type: 'text',
+        size: 2,
+        showDesktop: true,
+      },
+      {
         id: 'mint_number',
         label: echo('mint_number'),
         type: 'number',
-        size: 1,
+        size: 2,
         showDesktop: true,
       },
       {
         id: 'mint_date',
         label: echo('mint_date'),
         type: 'date',
-        size: 3,
+        size: 2,
         showDesktop: true,
       },
       {
@@ -81,12 +88,11 @@ export const useNftData = (data?: NftResults, loading?: boolean) => {
         label: echo('creator_address'),
         type: 'monospace',
         size: 3,
-      },
-      {
-        id: 'contract',
-        label: echo('contract'),
-        type: 'text',
-        size: 2,
+        linkOptions: {
+          route: '/address',
+          key: 'address',
+          title: echo('explore-address'),
+        },
       },
       {
         id: 'chain',
@@ -102,18 +108,6 @@ export const useNftData = (data?: NftResults, loading?: boolean) => {
         size: 3,
       },
       {
-        id: 'current_supply',
-        label: echo('current_supply'),
-        type: 'number',
-        size: 3,
-      },
-      {
-        id: 'max_supply',
-        label: echo('max_supply'),
-        type: 'number',
-        size: 3,
-      },
-      {
         id: 'series_desc',
         label: echo('series_desc'),
         type: 'text',
@@ -124,6 +118,23 @@ export const useNftData = (data?: NftResults, loading?: boolean) => {
         label: echo('series_creator'),
         type: 'monospace',
         size: 1,
+        linkOptions: {
+          route: '/address',
+          key: 'address',
+          title: echo('explore-address'),
+        },
+      },
+      {
+        id: 'current_supply',
+        label: echo('current_supply'),
+        type: 'number',
+        size: 3,
+      },
+      {
+        id: 'max_supply',
+        label: echo('max_supply'),
+        type: 'number',
+        size: 3,
       },
       {
         id: 'image',
@@ -142,14 +153,12 @@ export const useNftData = (data?: NftResults, loading?: boolean) => {
         label: echo('type'),
         type: 'text',
         size: 1,
-        showDesktop: true,
       },
       {
         id: 'royalties',
         label: echo('royalties'),
         type: 'text',
         size: 1,
-        showDesktop: true,
       },
       {
         id: 'attr_type_1',
@@ -197,6 +206,7 @@ export const useNftData = (data?: NftResults, loading?: boolean) => {
         item?.nft_metadata?.name,
         item?.nft_metadata?.description,
         item?.nft_metadata?.image,
+        item?.contract?.name,
         item?.nft_metadata?.mint_number,
         item?.nft_metadata?.mint_date
           ? unixmsToDate(item?.nft_metadata?.mint_date)
@@ -207,14 +217,13 @@ export const useNftData = (data?: NftResults, loading?: boolean) => {
         item?.symbol,
         item?.creator_onchain_name,
         item?.creator_address,
-        item?.contract?.name,
         item?.chain,
         // series
         item?.series?.name,
-        item?.series?.current_supply,
-        item?.series?.max_supply,
         item?.series?.description,
         item?.series?.creator,
+        item?.series?.current_supply,
+        item?.series?.max_supply,
         item?.series?.image,
         item?.series?.mode_name,
         item?.series?.type,
