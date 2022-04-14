@@ -15,6 +15,8 @@ export interface BlockParams extends ListParams {
   hash_partial?: string;
   height?: string;
   with_fiat?: WithOption;
+  with_events?: WithOption;
+  with_event_data?: WithOption;
 }
 
 export interface BlockResults extends ListResults {

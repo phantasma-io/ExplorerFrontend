@@ -52,14 +52,14 @@ export const useNftData = (data?: NftResults, loading?: boolean) => {
         showDesktop: true,
       },
       {
-        id: 'ram',
-        label: echo('ram'),
+        id: 'rom',
+        label: echo('rom'),
         type: 'script',
         size: 2,
       },
       {
-        id: 'rom',
-        label: echo('rom'),
+        id: 'ram',
+        label: echo('ram'),
         type: 'script',
         size: 2,
       },
@@ -201,8 +201,8 @@ export const useNftData = (data?: NftResults, loading?: boolean) => {
         item?.nft_metadata?.mint_date
           ? unixmsToDate(item?.nft_metadata?.mint_date)
           : undefined,
-        item?.nft_metadata?.ram,
         item?.nft_metadata?.rom,
+        item?.nft_metadata?.ram,
         // root
         item?.symbol,
         item?.creator_onchain_name,

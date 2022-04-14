@@ -31,9 +31,12 @@ export const EventsList = ({
       order_by: 'date',
       order_direction,
       with_total,
+      chain: 'main',
       address,
       block_hash: block,
       transaction_hash: transaction,
+      with_event_data: 1,
+      with_fiat: 1,
     }),
   );
 
