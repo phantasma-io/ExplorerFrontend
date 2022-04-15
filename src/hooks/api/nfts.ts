@@ -17,6 +17,13 @@ export const useNftData = (data?: NftResults, loading?: boolean) => {
 
   const cols = useMemo<TableDisplayCol[]>(() => {
     return [
+      // thumb
+      {
+        id: 'thumbnail',
+        label: echo('image'),
+        type: 'thumbnail',
+        size: 2,
+      },
       // metadata
       {
         id: 'name',
@@ -202,6 +209,7 @@ export const useNftData = (data?: NftResults, loading?: boolean) => {
   const rows = useMemo<TableDisplayRow[]>(() => {
     if (data) {
       return data?.nfts?.map((item) => [
+        item?.nft_metadata?.image,
         // metadata
         item?.nft_metadata?.name,
         item?.nft_metadata?.description,

@@ -16,6 +16,13 @@ export const useSeriesData = (data?: SeriesResults, loading?: boolean) => {
 
   const cols = useMemo<TableDisplayCol[]>(() => {
     return [
+      // thumb
+      {
+        id: 'thumbnail',
+        label: echo('image'),
+        type: 'thumbnail',
+        size: 2,
+      },
       {
         id: 'name',
         label: echo('name'),
@@ -117,6 +124,7 @@ export const useSeriesData = (data?: SeriesResults, loading?: boolean) => {
   const rows = useMemo<TableDisplayRow[]>(() => {
     if (data) {
       return data?.series?.map((item) => [
+        item?.image,
         item?.name,
         item?.current_supply,
         item?.max_supply,

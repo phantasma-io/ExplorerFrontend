@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Grid } from '@mui/material';
+import { Box } from '@mui/material';
 import { useFury } from '@ricardo-jrm/fury';
 import { Image, Link } from 'components/display';
 
@@ -15,7 +15,7 @@ export const DetailsThumbnail = ({ thumb, link }: DetailsThumbnailProps) => {
       <Box>
         <Link href={link || thumb} external>
           <Box
-            p={0.45}
+            p={0.33}
             display="inline-block"
             sx={{
               backgroundColor: furyActive.palette.text.secondary,

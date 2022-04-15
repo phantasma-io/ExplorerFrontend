@@ -17,6 +17,7 @@ export interface DetailsItem {
     | 'date'
     | 'boolean'
     | 'monospace'
+    | 'thumbnail'
     | 'script';
   linkOptions?: DetailsLinkOptions;
 }
