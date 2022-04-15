@@ -7,3 +7,5 @@ export { createEmotionCache } from './createEmotionCache';
 export { unixmsToDate } from './unixDate';
 
 export { parseIpfs } from './parseIpfs';
+
+export { parseDecimals } from './parseDecimals';

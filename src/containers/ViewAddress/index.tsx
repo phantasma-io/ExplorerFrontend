@@ -9,7 +9,6 @@ import { AddressResults } from 'types/api';
 import { Locales } from 'types/locales';
 import { ExplorerTabs } from 'types/routes';
 import { AddressOverview } from './overview';
-import { AddressBalances } from './balances';
 import { AddressTransactions } from './transactions';
 import { AddressEvents } from './events';
 
@@ -39,14 +38,6 @@ export const ViewAddress = ({ tabForce = 'overview' }: ViewAddressProps) => {
         href: routes['/address'](echoActiveId as Locales),
         component: (
           <AddressOverview data={data} loading={loading} error={error} />
-        ),
-      },
-      balances: {
-        id: 'balances',
-        label: echo('tab-balances'),
-        href: routes['/address'](echoActiveId as Locales),
-        component: (
-          <AddressBalances data={data} loading={loading} error={error} />
         ),
       },
       events: {
