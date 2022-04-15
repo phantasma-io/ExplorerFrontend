@@ -61,7 +61,14 @@ export const TableControls = ({
               </Grid>
             </Grid>
           </Grid>
-          <Grid item xs={12} md="auto" container alignItems="center">
+          <Grid
+            item
+            xs={12}
+            md="auto"
+            container
+            alignItems="center"
+            spacing={1}
+          >
             <Grid item>
               <Box pb={0.39}>
                 <Typography
