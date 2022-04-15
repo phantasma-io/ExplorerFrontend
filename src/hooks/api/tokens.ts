@@ -2,6 +2,7 @@ import { useMemo, useState, useEffect } from 'react';
 import { useEcho } from '@ricardo-jrm/echo';
 import { TableDisplayRow, TableDisplayCol } from 'types/table';
 import { TokenResults } from 'types/api';
+import { parseDecimals } from 'scripts';
 
 export const useTokenData = (data?: TokenResults, loading?: boolean) => {
   const { echo } = useEcho();
@@ -123,9 +124,9 @@ export const useTokenData = (data?: TokenResults, loading?: boolean) => {
     if (data) {
       return data?.tokens?.map((item) => [
         item?.symbol,
-        item?.current_supply,
-        item?.burned_supply,
-        item?.max_supply,
+        parseDecimals(item?.current_supply || '0', item?.decimals || 0).number,
+        parseDecimals(item?.burned_supply || '0', item?.decimals || 0).number,
+        parseDecimals(item?.max_supply || '0', item?.decimals || 0).number,
         item?.decimals,
         item?.fungible,
         item?.transferable,
