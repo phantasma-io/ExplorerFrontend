@@ -1,4 +1,5 @@
 export const parseDecimals = (amount: string, decimals: number) => {
+  // TODO
   // if (Number.isNaN(parseInt(amount as string, 10))) {
   //   return `IT'S OVER 9000!`
   // }
