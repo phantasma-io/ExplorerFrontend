@@ -9,3 +9,5 @@ export { DetailsBoolean } from './boolean';
 export { DetailsMonospace } from './monospace';
 
 export { DetailsScript } from './script';
+
+export { DetailsThumbnail } from './thumbnail';
