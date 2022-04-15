@@ -1,6 +1,7 @@
 import React, { useMemo } from 'react';
 import { nanoid } from 'nanoid';
 import csvDownload from 'json-to-csv-export';
+import FileDownloadIcon from '@mui/icons-material/FileDownload';
 import { Box, Grid, Button } from '@mui/material';
 import { useEcho } from '@ricardo-jrm/echo';
 import { useRenderOverview } from 'hooks/useRenderOverview';
@@ -49,6 +50,7 @@ export const TransactionOverview = ({
             <Button
               variant="contained"
               color="secondary"
+              endIcon={<FileDownloadIcon />}
               onClick={() =>
                 csvDownload(
                   [raw[0]],

@@ -1,4 +1,6 @@
 import React, { useState, useCallback, useMemo } from 'react';
+import FileDownloadIcon from '@mui/icons-material/FileDownload';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { nanoid } from 'nanoid';
 import { useFury } from '@ricardo-jrm/fury';
 import { useEcho } from '@ricardo-jrm/echo';
@@ -93,10 +95,11 @@ export const TableDisplayDesktop = ({
     if (withDetails) {
       return (
         <Box>
-          <Grid container alignItems="center" spacing={1}>
+          <Grid container alignItems="center" spacing={1.5}>
             {selectedRowIndex !== undefined && (
               <Grid item>
                 <Button
+                  endIcon={<FileDownloadIcon />}
                   onClick={() =>
                     csvDownload([raw[selectedRowIndex]], csvFilename, ',')
                   }
@@ -119,6 +122,7 @@ export const TableDisplayDesktop = ({
                       onClick={closeDialog}
                       variant="contained"
                       color="primary"
+                      endIcon={<ArrowForwardIosIcon />}
                     >
                       {linkOptions.title}
                     </Button>

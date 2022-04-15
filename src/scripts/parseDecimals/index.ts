@@ -3,15 +3,15 @@ export const parseDecimals = (amount: string, decimals: number) => {
   //   return `IT'S OVER 9000!`
   // }
 
-  let formatStr = '0,0';
+  const formatStr = '0,0';
   const decimalsStr = `${10 ** (decimals || 0)}`;
-  formatStr = `${formatStr}.${decimalsStr.substring(
+  const parsedStr = `${formatStr}.${decimalsStr.substring(
     1,
     (decimals as number) + 1,
   )}`;
 
   return {
     number: parseInt(amount, 10) / 10 ** (decimals || 0),
-    format: decimalsStr,
+    format: parsedStr,
   };
 };

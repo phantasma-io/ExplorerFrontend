@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react';
 import { nanoid } from 'nanoid';
+import FileDownloadIcon from '@mui/icons-material/FileDownload';
 import csvDownload from 'json-to-csv-export';
 import { useEcho } from '@ricardo-jrm/echo';
 import { Box, Grid, Button } from '@mui/material';
@@ -45,6 +46,7 @@ export const BlockOverview = ({ data, error, loading }: BlockOverviewProps) => {
             <Button
               variant="contained"
               color="secondary"
+              endIcon={<FileDownloadIcon />}
               onClick={() =>
                 csvDownload(
                   [raw[0]],

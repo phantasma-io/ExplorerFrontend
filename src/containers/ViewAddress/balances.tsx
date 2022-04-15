@@ -25,7 +25,7 @@ export const AddressBalances = ({ data }: AddressBalancesProps) => {
   if (balances) {
     return (
       <Box py={1}>
-        <Box mb={1}>
+        <Box mb={1.5}>
           <Text
             variant="body2"
             value={`${echo('tab-balances')}:`}
@@ -39,7 +39,7 @@ export const AddressBalances = ({ data }: AddressBalancesProps) => {
               item?.token?.decimals || 0,
             );
             return (
-              <Box px={2} py={1} key={nanoid()}>
+              <Box px={2} py={0.6} key={nanoid()}>
                 <Grid item container xs={12} spacing={1}>
                   <Text
                     variant="body2"
