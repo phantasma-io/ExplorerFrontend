@@ -42,7 +42,7 @@ export const en: EchoMsgs = {
   // btns
   'btn-enterNexus': 'Enter the Nexus',
   // page titles
-  'title-nexus': 'Welcome to the Nexus',
+  'title-nexus': 'Explore the Nexus',
   'title-chain': 'Explore chain',
   'title-address': 'Explore address',
   'title-block': 'Explore block',
@@ -96,7 +96,7 @@ export const en: EchoMsgs = {
   stake: 'Stake',
   unclaimed: 'Unclaimed',
   // details
-  'details-nexus': 'Welcome to the Nexus',
+  'details-nexus': 'Explore the Nexus',
   'details-address': 'Address details',
   'details-block': 'Block details',
   'details-contract': 'Contract details',

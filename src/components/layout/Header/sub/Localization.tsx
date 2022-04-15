@@ -30,6 +30,7 @@ export const Localization = () => {
         <Tooltip title={echo('tooltip-locale')}>
           <Button
             size="small"
+            disabled
             sx={{
               fontSize: furyActive.typography.body1.fontSize,
               color: '#fff',
