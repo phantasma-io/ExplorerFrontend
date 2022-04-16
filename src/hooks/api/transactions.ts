@@ -76,14 +76,22 @@ export const useTransactionData = (
 
   const raw = useMemo(() => data?.transactions || [], [data]);
 
+  const withError = useMemo(() => {
+    if (data?.error) {
+      return true;
+    }
+    return false;
+  }, [data]);
+
   const ctx = useMemo(
     () => ({
       cols,
       rows,
       total,
       raw,
+      withError,
     }),
-    [cols, rows, total, raw],
+    [cols, rows, total, raw, withError],
   );
 
   return ctx;

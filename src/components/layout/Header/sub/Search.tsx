@@ -61,20 +61,20 @@ export const Search = () => {
         return routes['/address'](echoActiveId as Locales, {
           id: searchValue,
         });
+      case 'block-hash':
+        return routes['/block'](echoActiveId as Locales, {
+          id: searchValue,
+        });
       case 'transaction-hash':
         return routes['/transaction'](echoActiveId as Locales, {
           id: searchValue,
         });
       case 'nft-id':
-        return routes['/block'](echoActiveId as Locales, {
+        return routes['/nft'](echoActiveId as Locales, {
           id: searchValue,
         });
       case 'series-id':
-        return routes['/block'](echoActiveId as Locales, {
-          id: searchValue,
-        });
-      case 'block-hash':
-        return routes['/block'](echoActiveId as Locales, {
+        return routes['/series'](echoActiveId as Locales, {
           id: searchValue,
         });
       case 'token-symbol':
@@ -192,8 +192,10 @@ export const Search = () => {
                   color="primary"
                   variant="contained"
                   onClick={() => {
-                    handleSearchClose();
-                    push(searchQuery);
+                    if (searchValue !== '') {
+                      handleSearchClose();
+                      push(searchQuery);
+                    }
                   }}
                 >
                   {echo('apply')}

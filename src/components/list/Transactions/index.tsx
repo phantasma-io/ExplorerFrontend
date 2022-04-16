@@ -42,7 +42,7 @@ export const TransactionsList = ({ address, block }: TransactionsListProps) => {
     }),
   );
 
-  const { cols, rows, total } = useTransactionData(data, loading);
+  const { cols, rows, total, withError } = useTransactionData(data, loading);
 
   return (
     <Box>
@@ -63,7 +63,7 @@ export const TransactionsList = ({ address, block }: TransactionsListProps) => {
         {...tableProps}
         filters={TABLE_FILTERS}
         loading={loading}
-        error={error}
+        error={error || withError}
       />
     </Box>
   );

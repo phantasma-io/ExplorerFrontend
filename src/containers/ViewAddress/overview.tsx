@@ -33,7 +33,7 @@ export const AddressOverview = ({
       return <Loading />;
     }
 
-    if (error) {
+    if (error || data?.error) {
       return <Error />;
     }
 

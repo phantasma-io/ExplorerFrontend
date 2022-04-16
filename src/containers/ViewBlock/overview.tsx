@@ -28,7 +28,7 @@ export const BlockOverview = ({ data, error, loading }: BlockOverviewProps) => {
       return <Loading />;
     }
 
-    if (error) {
+    if (error || data?.error) {
       return <Error />;
     }
 

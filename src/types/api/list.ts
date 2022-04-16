@@ -10,4 +10,6 @@ export interface ListParams {
 
 export interface ListResults {
   total_results?: number;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  error?: any;
 }

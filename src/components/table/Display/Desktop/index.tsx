@@ -146,6 +146,51 @@ export const TableDisplayDesktop = ({
     linkOptions,
   ]);
 
+  const content = useMemo(() => {
+    if (loading) {
+      return <Loading />;
+    }
+
+    if (error) {
+      return <Error />;
+    }
+
+    if (!rows || rows?.length === 0) {
+      return <Empty />;
+    }
+
+    if (isSuccess && rows) {
+      return rows.map((row, i) => (
+        <TableRow
+          tableId={tableId}
+          index={i}
+          raw={raw[i]}
+          row={row}
+          spacing={spacing}
+          cols={cols}
+          key={nanoid()}
+          hasClick={!!withDetails}
+          openDialog={openDialog}
+          linkOptions={linkOptions}
+        />
+      ));
+    }
+
+    return null;
+  }, [
+    cols,
+    error,
+    isSuccess,
+    linkOptions,
+    loading,
+    openDialog,
+    raw,
+    rows,
+    spacing,
+    tableId,
+    withDetails,
+  ]);
+
   return (
     <Box>
       {/* header */}
@@ -172,26 +217,7 @@ export const TableDisplayDesktop = ({
       </Box>
 
       {/* body */}
-      <Box sx={{ overflow: 'auto', height }}>
-        {rows.length === 0 && !loading && !error && <Empty />}
-        {error && !loading && <Error />}
-        {loading && <Loading />}
-        {isSuccess &&
-          rows.map((row, i) => (
-            <TableRow
-              tableId={tableId}
-              index={i}
-              raw={raw[i]}
-              row={row}
-              spacing={spacing}
-              cols={cols}
-              key={nanoid()}
-              hasClick={!!withDetails}
-              openDialog={openDialog}
-              linkOptions={linkOptions}
-            />
-          ))}
-      </Box>
+      <Box sx={{ overflow: 'auto', height }}>{content}</Box>
 
       {/* dialog */}
       {withDetails && (

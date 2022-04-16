@@ -32,7 +32,7 @@ export const TransactionOverview = ({
       return <Loading />;
     }
 
-    if (error) {
+    if (error || data?.error) {
       return <Error />;
     }
 

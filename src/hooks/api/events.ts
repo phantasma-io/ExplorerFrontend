@@ -103,13 +103,21 @@ export const useEventData = (data?: EventResults, loading?: boolean) => {
     return [];
   }, [data]);
 
+  const withError = useMemo(() => {
+    if (data?.error) {
+      return true;
+    }
+    return false;
+  }, [data]);
+
   const ctx = useMemo(
     () => ({
       cols,
       rows,
       total,
+      withError,
     }),
-    [cols, rows, total],
+    [cols, rows, total, withError],
   );
 
   return ctx;

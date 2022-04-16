@@ -5,6 +5,8 @@ export type ExplorerRoutes =
   | '/nexus'
   | '/address'
   | '/block'
+  | '/nft'
+  | '/series'
   | '/token'
   | '/transaction';
 

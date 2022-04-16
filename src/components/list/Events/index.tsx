@@ -40,7 +40,7 @@ export const EventsList = ({
     }),
   );
 
-  const { cols, rows, total } = useEventData(data, loading);
+  const { cols, rows, total, withError } = useEventData(data, loading);
 
   return (
     <Box>
@@ -56,7 +56,7 @@ export const EventsList = ({
         {...tableProps}
         filters={TABLE_FILTERS}
         loading={loading}
-        error={error}
+        error={error || withError}
       />
     </Box>
   );
