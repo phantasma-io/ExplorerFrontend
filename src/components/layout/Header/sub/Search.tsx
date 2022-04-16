@@ -80,7 +80,7 @@ export const Search = () => {
       case 'token-symbol':
       default:
         return routes['/token'](echoActiveId as Locales, {
-          id: searchValue,
+          id: searchValue.toUpperCase(),
         });
     }
   }, [selectedOption, searchValue, echoActiveId]);
@@ -138,14 +138,7 @@ export const Search = () => {
           <Box px={2} pb={2} pt={1}>
             <Box>
               <Grid container alignItems="center" spacing={1}>
-                <Grid
-                  item
-                  xs={12}
-                  lg={4}
-                  container
-                  alignItems="center"
-                  spacing={1}
-                >
+                <Grid item xs={12} lg={4} container alignItems="center">
                   <Grid item>
                     <IconButton size="small" onClick={handleOptionsClick}>
                       <ArrowDropDownIcon />
@@ -214,12 +207,12 @@ export const Search = () => {
             <MenuItem onClick={() => setOption('block-hash')}>
               {echo('block-hash')}
             </MenuItem>
-            <MenuItem onClick={() => setOption('nft-id')}>
+            {/* <MenuItem onClick={() => setOption('nft-id')}>
               {echo('nft-id')}
             </MenuItem>
             <MenuItem onClick={() => setOption('series-id')}>
               {echo('series-id')}
-            </MenuItem>
+            </MenuItem> */}
             <MenuItem onClick={() => setOption('token-symbol')}>
               {echo('token-symbol')}
             </MenuItem>
