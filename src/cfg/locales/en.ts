@@ -167,4 +167,12 @@ export const en: EchoMsgs = {
   mint_number: 'Mint #',
   ram: 'RAM',
   rom: 'ROM',
+  nft: 'NFT',
+  series: 'Series',
+  'block-hash': 'Block hash',
+  'nft-id': 'NFT',
+  'series-id': 'Series',
+  'token-symbol': 'Token symbol',
+  'transaction-hash': 'Transaction hash',
+  clear: 'Clear',
 };
