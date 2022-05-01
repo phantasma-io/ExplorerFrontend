@@ -13,9 +13,9 @@ import {
   MenuItem,
   Typography,
 } from '@mui/material';
-import { useFury } from '@ricardo-jrm/fury';
-import { useEcho } from '@ricardo-jrm/echo';
-import { useLocalState } from '@ricardo-jrm/reaper';
+import { useFury } from '@ricardojrmcom/fury';
+import { useEcho } from '@ricardojrmcom/echo';
+import { useLocalState } from '@ricardojrmcom/reaper';
 import SearchIcon from '@mui/icons-material/Search';
 import CloseIcon from '@mui/icons-material/Close';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';

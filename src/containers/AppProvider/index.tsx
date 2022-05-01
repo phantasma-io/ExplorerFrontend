@@ -1,6 +1,6 @@
 import React from 'react';
 import { SnackbarProvider } from 'notistack';
-import { FuryProvider } from '@ricardo-jrm/fury';
+import { FuryProvider } from '@ricardojrmcom/fury';
 import { themes } from 'cfg';
 
 /**

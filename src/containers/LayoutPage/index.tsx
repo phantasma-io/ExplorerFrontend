@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
 import { Box, Container } from '@mui/material';
-import { useFury } from '@ricardo-jrm/fury';
+import { useFury } from '@ricardojrmcom/fury';
 import { Header, Footer } from 'components/layout';
 import { FOOTER_HEIGHT, FOOTER_OFFSET, HEADER_HEIGHT } from 'cfg';
 

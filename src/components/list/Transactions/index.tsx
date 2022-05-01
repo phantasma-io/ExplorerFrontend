@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
-import { useEcho } from '@ricardo-jrm/echo';
-import { useEmpathy } from '@ricardo-jrm/empathy';
+import { useEcho } from '@ricardojrmcom/echo';
+import { useEmpathy } from '@ricardojrmcom/empathy';
 import { Box } from '@mui/material';
 import { endpoints, TABLE_FILTERS } from 'cfg';
 import { useTable } from 'hooks';

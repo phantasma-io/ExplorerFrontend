@@ -1,6 +1,6 @@
 import React from 'react';
 import { Typography } from '@mui/material';
-import { useFury } from '@ricardo-jrm/fury';
+import { useFury } from '@ricardojrmcom/fury';
 import { Text } from 'components/display';
 import CheckIcon from '@mui/icons-material/Check';
 

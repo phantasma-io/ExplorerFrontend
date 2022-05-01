@@ -1,14 +1,14 @@
 import React, { useState, useCallback, useMemo } from 'react';
 import { nanoid } from 'nanoid';
 import { Box, Grid, GridSpacing, IconButton, Tooltip } from '@mui/material';
-import { useFury } from '@ricardo-jrm/fury';
+import { useFury } from '@ricardojrmcom/fury';
 import { Link } from 'components/display';
 import { useDarkMode, useRenderDetails } from 'hooks';
 import { routes } from 'cfg';
 import { Locales } from 'types/locales';
 import { TableDisplayRow, TableDisplayCol } from 'types/table';
 import { DetailsValue } from 'types/components';
-import { useEcho } from '@ricardo-jrm/echo';
+import { useEcho } from '@ricardojrmcom/echo';
 import csvDownload from 'json-to-csv-export';
 import FileDownloadIcon from '@mui/icons-material/FileDownload';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';

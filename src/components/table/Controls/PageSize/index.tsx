@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from 'react';
-import { useEcho } from '@ricardo-jrm/echo';
-import { numberFormat } from '@ricardo-jrm/dervish';
+import { useEcho } from '@ricardojrmcom/echo';
+import { numberFormat } from '@ricardojrmcom/dervish';
 import {
   Box,
   Grid,

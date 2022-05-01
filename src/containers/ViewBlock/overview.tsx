@@ -2,7 +2,7 @@ import React, { useMemo } from 'react';
 import { nanoid } from 'nanoid';
 import FileDownloadIcon from '@mui/icons-material/FileDownload';
 import csvDownload from 'json-to-csv-export';
-import { useEcho } from '@ricardo-jrm/echo';
+import { useEcho } from '@ricardojrmcom/echo';
 import { Box, Grid, Button } from '@mui/material';
 import { useRenderOverview } from 'hooks/useRenderOverview';
 import { useBlockData } from 'hooks/api';

@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 import { useRouter } from 'next/router';
-import { useFury } from '@ricardo-jrm/fury';
+import { useFury } from '@ricardojrmcom/fury';
 import { Box, Grid } from '@mui/material';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import RedditIcon from '@mui/icons-material/Reddit';

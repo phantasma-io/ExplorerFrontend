@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 import { nanoid } from 'nanoid';
-import { useEcho } from '@ricardo-jrm/echo';
+import { useEcho } from '@ricardojrmcom/echo';
 import { Box, Grid } from '@mui/material';
 import { Text } from 'components/display';
 import { Address, AddressResults } from 'types/api';

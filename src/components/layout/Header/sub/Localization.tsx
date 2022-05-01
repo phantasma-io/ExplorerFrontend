@@ -1,8 +1,8 @@
 import React, { useState, useCallback } from 'react';
 import { useRouter } from 'next/router';
 import { Button, Box, Tooltip, Menu, MenuItem } from '@mui/material';
-import { useFury } from '@ricardo-jrm/fury';
-import { useEcho } from '@ricardo-jrm/echo';
+import { useFury } from '@ricardojrmcom/fury';
+import { useEcho } from '@ricardojrmcom/echo';
 
 /**
  * Localization

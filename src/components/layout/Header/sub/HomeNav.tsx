@@ -1,7 +1,7 @@
 import React, { useState, useMemo, useCallback } from 'react';
 import { Button, Box, Grid, Tooltip, Menu, MenuItem } from '@mui/material';
-import { useFury } from '@ricardo-jrm/fury';
-import { useEcho } from '@ricardo-jrm/echo';
+import { useFury } from '@ricardojrmcom/fury';
+import { useEcho } from '@ricardojrmcom/echo';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { routes } from 'cfg';
 import { Text, Image, Link } from 'components/display';

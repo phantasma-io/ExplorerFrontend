@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { useEcho } from '@ricardo-jrm/echo';
+import { useEcho } from '@ricardojrmcom/echo';
 import { NavTabs, NavTabsRecord } from 'components/layout';
 import {
   AddressesList,

@@ -1,4 +1,4 @@
-import { FuryRecord } from '@ricardo-jrm/fury';
+import { FuryRecord } from '@ricardojrmcom/fury';
 import { soul } from './soul';
 import { soulDark } from './soul-dark';
 import { kcal } from './kcal';

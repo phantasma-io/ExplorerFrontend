@@ -1,5 +1,5 @@
 import { RouterContext } from 'next/dist/shared/lib/router-context';
-import { EchoProvider } from '@ricardo-jrm/echo';
+import { EchoProvider } from '@ricardojrmcom/echo';
 import { AppProvider } from '../src/containers/AppProvider';
 import { locales, localesDefault } from '../src/cfg';
 

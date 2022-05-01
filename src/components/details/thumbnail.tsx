@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box } from '@mui/material';
-import { useFury } from '@ricardo-jrm/fury';
+import { useFury } from '@ricardojrmcom/fury';
 import { Image, Link } from 'components/display';
 
 export interface DetailsThumbnailProps {

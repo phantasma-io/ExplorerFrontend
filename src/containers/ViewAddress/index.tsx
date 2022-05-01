@@ -1,8 +1,8 @@
 import React, { useMemo } from 'react';
 import { Box } from '@mui/material';
 import { useRouter } from 'next/router';
-import { useEmpathy } from '@ricardo-jrm/empathy';
-import { useEcho } from '@ricardo-jrm/echo';
+import { useEmpathy } from '@ricardojrmcom/empathy';
+import { useEcho } from '@ricardojrmcom/echo';
 import { NavTabs, NavTabsRecord, Breadcrumbs } from 'components/layout';
 import { routes, endpoints } from 'cfg';
 import { AddressResults } from 'types/api';
@@ -40,17 +40,17 @@ export const ViewAddress = ({ tabForce = 'overview' }: ViewAddressProps) => {
           <AddressOverview data={data} loading={loading} error={error} />
         ),
       },
-      events: {
-        id: 'events',
-        label: echo('tab-events'),
-        href: routes['/address'](echoActiveId as Locales),
-        component: <AddressEvents />,
-      },
       transactions: {
         id: 'transactions',
         label: echo('tab-transactions'),
         href: routes['/address'](echoActiveId as Locales),
         component: <AddressTransactions />,
+      },
+      events: {
+        id: 'events',
+        label: echo('tab-events'),
+        href: routes['/address'](echoActiveId as Locales),
+        component: <AddressEvents />,
       },
     }),
     [echo, echoActiveId, data, error, loading],

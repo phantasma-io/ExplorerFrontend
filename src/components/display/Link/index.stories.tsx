@@ -15,14 +15,14 @@ export const Internal: Story<LinkProps> = () => (
 );
 
 export const External: Story<LinkProps> = () => (
-  <Link href="https://github.com/ricardo-jrm" external>
+  <Link href="https://github.com/ricardojrmcom" external>
     External link
   </Link>
 );
 
 export const Styled: Story<LinkProps> = () => (
   <Link
-    href="https://github.com/ricardo-jrm"
+    href="https://github.com/ricardojrmcom"
     external
     sx={{ color: '#000', textDecoration: 'none' }}
   >

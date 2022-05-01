@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import React from 'react';
 import { AppProps } from 'next/app';
 import { CacheProvider, EmotionCache } from '@emotion/react';
 import { AppProvider } from 'containers';
@@ -10,7 +10,7 @@ interface ExplorerAppProps extends AppProps {
   emotionCache: EmotionCache;
 }
 
-const ExplorerApp: ReactNode = ({
+const ExplorerApp = ({
   Component,
   emotionCache = clientSideEmotionCache,
   pageProps,

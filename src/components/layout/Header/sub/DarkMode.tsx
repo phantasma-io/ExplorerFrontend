@@ -1,7 +1,7 @@
 import React, { useMemo, useCallback } from 'react';
 import { Box, IconButton, Tooltip } from '@mui/material';
-import { useFury } from '@ricardo-jrm/fury';
-import { useEcho } from '@ricardo-jrm/echo';
+import { useFury } from '@ricardojrmcom/fury';
+import { useEcho } from '@ricardojrmcom/echo';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 

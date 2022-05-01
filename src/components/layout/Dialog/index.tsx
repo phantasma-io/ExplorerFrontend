@@ -7,7 +7,7 @@ import {
   Tooltip,
   IconButton,
 } from '@mui/material';
-import { useEcho } from '@ricardo-jrm/echo';
+import { useEcho } from '@ricardojrmcom/echo';
 import CloseIcon from '@mui/icons-material/Close';
 import { Text } from 'components/display';
 

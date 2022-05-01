@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { nanoid } from 'nanoid';
 import { Box, Grid } from '@mui/material';
-import { useFury } from '@ricardo-jrm/fury';
+import { useFury } from '@ricardojrmcom/fury';
 import { TableDisplayProps } from 'types/table';
 import { useRenderDetails } from 'hooks';
 import { Loading, Empty, Error } from 'components/layout';

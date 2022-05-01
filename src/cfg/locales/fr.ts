@@ -1,4 +1,4 @@
-import { EchoMsgs } from '@ricardo-jrm/echo';
+import { EchoMsgs } from '@ricardojrmcom/echo';
 
 export const fr: EchoMsgs = {
   // sys
