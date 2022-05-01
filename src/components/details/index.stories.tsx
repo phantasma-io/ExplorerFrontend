@@ -30,3 +30,10 @@ export const Thumbnail: Story = () => (
     link="https://cdn.ghostmarket.io/ext-full/QmazJYqD7tmDCpyT4K59cR3v9vkQqBUW8fPkv1qj4GwVFX"
   />
 );
+
+export const ThumbnailFail: Story = () => (
+  <DetailsThumbnail
+    thumb="https://www.22series.com/part_info?id=67481421197496445345071218276608410752889765234416374087941629577373391312205"
+    link="https://www.22series.com/part_info?id=67481421197496445345071218276608410752889765234416374087941629577373391312205"
+  />
+);

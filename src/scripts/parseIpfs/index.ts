@@ -1,7 +1,7 @@
 export const parseIpfs = (link: string) => {
   if (link.includes('ipfs://')) {
     return {
-      thumb: `https://cdn.ghostmarket.io/ext-full/${link
+      thumb: `https://cdn.ghostmarket.io/ext-thumbs/${link
         .split('://')[1]
         .replace(/[/.?&=%]/g, '')}`,
       link: `https://cdn.ghostmarket.io/ext-full/${link

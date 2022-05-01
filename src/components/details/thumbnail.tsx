@@ -10,20 +10,22 @@ export interface DetailsThumbnailProps {
 
 export const DetailsThumbnail = ({ thumb, link }: DetailsThumbnailProps) => {
   const { furyActive } = useFury();
-  if (thumb) {
+
+  if (thumb && link) {
     return (
       <Box>
         <Link href={link || thumb} external>
-          <Box
-            p={0.33}
-            display="inline-block"
-            sx={{
-              backgroundColor: furyActive.palette.text.secondary,
-              borderRadius: '3px',
-              cursor: 'pointer',
-            }}
-          >
-            <Image responsive src={thumb} maxHeight="150px" />
+          <Box display="inline-block">
+            <Image
+              responsive
+              src={thumb}
+              maxHeight="150px"
+              style={{
+                border: `3px solid ${furyActive.palette.text.secondary}`,
+                borderRadius: '3px',
+                cursor: 'pointer',
+              }}
+            />
           </Box>
         </Link>
       </Box>
