@@ -16,34 +16,36 @@ export const HomeNav = () => {
       <Grid container alignItems="center" spacing={1}>
         <Grid item>
           <Box pt={0.5}>
-            <Tooltip title={echo('tooltip-nav-homepage')}>
-              <Link href={routes['/'](echoActiveId as Locales)}>
-                <Box
-                  display={{ xs: 'none', md: 'block' }}
-                  style={{
-                    cursor: 'pointer',
-                  }}
-                >
-                  <Image
-                    src={'/static/v1/img/phantasma-logo-white.png'}
-                    height={'24px'}
-                  />
-                </Box>
-                <Box
-                  display={{ xs: 'block', md: 'none' }}
-                  style={{
-                    cursor: 'pointer',
-                  }}
-                >
-                  <Image
-                    src={'/static/v1/img/phantasma-logo-icon-white.png'}
-                    height={'24px'}
-                    title="Phantasma"
-                    alt="Phantasma Team"
-                  />
-                </Box>
-              </Link>
-            </Tooltip>
+            <Link href={routes['/'](echoActiveId as Locales)}>
+              <Tooltip title={echo('tooltip-nav-homepage')}>
+                <>
+                  <Box
+                    display={{ xs: 'none', md: 'block' }}
+                    style={{
+                      cursor: 'pointer',
+                    }}
+                  >
+                    <Image
+                      src={'/static/v1/img/phantasma-logo-white.png'}
+                      height={'24px'}
+                    />
+                  </Box>
+                  <Box
+                    display={{ xs: 'block', md: 'none' }}
+                    style={{
+                      cursor: 'pointer',
+                    }}
+                  >
+                    <Image
+                      src={'/static/v1/img/phantasma-logo-icon-white.png'}
+                      height={'24px'}
+                      title="Phantasma"
+                      alt="Phantasma Team"
+                    />
+                  </Box>
+                </>
+              </Tooltip>
+            </Link>
           </Box>
         </Grid>
       </Grid>

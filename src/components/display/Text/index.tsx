@@ -270,7 +270,7 @@ export const Text = ({
       )}
       {linkOptions && (
         <Grid item>
-          <Link href={linkOptions.link} title={linkOptions.title}>
+          <Link href={linkOptions.link}>
             <Tooltip title={linkOptions.title} placement="right">
               <IconButton
                 size="small"

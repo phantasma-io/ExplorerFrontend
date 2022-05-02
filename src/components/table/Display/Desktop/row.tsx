@@ -123,7 +123,6 @@ export const TableRow = ({
                     href={routes[linkOptions.route](echoActiveId as Locales, {
                       id: raw[linkOptions.key],
                     })}
-                    title={linkOptions.title}
                   >
                     <Tooltip title={linkOptions.title} placement="top">
                       <IconButton
