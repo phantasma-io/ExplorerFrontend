@@ -12,8 +12,6 @@ export const SwitchTheme = () => {
   const { furyActive, furyActiveId, furySetById } = useFury();
   const { echo } = useEcho();
 
-  console.log({ furyActive });
-
   const isDark = useMemo(() => furyActiveId.includes('-dark'), [furyActiveId]);
 
   const [anchorBrands, anchorBrandsSet] = useState<null | HTMLElement>(null);
