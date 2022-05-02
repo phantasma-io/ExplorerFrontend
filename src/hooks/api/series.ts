@@ -53,6 +53,11 @@ export const useSeriesData = (data?: SeriesResults, loading?: boolean) => {
         label: echo('creator'),
         type: 'monospace',
         size: 1,
+        linkOptions: {
+          route: '/address',
+          key: 'address',
+          title: echo('explore-address'),
+        },
       },
       {
         id: 'image',

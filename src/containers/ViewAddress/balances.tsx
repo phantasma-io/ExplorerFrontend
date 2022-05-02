@@ -10,21 +10,26 @@ import { parseDecimals } from 'scripts';
 
 export interface AddressBalancesProps {
   data?: AddressResults;
+  address?: Address;
 }
 
-export const AddressBalances = ({ data }: AddressBalancesProps) => {
+export const AddressBalances = ({ data, address }: AddressBalancesProps) => {
   const { echo, echoActiveId } = useEcho();
 
   const balances = useMemo<Address['balances']>(() => {
+    if (address) {
+      return address?.balances;
+    }
+
     if (data?.addresses && data.addresses[0] && data.addresses[0].balances) {
       return data.addresses[0].balances;
     }
     return undefined;
-  }, [data]);
+  }, [data, address]);
 
-  if (balances) {
+  if (balances && balances.length) {
     return (
-      <Box py={1}>
+      <Box py={0.6}>
         <Box mb={1.5}>
           <Text
             variant="body2"

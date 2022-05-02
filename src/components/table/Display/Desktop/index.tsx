@@ -16,6 +16,7 @@ import {
 import { Locales } from 'types/locales';
 import csvDownload from 'json-to-csv-export';
 import { useRenderDetails } from 'hooks';
+import { AddressBalances } from 'containers/ViewAddress/balances';
 import { TableRow } from './row';
 
 export const TableDisplayDesktop = ({
@@ -83,13 +84,20 @@ export const TableDisplayDesktop = ({
                 </Grid>
               ) : null,
             )}
+            {selectedRowIndex !== undefined && raw[selectedRowIndex]?.balances && (
+              <Grid item xs={12}>
+                <Box>
+                  <AddressBalances address={raw[selectedRowIndex]} />
+                </Box>
+              </Grid>
+            )}
           </Grid>
         </Box>
       );
     }
 
     return null;
-  }, [cols, selectedRow, renderDialogDetails, spacing]);
+  }, [cols, selectedRow, renderDialogDetails, spacing, raw, selectedRowIndex]);
 
   const renderDialogActions = useCallback(() => {
     if (withDetails) {

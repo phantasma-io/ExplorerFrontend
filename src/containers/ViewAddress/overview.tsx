@@ -8,7 +8,6 @@ import { useRenderOverview } from 'hooks/useRenderOverview';
 import { useAddressData } from 'hooks/api';
 import { AddressResults } from 'types/api';
 import { Loading, Error, Empty } from 'components/layout';
-import { AddressBalances } from './balances';
 
 export interface AddressOverviewProps {
   data?: AddressResults;
@@ -44,7 +43,7 @@ export const AddressOverview = ({
     return (
       <Grid container>
         <Grid item xs={12} lg={10}>
-          <Box>{data && renderOverview(cols, rows)}</Box>
+          <Box>{data && renderOverview(cols, rows, data)}</Box>
         </Grid>
         <Grid item xs={12} lg={2}>
           <Box textAlign="right" pt={{ xs: 1.5, lg: 0 }}>
@@ -63,9 +62,6 @@ export const AddressOverview = ({
               {echo('table-exportCsv')}
             </Button>
           </Box>
-        </Grid>
-        <Grid item xs={12} lg={10}>
-          <Box>{data && <AddressBalances data={data} />}</Box>
         </Grid>
       </Grid>
     );
