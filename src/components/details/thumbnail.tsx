@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Box } from '@mui/material';
 import { useFury } from '@ricardojrmcom/fury';
 import { Image, Link } from 'components/display';
@@ -11,7 +11,9 @@ export interface DetailsThumbnailProps {
 export const DetailsThumbnail = ({ thumb, link }: DetailsThumbnailProps) => {
   const { furyActive } = useFury();
 
-  if (thumb && link) {
+  const [hasError, hasErrorSet] = useState<boolean>(false);
+
+  if (thumb && link && !hasError) {
     return (
       <Box>
         <Link href={link || thumb} external>
@@ -20,6 +22,9 @@ export const DetailsThumbnail = ({ thumb, link }: DetailsThumbnailProps) => {
               responsive
               src={thumb}
               maxHeight="150px"
+              onError={() => {
+                hasErrorSet(true);
+              }}
               style={{
                 border: `3px solid ${furyActive.palette.primary.main}`,
                 borderRadius: '3px',

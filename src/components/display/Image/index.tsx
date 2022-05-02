@@ -26,6 +26,7 @@ export const Image = ({
   width,
   responsive,
   style,
+  ...props
 }: ImageProps) => {
   if (responsive) {
     return (
@@ -41,6 +42,7 @@ export const Image = ({
           userSelect: 'none',
           ...style,
         }}
+        {...props}
       />
     );
   }
