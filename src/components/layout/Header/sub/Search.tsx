@@ -11,7 +11,6 @@ import {
   TextField,
   Menu,
   MenuItem,
-  Typography,
 } from '@mui/material';
 import { useFury } from '@ricardojrmcom/fury';
 import { useEcho } from '@ricardojrmcom/echo';
@@ -22,6 +21,8 @@ import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import { routes } from 'cfg';
 import { Text } from 'components/display';
 import { Locales } from 'types/locales';
+import CheckIcon from '@mui/icons-material/Check';
+import ClearAllIcon from '@mui/icons-material/ClearAll';
 
 export type SearchOptionValues =
   | 'address'
@@ -137,20 +138,8 @@ export const Search = () => {
           </Box>
           <Box px={2} pb={2} pt={1}>
             <Box>
-              <Grid container alignItems="center" spacing={1}>
-                <Grid item xs={12} lg={4} container alignItems="center">
-                  <Grid item>
-                    <IconButton size="small" onClick={handleOptionsClick}>
-                      <ArrowDropDownIcon />
-                    </IconButton>
-                  </Grid>
-                  <Grid item>
-                    <Typography align="right" fontWeight={600}>
-                      {`${echo(selectedOption)}:`}
-                    </Typography>
-                  </Grid>
-                </Grid>
-                <Grid item xs={12} lg={8}>
+              <Grid container alignItems="center" alignContent="center">
+                <Grid item xs={12} md={8}>
                   <TextField
                     variant="outlined"
                     color="primary"
@@ -166,6 +155,17 @@ export const Search = () => {
                     }}
                   />
                 </Grid>
+                <Grid item md={4}>
+                  <Box>
+                    <Button
+                      onClick={handleOptionsClick}
+                      endIcon={<ArrowDropDownIcon />}
+                      fullWidth
+                    >
+                      {echo(selectedOption)}
+                    </Button>
+                  </Box>
+                </Grid>
               </Grid>
             </Box>
             <Box textAlign="right" pt={3}>
@@ -176,6 +176,7 @@ export const Search = () => {
                   onClick={() => {
                     searchValueSet('');
                   }}
+                  endIcon={<ClearAllIcon />}
                 >
                   {echo('clear')}
                 </Button>
@@ -190,6 +191,7 @@ export const Search = () => {
                       push(searchQuery);
                     }
                   }}
+                  endIcon={<CheckIcon />}
                 >
                   {echo('apply')}
                 </Button>
