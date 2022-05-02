@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, Grid } from '@mui/material';
-import { HomeNav, Localization, Search, DarkMode } from './sub';
+import { HomeNav, Localization, Search, DarkMode, SwitchTheme } from './sub';
 
 /**
  * Header props
@@ -28,7 +28,7 @@ export const Header = ({ height }: HeaderProps) => {
       sx={{ background: 'transparent' }}
     >
       <Grid container sx={{ height: `${height}px` }} alignItems="center">
-        <Grid item xs>
+        <Grid item xs={3} md>
           <HomeNav />
         </Grid>
         <Grid item xs>
@@ -38,6 +38,9 @@ export const Header = ({ height }: HeaderProps) => {
             </Box>
             <Box display="inline-block" pr={{ xs: 0.5, md: 1.5 }}>
               <DarkMode />
+            </Box>
+            <Box display="inline-block" pr={{ xs: 0.5, md: 1.5 }}>
+              <SwitchTheme />
             </Box>
             <Box display="inline-block">
               <Localization />

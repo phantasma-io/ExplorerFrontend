@@ -30,7 +30,6 @@ export const Localization = () => {
         <Tooltip title={echo('tooltip-locale')}>
           <Button
             size="small"
-            disabled
             sx={{
               fontSize: furyActive.typography.body1.fontSize,
               color: '#fff',
@@ -62,10 +61,22 @@ export const Localization = () => {
             push(asPath.replace(`/${echoActiveId}`, '/en'));
             handleCloseLocales();
           }}
+          sx={{
+            borderLeft: `3px solid ${
+              echoActiveId === 'en'
+                ? furyActive.palette.primary.main
+                : 'rgba(0,0,0,0)'
+            }`,
+            borderRight: `3px solid ${
+              echoActiveId === 'en'
+                ? furyActive.palette.primary.main
+                : 'rgba(0,0,0,0)'
+            }`,
+          }}
         >
           English
         </MenuItem>
-        <MenuItem
+        {/* <MenuItem
           onClick={() => {
             push(asPath.replace(`/${echoActiveId}`, '/pt'));
             handleCloseLocales();
@@ -88,7 +99,7 @@ export const Localization = () => {
           }}
         >
           Français
-        </MenuItem>
+        </MenuItem> */}
       </Menu>
     </Box>
   );
