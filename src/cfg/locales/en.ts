@@ -11,7 +11,7 @@ export const en: EchoMsgs = {
   apply: 'Apply',
   search: 'Search',
   // table
-  'table-pageSize': 'Page size', // TODO
+  'table-pageSize': 'Rows',
   // meta
   'meta-title': 'Phantasma Explorer',
   'meta-home': `Phantasma is a blockchain for content distribution of NFTs, Gaming and dApps that is fast, secure and decentralized.`,
