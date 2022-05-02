@@ -2,7 +2,7 @@ import React from 'react';
 import { useEcho } from '@ricardojrmcom/echo';
 import { useEmpathy } from '@ricardojrmcom/empathy';
 import { Box } from '@mui/material';
-import { endpoints, TABLE_FILTERS } from 'cfg';
+import { endpoints } from 'cfg';
 import { useTable } from 'hooks';
 import { useTokenData } from 'hooks/api';
 import { TokenResults } from 'types/api';
@@ -43,7 +43,6 @@ export const TokensList = () => {
           title: echo('explore-token'),
         }}
         {...tableProps}
-        filters={TABLE_FILTERS}
         loading={loading}
         error={error}
       />

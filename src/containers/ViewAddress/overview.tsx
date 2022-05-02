@@ -1,13 +1,10 @@
 import React, { useMemo } from 'react';
 import { nanoid } from 'nanoid';
-import csvDownload from 'json-to-csv-export';
-import FileDownloadIcon from '@mui/icons-material/FileDownload';
-import { Box, Grid, Button } from '@mui/material';
-import { useEcho } from '@ricardojrmcom/echo';
+import { Box } from '@mui/material';
 import { useRenderOverview } from 'hooks/useRenderOverview';
 import { useAddressData } from 'hooks/api';
 import { AddressResults } from 'types/api';
-import { Loading, Error, Empty } from 'components/layout';
+import { Loading, Error, Empty, Overview } from 'components/layout';
 
 export interface AddressOverviewProps {
   data?: AddressResults;
@@ -21,8 +18,6 @@ export const AddressOverview = ({
   loading,
   error,
 }: AddressOverviewProps) => {
-  const { echo } = useEcho();
-
   const renderOverview = useRenderOverview();
 
   const { cols, rows, raw } = useAddressData(data);
@@ -41,31 +36,14 @@ export const AddressOverview = ({
     }
 
     return (
-      <Grid container>
-        <Grid item xs={12} lg={10}>
-          <Box>{data && renderOverview(cols, rows, data)}</Box>
-        </Grid>
-        <Grid item xs={12} lg={2}>
-          <Box textAlign="right" pt={{ xs: 1.5, lg: 0 }}>
-            <Button
-              variant="contained"
-              color="secondary"
-              endIcon={<FileDownloadIcon />}
-              onClick={() =>
-                csvDownload(
-                  [raw[0]],
-                  `PhantasmaExplorer-Address-${nanoid()}.csv`,
-                  ',',
-                )
-              }
-            >
-              {echo('table-exportCsv')}
-            </Button>
-          </Box>
-        </Grid>
-      </Grid>
+      <Overview
+        csvFilename={`PhantasmaExplorer-Address-${nanoid()}.csv`}
+        raw={raw[0]}
+      >
+        <Box>{data && renderOverview(cols, rows, data)}</Box>
+      </Overview>
     );
-  }, [loading, error, rows, data, renderOverview, cols, echo, raw]);
+  }, [loading, error, rows, data, renderOverview, cols, raw]);
 
   return <Box p={1}>{content}</Box>;
 };

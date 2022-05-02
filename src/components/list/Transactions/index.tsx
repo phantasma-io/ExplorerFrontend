@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useEcho } from '@ricardojrmcom/echo';
 import { useEmpathy } from '@ricardojrmcom/empathy';
 import { Box } from '@mui/material';
-import { endpoints, TABLE_FILTERS } from 'cfg';
+import { endpoints } from 'cfg';
 import { useTable } from 'hooks';
 import { TransactionResults } from 'types/api';
 import { Table } from 'components/table';
@@ -61,7 +61,6 @@ export const TransactionsList = ({ address, block }: TransactionsListProps) => {
           title: echo('explore-transaction'),
         }}
         {...tableProps}
-        filters={TABLE_FILTERS}
         loading={loading}
         error={error || withError}
       />

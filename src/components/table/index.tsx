@@ -28,7 +28,6 @@ export const Table = ({
   orderBySet,
   orderDirection,
   orderDirectionSet,
-  filters,
   withDetails = true,
   height = TABLE_HEIGHT,
   spacing = TABLE_SPACING,
@@ -54,7 +53,6 @@ export const Table = ({
           orderBySet={orderBySet}
           orderDirection={orderDirection}
           orderDirectionSet={orderDirectionSet}
-          filters={filters}
         />
       </Box>
       <Box>

@@ -2,7 +2,7 @@ import React from 'react';
 import { useEcho } from '@ricardojrmcom/echo';
 import { useEmpathy } from '@ricardojrmcom/empathy';
 import { Box } from '@mui/material';
-import { endpoints, TABLE_FILTERS } from 'cfg';
+import { endpoints } from 'cfg';
 import { useTable } from 'hooks';
 import { useEventData } from 'hooks/api';
 import { EventResults } from 'types/api';
@@ -54,7 +54,6 @@ export const EventsList = ({
           title: echo('details-event'),
         }}
         {...tableProps}
-        filters={TABLE_FILTERS}
         loading={loading}
         error={error || withError}
       />

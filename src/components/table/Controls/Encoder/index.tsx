@@ -1,11 +1,11 @@
-import React, { useEffect, ReactChild, ReactChildren } from 'react';
+import React, { useEffect, ReactNode } from 'react';
 import { useRouter } from 'next/router';
 import { Box } from '@mui/material';
 import { encode, objToQuery } from 'scripts';
 import { TableUrlParams } from 'types/table';
 
 export interface TableEncoderProps {
-  children?: ReactChild | ReactChildren;
+  children?: ReactNode;
   params: TableUrlParams;
 }
 

@@ -6,6 +6,7 @@ export { Header } from './Header';
 export { Error } from './Error';
 export { Empty } from './Empty';
 export { Loading } from './Loading';
+export { Overview } from './Overview';
 export { NavTabs } from './NavTabs';
 export type { NavTabsRecord } from './NavTabs';
 export { Wip } from './Wip';

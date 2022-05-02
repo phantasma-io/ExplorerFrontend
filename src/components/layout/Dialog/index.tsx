@@ -1,4 +1,4 @@
-import React, { ReactChild, ReactChildren } from 'react';
+import React, { ReactNode } from 'react';
 import {
   Dialog as MuiDialog,
   Paper,
@@ -15,8 +15,8 @@ export interface DialogProps {
   isOpen: boolean;
   handleClose: () => void;
   title: string;
-  children?: ReactChild | ReactChildren | Element | null;
-  actions?: ReactChild | ReactChildren | Element | null;
+  children?: ReactNode | null;
+  actions?: ReactNode | null;
 }
 
 export const Dialog = ({

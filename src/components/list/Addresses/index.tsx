@@ -2,7 +2,7 @@ import React from 'react';
 import { useEcho } from '@ricardojrmcom/echo';
 import { useEmpathy } from '@ricardojrmcom/empathy';
 import { Box } from '@mui/material';
-import { endpoints, TABLE_FILTERS } from 'cfg';
+import { endpoints } from 'cfg';
 import { useTable } from 'hooks';
 import { useAddressData } from 'hooks/api';
 import { AddressResults } from 'types/api';
@@ -46,7 +46,6 @@ export const AddressesList = () => {
           title: echo('explore-address'),
         }}
         {...tableProps}
-        filters={TABLE_FILTERS}
         loading={loading}
         error={error}
       />

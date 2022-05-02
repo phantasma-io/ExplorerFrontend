@@ -2,7 +2,7 @@ import React from 'react';
 import { useEcho } from '@ricardojrmcom/echo';
 import { useEmpathy } from '@ricardojrmcom/empathy';
 import { Box } from '@mui/material';
-import { endpoints, TABLE_FILTERS } from 'cfg';
+import { endpoints } from 'cfg';
 import { useTable } from 'hooks';
 import { useNftData } from 'hooks/api';
 import { NftResults } from 'types/api';
@@ -38,7 +38,6 @@ export const NftsList = () => {
           title: echo('details-nft'),
         }}
         {...tableProps}
-        filters={TABLE_FILTERS}
         loading={loading}
         error={error}
       />
