@@ -111,12 +111,12 @@ export const useTokenData = (data?: TokenResults, loading?: boolean) => {
         type: 'boolean',
         size: 1,
       },
-      {
-        id: 'script_raw',
-        label: echo('scriptRaw'),
-        type: 'script',
-        size: 12,
-      },
+      // {
+      //   id: 'script_raw',
+      //   label: echo('scriptRaw'),
+      //   type: 'script',
+      //   size: 12,
+      // },
     ];
   }, [echo]);
 
@@ -137,11 +137,20 @@ export const useTokenData = (data?: TokenResults, loading?: boolean) => {
         item?.fiat,
         item?.swappable,
         item?.burnable,
-        item?.script_raw,
+        // item?.script_raw,
       ]) as TableDisplayRow[];
     }
 
     return [];
+  }, [data]);
+
+  const raw = useMemo(() => data?.tokens || [], [data]);
+
+  const withError = useMemo(() => {
+    if (data?.error) {
+      return true;
+    }
+    return false;
   }, [data]);
 
   const ctx = useMemo(
@@ -149,8 +158,10 @@ export const useTokenData = (data?: TokenResults, loading?: boolean) => {
       cols,
       rows,
       total,
+      raw,
+      withError,
     }),
-    [cols, rows, total],
+    [cols, rows, total, raw, withError],
   );
 
   return ctx;

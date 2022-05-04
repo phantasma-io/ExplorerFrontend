@@ -1,4 +1,4 @@
-import { ListParams, ListResults, WithOption } from './list';
+import { ListParams, ListResults } from './list';
 
 export interface Transaction {
   hash?: string;
@@ -10,8 +10,6 @@ export interface Transaction {
 
 export interface TransactionParams extends ListParams {
   hash?: string;
-  with_events?: WithOption;
-  with_event_data?: WithOption;
 }
 
 export interface TransactionResults extends ListResults {

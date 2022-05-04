@@ -6,6 +6,9 @@ export interface ListParams {
   offset?: number;
   limit?: number;
   with_total?: WithOption;
+  with_events?: WithOption;
+  with_event_data?: WithOption;
+  with_creation_event?: WithOption;
 }
 
 export interface ListResults {

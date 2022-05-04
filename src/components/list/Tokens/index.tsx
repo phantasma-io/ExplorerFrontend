@@ -5,7 +5,7 @@ import { Box } from '@mui/material';
 import { endpoints } from 'cfg';
 import { useTable } from 'hooks';
 import { useTokenData } from 'hooks/api';
-import { TokenResults } from 'types/api';
+import { TokenResults, TokenParams } from 'types/api';
 import { Table } from 'components/table';
 
 export const TokensList = () => {
@@ -21,7 +21,9 @@ export const TokensList = () => {
       order_by,
       order_direction,
       with_total,
-    }),
+      with_logo: 0,
+      with_price: 0,
+    } as TokenParams),
   );
 
   const { cols, rows, total } = useTokenData(data, loading);
