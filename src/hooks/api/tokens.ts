@@ -17,6 +17,14 @@ export const useTokenData = (data?: TokenResults, loading?: boolean) => {
 
   const cols = useMemo<TableDisplayCol[]>(() => {
     return [
+      // thumb
+      {
+        id: 'thumbnail',
+        label: echo('image'),
+        type: 'thumbnail',
+        size: 2,
+      },
+      // data
       {
         id: 'symbol',
         label: echo('symbol'),
@@ -123,6 +131,9 @@ export const useTokenData = (data?: TokenResults, loading?: boolean) => {
   const rows = useMemo<TableDisplayRow[]>(() => {
     if (data) {
       return data?.tokens?.map((item) => [
+        // thumb
+        item?.token_logos && item.token_logos[1] && item?.token_logos[1].url,
+        // data
         item?.symbol,
         parseDecimals(item?.current_supply || '0', item?.decimals || 0).number,
         parseDecimals(item?.burned_supply || '0', item?.decimals || 0).number,

@@ -21,8 +21,8 @@ export const TokensList = () => {
       order_by,
       order_direction,
       with_total,
-      with_logo: 0,
-      with_price: 0,
+      with_logo: 1,
+      with_price: 1,
     } as TokenParams),
   );
 
