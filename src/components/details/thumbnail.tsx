@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Box } from '@mui/material';
-import { useFury } from '@ricardojrmcom/fury';
 import { Image, Link } from 'components/display';
 
 export interface DetailsThumbnailProps {
@@ -9,8 +8,6 @@ export interface DetailsThumbnailProps {
 }
 
 export const DetailsThumbnail = ({ thumb, link }: DetailsThumbnailProps) => {
-  const { furyActive } = useFury();
-
   const [hasError, hasErrorSet] = useState<boolean>(false);
 
   if (thumb && link && !hasError) {
@@ -26,7 +23,6 @@ export const DetailsThumbnail = ({ thumb, link }: DetailsThumbnailProps) => {
                 hasErrorSet(true);
               }}
               style={{
-                // border: `3px solid ${furyActive.palette.primary.main}`,
                 borderRadius: '3px',
                 cursor: 'pointer',
               }}
