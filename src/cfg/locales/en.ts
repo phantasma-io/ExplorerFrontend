@@ -176,4 +176,5 @@ export const en: EchoMsgs = {
   'transaction-hash': 'Transaction hash',
   clear: 'Clear',
   'table-toggleViewMode': 'Toggle view',
+  event: 'Event',
 };
