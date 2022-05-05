@@ -14,6 +14,7 @@ import {
   ViewEvent,
   ViewNft,
   ViewNexus,
+  ViewSeries,
   ViewToken,
   ViewTransaction,
 } from '../index';
@@ -92,7 +93,7 @@ export const LocalizedView = ({ locale, route }: LocalizedViewProps) => {
       case '/nft':
         return <ViewNft />;
       case '/series':
-        return <ViewEvent />;
+        return <ViewSeries />;
       case '/token':
         return <ViewToken />;
       case '/transaction':

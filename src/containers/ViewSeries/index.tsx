@@ -7,24 +7,22 @@ import { NavTabs, NavTabsRecord, Breadcrumbs } from 'components/layout';
 import { endpoints, routes } from 'cfg';
 import { Locales } from 'types/locales';
 import { ExplorerTabs } from 'types/routes';
-import { EventResults, EventParams } from 'types/api';
-import { EventOverview } from './overview';
+import { SeriesResults, SeriesParams } from 'types/api';
+import { SeriesOverview } from './overview';
 
-export interface ViewEventProps {
+export interface ViewSeriesProps {
   tabForce?: ExplorerTabs;
 }
 
-export const ViewEvent = ({ tabForce = 'overview' }: ViewEventProps) => {
+export const ViewSeries = ({ tabForce = 'overview' }: ViewSeriesProps) => {
   const { echo, echoActiveId } = useEcho();
 
   const { query } = useRouter();
 
-  const { data, error, loading } = useEmpathy<EventResults>(
-    endpoints['/events']({
-      event_id: (query?.id as string) || '',
-      with_logo: 1,
-      with_price: 1,
-    } as EventParams),
+  const { data, error, loading } = useEmpathy<SeriesResults>(
+    endpoints['/series']({
+      id: (query?.id as string) || '',
+    } as SeriesParams),
   );
 
   const tabs: NavTabsRecord = useMemo(
@@ -32,9 +30,9 @@ export const ViewEvent = ({ tabForce = 'overview' }: ViewEventProps) => {
       overview: {
         id: 'overview',
         label: echo('tab-overview'),
-        href: routes['/event'](echoActiveId as Locales),
+        href: routes['/series'](echoActiveId as Locales),
         component: (
-          <EventOverview data={data} loading={loading} error={error} />
+          <SeriesOverview data={data} loading={loading} error={error} />
         ),
       },
     }),
@@ -44,7 +42,7 @@ export const ViewEvent = ({ tabForce = 'overview' }: ViewEventProps) => {
   return (
     <Box>
       <Box>
-        <Breadcrumbs tab="events" label={echo('tab-events')} />
+        <Breadcrumbs tab="series" label={echo('tab-series')} />
       </Box>
       <Box>
         <NavTabs tabs={tabs} tabsDefault={tabForce} />

@@ -151,13 +151,16 @@ export const useSeriesData = (data?: SeriesResults, loading?: boolean) => {
     return [];
   }, [data]);
 
+  const raw = useMemo(() => data?.series || [], [data]);
+
   const ctx = useMemo(
     () => ({
       cols,
       rows,
+      raw,
       total,
     }),
-    [cols, rows, total],
+    [cols, rows, raw, total],
   );
 
   return ctx;

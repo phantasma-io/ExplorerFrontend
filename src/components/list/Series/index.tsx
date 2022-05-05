@@ -37,6 +37,11 @@ export const SeriesList = () => {
         dialogOptions={{
           title: echo('details-series'),
         }}
+        linkOptions={{
+          route: '/series',
+          key: 'id',
+          title: echo('explore-series'),
+        }}
         {...tableProps}
         loading={loading}
         error={error}

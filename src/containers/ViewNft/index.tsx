@@ -32,7 +32,7 @@ export const ViewNft = ({ tabForce = 'overview' }: ViewNftProps) => {
       overview: {
         id: 'overview',
         label: echo('tab-overview'),
-        href: routes['/token'](echoActiveId as Locales),
+        href: routes['/nft'](echoActiveId as Locales),
         component: <NftOverview data={data} loading={loading} error={error} />,
       },
     }),

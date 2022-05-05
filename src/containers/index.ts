@@ -8,6 +8,7 @@ export { ViewAddress } from './ViewAddress';
 export { ViewBlock } from './ViewBlock';
 export { ViewEvent } from './ViewEvent';
 export { ViewNft } from './ViewNft';
+export { ViewSeries } from './ViewSeries';
 export { ViewNexus } from './ViewNexus';
 export { ViewToken } from './ViewToken';
 export { ViewTransaction } from './ViewTransaction';
