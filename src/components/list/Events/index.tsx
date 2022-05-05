@@ -53,6 +53,11 @@ export const EventsList = ({
         dialogOptions={{
           title: echo('details-event'),
         }}
+        linkOptions={{
+          route: '/event',
+          key: 'event_id',
+          title: echo('explore-event'),
+        }}
         {...tableProps}
         loading={loading}
         error={error || withError}

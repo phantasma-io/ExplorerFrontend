@@ -103,6 +103,8 @@ export const useEventData = (data?: EventResults, loading?: boolean) => {
     return [];
   }, [data]);
 
+  const raw = useMemo(() => data?.events || [], [data]);
+
   const withError = useMemo(() => {
     if (data?.error) {
       return true;
@@ -115,9 +117,10 @@ export const useEventData = (data?: EventResults, loading?: boolean) => {
       cols,
       rows,
       total,
+      raw,
       withError,
     }),
-    [cols, rows, total, withError],
+    [cols, rows, total, raw, withError],
   );
 
   return ctx;

@@ -4,6 +4,7 @@ export type ExplorerRoutes =
   | '/'
   | '/nexus'
   | '/address'
+  | '/event'
   | '/block'
   | '/nft'
   | '/series'

@@ -27,6 +27,7 @@ export interface EventParams extends ListParams {
   date_day?: string;
   date_greater?: string;
   date_less?: string;
+  event_id?: string;
   event_kind?: string;
   token_id?: string;
   transaction_hash?: string;
