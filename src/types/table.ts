@@ -2,6 +2,8 @@ import React from 'react';
 import { GridSpacing } from '@mui/material';
 import { DetailsLinkOptions, DetailsItem, DetailsValue } from './components';
 
+export type TableViewModes = 'desktop' | 'mobile';
+
 export type TableOrderDirection = 'asc' | 'desc';
 
 export interface TableDisplayCol extends DetailsItem {
@@ -45,4 +47,5 @@ export interface TableDisplayProps extends TableDisplayData {
   loading?: boolean;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   error?: any;
+  viewMode?: TableViewModes;
 }

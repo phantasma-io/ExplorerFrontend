@@ -175,4 +175,5 @@ export const en: EchoMsgs = {
   'token-symbol': 'Token symbol',
   'transaction-hash': 'Transaction hash',
   clear: 'Clear',
+  'table-toggleViewMode': 'Toggle view',
 };

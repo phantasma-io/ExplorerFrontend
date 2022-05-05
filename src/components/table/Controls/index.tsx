@@ -1,16 +1,23 @@
 import React, { useMemo } from 'react';
 import { nanoid } from 'nanoid';
 import { Box, Grid, NoSsr, Typography } from '@mui/material';
-import { TableUrlParams, TableParamControls } from 'types/table';
+import {
+  TableUrlParams,
+  TableParamControls,
+  TableViewModes,
+} from 'types/table';
 import { useEcho } from '@ricardojrmcom/echo';
 import { numberFormat } from '@ricardojrmcom/dervish';
 import { TablePageSize } from './PageSize';
 import { TablePagination } from './Pagination';
+import { TableViewMode } from './ViewMode';
 import { TableExporter } from './Exporter';
 
 export interface TableControlsProps extends TableUrlParams, TableParamControls {
   tableId: string;
   exportData: string;
+  viewMode: TableViewModes;
+  viewModeSet: React.Dispatch<React.SetStateAction<TableViewModes>>;
 }
 
 export const TableControls = ({
@@ -21,6 +28,8 @@ export const TableControls = ({
   pageSize,
   pageSizeSet,
   total,
+  viewMode,
+  viewModeSet,
 }: TableControlsProps) => {
   const { echo } = useEcho();
 
@@ -51,6 +60,9 @@ export const TableControls = ({
                   pageSizeSet={pageSizeSet}
                   total={total}
                 />
+              </Grid>
+              <Grid item>
+                <TableViewMode viewMode={viewMode} viewModeSet={viewModeSet} />
               </Grid>
               <Grid item>
                 <TableExporter data={exportData} filename={csvFilename} />

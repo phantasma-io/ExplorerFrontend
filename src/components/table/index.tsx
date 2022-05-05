@@ -1,9 +1,11 @@
 import React, { useMemo } from 'react';
 import { Box } from '@mui/material';
+import { useLocalState } from '@ricardojrmcom/reaper';
 import {
   TableDisplayProps,
   TableUrlParams,
   TableParamControls,
+  TableViewModes,
 } from 'types/table';
 import { TABLE_HEIGHT, TABLE_SPACING } from 'cfg';
 import { TableControls } from './Controls';
@@ -36,6 +38,11 @@ export const Table = ({
   loading,
   error,
 }: TableProps) => {
+  const [viewMode, viewModeSet] = useLocalState<TableViewModes>(
+    'PhantasmaExplorer-table-viewMode',
+    'desktop',
+  );
+
   const strData = useMemo(() => JSON.stringify(raw), [raw]);
 
   return (
@@ -53,6 +60,8 @@ export const Table = ({
           orderBySet={orderBySet}
           orderDirection={orderDirection}
           orderDirectionSet={orderDirectionSet}
+          viewMode={viewMode}
+          viewModeSet={viewModeSet}
         />
       </Box>
       <Box>
@@ -68,6 +77,7 @@ export const Table = ({
           dialogOptions={dialogOptions}
           loading={loading}
           error={error}
+          viewMode={viewMode}
         />
       </Box>
     </Box>
