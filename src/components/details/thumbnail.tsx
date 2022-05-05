@@ -26,7 +26,7 @@ export const DetailsThumbnail = ({ thumb, link }: DetailsThumbnailProps) => {
                 hasErrorSet(true);
               }}
               style={{
-                border: `3px solid ${furyActive.palette.primary.main}`,
+                // border: `3px solid ${furyActive.palette.primary.main}`,
                 borderRadius: '3px',
                 cursor: 'pointer',
               }}

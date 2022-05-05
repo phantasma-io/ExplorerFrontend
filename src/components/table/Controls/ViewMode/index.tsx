@@ -16,20 +16,22 @@ export const TableViewMode = ({
   const { echo } = useEcho();
   return (
     <Box>
-      <Button
-        size="small"
-        onClick={() => {
-          if (viewMode === 'desktop') {
-            viewModeSet('mobile');
-          } else {
-            viewModeSet('desktop');
-          }
-        }}
-        endIcon={<ViewAgendaIcon color="inherit" />}
-        color="inherit"
-      >
-        {echo('table-toggleViewMode')}
-      </Button>
+      <Box display={{ xs: 'none', md: 'block' }}>
+        <Button
+          size="small"
+          onClick={() => {
+            if (viewMode === 'desktop') {
+              viewModeSet('mobile');
+            } else {
+              viewModeSet('desktop');
+            }
+          }}
+          endIcon={<ViewAgendaIcon color="inherit" />}
+          color="inherit"
+        >
+          {echo('table-toggleViewMode')}
+        </Button>
+      </Box>
     </Box>
   );
 };
