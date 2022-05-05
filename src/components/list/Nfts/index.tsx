@@ -37,6 +37,11 @@ export const NftsList = () => {
         dialogOptions={{
           title: echo('details-nft'),
         }}
+        linkOptions={{
+          route: '/nft',
+          key: 'token_id',
+          title: echo('explore-nft'),
+        }}
         {...tableProps}
         loading={loading}
         error={error}

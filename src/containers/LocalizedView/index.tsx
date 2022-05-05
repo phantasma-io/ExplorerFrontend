@@ -12,6 +12,7 @@ import {
   ViewAddress,
   ViewBlock,
   ViewEvent,
+  ViewNft,
   ViewNexus,
   ViewToken,
   ViewTransaction,
@@ -89,7 +90,7 @@ export const LocalizedView = ({ locale, route }: LocalizedViewProps) => {
       case '/event':
         return <ViewEvent />;
       case '/nft':
-        return <ViewEvent />;
+        return <ViewNft />;
       case '/series':
         return <ViewEvent />;
       case '/token':

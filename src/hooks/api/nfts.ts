@@ -245,13 +245,16 @@ export const useNftData = (data?: NftResults, loading?: boolean) => {
     return [];
   }, [data]);
 
+  const raw = useMemo(() => data?.nfts || [], [data]);
+
   const ctx = useMemo(
     () => ({
       cols,
       rows,
+      raw,
       total,
     }),
-    [cols, rows, total],
+    [cols, rows, raw, total],
   );
 
   return ctx;
