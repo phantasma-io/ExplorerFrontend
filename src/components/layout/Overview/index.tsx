@@ -15,17 +15,18 @@ export const Overview = ({ children, csvFilename, raw }: OverviewProps) => {
   const { echo } = useEcho();
 
   return (
-    <Box sx={{ position: 'relative' }}>
+    <Box>
       <Box>{children}</Box>
-      <Button
-        variant="contained"
-        color="secondary"
-        endIcon={<FileDownloadIcon />}
-        onClick={() => csvDownload([raw], csvFilename, ',')}
-        sx={{ position: 'absolute', top: 0, right: 0 }}
-      >
-        {echo('table-exportCsv')}
-      </Button>
+      <Box textAlign="right" pt={1}>
+        <Button
+          variant="contained"
+          color="primary"
+          endIcon={<FileDownloadIcon />}
+          onClick={() => csvDownload([raw], csvFilename, ',')}
+        >
+          {echo('table-exportCsv')}
+        </Button>
+      </Box>
     </Box>
   );
 };
