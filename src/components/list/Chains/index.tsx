@@ -1,8 +1,8 @@
 import React, { useMemo } from 'react';
-import { useEcho } from '@ricardo-jrm/echo';
-import { useEmpathy } from '@ricardo-jrm/empathy';
+import { useEcho } from '@ricardojrmcom/echo';
+import { useEmpathy } from '@ricardojrmcom/empathy';
 import { Box } from '@mui/material';
-import { endpoints, TABLE_FILTERS } from 'cfg';
+import { endpoints } from 'cfg';
 import { useTable } from 'hooks';
 import { TableDisplayCol, TableDisplayRow } from 'types/table';
 import { ChainResults } from 'types/api';
@@ -64,7 +64,6 @@ export const ChainsList = () => {
         rows={rows}
         total={data?.total_results || 0}
         {...tableProps}
-        filters={TABLE_FILTERS}
       />
     </Box>
   );

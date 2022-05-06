@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { useRouter } from 'next/router';
-import { useEcho } from '@ricardo-jrm/echo';
-import { useEmpathy } from '@ricardo-jrm/empathy';
+import { useEcho } from '@ricardojrmcom/echo';
+import { useEmpathy } from '@ricardojrmcom/empathy';
 import { Box } from '@mui/material';
 import { NavTabs, NavTabsRecord, Breadcrumbs } from 'components/layout';
 import { routes, endpoints } from 'cfg';

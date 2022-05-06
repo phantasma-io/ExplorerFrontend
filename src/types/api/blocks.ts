@@ -10,11 +10,12 @@ export interface Block {
   date?: string;
 }
 
-export interface BlockParams extends ListParams {
-  hash?: string;
+export interface BlockParams
+  extends Pick<Block, 'hash' | 'height'>,
+    ListParams {
   hash_partial?: string;
-  height?: string;
   with_fiat?: WithOption;
+  with_nft?: WithOption;
 }
 
 export interface BlockResults extends ListResults {

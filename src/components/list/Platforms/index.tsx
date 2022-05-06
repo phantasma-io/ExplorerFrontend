@@ -1,18 +1,22 @@
-import React from 'react';
-import { useEcho } from '@ricardo-jrm/echo';
-import { useEmpathy } from '@ricardo-jrm/empathy';
+import React, { useState } from 'react';
+import { useEcho } from '@ricardojrmcom/echo';
+import { useEmpathy } from '@ricardojrmcom/empathy';
 import { Box } from '@mui/material';
-import { endpoints, TABLE_FILTERS } from 'cfg';
+import { endpoints } from 'cfg';
 import { useTable } from 'hooks';
 import { usePlatformData } from 'hooks/api';
-import { PlatformResults } from 'types/api';
+import { PlatformResults, PlatformParams } from 'types/api';
 import { Table } from 'components/table';
+import { PlatformsListFilters } from './filters';
 
 export const PlatformsList = () => {
   const { echo } = useEcho();
 
   const tableProps = useTable();
   const { limit, order_by, order_direction, offset, with_total } = tableProps;
+
+  // filter states
+  const [name, nameSet] = useState<PlatformParams['name']>(undefined);
 
   const { data, loading, error } = useEmpathy<PlatformResults>(
     endpoints['/platforms']({
@@ -21,7 +25,8 @@ export const PlatformsList = () => {
       order_by,
       order_direction,
       with_total,
-    }),
+      name,
+    } as PlatformParams),
   );
 
   const { cols, rows, total } = usePlatformData(data, loading);
@@ -38,9 +43,9 @@ export const PlatformsList = () => {
           title: echo('details-platform'),
         }}
         {...tableProps}
-        filters={TABLE_FILTERS}
         loading={loading}
         error={error}
+        addon={<PlatformsListFilters name={name} nameSet={nameSet} />}
       />
     </Box>
   );

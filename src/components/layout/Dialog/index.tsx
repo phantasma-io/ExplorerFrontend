@@ -1,4 +1,4 @@
-import React, { ReactChild, ReactChildren } from 'react';
+import React, { ReactNode } from 'react';
 import {
   Dialog as MuiDialog,
   Paper,
@@ -7,7 +7,7 @@ import {
   Tooltip,
   IconButton,
 } from '@mui/material';
-import { useEcho } from '@ricardo-jrm/echo';
+import { useEcho } from '@ricardojrmcom/echo';
 import CloseIcon from '@mui/icons-material/Close';
 import { Text } from 'components/display';
 
@@ -15,8 +15,8 @@ export interface DialogProps {
   isOpen: boolean;
   handleClose: () => void;
   title: string;
-  children?: ReactChild | ReactChildren | Element | null;
-  actions?: ReactChild | ReactChildren | Element | null;
+  children?: ReactNode | null;
+  actions?: ReactNode | null;
 }
 
 export const Dialog = ({
@@ -53,7 +53,7 @@ export const Dialog = ({
           </Box>
 
           {/* actions */}
-          <Box pb={1}>
+          <Box my={1}>
             <Grid container justifyContent="flex-end">
               <Grid item>{actions}</Grid>
             </Grid>

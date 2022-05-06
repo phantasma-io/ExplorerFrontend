@@ -1,12 +1,10 @@
 import React, { useMemo } from 'react';
 import { nanoid } from 'nanoid';
-import csvDownload from 'json-to-csv-export';
-import { Box, Grid, Button } from '@mui/material';
-import { useEcho } from '@ricardo-jrm/echo';
+import { Box } from '@mui/material';
 import { useRenderOverview } from 'hooks/useRenderOverview';
 import { useTransactionData } from 'hooks/api';
 import { TransactionResults } from 'types/api';
-import { Loading, Error, Empty } from 'components/layout';
+import { Loading, Error, Empty, Overview } from 'components/layout';
 
 export interface TransactionOverviewProps {
   data?: TransactionResults;
@@ -20,8 +18,6 @@ export const TransactionOverview = ({
   loading,
   error,
 }: TransactionOverviewProps) => {
-  const { echo } = useEcho();
-
   const renderOverview = useRenderOverview();
 
   const { cols, rows, raw } = useTransactionData(data);
@@ -31,7 +27,7 @@ export const TransactionOverview = ({
       return <Loading />;
     }
 
-    if (error) {
+    if (error || data?.error) {
       return <Error />;
     }
 
@@ -40,30 +36,14 @@ export const TransactionOverview = ({
     }
 
     return (
-      <Grid container>
-        <Grid item xs={12} lg={10}>
-          <Box>{data && renderOverview(cols, rows)}</Box>
-        </Grid>
-        <Grid item xs={12} lg={2}>
-          <Box textAlign="right" pt={{ xs: 1.5, lg: 0 }}>
-            <Button
-              variant="contained"
-              color="secondary"
-              onClick={() =>
-                csvDownload(
-                  [raw[0]],
-                  `PhantasmaExplorer-Transaction-${nanoid()}.csv`,
-                  ',',
-                )
-              }
-            >
-              {echo('table-exportCsv')}
-            </Button>
-          </Box>
-        </Grid>
-      </Grid>
+      <Overview
+        csvFilename={`PhantasmaExplorer-Transaction-${nanoid()}.csv`}
+        raw={raw[0]}
+      >
+        <Box>{data && renderOverview(cols, rows)}</Box>
+      </Overview>
     );
-  }, [loading, error, rows, data, renderOverview, cols, echo, raw]);
+  }, [loading, error, rows, data, renderOverview, cols, raw]);
 
   return <Box p={1}>{content}</Box>;
 };

@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import { useLocalState } from '@ricardojrmcom/reaper';
 import { WithOption } from 'types/api';
 import { useTableParams } from './useTableParams';
 
@@ -6,7 +7,10 @@ export const useTable = () => {
   const tableParams = useTableParams();
 
   const [page, pageSet] = useState(tableParams.page);
-  const [pageSize, pageSizeSet] = useState(tableParams.pageSize);
+  const [pageSize, pageSizeSet] = useLocalState(
+    'PhantasmaExplorer-rowSize',
+    tableParams.pageSize,
+  );
   const [orderBy, orderBySet] = useState(tableParams.orderBy);
   const [orderDirection, orderDirectionSet] = useState(
     tableParams.orderDirection,

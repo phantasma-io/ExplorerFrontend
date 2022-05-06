@@ -1,18 +1,24 @@
 import React, { useMemo } from 'react';
 import { nanoid } from 'nanoid';
 import { Box, Grid, NoSsr, Typography } from '@mui/material';
-import { TableUrlParams, TableParamControls } from 'types/table';
-import { useEcho } from '@ricardo-jrm/echo';
-import { numberFormat } from '@ricardo-jrm/dervish';
-// import { TableEncoder } from './Encoder';
+import {
+  TableUrlParams,
+  TableParamControls,
+  TableViewModes,
+} from 'types/table';
+import { useEcho } from '@ricardojrmcom/echo';
+import { numberFormat } from '@ricardojrmcom/dervish';
 import { TablePageSize } from './PageSize';
 import { TablePagination } from './Pagination';
+import { TableViewMode } from './ViewMode';
 import { TableExporter } from './Exporter';
-import { TableFilters } from './Filters';
 
 export interface TableControlsProps extends TableUrlParams, TableParamControls {
   tableId: string;
   exportData: string;
+  viewMode: TableViewModes;
+  viewModeSet: React.Dispatch<React.SetStateAction<TableViewModes>>;
+  addon?: React.ReactNode;
 }
 
 export const TableControls = ({
@@ -22,37 +28,12 @@ export const TableControls = ({
   pageSet,
   pageSize,
   pageSizeSet,
-  // orderBy,
-  // orderBySet,
-  // orderDirection,
-  // orderDirectionSet,
-  // filters,
   total,
+  viewMode,
+  viewModeSet,
+  addon,
 }: TableControlsProps) => {
   const { echo } = useEcho();
-
-  // const params = useMemo<TableUrlParams>(
-  //   () => ({
-  //     page,
-  //     pageSize,
-  //     orderBy,
-  //     orderBySet,
-  //     orderDirection,
-  //     orderDirectionSet,
-  //     total,
-  //     filters,
-  //   }),
-  //   [
-  //     page,
-  //     pageSize,
-  //     orderBy,
-  //     orderBySet,
-  //     orderDirection,
-  //     orderDirectionSet,
-  //     total,
-  //     filters,
-  //   ],
-  // );
 
   const csvFilename = useMemo(() => `${tableId}-${nanoid()}.csv`, [tableId]);
 
@@ -66,8 +47,11 @@ export const TableControls = ({
   return (
     <Box>
       <NoSsr>
-        {/* <TableEncoder params={params} /> */}
-        <Grid container justifyContent={{ xs: 'center', md: 'space-between' }}>
+        <Grid
+          container
+          justifyContent={{ xs: 'center', md: 'space-between' }}
+          alignItems="center"
+        >
           <Grid item xs={12} md="auto">
             <Grid
               container
@@ -84,30 +68,40 @@ export const TableControls = ({
                 />
               </Grid>
               <Grid item>
+                <TableViewMode viewMode={viewMode} viewModeSet={viewModeSet} />
+              </Grid>
+              <Grid item>
                 <TableExporter data={exportData} filename={csvFilename} />
               </Grid>
-              <Grid item>
-                <TableFilters />
-              </Grid>
-              <Grid item>
-                <Box pb={0.39}>
-                  <Typography
-                    variant="caption"
-                    color="textSecondary"
-                    fontWeight={600}
-                  >
-                    {`(${numberFormat(total)} ${echo('table-results')})`}
-                  </Typography>
-                </Box>
-              </Grid>
+              {addon && <Grid item>{addon}</Grid>}
             </Grid>
           </Grid>
-          <Grid item xs={12} md="auto">
-            <TablePagination
-              page={page}
-              pageCount={pageCount}
-              pageSet={pageSet}
-            />
+          <Grid
+            item
+            xs={12}
+            md="auto"
+            container
+            alignItems="center"
+            spacing={1}
+          >
+            <Grid item>
+              <Box pb={0.39}>
+                <Typography
+                  variant="caption"
+                  color="textSecondary"
+                  fontWeight={600}
+                >
+                  {`(${numberFormat(total)} ${echo('table-results')})`}
+                </Typography>
+              </Box>
+            </Grid>
+            <Grid item>
+              <TablePagination
+                page={page}
+                pageCount={pageCount}
+                pageSet={pageSet}
+              />
+            </Grid>
           </Grid>
         </Grid>
       </NoSsr>

@@ -1,6 +1,5 @@
 import React from 'react';
-import { useFury } from '@ricardo-jrm/fury';
-import { useEcho } from '@ricardo-jrm/echo';
+import { useEcho } from '@ricardojrmcom/echo';
 import { Box, Grid, Button } from '@mui/material';
 import { Image, Link } from 'components/display';
 import { Fullscreen } from 'components/layout';
@@ -11,7 +10,6 @@ import { Locales } from 'types/locales';
  * ViewHome
  */
 export const ViewHome = () => {
-  const { furyActive } = useFury();
   const { echo, echoActiveId } = useEcho();
 
   return (

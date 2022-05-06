@@ -1,9 +1,11 @@
 import React, { useMemo } from 'react';
 import { Box } from '@mui/material';
+import { useLocalState } from '@ricardojrmcom/reaper';
 import {
   TableDisplayProps,
   TableUrlParams,
   TableParamControls,
+  TableViewModes,
 } from 'types/table';
 import { TABLE_HEIGHT, TABLE_SPACING } from 'cfg';
 import { TableControls } from './Controls';
@@ -12,7 +14,9 @@ import { TableDisplay } from './Display';
 export interface TableProps
   extends TableDisplayProps,
     TableParamControls,
-    TableUrlParams {}
+    TableUrlParams {
+  addon?: React.ReactNode;
+}
 
 export const Table = ({
   tableId,
@@ -28,7 +32,6 @@ export const Table = ({
   orderBySet,
   orderDirection,
   orderDirectionSet,
-  filters,
   withDetails = true,
   height = TABLE_HEIGHT,
   spacing = TABLE_SPACING,
@@ -36,7 +39,13 @@ export const Table = ({
   dialogOptions,
   loading,
   error,
+  addon,
 }: TableProps) => {
+  const [viewMode, viewModeSet] = useLocalState<TableViewModes>(
+    'PhantasmaExplorer-table-viewMode',
+    'desktop',
+  );
+
   const strData = useMemo(() => JSON.stringify(raw), [raw]);
 
   return (
@@ -54,7 +63,9 @@ export const Table = ({
           orderBySet={orderBySet}
           orderDirection={orderDirection}
           orderDirectionSet={orderDirectionSet}
-          filters={filters}
+          viewMode={viewMode}
+          viewModeSet={viewModeSet}
+          addon={addon}
         />
       </Box>
       <Box>
@@ -70,6 +81,7 @@ export const Table = ({
           dialogOptions={dialogOptions}
           loading={loading}
           error={error}
+          viewMode={viewMode}
         />
       </Box>
     </Box>

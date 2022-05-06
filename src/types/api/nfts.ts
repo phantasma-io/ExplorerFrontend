@@ -39,7 +39,7 @@ export interface NftParams extends ListParams {
   fiat_currency?: string;
   creator?: string;
   owner?: string;
-  contract?: string;
+  contract_hash?: string;
   name?: string;
   chain?: string;
   symbol?: string;

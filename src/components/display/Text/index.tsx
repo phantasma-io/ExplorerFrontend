@@ -10,15 +10,15 @@ import {
   IconButton,
   Tooltip,
 } from '@mui/material';
-import { useEcho } from '@ricardo-jrm/echo';
-import { useFury } from '@ricardo-jrm/fury';
+import { useEcho } from '@ricardojrmcom/echo';
+import { useFury } from '@ricardojrmcom/fury';
 import {
   numberFormat,
   dateFormat,
   dateRelative,
   stringCapitalize,
   stringTruncate,
-} from '@ricardo-jrm/dervish';
+} from '@ricardojrmcom/dervish';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import EventIcon from '@mui/icons-material/Event';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
@@ -270,7 +270,7 @@ export const Text = ({
       )}
       {linkOptions && (
         <Grid item>
-          <Link href={linkOptions.link} title={linkOptions.title}>
+          <Link href={linkOptions.link}>
             <Tooltip title={linkOptions.title} placement="right">
               <IconButton
                 size="small"

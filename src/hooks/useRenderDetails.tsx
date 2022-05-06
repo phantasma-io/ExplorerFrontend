@@ -6,8 +6,10 @@ import {
   DetailsNumber,
   DetailsText,
   DetailsScript,
+  DetailsThumbnail,
 } from 'components/details';
 import { DetailsItem, DetailsValue } from 'types/components';
+import { parseIpfs } from 'scripts';
 
 type RenderDetails = (
   type: DetailsItem['type'],
@@ -22,6 +24,10 @@ export const useRenderDetails = () => {
     (type, value, label, linkOptions, inTable) => {
       if (value) {
         switch (type) {
+          case 'thumbnail': {
+            const { thumb, link } = parseIpfs(value as string);
+            return <DetailsThumbnail thumb={thumb} link={link} />;
+          }
           case 'boolean':
             return (
               <DetailsBoolean

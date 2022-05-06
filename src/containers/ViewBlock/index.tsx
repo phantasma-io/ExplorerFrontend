@@ -1,8 +1,8 @@
 import React, { useMemo } from 'react';
 import { Box } from '@mui/material';
 import { useRouter } from 'next/router';
-import { useEmpathy } from '@ricardo-jrm/empathy';
-import { useEcho } from '@ricardo-jrm/echo';
+import { useEmpathy } from '@ricardojrmcom/empathy';
+import { useEcho } from '@ricardojrmcom/echo';
 import { NavTabs, NavTabsRecord, Breadcrumbs } from 'components/layout';
 import { endpoints, routes } from 'cfg';
 import { Locales } from 'types/locales';
@@ -38,24 +38,24 @@ export const ViewBlock = ({ tabForce = 'overview' }: ViewBlockProps) => {
           <BlockOverview data={data} loading={loading} error={error} />
         ),
       },
-      // oracles: {
-      //   id: 'oracles',
-      //   label: echo('tab-oracles'),
-      //   href: routes['/block'](echoActiveId as Locales),
-      //   component: <OraclesList />,
-      // },
-      events: {
-        id: 'events',
-        label: echo('tab-events'),
-        href: routes['/block'](echoActiveId as Locales),
-        component: <BlockEvents />,
-      },
       transactions: {
         id: 'transactions',
         label: echo('tab-transactions'),
         href: routes['/block'](echoActiveId as Locales),
         component: <BlockTransactions />,
       },
+      events: {
+        id: 'events',
+        label: echo('tab-events'),
+        href: routes['/block'](echoActiveId as Locales),
+        component: <BlockEvents />,
+      },
+      // oracles: {
+      //   id: 'oracles',
+      //   label: echo('tab-oracles'),
+      //   href: routes['/block'](echoActiveId as Locales),
+      //   component: <OraclesList />,
+      // },
     }),
     [echo, echoActiveId, data, error, loading],
   );

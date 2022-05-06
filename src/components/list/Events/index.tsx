@@ -1,12 +1,13 @@
-import React from 'react';
-import { useEcho } from '@ricardo-jrm/echo';
-import { useEmpathy } from '@ricardo-jrm/empathy';
+import React, { useState } from 'react';
+import { useEcho } from '@ricardojrmcom/echo';
+import { useEmpathy } from '@ricardojrmcom/empathy';
 import { Box } from '@mui/material';
-import { endpoints, TABLE_FILTERS } from 'cfg';
+import { endpoints } from 'cfg';
 import { useTable } from 'hooks';
 import { useEventData } from 'hooks/api';
-import { EventResults } from 'types/api';
+import { EventResults, EventParams } from 'types/api';
 import { Table } from 'components/table';
+import { EventsListFilters } from './filters';
 
 export interface EventsListProps {
   address?: string;
@@ -24,6 +25,13 @@ export const EventsList = ({
   const tableProps = useTable();
   const { limit, offset, with_total, order_direction } = tableProps;
 
+  // filter states
+  const [_address, _addressSet] = useState<EventParams['address']>(
+    address || undefined,
+  );
+  const [address_partial, address_partialSet] =
+    useState<EventParams['address_partial']>(undefined);
+
   const { data, loading, error } = useEmpathy<EventResults>(
     endpoints['/events']({
       offset,
@@ -31,13 +39,17 @@ export const EventsList = ({
       order_by: 'date',
       order_direction,
       with_total,
-      address,
+      chain: 'main',
+      address: _address,
+      address_partial,
       block_hash: block,
       transaction_hash: transaction,
-    }),
+      with_event_data: 1,
+      with_fiat: 1,
+    } as EventParams),
   );
 
-  const { cols, rows, total } = useEventData(data, loading);
+  const { cols, rows, total, withError } = useEventData(data, loading);
 
   return (
     <Box>
@@ -50,10 +62,23 @@ export const EventsList = ({
         dialogOptions={{
           title: echo('details-event'),
         }}
+        linkOptions={{
+          route: '/event',
+          key: 'event_id',
+          title: echo('explore-event'),
+        }}
         {...tableProps}
-        filters={TABLE_FILTERS}
         loading={loading}
-        error={error}
+        error={error || withError}
+        addon={
+          <EventsListFilters
+            address={_address}
+            addressSet={_addressSet}
+            address_partial={address_partial}
+            address_partialSet={address_partialSet}
+            address_disable={!!address}
+          />
+        }
       />
     </Box>
   );

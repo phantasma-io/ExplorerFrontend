@@ -4,7 +4,6 @@ export interface Platform {
   name?: string;
   chain?: string;
   fuel?: string;
-  externals?: any; // TODO
 }
 
 export interface PlatformParams extends ListParams {

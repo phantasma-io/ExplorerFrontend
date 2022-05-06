@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo } from 'react';
 import { useRouter } from 'next/router';
 import { Box } from '@mui/material';
-import { useEcho } from '@ricardo-jrm/echo';
+import { useEcho } from '@ricardojrmcom/echo';
 import { Locales } from 'types/locales';
 import { ExplorerRoutes } from 'types/routes';
 import { Text } from 'components/display';
@@ -11,7 +11,10 @@ import {
   ViewHome,
   ViewAddress,
   ViewBlock,
+  ViewEvent,
+  ViewNft,
   ViewNexus,
+  ViewSeries,
   ViewToken,
   ViewTransaction,
 } from '../index';
@@ -37,6 +40,12 @@ export const LocalizedView = ({ locale, route }: LocalizedViewProps) => {
         return `${echo('address')} | ${echo('meta-title')}`;
       case '/block':
         return `${echo('block')} | ${echo('meta-title')}`;
+      case '/event':
+        return `${echo('event')} | ${echo('meta-title')}`;
+      case '/nft':
+        return `${echo('nft')} | ${echo('meta-title')}`;
+      case '/series':
+        return `${echo('series')} | ${echo('meta-title')}`;
       case '/token':
         return `${echo('token')} | ${echo('meta-title')}`;
       case '/transaction':
@@ -55,6 +64,12 @@ export const LocalizedView = ({ locale, route }: LocalizedViewProps) => {
         return `${echo('meta-address')}`;
       case '/block':
         return `${echo('meta-block')}`;
+      case '/event':
+        return `${echo('meta-event')}`;
+      case '/nft':
+        return `${echo('meta-nft')}`;
+      case '/series':
+        return `${echo('meta-series')}`;
       case '/token':
         return `${echo('meta-token')}`;
       case '/transaction':
@@ -73,6 +88,12 @@ export const LocalizedView = ({ locale, route }: LocalizedViewProps) => {
         return <ViewAddress />;
       case '/block':
         return <ViewBlock />;
+      case '/event':
+        return <ViewEvent />;
+      case '/nft':
+        return <ViewNft />;
+      case '/series':
+        return <ViewSeries />;
       case '/token':
         return <ViewToken />;
       case '/transaction':
@@ -93,7 +114,7 @@ export const LocalizedView = ({ locale, route }: LocalizedViewProps) => {
             pb={{ xs: 3, lg: route === '/nexus' ? 3 : 0.5 }}
           >
             <Text
-              variant={route === '/nexus' ? 'h1' : 'h4'}
+              variant={route === '/nexus' ? 'h4' : 'h5'}
               sx={{ color: '#fff' }}
               value={echo(`details-${query?.view as string}`)}
             />

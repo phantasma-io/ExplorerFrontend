@@ -23,6 +23,9 @@ export interface Address {
 export interface AddressParams
   extends ListParams,
     Pick<Address, 'address' | 'address_name'> {
+  address_partial?: string;
+  organization_name?: string;
+  validator_kind?: string;
   with_storage: WithOption;
   with_stakes: WithOption;
   with_balance: WithOption;

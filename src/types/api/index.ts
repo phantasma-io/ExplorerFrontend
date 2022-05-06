@@ -14,6 +14,10 @@ export type {
 
 export type { EventParams, EventResult, EventResults } from './events';
 
+export type { EventTypeMap, EventTypes } from './eventTypes';
+
+export type { Fiat } from './fiat';
+
 export type { InfusedInto, Infusion } from './infusions';
 
 export type {

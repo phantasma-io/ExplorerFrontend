@@ -6,7 +6,7 @@ import type {
   GetStaticPaths,
 } from 'next';
 import { ParsedUrlQuery } from 'querystring';
-import { EchoProvider } from '@ricardo-jrm/echo';
+import { EchoProvider } from '@ricardojrmcom/echo';
 import { LocalizedView } from 'containers/LocalizedView';
 import { locales, localesKeys, routesViews } from 'cfg';
 import { Locales } from 'types/locales';

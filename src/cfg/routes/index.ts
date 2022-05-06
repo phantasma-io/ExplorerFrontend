@@ -10,6 +10,9 @@ export const routes: ExplorerRouter = {
   '/nexus': (locale, params) => `/${locale}/nexus${parseParams(params)}`,
   '/address': (locale, params) => `/${locale}/address${parseParams(params)}`,
   '/block': (locale, params) => `/${locale}/block${parseParams(params)}`,
+  '/event': (locale, params) => `/${locale}/event${parseParams(params)}`,
+  '/nft': (locale, params) => `/${locale}/nft${parseParams(params)}`,
+  '/series': (locale, params) => `/${locale}/series${parseParams(params)}`,
   '/token': (locale, params) => `/${locale}/token${parseParams(params)}`,
   '/transaction': (locale, params) =>
     `/${locale}/transaction${parseParams(params)}`,

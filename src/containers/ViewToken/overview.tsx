@@ -1,9 +1,10 @@
-import React from 'react';
-import { Box, Grid } from '@mui/material';
+import React, { useMemo } from 'react';
+import { nanoid } from 'nanoid';
+import { Box } from '@mui/material';
 import { useRenderOverview } from 'hooks/useRenderOverview';
 import { useTokenData } from 'hooks/api';
 import { TokenResults } from 'types/api';
-import { TokenPriceChart } from './PriceChart';
+import { Loading, Error, Empty, Overview } from 'components/layout';
 
 export interface TokenOverviewProps {
   data?: TokenResults;
@@ -12,21 +13,33 @@ export interface TokenOverviewProps {
   error?: any;
 }
 
-export const TokenOverview = ({ data }: TokenOverviewProps) => {
+export const TokenOverview = ({ data, loading, error }: TokenOverviewProps) => {
   const renderOverview = useRenderOverview();
 
-  const { cols, rows } = useTokenData(data);
+  const { cols, rows, raw } = useTokenData(data);
 
-  return (
-    <Box p={1}>
-      <Grid container>
-        <Grid item xs={12} pb={1}>
-          {data && renderOverview(cols, rows)}
-        </Grid>
-        <Grid item xs={12} pb={1}>
-          <Box>{/* <TokenPriceChart /> */}</Box>
-        </Grid>
-      </Grid>
-    </Box>
-  );
+  const content = useMemo(() => {
+    if (loading) {
+      return <Loading />;
+    }
+
+    if (error || data?.error) {
+      return <Error />;
+    }
+
+    if (rows.length === 0 && !loading) {
+      return <Empty />;
+    }
+
+    return (
+      <Overview
+        csvFilename={`PhantasmaExplorer-Token-${nanoid()}.csv`}
+        raw={raw[0]}
+      >
+        <Box>{data && renderOverview(cols, rows)}</Box>
+      </Overview>
+    );
+  }, [loading, error, rows, data, renderOverview, cols, raw]);
+
+  return <Box p={1}>{content}</Box>;
 };

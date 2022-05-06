@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, CircularProgress, Typography, Grid } from '@mui/material';
-import { useEcho } from '@ricardo-jrm/echo';
+import { useEcho } from '@ricardojrmcom/echo';
 
 export interface LoadingProps {
   msg?: string;

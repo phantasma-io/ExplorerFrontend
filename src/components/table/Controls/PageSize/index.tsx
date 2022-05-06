@@ -1,15 +1,7 @@
 import React, { useCallback, useState } from 'react';
-import { useEcho } from '@ricardo-jrm/echo';
-import { numberFormat } from '@ricardo-jrm/dervish';
-import {
-  Box,
-  Grid,
-  IconButton,
-  Typography,
-  Menu,
-  MenuItem,
-  Tooltip,
-} from '@mui/material';
+import { useEcho } from '@ricardojrmcom/echo';
+import { numberFormat } from '@ricardojrmcom/dervish';
+import { Box, Grid, Typography, Menu, MenuItem, Button } from '@mui/material';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 
 export interface TablePageSizeProps {
@@ -43,19 +35,12 @@ export const TablePageSize = ({
     <Box>
       <Grid container spacing={0.6} alignItems="center">
         <Grid item>
-          <Typography variant="body2" sx={{ fontWeight: 600 }}>{`${echo(
-            'table-pageSize',
-          )}: `}</Typography>
-        </Grid>
-        <Grid item>
-          <Typography variant="body2">{numberFormat(pageSize)}</Typography>
-        </Grid>
-        <Grid item>
-          <Tooltip title={echo('table-changePageSize')} placement="top">
-            <IconButton size="small" onClick={handleOpen}>
-              <ArrowDropDownIcon />
-            </IconButton>
-          </Tooltip>
+          <Button
+            size="small"
+            color="inherit"
+            endIcon={<ArrowDropDownIcon />}
+            onClick={handleOpen}
+          >{`${echo('table-pageSize')}: ${numberFormat(pageSize)}`}</Button>
         </Grid>
       </Grid>
       <Menu anchorEl={anchorMenu} open={openMenu} onClose={handleClose}>

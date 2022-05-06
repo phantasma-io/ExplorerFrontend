@@ -1,7 +1,7 @@
 import React from 'react';
 import { useRouter } from 'next/router';
 import { Typography, Box, Grid } from '@mui/material';
-import { useEcho } from '@ricardo-jrm/echo';
+import { useEcho } from '@ricardojrmcom/echo';
 import { Link } from 'components/display';
 import { routes } from 'cfg';
 import { Locales } from 'types/locales';

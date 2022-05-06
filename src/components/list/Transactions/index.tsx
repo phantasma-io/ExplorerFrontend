@@ -1,12 +1,13 @@
-import React, { useEffect } from 'react';
-import { useEcho } from '@ricardo-jrm/echo';
-import { useEmpathy } from '@ricardo-jrm/empathy';
+import React, { useState } from 'react';
+import { useEcho } from '@ricardojrmcom/echo';
+import { useEmpathy } from '@ricardojrmcom/empathy';
 import { Box } from '@mui/material';
-import { endpoints, TABLE_FILTERS } from 'cfg';
+import { endpoints } from 'cfg';
 import { useTable } from 'hooks';
-import { TransactionResults } from 'types/api';
+import { TransactionResults, TransactionParams } from 'types/api';
 import { Table } from 'components/table';
 import { useTransactionData } from 'hooks/api';
+import { TransactionsListFilters } from './filters';
 
 export interface TransactionsListProps {
   address?: string;
@@ -17,18 +18,12 @@ export const TransactionsList = ({ address, block }: TransactionsListProps) => {
   const { echo } = useEcho();
 
   const tableProps = useTable();
-  const {
-    limit,
-    order_by,
-    order_direction,
-    orderDirectionSet,
-    offset,
-    with_total,
-  } = tableProps;
+  const { limit, order_by, order_direction, offset, with_total } = tableProps;
 
-  useEffect(() => {
-    orderDirectionSet('desc');
-  });
+  // filter states
+  const [_address, _addressSet] = useState<TransactionParams['address']>(
+    address || undefined,
+  );
 
   const { data, loading, error } = useEmpathy<TransactionResults>(
     endpoints['/transactions']({
@@ -37,12 +32,12 @@ export const TransactionsList = ({ address, block }: TransactionsListProps) => {
       order_by,
       order_direction,
       with_total,
-      address,
+      address: _address,
       block_hash: block,
     }),
   );
 
-  const { cols, rows, total } = useTransactionData(data, loading);
+  const { cols, rows, total, withError } = useTransactionData(data, loading);
 
   return (
     <Box>
@@ -61,9 +56,15 @@ export const TransactionsList = ({ address, block }: TransactionsListProps) => {
           title: echo('explore-transaction'),
         }}
         {...tableProps}
-        filters={TABLE_FILTERS}
         loading={loading}
-        error={error}
+        error={error || withError}
+        addon={
+          <TransactionsListFilters
+            address={_address}
+            addressSet={_addressSet}
+            address_disable={!!address}
+          />
+        }
       />
     </Box>
   );

@@ -1,4 +1,4 @@
-import { EchoMsgs } from '@ricardo-jrm/echo';
+import { EchoMsgs } from '@ricardojrmcom/echo';
 
 export const en: EchoMsgs = {
   // sys
@@ -11,7 +11,7 @@ export const en: EchoMsgs = {
   apply: 'Apply',
   search: 'Search',
   // table
-  'table-pageSize': 'Page size', // TODO
+  'table-pageSize': 'Rows',
   // meta
   'meta-title': 'Phantasma Explorer',
   'meta-home': `Phantasma is a blockchain for content distribution of NFTs, Gaming and dApps that is fast, secure and decentralized.`,
@@ -42,7 +42,7 @@ export const en: EchoMsgs = {
   // btns
   'btn-enterNexus': 'Enter the Nexus',
   // page titles
-  'title-nexus': 'Welcome to the Nexus',
+  'title-nexus': 'Explore the Nexus',
   'title-chain': 'Explore chain',
   'title-address': 'Explore address',
   'title-block': 'Explore block',
@@ -96,7 +96,7 @@ export const en: EchoMsgs = {
   stake: 'Stake',
   unclaimed: 'Unclaimed',
   // details
-  'details-nexus': 'Welcome to the Nexus',
+  'details-nexus': 'Explore the Nexus',
   'details-address': 'Address details',
   'details-block': 'Block details',
   'details-contract': 'Contract details',
@@ -167,4 +167,33 @@ export const en: EchoMsgs = {
   mint_number: 'Mint #',
   ram: 'RAM',
   rom: 'ROM',
+  nft: 'NFT',
+  series: 'Series',
+  'block-hash': 'Block hash',
+  'nft-id': 'NFT',
+  'series-id': 'Series',
+  'token-symbol': 'Token symbol',
+  'transaction-hash': 'Transaction hash',
+  clear: 'Clear',
+  'table-toggleViewMode': 'Toggle view',
+  event: 'Event',
+  filterData: 'Filter data',
+  'filter-addresses': 'Filter addresses',
+  'filter-blocks': 'Filter blocks',
+  'filter-contracts': 'Filter contracts',
+  'filter-daos': 'Filter DAOs',
+  'filter-events': 'Filter events',
+  'filter-nfts': 'Filter NFTs',
+  'filter-platforms': 'Filter platforms',
+  'filter-series': 'Filter series',
+  'filter-tokens': 'Filter tokens',
+  'filter-transactions': 'Filter transactions',
+  addressExact: 'Exact address',
+  hashExact: 'Exact hash',
+  address_partial: 'Partial address',
+  hash_partial: 'Partial hash',
+  organization_name: 'DAO name',
+  validator_kind: 'Validator kind',
+  organization_nameExact: 'Exact name',
+  organization_name_partial: 'Partial name',
 };

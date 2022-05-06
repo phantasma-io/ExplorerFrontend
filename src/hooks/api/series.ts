@@ -1,5 +1,5 @@
 import { useMemo, useState, useEffect } from 'react';
-import { useEcho } from '@ricardo-jrm/echo';
+import { useEcho } from '@ricardojrmcom/echo';
 import { TableDisplayRow, TableDisplayCol } from 'types/table';
 import { SeriesResults } from 'types/api';
 
@@ -16,6 +16,13 @@ export const useSeriesData = (data?: SeriesResults, loading?: boolean) => {
 
   const cols = useMemo<TableDisplayCol[]>(() => {
     return [
+      // thumb
+      {
+        id: 'thumbnail',
+        label: echo('image'),
+        type: 'thumbnail',
+        size: 2,
+      },
       {
         id: 'name',
         label: echo('name'),
@@ -46,6 +53,11 @@ export const useSeriesData = (data?: SeriesResults, loading?: boolean) => {
         label: echo('creator'),
         type: 'monospace',
         size: 1,
+        linkOptions: {
+          route: '/address',
+          key: 'address',
+          title: echo('explore-address'),
+        },
       },
       {
         id: 'image',
@@ -117,6 +129,7 @@ export const useSeriesData = (data?: SeriesResults, loading?: boolean) => {
   const rows = useMemo<TableDisplayRow[]>(() => {
     if (data) {
       return data?.series?.map((item) => [
+        item?.image,
         item?.name,
         item?.current_supply,
         item?.max_supply,
@@ -138,13 +151,16 @@ export const useSeriesData = (data?: SeriesResults, loading?: boolean) => {
     return [];
   }, [data]);
 
+  const raw = useMemo(() => data?.series || [], [data]);
+
   const ctx = useMemo(
     () => ({
       cols,
       rows,
+      raw,
       total,
     }),
-    [cols, rows, total],
+    [cols, rows, raw, total],
   );
 
   return ctx;

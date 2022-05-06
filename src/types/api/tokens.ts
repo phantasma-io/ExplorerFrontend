@@ -1,4 +1,11 @@
-import { ListParams, ListResults } from './list';
+import { ListParams, ListResults, WithOption } from './list';
+
+export type TokenLogosType = 'thumb' | 'small' | 'large';
+
+export interface TokenLogo {
+  type: TokenLogosType;
+  url: string;
+}
 
 export interface Token {
   symbol?: string;
@@ -16,10 +23,14 @@ export interface Token {
   max_supply?: string;
   burned_supply?: string;
   script_raw?: string;
+  price?: { [x: string]: number };
+  token_logos?: TokenLogo[];
 }
 
 export interface TokenParams extends ListParams {
   symbol?: string;
+  with_logo?: WithOption;
+  with_price?: WithOption;
 }
 
 export interface TokenResults extends ListResults {

@@ -6,8 +6,13 @@ export interface ListParams {
   offset?: number;
   limit?: number;
   with_total?: WithOption;
+  with_events?: WithOption;
+  with_event_data?: WithOption;
+  with_creation_event?: WithOption;
 }
 
 export interface ListResults {
   total_results?: number;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  error?: any;
 }

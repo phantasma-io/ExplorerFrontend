@@ -1,7 +1,9 @@
 import React, { useState, useCallback, useMemo } from 'react';
+import FileDownloadIcon from '@mui/icons-material/FileDownload';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { nanoid } from 'nanoid';
-import { useFury } from '@ricardo-jrm/fury';
-import { useEcho } from '@ricardo-jrm/echo';
+import { useFury } from '@ricardojrmcom/fury';
+import { useEcho } from '@ricardojrmcom/echo';
 import { Box, Grid, Typography, Button } from '@mui/material';
 import { Link } from 'components/display';
 import { Dialog, Loading, Empty, Error } from 'components/layout';
@@ -14,6 +16,7 @@ import {
 import { Locales } from 'types/locales';
 import csvDownload from 'json-to-csv-export';
 import { useRenderDetails } from 'hooks';
+import { AddressBalances } from 'containers/ViewAddress/balances';
 import { TableRow } from './row';
 
 export const TableDisplayDesktop = ({
@@ -81,22 +84,30 @@ export const TableDisplayDesktop = ({
                 </Grid>
               ) : null,
             )}
+            {selectedRowIndex !== undefined && raw[selectedRowIndex]?.balances && (
+              <Grid item xs={12}>
+                <Box>
+                  <AddressBalances address={raw[selectedRowIndex]} />
+                </Box>
+              </Grid>
+            )}
           </Grid>
         </Box>
       );
     }
 
     return null;
-  }, [cols, selectedRow, renderDialogDetails, spacing]);
+  }, [cols, selectedRow, renderDialogDetails, spacing, raw, selectedRowIndex]);
 
   const renderDialogActions = useCallback(() => {
     if (withDetails) {
       return (
         <Box>
-          <Grid container alignItems="center" spacing={1}>
+          <Grid container alignItems="center" spacing={1.5}>
             {selectedRowIndex !== undefined && (
               <Grid item>
                 <Button
+                  endIcon={<FileDownloadIcon />}
                   onClick={() =>
                     csvDownload([raw[selectedRowIndex]], csvFilename, ',')
                   }
@@ -119,6 +130,7 @@ export const TableDisplayDesktop = ({
                       onClick={closeDialog}
                       variant="contained"
                       color="primary"
+                      endIcon={<ArrowForwardIosIcon />}
                     >
                       {linkOptions.title}
                     </Button>
@@ -140,6 +152,51 @@ export const TableDisplayDesktop = ({
     csvFilename,
     selectedRowIndex,
     linkOptions,
+  ]);
+
+  const content = useMemo(() => {
+    if (loading) {
+      return <Loading />;
+    }
+
+    if (error) {
+      return <Error />;
+    }
+
+    if (!rows || rows?.length === 0) {
+      return <Empty />;
+    }
+
+    if (isSuccess && rows) {
+      return rows.map((row, i) => (
+        <TableRow
+          tableId={tableId}
+          index={i}
+          raw={raw[i]}
+          row={row}
+          spacing={spacing}
+          cols={cols}
+          key={nanoid()}
+          hasClick={!!withDetails}
+          openDialog={openDialog}
+          linkOptions={linkOptions}
+        />
+      ));
+    }
+
+    return null;
+  }, [
+    cols,
+    error,
+    isSuccess,
+    linkOptions,
+    loading,
+    openDialog,
+    raw,
+    rows,
+    spacing,
+    tableId,
+    withDetails,
   ]);
 
   return (
@@ -168,26 +225,7 @@ export const TableDisplayDesktop = ({
       </Box>
 
       {/* body */}
-      <Box sx={{ overflow: 'auto', height }}>
-        {rows.length === 0 && !loading && !error && <Empty />}
-        {error && !loading && <Error />}
-        {loading && <Loading />}
-        {isSuccess &&
-          rows.map((row, i) => (
-            <TableRow
-              tableId={tableId}
-              index={i}
-              raw={raw[i]}
-              row={row}
-              spacing={spacing}
-              cols={cols}
-              key={nanoid()}
-              hasClick={!!withDetails}
-              openDialog={openDialog}
-              linkOptions={linkOptions}
-            />
-          ))}
-      </Box>
+      <Box sx={{ overflow: 'auto', height }}>{content}</Box>
 
       {/* dialog */}
       {withDetails && (

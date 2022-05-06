@@ -1,6 +1,6 @@
 import React from 'react';
 import { Story, Meta } from '@storybook/react';
-import { Header, HeaderProps } from '.';
+import { Header, HeaderProps } from './Header';
 import { HEADER_HEIGHT } from '../../../cfg';
 
 export default {

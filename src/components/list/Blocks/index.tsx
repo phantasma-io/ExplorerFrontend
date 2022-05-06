@@ -1,29 +1,25 @@
-import React, { useEffect } from 'react';
-import { useEcho } from '@ricardo-jrm/echo';
-import { useEmpathy } from '@ricardo-jrm/empathy';
+import React, { useState } from 'react';
+import { useEcho } from '@ricardojrmcom/echo';
+import { useEmpathy } from '@ricardojrmcom/empathy';
 import { Box } from '@mui/material';
-import { endpoints, TABLE_FILTERS } from 'cfg';
+import { endpoints } from 'cfg';
 import { useTable } from 'hooks';
 import { useBlockData } from 'hooks/api';
-import { BlockResults } from 'types/api';
+import { BlockResults, BlockParams } from 'types/api';
 import { Table } from 'components/table';
+import { BlocksListFilters } from './filters';
 
 export const BlocksList = () => {
   const { echo } = useEcho();
 
-  const tableProps = useTable();
-  const {
-    limit,
-    order_by,
-    order_direction,
-    orderDirectionSet,
-    offset,
-    with_total,
-  } = tableProps;
+  // filter states
+  const [hash, hashSet] = useState<BlockParams['hash']>(undefined);
+  const [hash_partial, hash_partialSet] =
+    useState<BlockParams['hash_partial']>(undefined);
+  const [height, heightSet] = useState<BlockParams['height']>(undefined);
 
-  useEffect(() => {
-    orderDirectionSet('desc');
-  });
+  const tableProps = useTable();
+  const { limit, order_by, order_direction, offset, with_total } = tableProps;
 
   const { data, loading, error } = useEmpathy<BlockResults>(
     endpoints['/blocks']({
@@ -32,7 +28,10 @@ export const BlocksList = () => {
       order_by,
       order_direction,
       with_total,
-    }),
+      hash,
+      hash_partial,
+      height,
+    } as BlockParams),
   );
 
   const { cols, rows, total } = useBlockData(data, loading);
@@ -54,9 +53,18 @@ export const BlocksList = () => {
           title: echo('explore-block'),
         }}
         {...tableProps}
-        filters={TABLE_FILTERS}
         loading={loading}
         error={error}
+        addon={
+          <BlocksListFilters
+            hash={hash}
+            hashSet={hashSet}
+            hash_partial={hash_partial}
+            hash_partialSet={hash_partialSet}
+            height={height}
+            heightSet={heightSet}
+          />
+        }
       />
     </Box>
   );

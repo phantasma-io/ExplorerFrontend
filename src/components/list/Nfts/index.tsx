@@ -1,18 +1,23 @@
-import React from 'react';
-import { useEcho } from '@ricardo-jrm/echo';
-import { useEmpathy } from '@ricardo-jrm/empathy';
+import React, { useState } from 'react';
+import { useEcho } from '@ricardojrmcom/echo';
+import { useEmpathy } from '@ricardojrmcom/empathy';
 import { Box } from '@mui/material';
-import { endpoints, TABLE_FILTERS } from 'cfg';
+import { endpoints } from 'cfg';
 import { useTable } from 'hooks';
 import { useNftData } from 'hooks/api';
-import { NftResults } from 'types/api';
+import { NftResults, NftParams } from 'types/api';
 import { Table } from 'components/table';
+import { NftsListFilters } from './filters';
 
 export const NftsList = () => {
   const { echo } = useEcho();
 
   const tableProps = useTable();
   const { limit, order_by, offset, with_total, order_direction } = tableProps;
+
+  // filter states
+  const [name, nameSet] = useState<NftParams['name']>(undefined);
+  const [symbol, symbolSet] = useState<NftParams['symbol']>(undefined);
 
   const { data, loading, error } = useEmpathy<NftResults>(
     endpoints['/nfts']({
@@ -21,7 +26,9 @@ export const NftsList = () => {
       order_by,
       order_direction,
       with_total,
-    }),
+      name,
+      symbol,
+    } as NftParams),
   );
 
   const { cols, rows, total } = useNftData(data, loading);
@@ -37,10 +44,22 @@ export const NftsList = () => {
         dialogOptions={{
           title: echo('details-nft'),
         }}
+        linkOptions={{
+          route: '/nft',
+          key: 'token_id',
+          title: echo('explore-nft'),
+        }}
         {...tableProps}
-        filters={TABLE_FILTERS}
         loading={loading}
         error={error}
+        addon={
+          <NftsListFilters
+            name={name}
+            nameSet={nameSet}
+            symbol={symbol}
+            symbolSet={symbolSet}
+          />
+        }
       />
     </Box>
   );

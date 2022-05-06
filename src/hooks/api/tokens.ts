@@ -1,7 +1,8 @@
 import { useMemo, useState, useEffect } from 'react';
-import { useEcho } from '@ricardo-jrm/echo';
+import { useEcho } from '@ricardojrmcom/echo';
 import { TableDisplayRow, TableDisplayCol } from 'types/table';
 import { TokenResults } from 'types/api';
+import { parseDecimals } from 'scripts';
 
 export const useTokenData = (data?: TokenResults, loading?: boolean) => {
   const { echo } = useEcho();
@@ -16,6 +17,14 @@ export const useTokenData = (data?: TokenResults, loading?: boolean) => {
 
   const cols = useMemo<TableDisplayCol[]>(() => {
     return [
+      // thumb
+      {
+        id: 'thumbnail',
+        label: echo('image'),
+        type: 'thumbnail',
+        size: 2,
+      },
+      // data
       {
         id: 'symbol',
         label: echo('symbol'),
@@ -33,14 +42,7 @@ export const useTokenData = (data?: TokenResults, loading?: boolean) => {
         id: 'current_supply',
         label: echo('currentSupply'),
         type: 'number',
-        size: 4,
-        showDesktop: true,
-      },
-      {
-        id: 'max_supply',
-        label: echo('maxSupply'),
-        type: 'number',
-        size: 4,
+        size: 3,
         showDesktop: true,
       },
       {
@@ -48,6 +50,14 @@ export const useTokenData = (data?: TokenResults, loading?: boolean) => {
         label: echo('burnedSupply'),
         type: 'number',
         size: 3,
+        showDesktop: true,
+      },
+      {
+        id: 'max_supply',
+        label: echo('maxSupply'),
+        type: 'number',
+        size: 3,
+        showDesktop: true,
       },
       {
         id: 'decimals',
@@ -60,7 +70,6 @@ export const useTokenData = (data?: TokenResults, loading?: boolean) => {
         label: echo('fungible'),
         type: 'boolean',
         size: 1,
-        showDesktop: true,
       },
       {
         id: 'transferable',
@@ -110,22 +119,25 @@ export const useTokenData = (data?: TokenResults, loading?: boolean) => {
         type: 'boolean',
         size: 1,
       },
-      {
-        id: 'script_raw',
-        label: echo('scriptRaw'),
-        type: 'script',
-        size: 12,
-      },
+      // {
+      //   id: 'script_raw',
+      //   label: echo('scriptRaw'),
+      //   type: 'script',
+      //   size: 12,
+      // },
     ];
   }, [echo]);
 
   const rows = useMemo<TableDisplayRow[]>(() => {
     if (data) {
       return data?.tokens?.map((item) => [
+        // thumb
+        item?.token_logos && item.token_logos[1] && item?.token_logos[1].url,
+        // data
         item?.symbol,
-        item?.current_supply,
-        item?.max_supply,
-        item?.burned_supply,
+        parseDecimals(item?.current_supply || '0', item?.decimals || 0).number,
+        parseDecimals(item?.burned_supply || '0', item?.decimals || 0).number,
+        parseDecimals(item?.max_supply || '0', item?.decimals || 0).number,
         item?.decimals,
         item?.fungible,
         item?.transferable,
@@ -136,11 +148,20 @@ export const useTokenData = (data?: TokenResults, loading?: boolean) => {
         item?.fiat,
         item?.swappable,
         item?.burnable,
-        item?.script_raw,
+        // item?.script_raw,
       ]) as TableDisplayRow[];
     }
 
     return [];
+  }, [data]);
+
+  const raw = useMemo(() => data?.tokens || [], [data]);
+
+  const withError = useMemo(() => {
+    if (data?.error) {
+      return true;
+    }
+    return false;
   }, [data]);
 
   const ctx = useMemo(
@@ -148,8 +169,10 @@ export const useTokenData = (data?: TokenResults, loading?: boolean) => {
       cols,
       rows,
       total,
+      raw,
+      withError,
     }),
-    [cols, rows, total],
+    [cols, rows, total, raw, withError],
   );
 
   return ctx;

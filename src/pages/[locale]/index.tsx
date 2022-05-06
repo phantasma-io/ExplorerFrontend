@@ -5,7 +5,7 @@ import type {
   GetStaticProps,
   GetStaticPaths,
 } from 'next';
-import { EchoProvider } from '@ricardo-jrm/echo';
+import { EchoProvider } from '@ricardojrmcom/echo';
 import { LocalizedView } from 'containers/LocalizedView';
 import { locales, localesKeys } from 'cfg';
 import { Locales } from 'types/locales';

@@ -1,13 +1,13 @@
 import React, { useMemo } from 'react';
 import { Box } from '@mui/material';
 import { useRouter } from 'next/router';
-import { useEmpathy } from '@ricardo-jrm/empathy';
-import { useEcho } from '@ricardo-jrm/echo';
+import { useEmpathy } from '@ricardojrmcom/empathy';
+import { useEcho } from '@ricardojrmcom/echo';
 import { NavTabs, NavTabsRecord, Breadcrumbs } from 'components/layout';
 import { endpoints, routes } from 'cfg';
 import { Locales } from 'types/locales';
 import { ExplorerTabs } from 'types/routes';
-import { TokenResults } from 'types/api';
+import { TokenResults, TokenParams } from 'types/api';
 import { TokenOverview } from './overview';
 
 export interface ViewTokenProps {
@@ -22,7 +22,9 @@ export const ViewToken = ({ tabForce = 'overview' }: ViewTokenProps) => {
   const { data, error, loading } = useEmpathy<TokenResults>(
     endpoints['/tokens']({
       symbol: (query?.id as string) || '',
-    }),
+      with_logo: 1,
+      with_price: 1,
+    } as TokenParams),
   );
 
   const tabs: NavTabsRecord = useMemo(

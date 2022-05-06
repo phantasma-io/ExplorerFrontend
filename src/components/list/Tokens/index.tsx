@@ -1,27 +1,34 @@
-import React from 'react';
-import { useEcho } from '@ricardo-jrm/echo';
-import { useEmpathy } from '@ricardo-jrm/empathy';
+import React, { useState } from 'react';
+import { useEcho } from '@ricardojrmcom/echo';
+import { useEmpathy } from '@ricardojrmcom/empathy';
 import { Box } from '@mui/material';
-import { endpoints, TABLE_FILTERS } from 'cfg';
+import { endpoints } from 'cfg';
 import { useTable } from 'hooks';
 import { useTokenData } from 'hooks/api';
-import { TokenResults } from 'types/api';
+import { TokenResults, TokenParams } from 'types/api';
 import { Table } from 'components/table';
+import { TokensListFilters } from './filters';
 
 export const TokensList = () => {
   const { echo } = useEcho();
 
   const tableProps = useTable();
-  const { limit, order_by, order_direction, offset, with_total } = tableProps;
+  const { limit, order_by, offset, with_total } = tableProps;
+
+  // filter states
+  const [symbol, symbolSet] = useState<TokenParams['symbol']>(undefined);
 
   const { data, loading, error } = useEmpathy<TokenResults>(
     endpoints['/tokens']({
       offset,
       limit,
       order_by,
-      order_direction,
+      order_direction: 'asc',
       with_total,
-    }),
+      with_logo: 1,
+      with_price: 1,
+      symbol,
+    } as TokenParams),
   );
 
   const { cols, rows, total } = useTokenData(data, loading);
@@ -43,9 +50,9 @@ export const TokensList = () => {
           title: echo('explore-token'),
         }}
         {...tableProps}
-        filters={TABLE_FILTERS}
         loading={loading}
         error={error}
+        addon={<TokensListFilters symbol={symbol} symbolSet={symbolSet} />}
       />
     </Box>
   );

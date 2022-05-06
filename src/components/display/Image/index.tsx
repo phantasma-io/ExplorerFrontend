@@ -10,6 +10,7 @@ export interface ImageProps extends ImgHTMLAttributes<any> {
   alt?: string;
   responsive?: boolean;
   height?: string;
+  maxHeight?: string;
   width?: string;
 }
 
@@ -21,9 +22,11 @@ export const Image = ({
   title,
   alt,
   height,
+  maxHeight,
   width,
   responsive,
   style,
+  ...props
 }: ImageProps) => {
   if (responsive) {
     return (
@@ -32,12 +35,14 @@ export const Image = ({
         title={title}
         alt={alt}
         style={{
-          height: height || 'auto',
           width: width || 'auto',
+          height: height || 'auto',
+          maxHeight: maxHeight || 'auto',
           maxWidth: '100%',
           userSelect: 'none',
           ...style,
         }}
+        {...props}
       />
     );
   }

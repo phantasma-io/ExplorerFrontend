@@ -1,5 +1,5 @@
 import { useMemo, useState, useEffect } from 'react';
-import { useEcho } from '@ricardo-jrm/echo';
+import { useEcho } from '@ricardojrmcom/echo';
 import { TableDisplayRow, TableDisplayCol } from 'types/table';
 import { BlockResults } from 'types/api';
 import { unixmsToDate } from 'scripts';
@@ -48,12 +48,22 @@ export const useBlockData = (data?: BlockResults, loading?: boolean) => {
         label: echo('chainAddress'),
         type: 'monospace',
         size: 12,
+        linkOptions: {
+          route: '/address',
+          key: 'chain_address',
+          title: echo('explore-address'),
+        },
       },
       {
         id: 'validator_address',
         label: echo('validatorAddress'),
         type: 'monospace',
         size: 12,
+        linkOptions: {
+          route: '/address',
+          key: 'validator_address',
+          title: echo('explore-address'),
+        },
       },
       {
         id: 'previous_hash',

@@ -7,13 +7,14 @@ export const soulDark: ThemeOptions = {
   palette: {
     mode: 'dark',
     primary: {
-      main: '#17b1e8', // Phantasma Blue
+      main: '#17b1e8',
       contrastText: '#fff',
     },
     secondary: {
-      light: '#037abd',
-      main: '#025484',
-      dark: '#003a5b',
+      dark: 'rgb(11, 86, 113)',
+      light: 'rgb(63, 149, 180)',
+      main: 'rgb(16, 123, 162)',
+      contrastText: '#fff',
     },
   },
   components: overrides,

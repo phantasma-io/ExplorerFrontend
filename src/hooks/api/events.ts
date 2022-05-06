@@ -1,5 +1,5 @@
 import { useMemo, useState, useEffect } from 'react';
-import { useEcho } from '@ricardo-jrm/echo';
+import { useEcho } from '@ricardojrmcom/echo';
 import { unixmsToDate } from 'scripts';
 import { TableDisplayRow, TableDisplayCol } from 'types/table';
 import { EventResults } from 'types/api';
@@ -103,13 +103,24 @@ export const useEventData = (data?: EventResults, loading?: boolean) => {
     return [];
   }, [data]);
 
+  const raw = useMemo(() => data?.events || [], [data]);
+
+  const withError = useMemo(() => {
+    if (data?.error) {
+      return true;
+    }
+    return false;
+  }, [data]);
+
   const ctx = useMemo(
     () => ({
       cols,
       rows,
       total,
+      raw,
+      withError,
     }),
-    [cols, rows, total],
+    [cols, rows, total, raw, withError],
   );
 
   return ctx;
