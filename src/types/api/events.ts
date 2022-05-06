@@ -20,6 +20,7 @@ export interface EventResult extends EventData {
 
 export interface EventParams extends ListParams {
   address?: string;
+  address_partial?: string;
   block_hash?: string;
   block_height?: string;
   chain?: string;
@@ -32,7 +33,6 @@ export interface EventParams extends ListParams {
   token_id?: string;
   transaction_hash?: string;
   with_blacklisted?: WithOption;
-  with_event_data?: WithOption;
   with_fiat?: WithOption;
   with_metadata?: WithOption;
   with_nsfw?: WithOption;

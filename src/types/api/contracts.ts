@@ -6,7 +6,9 @@ export interface Contract {
   symbol?: string;
 }
 
-export interface ContractParams extends ListParams, Pick<Contract, 'symbol'> {}
+export interface ContractParams
+  extends ListParams,
+    Pick<Contract, 'symbol' | 'hash'> {}
 
 export interface ContractResults extends ListResults {
   contracts?: Contract[];

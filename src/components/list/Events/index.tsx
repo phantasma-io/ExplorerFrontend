@@ -1,12 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useEcho } from '@ricardojrmcom/echo';
 import { useEmpathy } from '@ricardojrmcom/empathy';
 import { Box } from '@mui/material';
 import { endpoints } from 'cfg';
 import { useTable } from 'hooks';
 import { useEventData } from 'hooks/api';
-import { EventResults } from 'types/api';
+import { EventResults, EventParams } from 'types/api';
 import { Table } from 'components/table';
+import { EventsListFilters } from './filters';
 
 export interface EventsListProps {
   address?: string;
@@ -24,6 +25,13 @@ export const EventsList = ({
   const tableProps = useTable();
   const { limit, offset, with_total, order_direction } = tableProps;
 
+  // filter states
+  const [_address, _addressSet] = useState<EventParams['address']>(
+    address || undefined,
+  );
+  const [address_partial, address_partialSet] =
+    useState<EventParams['address_partial']>(undefined);
+
   const { data, loading, error } = useEmpathy<EventResults>(
     endpoints['/events']({
       offset,
@@ -32,12 +40,13 @@ export const EventsList = ({
       order_direction,
       with_total,
       chain: 'main',
-      address,
+      address: _address,
+      address_partial,
       block_hash: block,
       transaction_hash: transaction,
       with_event_data: 1,
       with_fiat: 1,
-    }),
+    } as EventParams),
   );
 
   const { cols, rows, total, withError } = useEventData(data, loading);
@@ -61,6 +70,15 @@ export const EventsList = ({
         {...tableProps}
         loading={loading}
         error={error || withError}
+        addon={
+          <EventsListFilters
+            address={_address}
+            addressSet={_addressSet}
+            address_partial={address_partial}
+            address_partialSet={address_partialSet}
+            address_disable={!!address}
+          />
+        }
       />
     </Box>
   );

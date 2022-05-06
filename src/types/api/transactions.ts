@@ -10,6 +10,7 @@ export interface Transaction {
 
 export interface TransactionParams extends ListParams {
   hash?: string;
+  address?: string;
 }
 
 export interface TransactionResults extends ListResults {

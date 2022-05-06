@@ -102,7 +102,7 @@
     "no-multi-spaces": "warn",
     "react/jsx-indent-props": "warn",
     "react/jsx-curly-brace-presence": 0,
-    "react/jsx-wrap-multilines": "warn",
+    "react/jsx-wrap-multilines": 0,
     "max-len": "warn",
     "react/jsx-max-props-per-line": "warn",
     "react/jsx-first-prop-new-line": "warn",

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useEcho } from '@ricardojrmcom/echo';
 import { useEmpathy } from '@ricardojrmcom/empathy';
 import { Box } from '@mui/material';
@@ -7,12 +7,16 @@ import { useTable } from 'hooks';
 import { useTokenData } from 'hooks/api';
 import { TokenResults, TokenParams } from 'types/api';
 import { Table } from 'components/table';
+import { TokensListFilters } from './filters';
 
 export const TokensList = () => {
   const { echo } = useEcho();
 
   const tableProps = useTable();
   const { limit, order_by, offset, with_total } = tableProps;
+
+  // filter states
+  const [symbol, symbolSet] = useState<TokenParams['symbol']>(undefined);
 
   const { data, loading, error } = useEmpathy<TokenResults>(
     endpoints['/tokens']({
@@ -23,6 +27,7 @@ export const TokensList = () => {
       with_total,
       with_logo: 1,
       with_price: 1,
+      symbol,
     } as TokenParams),
   );
 
@@ -47,6 +52,7 @@ export const TokensList = () => {
         {...tableProps}
         loading={loading}
         error={error}
+        addon={<TokensListFilters symbol={symbol} symbolSet={symbolSet} />}
       />
     </Box>
   );

@@ -2,7 +2,8 @@ import React from 'react';
 import { Box, Button } from '@mui/material';
 import { useEcho } from '@ricardojrmcom/echo';
 import { TableViewModes } from 'types/table';
-import ViewAgendaIcon from '@mui/icons-material/ViewAgenda';
+import ViewListIcon from '@mui/icons-material/ViewList';
+import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 
 export interface TableViewModeProps {
   viewMode: TableViewModes;
@@ -26,7 +27,13 @@ export const TableViewMode = ({
               viewModeSet('desktop');
             }
           }}
-          endIcon={<ViewAgendaIcon color="inherit" />}
+          endIcon={
+            viewMode === 'desktop' ? (
+              <FormatListBulletedIcon />
+            ) : (
+              <ViewListIcon />
+            )
+          }
           color="inherit"
         >
           {echo('table-toggleViewMode')}

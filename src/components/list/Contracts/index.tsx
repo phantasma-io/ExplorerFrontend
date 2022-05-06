@@ -1,27 +1,34 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useEcho } from '@ricardojrmcom/echo';
 import { useEmpathy } from '@ricardojrmcom/empathy';
 import { Box } from '@mui/material';
 import { endpoints } from 'cfg';
 import { useTable } from 'hooks';
 import { useContractData } from 'hooks/api';
-import { ContractResults } from 'types/api';
+import { ContractResults, ContractParams } from 'types/api';
 import { Table } from 'components/table';
+import { ContractsListFilters } from './filters';
 
 export const ContractsList = () => {
   const { echo } = useEcho();
 
   const tableProps = useTable();
-  const { limit, order_by, order_direction, offset, with_total } = tableProps;
+  const { limit, order_by, offset, with_total } = tableProps;
+
+  // filter states
+  const [hash, hashSet] = useState<ContractParams['hash']>(undefined);
+  const [symbol, symbolSet] = useState<ContractParams['symbol']>(undefined);
 
   const { data, loading, error } = useEmpathy<ContractResults>(
     endpoints['/contracts']({
       offset,
       limit,
       order_by,
-      order_direction,
+      order_direction: 'asc',
       with_total,
-    }),
+      hash,
+      symbol,
+    } as ContractParams),
   );
 
   const { cols, rows, total } = useContractData(data, loading);
@@ -40,6 +47,14 @@ export const ContractsList = () => {
         {...tableProps}
         loading={loading}
         error={error}
+        addon={
+          <ContractsListFilters
+            hash={hash}
+            hashSet={hashSet}
+            symbol={symbol}
+            symbolSet={symbolSet}
+          />
+        }
       />
     </Box>
   );
