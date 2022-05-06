@@ -14,7 +14,9 @@ import { TableDisplay } from './Display';
 export interface TableProps
   extends TableDisplayProps,
     TableParamControls,
-    TableUrlParams {}
+    TableUrlParams {
+  addon?: React.ReactNode;
+}
 
 export const Table = ({
   tableId,
@@ -37,6 +39,7 @@ export const Table = ({
   dialogOptions,
   loading,
   error,
+  addon,
 }: TableProps) => {
   const [viewMode, viewModeSet] = useLocalState<TableViewModes>(
     'PhantasmaExplorer-table-viewMode',
@@ -62,6 +65,7 @@ export const Table = ({
           orderDirectionSet={orderDirectionSet}
           viewMode={viewMode}
           viewModeSet={viewModeSet}
+          addon={addon}
         />
       </Box>
       <Box>

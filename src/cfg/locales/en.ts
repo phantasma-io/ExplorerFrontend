@@ -177,4 +177,10 @@ export const en: EchoMsgs = {
   clear: 'Clear',
   'table-toggleViewMode': 'Toggle view',
   event: 'Event',
+  filterData: 'Filter data',
+  filterAddresses: 'Filter addresses',
+  addressExact: 'Exact address',
+  address_partial: 'Partial address',
+  organization_name: 'DAO name',
+  validator_kind: 'Validator kind',
 };

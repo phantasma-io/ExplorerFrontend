@@ -18,6 +18,7 @@ export interface TableControlsProps extends TableUrlParams, TableParamControls {
   exportData: string;
   viewMode: TableViewModes;
   viewModeSet: React.Dispatch<React.SetStateAction<TableViewModes>>;
+  addon?: React.ReactNode;
 }
 
 export const TableControls = ({
@@ -30,6 +31,7 @@ export const TableControls = ({
   total,
   viewMode,
   viewModeSet,
+  addon,
 }: TableControlsProps) => {
   const { echo } = useEcho();
 
@@ -45,7 +47,11 @@ export const TableControls = ({
   return (
     <Box>
       <NoSsr>
-        <Grid container justifyContent={{ xs: 'center', md: 'space-between' }}>
+        <Grid
+          container
+          justifyContent={{ xs: 'center', md: 'space-between' }}
+          alignItems="center"
+        >
           <Grid item xs={12} md="auto">
             <Grid
               container
@@ -67,6 +73,7 @@ export const TableControls = ({
               <Grid item>
                 <TableExporter data={exportData} filename={csvFilename} />
               </Grid>
+              {addon && <Grid item>{addon}</Grid>}
             </Grid>
           </Grid>
           <Grid

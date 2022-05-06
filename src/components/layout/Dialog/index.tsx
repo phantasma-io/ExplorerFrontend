@@ -53,7 +53,7 @@ export const Dialog = ({
           </Box>
 
           {/* actions */}
-          <Box pb={1}>
+          <Box my={1}>
             <Grid container justifyContent="flex-end">
               <Grid item>{actions}</Grid>
             </Grid>

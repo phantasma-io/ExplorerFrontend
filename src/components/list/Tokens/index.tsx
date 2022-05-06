@@ -12,14 +12,14 @@ export const TokensList = () => {
   const { echo } = useEcho();
 
   const tableProps = useTable();
-  const { limit, order_by, order_direction, offset, with_total } = tableProps;
+  const { limit, order_by, offset, with_total } = tableProps;
 
   const { data, loading, error } = useEmpathy<TokenResults>(
     endpoints['/tokens']({
       offset,
       limit,
       order_by,
-      order_direction,
+      order_direction: 'asc',
       with_total,
       with_logo: 1,
       with_price: 1,

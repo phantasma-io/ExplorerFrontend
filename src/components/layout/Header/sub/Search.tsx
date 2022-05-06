@@ -120,7 +120,12 @@ export const Search = () => {
           </IconButton>
         </Tooltip>
       </Box>
-      <Dialog open={openSearch} onClose={handleSearchClose} fullWidth>
+      <Dialog
+        open={openSearch}
+        onClose={handleSearchClose}
+        maxWidth="md"
+        fullWidth
+      >
         <Paper>
           <Box pt={2} px={2}>
             <Grid container justifyContent="space-between" alignItems="center">
@@ -139,7 +144,18 @@ export const Search = () => {
           <Box px={2} pb={2} pt={1}>
             <Box>
               <Grid container alignItems="center" alignContent="center">
-                <Grid item xs={12} md={8}>
+                <Grid item md={3}>
+                  <Box>
+                    <Button
+                      onClick={handleOptionsClick}
+                      endIcon={<ArrowDropDownIcon />}
+                      fullWidth
+                    >
+                      {echo(selectedOption)}
+                    </Button>
+                  </Box>
+                </Grid>
+                <Grid item xs={12} md={9}>
                   <TextField
                     variant="outlined"
                     color="primary"
@@ -154,17 +170,6 @@ export const Search = () => {
                       }
                     }}
                   />
-                </Grid>
-                <Grid item md={4}>
-                  <Box>
-                    <Button
-                      onClick={handleOptionsClick}
-                      endIcon={<ArrowDropDownIcon />}
-                      fullWidth
-                    >
-                      {echo(selectedOption)}
-                    </Button>
-                  </Box>
                 </Grid>
               </Grid>
             </Box>
