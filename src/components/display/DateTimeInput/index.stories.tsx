@@ -14,5 +14,5 @@ export const Default: Story<DateTimeInputProps> = () => {
   // eslint-disable-next-line no-console
   const onChange = () => console.log('datetime changed');
 
-  return <DateTimeInput label="Label" onChange={onChange} />;
+  return <DateTimeInput onChange={onChange} />;
 };

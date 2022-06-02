@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import { TextField } from '@mui/material';
 
 export interface DateTimeInputProps {
-  label: string;
+  label?: string;
   onChange: () => void;
 }
 
@@ -19,6 +19,7 @@ export const DateTimeInput: FC<DateTimeInputProps> = ({ label, onChange }) => {
         color="primary"
         onChange={onChange}
         fullWidth
+        size="small"
       />
     </div>
   );
