@@ -1,3 +1,5 @@
+export { DateTimeInput } from './DateTimeInput';
+
 export { Image } from './Image';
 
 export { Link } from './Link';
