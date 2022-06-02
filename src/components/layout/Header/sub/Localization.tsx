@@ -1,8 +1,9 @@
 import React, { useState, useCallback } from 'react';
 import { useRouter } from 'next/router';
-import { Button, Box, Tooltip, Menu, MenuItem } from '@mui/material';
+import { IconButton, Box, Tooltip, Menu, MenuItem } from '@mui/material';
 import { useFury } from '@ricardojrmcom/fury';
 import { useEcho } from '@ricardojrmcom/echo';
+import LanguageIcon from '@mui/icons-material/Language';
 
 /**
  * Localization
@@ -28,19 +29,14 @@ export const Localization = () => {
     <Box>
       <Box>
         <Tooltip title={echo('tooltip-locale')}>
-          <Button
-            size="small"
-            sx={{
-              fontSize: furyActive.typography.body1.fontSize,
-              color: '#fff',
-            }}
-            onClick={handleOpenLocales}
-          >
-            {echoActiveId === 'en' && 'English'}
-            {echoActiveId === 'pt' && 'Português'}
-            {echoActiveId === 'de' && 'Deutsch'}
-            {echoActiveId === 'fr' && 'Français'}
-          </Button>
+          <IconButton size="small" onClick={handleOpenLocales}>
+            <LanguageIcon
+              sx={{
+                fontSize: furyActive.typography.h5.fontSize,
+                color: '#fff',
+              }}
+            />
+          </IconButton>
         </Tooltip>
       </Box>
       <Menu

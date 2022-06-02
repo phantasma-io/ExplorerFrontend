@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useCallback } from 'react';
-import { Button, Box, Grid, Tooltip, Menu, MenuItem } from '@mui/material';
+import { IconButton, Box, Grid, Tooltip, Menu, MenuItem } from '@mui/material';
 import { useFury } from '@ricardojrmcom/fury';
 import { useEcho } from '@ricardojrmcom/echo';
 import PaletteIcon from '@mui/icons-material/Palette';
@@ -30,18 +30,14 @@ export const SwitchTheme = () => {
     <Box>
       <Box>
         <Tooltip title={echo('tooltip-theme')}>
-          <Button
-            size="small"
-            sx={{ minWidth: '30px' }}
-            onClick={handleOpenBrands}
-          >
+          <IconButton size="small" onClick={handleOpenBrands}>
             <PaletteIcon
               sx={{
                 fontSize: furyActive.typography.h5.fontSize,
                 color: '#fff',
               }}
             />
-          </Button>
+          </IconButton>
         </Tooltip>
       </Box>
       <Menu
