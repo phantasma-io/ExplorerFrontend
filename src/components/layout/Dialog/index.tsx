@@ -1,6 +1,7 @@
 import React, { ReactNode } from 'react';
 import {
   Dialog as MuiDialog,
+  DialogProps as MuiDialogProps,
   Paper,
   Box,
   Grid,
@@ -11,7 +12,8 @@ import { useEcho } from '@ricardojrmcom/echo';
 import CloseIcon from '@mui/icons-material/Close';
 import { Text } from 'components/display';
 
-export interface DialogProps {
+export interface DialogProps
+  extends Pick<MuiDialogProps, 'maxWidth' | 'fullWidth'> {
   isOpen: boolean;
   handleClose: () => void;
   title: string;
@@ -25,10 +27,17 @@ export const Dialog = ({
   title,
   children,
   actions,
+  maxWidth = 'md',
+  fullWidth = true,
 }: DialogProps) => {
   const { echo } = useEcho();
   return (
-    <MuiDialog open={isOpen} onClose={handleClose} maxWidth="md" fullWidth>
+    <MuiDialog
+      open={isOpen}
+      onClose={handleClose}
+      maxWidth={maxWidth}
+      fullWidth={fullWidth}
+    >
       <Paper>
         <Box py={1} px={2}>
           {/* header */}
