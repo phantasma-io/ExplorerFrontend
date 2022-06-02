@@ -15,6 +15,9 @@ export const gm: ThemeOptions = {
       main: '#0076b9',
       dark: '#0060B9',
     },
+    background: {
+      default: '#f5f5f5',
+    },
   },
   components: overrides,
 };

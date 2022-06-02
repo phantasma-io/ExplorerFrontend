@@ -15,6 +15,9 @@ export const kcal: ThemeOptions = {
       main: '#d02525',
       dark: '#911818',
     },
+    background: {
+      default: '#f5f5f5',
+    },
   },
   components: overrides,
 };
