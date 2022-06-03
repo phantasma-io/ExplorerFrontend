@@ -22,8 +22,8 @@ export const ViewEvent = ({ tabForce = 'overview' }: ViewEventProps) => {
   const { data, error, loading } = useEmpathy<EventResults>(
     endpoints['/events']({
       event_id: (query?.id as string) || '',
-      with_logo: 1,
-      with_price: 1,
+      with_fiat: 1,
+      with_event_data: 1,
     } as EventParams),
   );
 

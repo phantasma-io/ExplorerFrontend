@@ -25,7 +25,7 @@ export const Breadcrumbs = ({ tab, route }: BreadcrumbsProps) => {
       }}
       pb={1.5}
     >
-      <Box pb={1} display={route === '/nexus' ? 'none' : 'block'}>
+      <Box pb={1} display={route === '/nexus' ? 'none' : 'inline-block'}>
         <Link
           variant="body1"
           href={routes['/nexus'](echoActiveId as Locales, {
