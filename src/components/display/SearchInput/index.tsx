@@ -9,9 +9,12 @@ import {
   createTheme,
   Theme,
 } from '@mui/material';
+import { useRouter } from 'next/router';
 import { useEcho } from '@ricardojrmcom/ace';
 import ClearAllIcon from '@mui/icons-material/ClearAll';
 import SearchIcon from '@mui/icons-material/Search';
+import { routes } from 'cfg';
+import { Locales } from 'types/locales';
 
 export interface SearchInputProps {}
 
@@ -26,7 +29,9 @@ const dark: ThemeOptions = {
 const theme: Theme = createTheme(dark);
 
 export const SearchInput: FC<SearchInputProps> = () => {
-  const { echo } = useEcho();
+  const { push } = useRouter();
+
+  const { echo, echoActiveId } = useEcho();
 
   const [inputValue, inputValueSet] = useState<string>('');
 
@@ -39,8 +44,11 @@ export const SearchInput: FC<SearchInputProps> = () => {
   const clearInput = useCallback(() => inputValueSet(''), [inputValueSet]);
 
   const applySearch = useCallback(() => {
-    console.log({ inputValue });
-  }, [inputValue]);
+    push({
+      pathname: routes['/search'](echoActiveId as Locales),
+      query: { id: inputValue },
+    });
+  }, [inputValue, echoActiveId, push]);
 
   return (
     <ThemeProvider theme={theme}>

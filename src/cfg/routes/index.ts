@@ -13,6 +13,7 @@ export const routes: ExplorerRouter = {
   '/event': (locale, params) => `/${locale}/event${parseParams(params)}`,
   '/nft': (locale, params) => `/${locale}/nft${parseParams(params)}`,
   '/series': (locale, params) => `/${locale}/series${parseParams(params)}`,
+  '/search': (locale, params) => `/${locale}/search${parseParams(params)}`,
   '/token': (locale, params) => `/${locale}/token${parseParams(params)}`,
   '/transaction': (locale, params) =>
     `/${locale}/transaction${parseParams(params)}`,

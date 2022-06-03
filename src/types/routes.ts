@@ -8,6 +8,7 @@ export type ExplorerRoutes =
   | '/block'
   | '/nft'
   | '/series'
+  | '/search'
   | '/token'
   | '/transaction';
 
@@ -24,6 +25,9 @@ export type ExplorerTabs =
   | 'events'
   | 'oracles'
   | 'platforms'
+  | 'instructions'
+  | 'raw'
+  | 'script'
   | 'series';
 
 export type RouterParams = {
