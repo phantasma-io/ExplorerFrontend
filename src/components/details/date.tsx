@@ -1,10 +1,11 @@
 import React, { useMemo } from 'react';
 import dayjs from 'dayjs';
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import utc from 'dayjs/plugin/utc';
 import { Text } from 'components/display';
 import { DATE_SHORT, DATE_FORMAT, DATE_FORMAT_UTC } from 'cfg/formats';
 import { useDatetimeOpts } from 'hooks/datetime/useDatetimeOpts';
+
+dayjs.extend(utc);
 
 export interface DetailsDateProps {
   value: Date;
