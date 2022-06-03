@@ -15,6 +15,9 @@ export const gmDark: ThemeOptions = {
       light: '#0076b9',
       main: '#0060B9',
     },
+    info: {
+      main: '#fff',
+    },
   },
   components: overrides,
 };

@@ -17,6 +17,9 @@ export const soul: ThemeOptions = {
       dark: 'rgb(16, 123, 162)',
       contrastText: '#fff',
     },
+    info: {
+      main: '#fff',
+    },
     background: {
       default: '#f5f5f5',
     },

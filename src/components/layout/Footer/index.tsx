@@ -1,4 +1,5 @@
 import React, { useMemo } from 'react';
+import dayjs from 'dayjs';
 import { useRouter } from 'next/router';
 import { useFury } from '@ricardojrmcom/fury';
 import { Box, Grid } from '@mui/material';
@@ -216,7 +217,7 @@ export const Footer = ({
                   textDecoration: 'none',
                 }}
               >
-                {'Copyright © Phantasma 2021-2022'}
+                {`Copyright © Phantasma Team ${dayjs().year()}`}
               </Link>
             </Grid>
           </Grid>

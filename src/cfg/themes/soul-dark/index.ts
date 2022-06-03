@@ -16,6 +16,9 @@ export const soulDark: ThemeOptions = {
       main: 'rgb(16, 123, 162)',
       contrastText: '#fff',
     },
+    info: {
+      main: '#fff',
+    },
   },
   components: overrides,
 };

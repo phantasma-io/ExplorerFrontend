@@ -1,5 +1,6 @@
 import React from 'react';
 import { Box, Grid } from '@mui/material';
+import { SearchInput } from 'components/display';
 import {
   HomeNav,
   Localization,
@@ -34,9 +35,19 @@ export const Header = ({ height }: HeaderProps) => {
       }}
       sx={{ background: 'transparent' }}
     >
-      <Grid container sx={{ height: `${height}px` }} alignItems="center">
+      <Grid
+        container
+        sx={{ height: `${height}px` }}
+        alignItems="center"
+        justifyContent="space-between"
+      >
         <Grid item xs={3} md>
           <HomeNav />
+        </Grid>
+        <Grid item xs={0} lg={4}>
+          <Box display={{ xs: 'none', lg: 'block' }}>
+            <SearchInput />
+          </Box>
         </Grid>
         <Grid item xs>
           <Box textAlign="right">

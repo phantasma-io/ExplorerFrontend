@@ -16,6 +16,9 @@ export const kcalDark: ThemeOptions = {
       main: '#911818',
       dark: '#661111',
     },
+    info: {
+      main: '#fff',
+    },
   },
   components: overrides,
 };

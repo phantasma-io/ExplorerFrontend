@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { TextField } from '@mui/material';
+import { Box, TextField } from '@mui/material';
 
 export interface DateTimeInputProps {
   label?: string;
@@ -8,7 +8,7 @@ export interface DateTimeInputProps {
 
 export const DateTimeInput: FC<DateTimeInputProps> = ({ label, onChange }) => {
   return (
-    <div>
+    <Box>
       <TextField
         id="datetime-local"
         label={label}
@@ -21,6 +21,6 @@ export const DateTimeInput: FC<DateTimeInputProps> = ({ label, onChange }) => {
         fullWidth
         size="small"
       />
-    </div>
+    </Box>
   );
 };
