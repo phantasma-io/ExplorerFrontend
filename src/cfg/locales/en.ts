@@ -201,4 +201,5 @@ export const en: EchoMsgs = {
   'tooltip-datetimeopts': 'Datetime options',
   goback: 'Go back',
   'tab-instructions': 'Instructions',
+  'tab-raw': 'Raw',
 };

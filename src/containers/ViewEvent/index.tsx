@@ -9,6 +9,7 @@ import { Locales } from 'types/locales';
 import { ExplorerTabs } from 'types/routes';
 import { EventResults, EventParams } from 'types/api';
 import { EventOverview } from './overview';
+import { EventRaw } from './raw';
 
 export interface ViewEventProps {
   tabForce?: ExplorerTabs;
@@ -22,8 +23,8 @@ export const ViewEvent = ({ tabForce = 'overview' }: ViewEventProps) => {
   const { data, error, loading } = useEmpathy<EventResults>(
     endpoints['/events']({
       event_id: (query?.id as string) || '',
-      with_logo: 1,
-      with_price: 1,
+      with_fiat: 1,
+      with_event_data: 1,
     } as EventParams),
   );
 
@@ -36,6 +37,12 @@ export const ViewEvent = ({ tabForce = 'overview' }: ViewEventProps) => {
         component: (
           <EventOverview data={data} loading={loading} error={error} />
         ),
+      },
+      raw: {
+        id: 'raw',
+        label: echo('tab-raw'),
+        href: routes['/event'](echoActiveId as Locales),
+        component: <EventRaw data={data} loading={loading} error={error} />,
       },
     }),
     [echo, echoActiveId, data, error, loading],

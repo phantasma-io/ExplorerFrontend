@@ -11,6 +11,7 @@ import { BlockResults } from 'types/api';
 import { BlockOverview } from './overview';
 import { BlockEvents } from './events';
 import { BlockTransactions } from './transactions';
+import { BlockRaw } from './raw';
 
 export interface ViewBlockProps {
   tabForce?: ExplorerTabs;
@@ -56,6 +57,12 @@ export const ViewBlock = ({ tabForce = 'overview' }: ViewBlockProps) => {
       //   href: routes['/block'](echoActiveId as Locales),
       //   component: <OraclesList />,
       // },
+      raw: {
+        id: 'raw',
+        label: echo('tab-raw'),
+        href: routes['/block'](echoActiveId as Locales),
+        component: <BlockRaw data={data} loading={loading} error={error} />,
+      },
     }),
     [echo, echoActiveId, data, error, loading],
   );

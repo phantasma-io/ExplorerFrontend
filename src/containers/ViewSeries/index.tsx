@@ -9,6 +9,7 @@ import { Locales } from 'types/locales';
 import { ExplorerTabs } from 'types/routes';
 import { SeriesResults, SeriesParams } from 'types/api';
 import { SeriesOverview } from './overview';
+import { SeriesRaw } from './raw';
 
 export interface ViewSeriesProps {
   tabForce?: ExplorerTabs;
@@ -34,6 +35,12 @@ export const ViewSeries = ({ tabForce = 'overview' }: ViewSeriesProps) => {
         component: (
           <SeriesOverview data={data} loading={loading} error={error} />
         ),
+      },
+      raw: {
+        id: 'raw',
+        label: echo('tab-raw'),
+        href: routes['/series'](echoActiveId as Locales),
+        component: <SeriesRaw data={data} loading={loading} error={error} />,
       },
     }),
     [echo, echoActiveId, data, error, loading],

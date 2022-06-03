@@ -11,6 +11,7 @@ import { TokenResults, TokenParams } from 'types/api';
 import { TokenOverview } from './overview';
 import { TokenScript } from './script';
 import { TokenInstructions } from './instructions';
+import { TokenRaw } from './raw';
 
 export interface ViewTokenProps {
   tabForce?: ExplorerTabs;
@@ -52,6 +53,12 @@ export const ViewToken = ({ tabForce = 'overview' }: ViewTokenProps) => {
         component: (
           <TokenInstructions data={data} loading={loading} error={error} />
         ),
+      },
+      raw: {
+        id: 'raw',
+        label: echo('tab-raw'),
+        href: routes['/token'](echoActiveId as Locales),
+        component: <TokenRaw data={data} loading={loading} error={error} />,
       },
     }),
     [echo, echoActiveId, data, error, loading],

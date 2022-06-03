@@ -10,6 +10,7 @@ import { ExplorerTabs } from 'types/routes';
 import { TransactionResults } from 'types/api';
 import { TransactionOverview } from './overview';
 import { TransactionEvents } from './events';
+import { TransactionRaw } from './raw';
 
 export interface ViewTransactionProps {
   tabForce?: ExplorerTabs;
@@ -43,6 +44,14 @@ export const ViewTransaction = ({
         label: echo('tab-events'),
         href: routes['/transaction'](echoActiveId as Locales),
         component: <TransactionEvents />,
+      },
+      raw: {
+        id: 'raw',
+        label: echo('tab-raw'),
+        href: routes['/transaction'](echoActiveId as Locales),
+        component: (
+          <TransactionRaw data={data} loading={loading} error={error} />
+        ),
       },
     }),
     [data, echo, echoActiveId, error, loading],
