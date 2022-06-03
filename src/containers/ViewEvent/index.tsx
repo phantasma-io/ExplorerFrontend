@@ -9,6 +9,7 @@ import { Locales } from 'types/locales';
 import { ExplorerTabs } from 'types/routes';
 import { EventResults, EventParams } from 'types/api';
 import { EventOverview } from './overview';
+import { EventRaw } from './raw';
 
 export interface ViewEventProps {
   tabForce?: ExplorerTabs;
@@ -36,6 +37,12 @@ export const ViewEvent = ({ tabForce = 'overview' }: ViewEventProps) => {
         component: (
           <EventOverview data={data} loading={loading} error={error} />
         ),
+      },
+      raw: {
+        id: 'raw',
+        label: echo('tab-raw'),
+        href: routes['/event'](echoActiveId as Locales),
+        component: <EventRaw data={data} loading={loading} error={error} />,
       },
     }),
     [echo, echoActiveId, data, error, loading],
