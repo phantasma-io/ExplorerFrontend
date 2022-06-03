@@ -9,6 +9,7 @@ import { Locales } from 'types/locales';
 import { ExplorerTabs } from 'types/routes';
 import { NftResults, NftParams } from 'types/api';
 import { NftOverview } from './overview';
+import { NftRaw } from './raw';
 
 export interface ViewNftProps {
   tabForce?: ExplorerTabs;
@@ -34,6 +35,12 @@ export const ViewNft = ({ tabForce = 'overview' }: ViewNftProps) => {
         label: echo('tab-overview'),
         href: routes['/nft'](echoActiveId as Locales),
         component: <NftOverview data={data} loading={loading} error={error} />,
+      },
+      raw: {
+        id: 'raw',
+        label: echo('tab-raw'),
+        href: routes['/nft'](echoActiveId as Locales),
+        component: <NftRaw data={data} loading={loading} error={error} />,
       },
     }),
     [echo, echoActiveId, data, error, loading],
