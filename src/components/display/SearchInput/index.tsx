@@ -16,7 +16,9 @@ import SearchIcon from '@mui/icons-material/Search';
 import { routes } from 'cfg';
 import { Locales } from 'types/locales';
 
-export interface SearchInputProps {}
+export interface SearchInputProps {
+  onApply?: () => void;
+}
 
 const dark: ThemeOptions = {
   palette: {
@@ -28,7 +30,9 @@ const dark: ThemeOptions = {
 };
 const theme: Theme = createTheme(dark);
 
-export const SearchInput: FC<SearchInputProps> = () => {
+export const SearchInput: FC<SearchInputProps> = ({
+  onApply,
+}: SearchInputProps) => {
   const { push } = useRouter();
 
   const { echo, echoActiveId } = useEcho();
@@ -44,11 +48,16 @@ export const SearchInput: FC<SearchInputProps> = () => {
   const clearInput = useCallback(() => inputValueSet(''), [inputValueSet]);
 
   const applySearch = useCallback(() => {
-    push({
-      pathname: routes['/search'](echoActiveId as Locales),
-      query: { id: inputValue },
-    });
-  }, [inputValue, echoActiveId, push]);
+    if (inputValue && inputValue !== '') {
+      push({
+        pathname: routes['/search'](echoActiveId as Locales),
+        query: { id: inputValue },
+      });
+      if (onApply) {
+        onApply();
+      }
+    }
+  }, [inputValue, echoActiveId, push, onApply]);
 
   return (
     <ThemeProvider theme={theme}>

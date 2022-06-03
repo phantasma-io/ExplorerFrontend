@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import { IconButton, Box, Tooltip, Menu, MenuItem } from '@mui/material';
 import { useFury } from '@ricardojrmcom/fury';
 import { useEcho } from '@ricardojrmcom/echo';
-import LanguageIcon from '@mui/icons-material/Language';
+import PublicIcon from '@mui/icons-material/Public';
 
 /**
  * Localization
@@ -30,7 +30,7 @@ export const Localization = () => {
       <Box>
         <Tooltip title={echo('tooltip-locale')}>
           <IconButton size="small" onClick={handleOpenLocales}>
-            <LanguageIcon
+            <PublicIcon
               sx={{
                 fontSize: furyActive.typography.h5.fontSize,
                 color: '#fff',
