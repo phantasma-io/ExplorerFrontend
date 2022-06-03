@@ -1,17 +1,17 @@
 import React, { useMemo } from 'react';
 import { Box } from '@mui/material';
-import { EventResults } from 'types/api';
+import { AddressResults } from 'types/api';
 import { Loading, Error, Empty } from 'components/layout';
 import { DetailsScript } from 'components/details';
 
-export interface EventRawProps {
-  data?: EventResults;
+export interface AddressRawProps {
+  data?: AddressResults;
   loading?: boolean;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   error?: any;
 }
 
-export const EventRaw = ({ data, loading, error }: EventRawProps) => {
+export const AddressRaw = ({ data, loading, error }: AddressRawProps) => {
   const content = useMemo(() => {
     if (loading) {
       return <Loading />;
@@ -21,7 +21,7 @@ export const EventRaw = ({ data, loading, error }: EventRawProps) => {
       return <Error />;
     }
 
-    if (data?.events?.length === 0 && !loading) {
+    if (data?.addresses?.length === 0 && !loading) {
       return <Empty />;
     }
 

@@ -11,6 +11,7 @@ import { ExplorerTabs } from 'types/routes';
 import { AddressOverview } from './overview';
 import { AddressTransactions } from './transactions';
 import { AddressEvents } from './events';
+import { AddressRaw } from './raw';
 
 export interface ViewAddressProps {
   tabForce?: ExplorerTabs;
@@ -51,6 +52,12 @@ export const ViewAddress = ({ tabForce = 'overview' }: ViewAddressProps) => {
         label: echo('tab-events'),
         href: routes['/address'](echoActiveId as Locales),
         component: <AddressEvents />,
+      },
+      raw: {
+        id: 'raw',
+        label: echo('tab-raw'),
+        href: routes['/address'](echoActiveId as Locales),
+        component: <AddressRaw data={data} loading={loading} error={error} />,
       },
     }),
     [echo, echoActiveId, data, error, loading],
