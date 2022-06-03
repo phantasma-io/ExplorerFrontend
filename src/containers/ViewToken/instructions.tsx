@@ -49,7 +49,9 @@ export const TokenInstructions = (props: TokenInstructionsProps) => {
 
       data?.instructions?.forEach((item: { instruction?: string }) => {
         str += `
+        
           ${item?.instruction}
+
         `;
       });
 
