@@ -4,7 +4,7 @@ const { breakpoints } = createTheme();
 
 export const typography: ThemeOptions['typography'] = {
   fontFamily: [
-    'IBM Plex Sans',
+    'Source Sans Pro',
     '-apple-system',
     'BlinkMacSystemFont',
     '"Segoe UI"',
