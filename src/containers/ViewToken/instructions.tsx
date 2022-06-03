@@ -44,12 +44,18 @@ export const TokenInstructions = (props: TokenInstructionsProps) => {
       return <Empty />;
     }
 
-    if (data) {
+    if (data && data?.instructions) {
+      let str = ``;
+
+      data?.instructions?.forEach((item: { instruction?: string }) => {
+        str += `
+          ${item?.instruction}
+        `;
+      });
+
       return (
         <Box>
-          {props?.data?.tokens && props?.data?.tokens[0]?.script_raw && (
-            <DetailsScript value={props?.data?.tokens[0]?.script_raw} />
-          )}
+          <DetailsScript value={str} />
         </Box>
       );
     }
