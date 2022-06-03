@@ -10,5 +10,6 @@ export { ViewEvent } from './ViewEvent';
 export { ViewNft } from './ViewNft';
 export { ViewSeries } from './ViewSeries';
 export { ViewNexus } from './ViewNexus';
+export { ViewSearch } from './ViewSearch';
 export { ViewToken } from './ViewToken';
 export { ViewTransaction } from './ViewTransaction';

@@ -1,10 +1,8 @@
 import React, { useEffect, useMemo } from 'react';
-import { useRouter } from 'next/router';
 import { Box } from '@mui/material';
 import { useEcho } from '@ricardojrmcom/echo';
 import { Locales } from 'types/locales';
 import { ExplorerRoutes } from 'types/routes';
-import { Text } from 'components/display';
 import { MetaDynamic } from 'components/meta';
 import {
   AppLayout,
@@ -15,6 +13,7 @@ import {
   ViewNft,
   ViewNexus,
   ViewSeries,
+  ViewSearch,
   ViewToken,
   ViewTransaction,
 } from '../index';
@@ -25,7 +24,6 @@ interface LocalizedViewProps {
 }
 
 export const LocalizedView = ({ locale, route }: LocalizedViewProps) => {
-  const { query } = useRouter();
   const { echo, echoSetById } = useEcho();
 
   useEffect(() => {
@@ -94,6 +92,8 @@ export const LocalizedView = ({ locale, route }: LocalizedViewProps) => {
         return <ViewNft />;
       case '/series':
         return <ViewSeries />;
+      case '/search':
+        return <ViewSearch />;
       case '/token':
         return <ViewToken />;
       case '/transaction':
@@ -108,18 +108,6 @@ export const LocalizedView = ({ locale, route }: LocalizedViewProps) => {
     <AppLayout>
       <Box>
         <MetaDynamic title={title} description={description} />
-        {route !== '/' && (
-          <Box
-            pt={{ xs: 3, lg: 6 }}
-            pb={{ xs: 3, lg: route === '/nexus' ? 3 : 0.5 }}
-          >
-            <Text
-              variant={route === '/nexus' ? 'h4' : 'h5'}
-              sx={{ color: '#fff' }}
-              value={echo(`details-${query?.view as string}`)}
-            />
-          </Box>
-        )}
         <Box>{children}</Box>
       </Box>
     </AppLayout>

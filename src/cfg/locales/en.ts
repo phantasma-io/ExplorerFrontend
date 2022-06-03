@@ -105,6 +105,7 @@ export const en: EchoMsgs = {
   'details-event': 'Event details',
   'details-series': 'Series details',
   'details-nft': 'NFT details',
+  'details-search': 'Search the Nexus',
   'details-token': 'Token details',
   'details-transaction': 'Transaction details',
   // explore
@@ -198,4 +199,5 @@ export const en: EchoMsgs = {
   organization_name_partial: 'Partial name',
   'tooltip-dlwallet': 'Download wallet',
   'tooltip-datetimeopts': 'Datetime options',
+  goback: 'Go back',
 };
