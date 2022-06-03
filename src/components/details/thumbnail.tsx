@@ -5,9 +5,14 @@ import { Image, Link } from 'components/display';
 export interface DetailsThumbnailProps {
   thumb?: string;
   link?: string;
+  mini?: boolean;
 }
 
-export const DetailsThumbnail = ({ thumb, link }: DetailsThumbnailProps) => {
+export const DetailsThumbnail = ({
+  thumb,
+  link,
+  mini,
+}: DetailsThumbnailProps) => {
   const [hasError, hasErrorSet] = useState<boolean>(false);
 
   if (thumb && link && !hasError) {
@@ -18,7 +23,7 @@ export const DetailsThumbnail = ({ thumb, link }: DetailsThumbnailProps) => {
             <Image
               responsive
               src={thumb}
-              maxHeight="150px"
+              maxHeight={mini ? '50px' : '150px'}
               onError={() => {
                 hasErrorSet(true);
               }}

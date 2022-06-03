@@ -18,6 +18,7 @@ export interface DetailsItem {
     | 'boolean'
     | 'monospace'
     | 'thumbnail'
+    | 'thumbnail-mini'
     | 'script';
   linkOptions?: DetailsLinkOptions;
 }

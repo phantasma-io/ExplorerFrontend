@@ -21,7 +21,7 @@ export const useTokenData = (data?: TokenResults, loading?: boolean) => {
       {
         id: 'thumbnail',
         label: echo('image'),
-        type: 'thumbnail',
+        type: 'thumbnail-mini',
         size: 2,
       },
       // data
@@ -132,7 +132,7 @@ export const useTokenData = (data?: TokenResults, loading?: boolean) => {
     if (data) {
       return data?.tokens?.map((item) => [
         // thumb
-        item?.token_logos && item.token_logos[1] && item?.token_logos[1].url,
+        item?.token_logos && item.token_logos[0] && item?.token_logos[0].url,
         // data
         item?.symbol,
         parseDecimals(item?.current_supply || '0', item?.decimals || 0).number,

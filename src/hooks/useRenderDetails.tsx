@@ -28,6 +28,10 @@ export const useRenderDetails = () => {
             const { thumb, link } = parseIpfs(value as string);
             return <DetailsThumbnail thumb={thumb} link={link} />;
           }
+          case 'thumbnail-mini': {
+            const { thumb, link } = parseIpfs(value as string);
+            return <DetailsThumbnail thumb={thumb} link={link} mini />;
+          }
           case 'boolean':
             return (
               <DetailsBoolean
