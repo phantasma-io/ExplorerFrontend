@@ -200,4 +200,5 @@ export const en: EchoMsgs = {
   'tooltip-dlwallet': 'Download wallet',
   'tooltip-datetimeopts': 'Datetime options',
   goback: 'Go back',
+  'tab-instructions': 'Instructions',
 };

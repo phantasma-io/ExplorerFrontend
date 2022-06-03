@@ -9,6 +9,8 @@ import { Locales } from 'types/locales';
 import { ExplorerTabs } from 'types/routes';
 import { TokenResults, TokenParams } from 'types/api';
 import { TokenOverview } from './overview';
+import { TokenScript } from './script';
+import { TokenInstructions } from './instructions';
 
 export interface ViewTokenProps {
   tabForce?: ExplorerTabs;
@@ -35,6 +37,20 @@ export const ViewToken = ({ tabForce = 'overview' }: ViewTokenProps) => {
         href: routes['/token'](echoActiveId as Locales),
         component: (
           <TokenOverview data={data} loading={loading} error={error} />
+        ),
+      },
+      script: {
+        id: 'script',
+        label: echo('tab-script'),
+        href: routes['/token'](echoActiveId as Locales),
+        component: <TokenScript data={data} loading={loading} error={error} />,
+      },
+      instructions: {
+        id: 'instructions',
+        label: echo('tab-instructions'),
+        href: routes['/token'](echoActiveId as Locales),
+        component: (
+          <TokenInstructions data={data} loading={loading} error={error} />
         ),
       },
     }),
