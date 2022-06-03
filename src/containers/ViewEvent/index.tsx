@@ -44,7 +44,7 @@ export const ViewEvent = ({ tabForce = 'overview' }: ViewEventProps) => {
   return (
     <Box>
       <Box>
-        <Breadcrumbs tab="events" label={echo('tab-events')} />
+        <Breadcrumbs tab="events" route="/event" />
       </Box>
       <Box>
         <NavTabs tabs={tabs} tabsDefault={tabForce} />

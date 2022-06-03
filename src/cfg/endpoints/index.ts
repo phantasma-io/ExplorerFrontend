@@ -20,6 +20,7 @@ export const endpoints: ExplorerApi = {
   '/platforms': (params) => `${url}/platforms${parseParams(params)}`,
   '/historyprices': (params) => `${url}/historyprices${parseParams(params)}`,
   '/series': (params) => `${url}/series${parseParams(params)}`,
+  '/searches': (params) => `${url}/searches${parseParams(params)}`,
   '/tokens': (params) => `${url}/tokens${parseParams(params)}`,
   '/transactions': (params) => `${url}/transactions${parseParams(params)}`,
 };

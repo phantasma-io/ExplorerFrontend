@@ -19,10 +19,13 @@ export const Breadcrumbs = ({ tab, route }: BreadcrumbsProps) => {
 
   return (
     <Box
-      pt={{ xs: route === '/nexus' ? 3 : 0, lg: route === '/nexus' ? 6 : 3 }}
+      pt={{
+        xs: route === '/nexus' ? 4 : 1,
+        lg: route === '/nexus' ? 7.5 : 3.75,
+      }}
       pb={1.5}
     >
-      <Box pb={0.6} display={route === '/nexus' ? 'none' : 'block'}>
+      <Box pb={1} display={route === '/nexus' ? 'none' : 'block'}>
         <Link
           variant="body1"
           href={routes['/nexus'](echoActiveId as Locales, {

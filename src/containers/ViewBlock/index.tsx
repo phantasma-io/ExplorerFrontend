@@ -63,7 +63,7 @@ export const ViewBlock = ({ tabForce = 'overview' }: ViewBlockProps) => {
   return (
     <Box>
       <Box>
-        <Breadcrumbs tab="blocks" label={echo('tab-blocks')} />
+        <Breadcrumbs tab="blocks" route="/block" />
       </Box>
       <Box>
         <NavTabs tabs={tabs} tabsDefault={tabForce} />

@@ -12,6 +12,8 @@ export { EventsList } from './Events';
 
 export { SeriesList } from './Series';
 
+export { SearchResults } from './SearchResults';
+
 export { PlatformsList } from './Platforms';
 
 export { NftsList } from './Nfts';

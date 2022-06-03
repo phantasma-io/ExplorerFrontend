@@ -51,7 +51,7 @@ export const ViewTransaction = ({
   return (
     <Box>
       <Box>
-        <Breadcrumbs tab="transactions" label={echo('tab-transactions')} />
+        <Breadcrumbs tab="transactions" route="/transaction" />
       </Box>
       <Box>
         <NavTabs tabs={tabs} tabsDefault={tabForce} />

@@ -14,6 +14,7 @@ import {
   PlatformParams,
   HistoryPriceParams,
   OracleParams,
+  SearchParams,
 } from './api';
 
 export type ExplorerEndpoints =
@@ -29,6 +30,7 @@ export type ExplorerEndpoints =
   | '/organizations'
   | '/platforms'
   | '/series'
+  | '/searches'
   | '/historyprices'
   | '/tokens'
   | '/transactions';
@@ -47,6 +49,7 @@ export type ApiParams =
   | PlatformParams
   | HistoryPriceParams
   | SeriesParams
+  | SearchParams
   | TokenParams
   | TransactionParams;
 

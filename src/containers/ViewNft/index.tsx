@@ -42,7 +42,7 @@ export const ViewNft = ({ tabForce = 'overview' }: ViewNftProps) => {
   return (
     <Box>
       <Box>
-        <Breadcrumbs tab="nfts" label={echo('tab-nfts')} />
+        <Breadcrumbs tab="nfts" route="/nft" />
       </Box>
       <Box>
         <NavTabs tabs={tabs} tabsDefault={tabForce} />

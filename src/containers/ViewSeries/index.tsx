@@ -42,7 +42,7 @@ export const ViewSeries = ({ tabForce = 'overview' }: ViewSeriesProps) => {
   return (
     <Box>
       <Box>
-        <Breadcrumbs tab="series" label={echo('tab-series')} />
+        <Breadcrumbs tab="series" route="/series" />
       </Box>
       <Box>
         <NavTabs tabs={tabs} tabsDefault={tabForce} />

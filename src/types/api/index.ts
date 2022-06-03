@@ -45,6 +45,8 @@ export type {
   FiatPrice,
 } from './historyprices';
 
+export type { Search, SearchParams, SearchResultsType } from './searches';
+
 export type { Series, SeriesParams, SeriesResults } from './series';
 
 export type { Token, TokenParams, TokenResults } from './tokens';

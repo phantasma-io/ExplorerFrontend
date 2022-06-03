@@ -59,7 +59,7 @@ export const ViewAddress = ({ tabForce = 'overview' }: ViewAddressProps) => {
   return (
     <Box>
       <Box>
-        <Breadcrumbs tab="addresses" label={echo('tab-addresses')} />
+        <Breadcrumbs tab="addresses" route="/address" />
       </Box>
       <Box>
         <NavTabs tabs={tabs} tabsDefault={tabForce} />

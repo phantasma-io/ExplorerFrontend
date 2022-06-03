@@ -44,7 +44,7 @@ export const ViewToken = ({ tabForce = 'overview' }: ViewTokenProps) => {
   return (
     <Box>
       <Box>
-        <Breadcrumbs tab="tokens" label={echo('tab-tokens')} />
+        <Breadcrumbs tab="tokens" route="/token" />
       </Box>
       <Box>
         <NavTabs tabs={tabs} tabsDefault={tabForce} />
