@@ -19,4 +19,10 @@ export { themes } from './themes';
 
 export { routes, routesKeys, routesViews, routesHome } from './routes';
 
-export { DATE_FORMAT, NUMBER_FORMAT, DATE_SHORT, DATE_CHART } from './formats';
+export {
+  DATE_FORMAT,
+  NUMBER_FORMAT,
+  DATE_SHORT,
+  DATE_CHART,
+  DATE_FORMAT_UTC,
+} from './formats';

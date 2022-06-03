@@ -1,3 +1,4 @@
+export { DateTimeOpts } from './DateTimeOpts';
 export { DarkMode } from './DarkMode';
 export { GetWallet } from './GetWallet';
 export { HomeNav } from './HomeNav';

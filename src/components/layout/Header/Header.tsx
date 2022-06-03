@@ -8,6 +8,7 @@ import {
   DarkMode,
   SwitchTheme,
   GetWallet,
+  DateTimeOpts,
 } from './sub';
 
 /**
@@ -41,7 +42,7 @@ export const Header = ({ height }: HeaderProps) => {
         alignItems="center"
         justifyContent="space-between"
       >
-        <Grid item xs={3} md>
+        <Grid item xs={2} md>
           <HomeNav />
         </Grid>
         <Grid item xs={0} lg={4}>
@@ -62,6 +63,9 @@ export const Header = ({ height }: HeaderProps) => {
             </Box>
             <Box display="inline-block" pr={{ xs: 0.5, md: 1.5 }}>
               <SwitchTheme />
+            </Box>
+            <Box display="inline-block" pr={{ xs: 0.5, md: 1.5 }}>
+              <DateTimeOpts />
             </Box>
             <Box display="inline-block">
               <Localization />

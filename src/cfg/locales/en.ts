@@ -197,4 +197,5 @@ export const en: EchoMsgs = {
   organization_nameExact: 'Exact name',
   organization_name_partial: 'Partial name',
   'tooltip-dlwallet': 'Download wallet',
+  'tooltip-datetimeopts': 'Datetime options',
 };
