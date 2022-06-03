@@ -118,6 +118,7 @@
     "react/jsx-curly-newline": 0,
     "camelcase": 0,
     "no-confusing-arrow": 0,
-    "operator-linebreak": 0
+    "operator-linebreak": 0,
+    "@typescript-eslint/no-empty-interface": 0
   }
 }

@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useState, useCallback } from 'react';
 import {
   Box,
   TextField,
@@ -13,9 +13,7 @@ import { useEcho } from '@ricardojrmcom/ace';
 import ClearAllIcon from '@mui/icons-material/ClearAll';
 import SearchIcon from '@mui/icons-material/Search';
 
-export interface SearchInputProps {
-  label?: string;
-}
+export interface SearchInputProps {}
 
 const dark: ThemeOptions = {
   palette: {
@@ -27,8 +25,22 @@ const dark: ThemeOptions = {
 };
 const theme: Theme = createTheme(dark);
 
-export const SearchInput: FC<SearchInputProps> = ({ label }) => {
+export const SearchInput: FC<SearchInputProps> = () => {
   const { echo } = useEcho();
+
+  const [inputValue, inputValueSet] = useState<string>('');
+
+  const handleChange = useCallback(
+    (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) =>
+      inputValueSet(e.target.value),
+    [inputValueSet],
+  );
+
+  const clearInput = useCallback(() => inputValueSet(''), [inputValueSet]);
+
+  const applySearch = useCallback(() => {
+    console.log({ inputValue });
+  }, [inputValue]);
 
   return (
     <ThemeProvider theme={theme}>
@@ -41,6 +53,13 @@ export const SearchInput: FC<SearchInputProps> = ({ label }) => {
           fullWidth
           color="info"
           autoComplete={'off'}
+          value={inputValue}
+          onChange={(e) => handleChange(e)}
+          onKeyPress={(e) => {
+            if (e.key === 'Enter') {
+              applySearch();
+            }
+          }}
           sx={{
             input: {
               color: '#fff',
@@ -49,14 +68,14 @@ export const SearchInput: FC<SearchInputProps> = ({ label }) => {
           InputProps={{
             startAdornment: (
               <Tooltip title={echo('search')}>
-                <IconButton size="small">
+                <IconButton size="small" onClick={() => applySearch()}>
                   <SearchIcon sx={{ color: '#fff' }} />
                 </IconButton>
               </Tooltip>
             ),
             endAdornment: (
               <Tooltip title={echo('clear')}>
-                <IconButton size="small">
+                <IconButton size="small" onClick={() => clearInput()}>
                   <ClearAllIcon sx={{ color: '#fff' }} />
                 </IconButton>
               </Tooltip>

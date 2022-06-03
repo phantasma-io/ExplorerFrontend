@@ -11,8 +11,5 @@ export default {
 } as Meta;
 
 export const Default: Story<SearchInputProps> = () => {
-  // eslint-disable-next-line no-console
-  const onChange = () => console.log('datetime changed');
-
   return <SearchInput />;
 };
