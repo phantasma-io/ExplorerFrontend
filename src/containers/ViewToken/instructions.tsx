@@ -18,18 +18,21 @@ export interface TokenInstructionsProps {
 export const TokenInstructions = (props: TokenInstructionsProps) => {
   const { request, data, loading, error } = usePost(
     endpoints['/instructions']() as ExplorerEndpoints,
-    {},
+    {
+      script_raw: '0B',
+    },
   );
 
   useEffect(() => {
     if (
       props?.data?.tokens?.length !== 0 &&
       props?.data?.tokens &&
-      props?.data?.tokens[0]?.script_raw
+      props?.data?.tokens[0]?.script_raw &&
+      !error
     ) {
       request();
     }
-  }, [props, request]);
+  }, [props, request, error]);
 
   const content = useMemo(() => {
     if (props?.loading || loading) {
