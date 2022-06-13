@@ -28,11 +28,12 @@ export const TokenInstructions = (props: TokenInstructionsProps) => {
       props?.data?.tokens?.length !== 0 &&
       props?.data?.tokens &&
       props?.data?.tokens[0]?.script_raw &&
-      !error
+      !error &&
+      !data
     ) {
       request();
     }
-  }, [props, request, error]);
+  }, [props, request, error, data]);
 
   const content = useMemo(() => {
     if (props?.loading || loading) {
