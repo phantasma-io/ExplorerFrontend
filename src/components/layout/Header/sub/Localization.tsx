@@ -72,7 +72,7 @@ export const Localization = () => {
         >
           English
         </MenuItem>
-        {/* <MenuItem
+        <MenuItem
           onClick={() => {
             push(asPath.replace(`/${echoActiveId}`, '/pt'));
             handleCloseLocales();
@@ -80,6 +80,7 @@ export const Localization = () => {
         >
           Português
         </MenuItem>
+        {/* 
         <MenuItem
           onClick={() => {
             push(asPath.replace(`/${echoActiveId}`, '/de'));
