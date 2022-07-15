@@ -42,6 +42,11 @@ export const PlatformsList = () => {
         dialogOptions={{
           title: echo('details-platform'),
         }}
+        linkOptions={{
+          route: '/platform',
+          key: 'name',
+          title: echo('explore-platform'),
+        }}
         {...tableProps}
         loading={loading}
         error={error}
