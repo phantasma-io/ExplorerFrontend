@@ -26,6 +26,9 @@ export const ViewTransaction = ({
   const { data, loading, error } = useEmpathy<TransactionResults>(
     endpoints['/transactions']({
       hash: (query?.id as string) || '',
+      with_events: 1,
+      with_event_data: 1,
+      with_fiat: 1,
     }),
   );
 
