@@ -22,6 +22,12 @@ export const useDaoData = (data?: DaoResults, loading?: boolean) => {
         type: 'text',
         size: 11,
         showDesktop: true,
+        linkOptions: {
+          route: '/dao',
+          key: 'name',
+          title: echo('explore-dao'),
+          primary: true,
+        },
       },
     ];
   }, [echo]);
@@ -36,13 +42,16 @@ export const useDaoData = (data?: DaoResults, loading?: boolean) => {
     return [];
   }, [data]);
 
+  const raw = useMemo(() => data?.organizations || [], [data]);
+
   const ctx = useMemo(
     () => ({
       cols,
       rows,
       total,
+      raw,
     }),
-    [cols, rows, total],
+    [cols, rows, total, raw],
   );
 
   return ctx;
