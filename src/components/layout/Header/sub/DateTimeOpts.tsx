@@ -74,7 +74,7 @@ export const DateTimeOpts = () => {
         >
           <Grid container alignItems="center" spacing={1}>
             <Grid item>
-              <Text value="((LOCAL))" sx={{ fontWeight: 600 }} />
+              <Text value={echo('dt-local')} sx={{ fontWeight: 600 }} />
             </Grid>
           </Grid>
         </MenuItem>
@@ -98,7 +98,7 @@ export const DateTimeOpts = () => {
         >
           <Grid container alignItems="center" spacing={1}>
             <Grid item>
-              <Text value="((UTC))" sx={{ fontWeight: 600 }} />
+              <Text value={echo('dt-utc')} sx={{ fontWeight: 600 }} />
             </Grid>
           </Grid>
         </MenuItem>
@@ -122,7 +122,7 @@ export const DateTimeOpts = () => {
         >
           <Grid container alignItems="center" spacing={1}>
             <Grid item>
-              <Text value="((UNIX))" sx={{ fontWeight: 600 }} />
+              <Text value={echo('dt-unix')} sx={{ fontWeight: 600 }} />
             </Grid>
           </Grid>
         </MenuItem>
