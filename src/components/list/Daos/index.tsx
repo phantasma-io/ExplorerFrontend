@@ -46,6 +46,11 @@ export const DaosList = () => {
         dialogOptions={{
           title: echo('details-dao'),
         }}
+        linkOptions={{
+          route: '/dao',
+          key: 'name',
+          title: echo('explore-dao'),
+        }}
         {...tableProps}
         loading={loading}
         error={error}
