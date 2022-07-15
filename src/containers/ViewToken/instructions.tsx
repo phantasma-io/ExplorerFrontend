@@ -13,13 +13,16 @@ export interface TokenInstructionsProps {
   loading?: boolean;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   error?: any;
+  scr?: string;
 }
 
 export const TokenInstructions = (props: TokenInstructionsProps) => {
+  const scrRaw: string = useMemo(() => props.scr || '', [props]);
+
   const { request, data, loading, error } = usePost(
     endpoints['/instructions']() as ExplorerEndpoints,
     {
-      script_raw: '0B',
+      script_raw: scrRaw,
     },
   );
 
@@ -49,15 +52,7 @@ export const TokenInstructions = (props: TokenInstructionsProps) => {
     }
 
     if (data && data?.instructions) {
-      let str = ``;
-
-      data?.instructions?.forEach((item: { instruction?: string }) => {
-        str += `
-        
-          ${item?.instruction}
-
-        `;
-      });
+      const str = JSON.stringify(data?.instructions);
 
       return (
         <Box>

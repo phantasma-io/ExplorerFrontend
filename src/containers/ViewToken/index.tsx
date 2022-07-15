@@ -51,7 +51,12 @@ export const ViewToken = ({ tabForce = 'overview' }: ViewTokenProps) => {
         label: echo('tab-instructions'),
         href: routes['/token'](echoActiveId as Locales),
         component: (
-          <TokenInstructions data={data} loading={loading} error={error} />
+          <TokenInstructions
+            data={data}
+            loading={loading}
+            error={error}
+            scr={data?.tokens && data?.tokens[0] && data?.tokens[0].script_raw}
+          />
         ),
       },
       raw: {
