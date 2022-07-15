@@ -36,6 +36,40 @@ export const useContractData = (data?: ContractResults, loading?: boolean) => {
         type: 'text',
         size: 3,
         showDesktop: true,
+        linkOptions: {
+          route: '/contract',
+          key: 'symbol',
+          title: echo('explore-contract'),
+          primary: true,
+        },
+      },
+      {
+        id: 'address',
+        label: echo('address'),
+        type: 'text',
+        size: 3,
+        linkOptions: {
+          route: '/address',
+          key: 'address',
+          title: echo('explore-address'),
+        },
+      },
+      {
+        id: 'address_name',
+        label: echo('address_name'),
+        type: 'text',
+        size: 3,
+      },
+      {
+        id: 'token',
+        label: echo('token'),
+        type: 'text',
+        size: 3,
+        linkOptions: {
+          route: '/token',
+          key: 'token',
+          title: echo('explore-token'),
+        },
       },
     ];
   }, [echo]);
@@ -46,19 +80,25 @@ export const useContractData = (data?: ContractResults, loading?: boolean) => {
         item?.name,
         item?.hash,
         item?.symbol,
+        item?.address?.address,
+        item?.address?.address_name,
+        item?.token?.symbol,
       ]) as TableDisplayRow[];
     }
 
     return [];
   }, [data]);
 
+  const raw = useMemo(() => data?.contracts || [], [data]);
+
   const ctx = useMemo(
     () => ({
       cols,
       rows,
       total,
+      raw,
     }),
-    [cols, rows, total],
+    [cols, rows, total, raw],
   );
 
   return ctx;
