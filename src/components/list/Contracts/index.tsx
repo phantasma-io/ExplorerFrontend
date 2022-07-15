@@ -44,6 +44,11 @@ export const ContractsList = () => {
         dialogOptions={{
           title: echo('details-contract'),
         }}
+        linkOptions={{
+          route: '/contract',
+          key: 'name',
+          title: echo('explore-contract'),
+        }}
         {...tableProps}
         loading={loading}
         error={error}
