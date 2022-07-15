@@ -22,6 +22,12 @@ export const usePlatformData = (data?: PlatformResults, loading?: boolean) => {
         type: 'text',
         size: 3,
         showDesktop: true,
+        linkOptions: {
+          route: '/platform',
+          key: 'platform',
+          title: echo('explore-platform'),
+          primary: true,
+        },
       },
       {
         id: 'fuel',
@@ -52,13 +58,16 @@ export const usePlatformData = (data?: PlatformResults, loading?: boolean) => {
     return [];
   }, [data]);
 
+  const raw = useMemo(() => data?.platforms || [], [data]);
+
   const ctx = useMemo(
     () => ({
       cols,
       rows,
       total,
+      raw,
     }),
-    [cols, rows, total],
+    [cols, rows, total, raw],
   );
 
   return ctx;
