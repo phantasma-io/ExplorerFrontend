@@ -9,7 +9,10 @@ import {
   ViewHome,
   ViewAddress,
   ViewBlock,
+  ViewContract,
+  ViewDao,
   ViewEvent,
+  ViewPlatform,
   ViewNft,
   ViewNexus,
   ViewSeries,
@@ -38,8 +41,14 @@ export const LocalizedView = ({ locale, route }: LocalizedViewProps) => {
         return `${echo('address')} | ${echo('meta-title')}`;
       case '/block':
         return `${echo('block')} | ${echo('meta-title')}`;
+      case '/contract':
+        return `${echo('contract')} | ${echo('meta-title')}`;
+      case '/dao':
+        return `${echo('dao')} | ${echo('meta-title')}`;
       case '/event':
         return `${echo('event')} | ${echo('meta-title')}`;
+      case '/platform':
+        return `${echo('platform')} | ${echo('meta-title')}`;
       case '/nft':
         return `${echo('nft')} | ${echo('meta-title')}`;
       case '/series':
@@ -62,8 +71,14 @@ export const LocalizedView = ({ locale, route }: LocalizedViewProps) => {
         return `${echo('meta-address')}`;
       case '/block':
         return `${echo('meta-block')}`;
+      case '/contract':
+        return `${echo('meta-contract')}`;
+      case '/dao':
+        return `${echo('meta-dao')}`;
       case '/event':
         return `${echo('meta-event')}`;
+      case '/platform':
+        return `${echo('meta-platform')}`;
       case '/nft':
         return `${echo('meta-nft')}`;
       case '/series':
@@ -86,8 +101,14 @@ export const LocalizedView = ({ locale, route }: LocalizedViewProps) => {
         return <ViewAddress />;
       case '/block':
         return <ViewBlock />;
+      case '/contract':
+        return <ViewContract />;
+      case '/dao':
+        return <ViewDao />;
       case '/event':
         return <ViewEvent />;
+      case '/platform':
+        return <ViewPlatform />;
       case '/nft':
         return <ViewNft />;
       case '/series':
