@@ -2,6 +2,7 @@ import { ListParams, ListResults, WithOption } from './list';
 
 export interface Block {
   height?: string;
+  reward?: string;
   hash?: string;
   previous_hash?: string;
   protocol?: number;
