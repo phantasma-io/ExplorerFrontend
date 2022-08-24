@@ -17,3 +17,5 @@ export { useSeriesData } from './series';
 export { useTokenData } from './tokens';
 
 export { useTransactionData } from './transactions';
+
+export { useOracleData } from './oracles';
