@@ -25,7 +25,7 @@ export const ViewContract = ({ tabForce = 'overview' }: ViewContractProps) => {
 
   const { data, error, loading } = useEmpathy<ContractResults>(
     endpoints['/contracts']({
-      symbol: (query?.id as string) || '',
+      hash: (query?.id as string) || '',
       with_creation_event: 1,
       with_methods: 1,
       with_script: 1,
