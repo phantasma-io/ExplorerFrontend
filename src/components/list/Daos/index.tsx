@@ -30,6 +30,8 @@ export const DaosList = () => {
       with_total,
       organization_name,
       organization_name_partial,
+      with_creation_event: 1,
+      with_address: 1,
     } as DaoParams),
   );
 

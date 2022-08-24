@@ -10,7 +10,11 @@ import { AddressResults, AddressParams } from 'types/api';
 import { Table } from 'components/table';
 import { AddressesListFilters } from './filters';
 
-export const AddressesList = () => {
+export interface EventsListProps {
+  _organization_name?: string;
+}
+
+export const AddressesList = ({ _organization_name }: EventsListProps) => {
   const { echo } = useEcho();
 
   // filter states
@@ -19,8 +23,9 @@ export const AddressesList = () => {
     useState<AddressParams['address_partial']>(undefined);
   const [address_name, address_nameSet] =
     useState<AddressParams['address_name']>(undefined);
-  const [organization_name, organization_nameSet] =
-    useState<AddressParams['organization_name']>(undefined);
+  const [organization_name, organization_nameSet] = useState<
+    AddressParams['organization_name']
+  >(_organization_name || undefined);
   const [validator_kind, validator_kindSet] =
     useState<AddressParams['validator_kind']>(undefined);
   const [with_storage, with_storageSet] =

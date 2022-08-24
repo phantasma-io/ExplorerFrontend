@@ -10,6 +10,7 @@ import { ExplorerTabs } from 'types/routes';
 import { DaoResults, DaoParams } from 'types/api';
 import { DaoOverview } from './overview';
 import { DaoRaw } from './raw';
+import { DaoMembers } from './members';
 
 export interface ViewDaoProps {
   tabForce?: ExplorerTabs;
@@ -23,6 +24,9 @@ export const ViewDao = ({ tabForce = 'overview' }: ViewDaoProps) => {
   const { data, error, loading } = useEmpathy<DaoResults>(
     endpoints['/organizations']({
       organization_name: (query?.id as string) || '',
+      with_creation_event: 1,
+      with_address: 1,
+      with_total: 1,
     } as DaoParams),
   );
 
@@ -33,6 +37,12 @@ export const ViewDao = ({ tabForce = 'overview' }: ViewDaoProps) => {
         label: echo('tab-overview'),
         href: routes['/dao'](echoActiveId as Locales),
         component: <DaoOverview data={data} loading={loading} error={error} />,
+      },
+      members: {
+        id: 'members',
+        label: echo('tab-members'),
+        href: routes['/dao'](echoActiveId as Locales),
+        component: <DaoMembers />,
       },
       raw: {
         id: 'raw',
