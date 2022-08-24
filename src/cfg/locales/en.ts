@@ -202,4 +202,16 @@ export const en: EchoMsgs = {
   'filter-series': 'Filter series',
   'filter-tokens': 'Filter tokens',
   'filter-transactions': 'Filter transactions',
+  //
+  size: 'Size',
+  addressName: 'Address Name',
+  eventAddress: 'Event Address',
+  eventBlock: 'Event Block',
+  eventChain: 'Event Chain',
+  eventContract: 'Event Contract',
+  eventDate: 'Event Date',
+  eventID: 'Event ID',
+  eventKind: 'Event Kind',
+  eventTransaction: 'Event Transaction',
+  'tooltip-gotodex': 'Go to Dex',
 };
