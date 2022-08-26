@@ -40,12 +40,6 @@ export const ViewToken = ({ tabForce = 'overview' }: ViewTokenProps) => {
           <TokenOverview data={data} loading={loading} error={error} />
         ),
       },
-      script: {
-        id: 'script',
-        label: echo('tab-script'),
-        href: routes['/token'](echoActiveId as Locales),
-        component: <TokenScript data={data} loading={loading} error={error} />,
-      },
       instructions: {
         id: 'instructions',
         label: echo('tab-instructions'),
@@ -58,6 +52,12 @@ export const ViewToken = ({ tabForce = 'overview' }: ViewTokenProps) => {
             scr={data?.tokens && data?.tokens[0] && data?.tokens[0].script_raw}
           />
         ),
+      },
+      script: {
+        id: 'script',
+        label: echo('tab-script'),
+        href: routes['/token'](echoActiveId as Locales),
+        component: <TokenScript data={data} loading={loading} error={error} />,
       },
       raw: {
         id: 'raw',

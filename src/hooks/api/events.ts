@@ -75,6 +75,11 @@ export const useEventData = (data?: EventResults, loading?: boolean) => {
         label: echo('contract'),
         type: 'text',
         size: 3,
+        linkOptions: {
+          route: '/contract',
+          key: 'contract',
+          title: echo('explore-contract'),
+        },
       },
       {
         id: 'date',

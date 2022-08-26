@@ -90,17 +90,17 @@ export const SearchResults = () => {
                   </Link>
                 </Grid>
               )}
-              {/* {data && data.result[2].found && (
-                <Grid item xs={12}>
-                  <Button>((EXPLORE CHAIN))</Button>
-                </Grid>
-              )} */}
-              {/* 
               {data && data.result[5].found && (
                 <Grid item xs={12}>
-                  <Button>((EXPLORE PLATFORM))</Button>
+                  <Link
+                    href={routes['/platform'](echoActiveId as Locales, {
+                      id: query.id as string,
+                    })}
+                  >
+                    <Button>{echo('platform')}</Button>
+                  </Link>
                 </Grid>
-              )} */}
+              )}
               {data && data.result[4].found && (
                 <Grid item xs={12}>
                   <Link

@@ -51,14 +51,6 @@ export const ViewContract = ({ tabForce = 'overview' }: ViewContractProps) => {
           <ContractMethods data={data} loading={loading} error={error} />
         ),
       },
-      script: {
-        id: 'script',
-        label: echo('tab-script'),
-        href: routes['/contract'](echoActiveId as Locales),
-        component: (
-          <ContractScript data={data} loading={loading} error={error} />
-        ),
-      },
       instructions: {
         id: 'instructions',
         label: echo('tab-instructions'),
@@ -74,6 +66,14 @@ export const ViewContract = ({ tabForce = 'overview' }: ViewContractProps) => {
               data?.contracts[0].script_raw
             }
           />
+        ),
+      },
+      script: {
+        id: 'script',
+        label: echo('tab-script'),
+        href: routes['/contract'](echoActiveId as Locales),
+        component: (
+          <ContractScript data={data} loading={loading} error={error} />
         ),
       },
       raw: {

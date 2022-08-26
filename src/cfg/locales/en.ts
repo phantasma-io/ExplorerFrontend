@@ -221,4 +221,6 @@ export const en: EchoMsgs = {
   'details-oracle': 'Oracle details',
   'search-param': 'Search parameter',
   'search-results': 'Search results',
+  activity: 'Activity',
+  platform: 'Platform',
 };
