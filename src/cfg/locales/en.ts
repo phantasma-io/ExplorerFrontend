@@ -219,4 +219,6 @@ export const en: EchoMsgs = {
   content: 'Content',
   'explore-oracle': 'Explore Oracle',
   'details-oracle': 'Oracle details',
+  'search-param': 'Search parameter',
+  'search-results': 'Search results',
 };
