@@ -3,7 +3,7 @@ import React, { useMemo, useEffect } from 'react';
 import { Box } from '@mui/material';
 import { TokenResults } from 'types/api';
 import { Loading, Error, Empty } from 'components/layout';
-import { DetailsScript } from 'components/details';
+import { Instructions } from 'components/display';
 import { usePost } from 'hooks';
 import { endpoints } from 'cfg';
 import { ExplorerEndpoints } from 'types/endpoints';
@@ -52,11 +52,9 @@ export const TokenInstructions = (props: TokenInstructionsProps) => {
     }
 
     if (data && data?.instructions) {
-      const str = JSON.stringify(data?.instructions);
-
       return (
         <Box>
-          <DetailsScript value={str} />
+          <Instructions data={data} />
         </Box>
       );
     }
