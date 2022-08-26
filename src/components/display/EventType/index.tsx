@@ -1,10 +1,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useMemo } from 'react';
-import { Box, Grid, Chip } from '@mui/material';
+import { Box, Grid, Button } from '@mui/material';
 import { useEcho } from '@ricardojrmcom/echo';
 import { EventResult, EventTypes, EventKinds } from 'types/api';
 import { eventTypeMap } from 'cfg/eventTypes';
 import { DetailsNumber, DetailsText } from 'components/details';
+import { Link } from 'components/display';
+import { routes } from 'cfg';
+import { Locales } from 'types/locales';
 
 type Kind = EventKinds | undefined;
 type Type = EventTypes | undefined | null;
@@ -20,7 +23,7 @@ export interface EventTypeProps {
  * EventType
  */
 export const EventType = ({ data }: EventTypeProps) => {
-  const { echo } = useEcho();
+  const { echo, echoActiveId } = useEcho();
 
   const kind: Kind = useMemo(() => {
     if (data) {
@@ -65,7 +68,16 @@ export const EventType = ({ data }: EventTypeProps) => {
                 alignItems="center"
               >
                 <Grid item>
-                  <Chip label={kind} color="warning" />
+                  <Link
+                    href={routes['/event'](echoActiveId as Locales, {
+                      id: `${data?.event_id}`,
+                    })}
+                    sx={{ textDecoration: 'none' }}
+                  >
+                    <Button color="warning" variant="contained" size="small">
+                      {kind}
+                    </Button>
+                  </Link>
                 </Grid>
                 <Grid item md={2}>
                   {data?.gas_event?.price && (
@@ -113,7 +125,16 @@ export const EventType = ({ data }: EventTypeProps) => {
                 alignItems="center"
               >
                 <Grid item>
-                  <Chip label={kind} color="info" />
+                  <Link
+                    href={routes['/event'](echoActiveId as Locales, {
+                      id: `${data?.event_id}`,
+                    })}
+                    sx={{ textDecoration: 'none' }}
+                  >
+                    <Button color="info" variant="contained" size="small">
+                      {kind}
+                    </Button>
+                  </Link>
                 </Grid>
                 <Grid item md={2}>
                   {data?.chain_event?.name && (
@@ -169,7 +190,16 @@ export const EventType = ({ data }: EventTypeProps) => {
                 alignItems="center"
               >
                 <Grid item>
-                  <Chip label={kind} />
+                  <Link
+                    href={routes['/event'](echoActiveId as Locales, {
+                      id: `${data?.event_id}`,
+                    })}
+                    sx={{ textDecoration: 'none' }}
+                  >
+                    <Button color="primary" variant="contained" size="small">
+                      {kind}
+                    </Button>
+                  </Link>
                 </Grid>
                 <Grid item md={8}>
                   {data?.address_event?.address && (
@@ -199,7 +229,16 @@ export const EventType = ({ data }: EventTypeProps) => {
                 alignItems="center"
               >
                 <Grid item>
-                  <Chip label={kind} color="primary" />
+                  <Link
+                    href={routes['/event'](echoActiveId as Locales, {
+                      id: `${data?.event_id}`,
+                    })}
+                    sx={{ textDecoration: 'none' }}
+                  >
+                    <Button color="success" variant="contained" size="small">
+                      {kind}
+                    </Button>
+                  </Link>
                 </Grid>
                 <Grid item md={2}>
                   {data?.token_event?.chain_name && (

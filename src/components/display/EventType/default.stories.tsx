@@ -14,6 +14,7 @@ export const Gas: Story<EventTypeProps> = (args) => (
   <EventType
     {...args}
     data={{
+      event_id: 1,
       event_kind: 'GasPayment',
       gas_event: {
         price: '1337',
@@ -30,6 +31,7 @@ export const Address: Story<EventTypeProps> = (args) => (
   <EventType
     {...args}
     data={{
+      event_id: 1,
       event_kind: 'ValidatorElect',
       address_event: {
         address: 'P2K3oePWvffLvBG5BsuRs8mZBht7qDZvn8oG5cuyk8LYrpi',
@@ -72,6 +74,7 @@ export const Chain: Story<EventTypeProps> = (args) => (
   <EventType
     {...args}
     data={{
+      event_id: 1,
       event_kind: 'ValueCreate',
       chain_event: {
         name: 'Test Chain Event Name',
