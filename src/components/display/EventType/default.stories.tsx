@@ -10,6 +10,19 @@ export default {
   },
 } as Meta;
 
+export const Sale: Story<EventTypeProps> = (args) => (
+  <EventType
+    {...args}
+    data={{
+      event_id: 1,
+      event_kind: 'Crowdsale',
+      sale_event: {
+        hash: 'ASDASDASDASDASDA',
+      },
+    }}
+  />
+);
+
 export const Dao: Story<EventTypeProps> = (args) => (
   <EventType
     {...args}

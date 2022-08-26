@@ -47,7 +47,44 @@ export const EventType = ({ data }: EventTypeProps) => {
         case 'string_event':
           return null;
         case 'sale_event':
-          return null;
+          return (
+            <Box>
+              <Grid
+                container
+                spacing={1}
+                justifyContent="flex-start"
+                justifyItems="flex-start"
+                alignContent="center"
+                alignItems="center"
+              >
+                <Grid item md={2}>
+                  <Link
+                    href={routes['/event'](echoActiveId as Locales, {
+                      id: `${data?.event_id}`,
+                    })}
+                    sx={{ textDecoration: 'none' }}
+                  >
+                    <Button
+                      fullWidth
+                      color="success"
+                      variant="contained"
+                      size="small"
+                    >
+                      {kind}
+                    </Button>
+                  </Link>
+                </Grid>
+                <Grid item md={8}>
+                  {data?.sale_event?.hash && (
+                    <DetailsText
+                      label={echo('hash')}
+                      value={data?.sale_event?.hash}
+                    />
+                  )}
+                </Grid>
+              </Grid>
+            </Box>
+          );
         case 'organization_event':
           return (
             <Box>
