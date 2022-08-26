@@ -49,9 +49,139 @@ export const EventType = ({ data }: EventTypeProps) => {
         case 'sale_event':
           return null;
         case 'organization_event':
-          return null;
+          return (
+            <Box>
+              <Grid
+                container
+                spacing={1}
+                justifyContent="flex-start"
+                justifyItems="flex-start"
+                alignContent="center"
+                alignItems="center"
+              >
+                <Grid item md={2}>
+                  <Link
+                    href={routes['/event'](echoActiveId as Locales, {
+                      id: `${data?.event_id}`,
+                    })}
+                    sx={{ textDecoration: 'none' }}
+                  >
+                    <Button
+                      fullWidth
+                      color="info"
+                      variant="contained"
+                      size="small"
+                    >
+                      {kind}
+                    </Button>
+                  </Link>
+                </Grid>
+                <Grid item md={4}>
+                  {data?.organization_event?.organization?.name && (
+                    <DetailsText
+                      label={echo('dao-name')}
+                      value={data?.organization_event?.organization?.name}
+                      linkOptions={{
+                        route: '/dao',
+                        key: 'dao',
+                        title: echo('explore-dao'),
+                      }}
+                    />
+                  )}
+                </Grid>
+                <Grid item md={6}>
+                  {data?.organization_event?.address?.address && (
+                    <DetailsText
+                      label={echo('address')}
+                      value={data?.organization_event?.address?.address}
+                      linkOptions={{
+                        route: '/address',
+                        key: 'address',
+                        title: echo('explore-address'),
+                      }}
+                    />
+                  )}
+                </Grid>
+              </Grid>
+            </Box>
+          );
         case 'market_event':
-          return null;
+          return (
+            <Box>
+              <Grid
+                container
+                spacing={1}
+                justifyContent="flex-start"
+                justifyItems="flex-start"
+                alignContent="center"
+                alignItems="center"
+              >
+                <Grid item md={2}>
+                  <Link
+                    href={routes['/event'](echoActiveId as Locales, {
+                      id: `${data?.event_id}`,
+                    })}
+                    sx={{ textDecoration: 'none' }}
+                  >
+                    <Button
+                      fullWidth
+                      color="info"
+                      variant="contained"
+                      size="small"
+                    >
+                      {kind}
+                    </Button>
+                  </Link>
+                </Grid>
+                <Grid item md={2}>
+                  {data?.market_event?.base_token?.symbol && (
+                    <DetailsText
+                      label={echo('base-token')}
+                      value={data?.market_event?.base_token?.symbol}
+                      linkOptions={{
+                        route: '/token',
+                        key: 'symbol',
+                        title: echo('explore-token'),
+                      }}
+                    />
+                  )}
+                </Grid>
+                <Grid item md={2}>
+                  {data?.market_event?.quote_token?.symbol && (
+                    <DetailsText
+                      label={echo('infused-token')}
+                      value={`${data?.market_event?.quote_token?.symbol}`}
+                      linkOptions={{
+                        route: '/token',
+                        key: 'symbol',
+                        title: echo('explore-token'),
+                      }}
+                    />
+                  )}
+                </Grid>
+                <Grid item md={2}>
+                  <Box>
+                    {data?.market_event?.price && (
+                      <DetailsNumber
+                        label={echo('value')}
+                        value={parseInt(data?.market_event?.price, 10)}
+                      />
+                    )}
+                  </Box>
+                </Grid>
+                <Grid item md={2}>
+                  <Box>
+                    {data?.market_event?.end_price && (
+                      <DetailsNumber
+                        label={echo('value')}
+                        value={parseInt(data?.market_event?.end_price, 10)}
+                      />
+                    )}
+                  </Box>
+                </Grid>
+              </Grid>
+            </Box>
+          );
         case 'infusion_event':
           return (
             <Box>

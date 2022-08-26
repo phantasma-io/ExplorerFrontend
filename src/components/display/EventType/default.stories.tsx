@@ -10,6 +10,36 @@ export default {
   },
 } as Meta;
 
+export const Dao: Story<EventTypeProps> = (args) => (
+  <EventType
+    {...args}
+    data={{
+      event_id: 1,
+      event_kind: 'OrganizationAdd',
+      organization_event: {
+        organization: { name: 'ORG' },
+        address: { address: 'ASDASDSADSAD' },
+      },
+    }}
+  />
+);
+
+export const Market: Story<EventTypeProps> = (args) => (
+  <EventType
+    {...args}
+    data={{
+      event_id: 1,
+      event_kind: 'OrderBid',
+      market_event: {
+        base_token: { symbol: 'SOUL' },
+        quote_token: { symbol: 'KCAL' },
+        price: '404',
+        end_price: '1337',
+      },
+    }}
+  />
+);
+
 export const Infusion: Story<EventTypeProps> = (args) => (
   <EventType
     {...args}
