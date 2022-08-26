@@ -226,4 +226,6 @@ export const en: EchoMsgs = {
   'return-type': 'Return type',
   params: 'Parameters',
   value: 'Value',
+  price: 'Price',
+  amount: 'Amount',
 };

@@ -10,6 +10,22 @@ export default {
   },
 } as Meta;
 
+export const Gas: Story<EventTypeProps> = (args) => (
+  <EventType
+    {...args}
+    data={{
+      event_kind: 'GasPayment',
+      gas_event: {
+        price: '1337',
+        amount: '404',
+        address: {
+          address: 'ASDASDASDASASDSADSADSADSADAD',
+        },
+      },
+    }}
+  />
+);
+
 export const Address: Story<EventTypeProps> = (args) => (
   <EventType
     {...args}

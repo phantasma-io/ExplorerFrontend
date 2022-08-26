@@ -54,7 +54,53 @@ export const EventType = ({ data }: EventTypeProps) => {
         case 'hash_event':
           return null;
         case 'gas_event':
-          return null;
+          return (
+            <Box>
+              <Grid
+                container
+                spacing={1}
+                justifyContent="flex-start"
+                justifyItems="flex-start"
+                alignContent="center"
+                alignItems="center"
+              >
+                <Grid item>
+                  <Chip label={kind} color="warning" />
+                </Grid>
+                <Grid item md={2}>
+                  {data?.gas_event?.price && (
+                    <DetailsNumber
+                      label={echo('price')}
+                      value={parseInt(data?.gas_event?.price, 10)}
+                    />
+                  )}
+                </Grid>
+                <Grid item md={2}>
+                  <Box>
+                    {data?.gas_event?.amount && (
+                      <DetailsNumber
+                        label={echo('amount')}
+                        value={parseInt(data?.gas_event?.amount, 10)}
+                      />
+                    )}
+                  </Box>
+                </Grid>
+                <Grid item md={5}>
+                  {data?.gas_event?.address?.address && (
+                    <DetailsText
+                      label={echo('address')}
+                      value={data?.gas_event?.address?.address}
+                      linkOptions={{
+                        route: '/address',
+                        key: 'address',
+                        title: echo('explore-address'),
+                      }}
+                    />
+                  )}
+                </Grid>
+              </Grid>
+            </Box>
+          );
         case 'chain_event':
           return (
             <Box>
