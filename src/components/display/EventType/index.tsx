@@ -39,6 +39,22 @@ export const EventType = ({ data }: EventTypeProps) => {
   const content = useMemo(() => {
     if (kind && type) {
       switch (type) {
+        case 'transaction_settle_event':
+          return null;
+        case 'string_event':
+          return null;
+        case 'sale_event':
+          return null;
+        case 'organization_event':
+          return null;
+        case 'market_event':
+          return null;
+        case 'infusion_event':
+          return null;
+        case 'hash_event':
+          return null;
+        case 'gas_event':
+          return null;
         case 'chain_event':
           return (
             <Box>
