@@ -2,7 +2,6 @@ import React, { useMemo } from 'react';
 import { Box } from '@mui/material';
 import { ContractResults } from 'types/api';
 import { Loading, Error, Empty } from 'components/layout';
-import { DetailsScript } from 'components/details';
 import { Methods } from 'components/display';
 
 export interface ContractMethodsProps {

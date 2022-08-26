@@ -65,7 +65,7 @@ export const ViewBlock = ({ tabForce = 'overview' }: ViewBlockProps) => {
         component: <BlockRaw data={data} loading={loading} error={error} />,
       },
     }),
-    [echo, echoActiveId, data, error, loading],
+    [echo, echoActiveId, data, error, loading, query],
   );
 
   return (
