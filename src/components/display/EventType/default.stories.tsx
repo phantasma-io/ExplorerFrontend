@@ -10,19 +10,6 @@ export default {
   },
 } as Meta;
 
-export const Transaction: Story<EventTypeProps> = (args) => (
-  <EventType
-    {...args}
-    data={{
-      event_id: 1,
-      event_kind: 'ContractDeploy',
-      string_event: {
-        string_value: 'ASDASDASDASDASDA',
-      },
-    }}
-  />
-);
-
 export const String: Story<EventTypeProps> = (args) => (
   <EventType
     {...args}
