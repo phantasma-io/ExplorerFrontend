@@ -1,4 +1,5 @@
 import { ListParams, ListResults, WithOption } from './list';
+import { EventResult } from './events';
 
 export interface Block {
   height?: string;
@@ -9,6 +10,7 @@ export interface Block {
   chain_address?: string;
   validator_address?: string;
   date?: string;
+  events?: EventResult[];
 }
 
 export interface BlockParams

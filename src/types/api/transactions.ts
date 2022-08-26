@@ -1,4 +1,5 @@
 import { ListParams, ListResults } from './list';
+import { EventResult } from './events';
 
 export interface Transaction {
   hash?: string;
@@ -6,6 +7,7 @@ export interface Transaction {
   block_height?: string;
   index?: number;
   date?: string;
+  events?: EventResult[];
 }
 
 export interface TransactionParams extends ListParams {

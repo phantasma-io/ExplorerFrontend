@@ -8,6 +8,7 @@ export type { Contract, ContractParams, ContractResults } from './contracts';
 
 export type {
   EventKind,
+  EventKinds,
   EventKindParams,
   EventKindResults,
 } from './eventkinds';

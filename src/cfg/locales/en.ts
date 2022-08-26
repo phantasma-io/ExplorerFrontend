@@ -225,4 +225,5 @@ export const en: EchoMsgs = {
   platform: 'Platform',
   'return-type': 'Return type',
   params: 'Parameters',
+  value: 'Value',
 };

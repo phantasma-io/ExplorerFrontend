@@ -11,6 +11,7 @@ export interface EventResult extends EventData {
   chain?: string;
   contract?: Contract;
   date?: string;
+  event_id?: number;
   event_kind?: string;
   nft_metadata?: NftMetadata;
   series?: Series;
