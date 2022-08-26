@@ -10,6 +10,35 @@ export default {
   },
 } as Meta;
 
+export const Infusion: Story<EventTypeProps> = (args) => (
+  <EventType
+    {...args}
+    data={{
+      event_id: 1,
+      event_kind: 'Infusion',
+      infusion_event: {
+        token_id: '1337',
+        infused_value: '404',
+        base_token: { symbol: 'SOUL' },
+        infused_token: { symbol: 'KCAL' },
+      },
+    }}
+  />
+);
+
+export const Hash: Story<EventTypeProps> = (args) => (
+  <EventType
+    {...args}
+    data={{
+      event_id: 1,
+      event_kind: 'FileCreate',
+      hash_event: {
+        hash: 'ASDSADSADSADSADA',
+      },
+    }}
+  />
+);
+
 export const Gas: Story<EventTypeProps> = (args) => (
   <EventType
     {...args}

@@ -53,9 +53,114 @@ export const EventType = ({ data }: EventTypeProps) => {
         case 'market_event':
           return null;
         case 'infusion_event':
-          return null;
+          return (
+            <Box>
+              <Grid
+                container
+                spacing={1}
+                justifyContent="flex-start"
+                justifyItems="flex-start"
+                alignContent="center"
+                alignItems="center"
+              >
+                <Grid item md={2}>
+                  <Link
+                    href={routes['/event'](echoActiveId as Locales, {
+                      id: `${data?.event_id}`,
+                    })}
+                    sx={{ textDecoration: 'none' }}
+                  >
+                    <Button
+                      fullWidth
+                      color="secondary"
+                      variant="contained"
+                      size="small"
+                    >
+                      {kind}
+                    </Button>
+                  </Link>
+                </Grid>
+                <Grid item md={2}>
+                  {data?.infusion_event?.base_token?.symbol && (
+                    <DetailsText
+                      label={echo('base-token')}
+                      value={data?.infusion_event?.base_token?.symbol}
+                      linkOptions={{
+                        route: '/token',
+                        key: 'symbol',
+                        title: echo('explore-token'),
+                      }}
+                    />
+                  )}
+                </Grid>
+                <Grid item md={2}>
+                  {data?.infusion_event?.base_token?.symbol && (
+                    <DetailsText
+                      label={echo('infused-token')}
+                      value={`${data?.infusion_event?.infused_token?.symbol}`}
+                      linkOptions={{
+                        route: '/token',
+                        key: 'symbol',
+                        title: echo('explore-token'),
+                      }}
+                    />
+                  )}
+                </Grid>
+                <Grid item md={2}>
+                  <Box>
+                    {data?.infusion_event?.infused_value && (
+                      <DetailsNumber
+                        label={echo('value')}
+                        value={parseInt(
+                          data?.infusion_event?.infused_value,
+                          10,
+                        )}
+                      />
+                    )}
+                  </Box>
+                </Grid>
+              </Grid>
+            </Box>
+          );
         case 'hash_event':
-          return null;
+          return (
+            <Box>
+              <Grid
+                container
+                spacing={1}
+                justifyContent="flex-start"
+                justifyItems="flex-start"
+                alignContent="center"
+                alignItems="center"
+              >
+                <Grid item md={2}>
+                  <Link
+                    href={routes['/event'](echoActiveId as Locales, {
+                      id: `${data?.event_id}`,
+                    })}
+                    sx={{ textDecoration: 'none' }}
+                  >
+                    <Button
+                      fullWidth
+                      color="info"
+                      variant="contained"
+                      size="small"
+                    >
+                      {kind}
+                    </Button>
+                  </Link>
+                </Grid>
+                <Grid item md={8}>
+                  {data?.hash_event?.hash && (
+                    <DetailsText
+                      label={echo('hash')}
+                      value={data?.hash_event?.hash}
+                    />
+                  )}
+                </Grid>
+              </Grid>
+            </Box>
+          );
         case 'gas_event':
           return (
             <Box>

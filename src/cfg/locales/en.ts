@@ -228,4 +228,6 @@ export const en: EchoMsgs = {
   value: 'Value',
   price: 'Price',
   amount: 'Amount',
+  'base-token': 'Base Token',
+  'infused-token': 'Infused Token',
 };
