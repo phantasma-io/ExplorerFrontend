@@ -223,4 +223,6 @@ export const en: EchoMsgs = {
   'search-results': 'Search results',
   activity: 'Activity',
   platform: 'Platform',
+  'return-type': 'Return type',
+  params: 'Parameters',
 };

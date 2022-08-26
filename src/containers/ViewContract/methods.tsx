@@ -3,6 +3,7 @@ import { Box } from '@mui/material';
 import { ContractResults } from 'types/api';
 import { Loading, Error, Empty } from 'components/layout';
 import { DetailsScript } from 'components/details';
+import { Methods } from 'components/display';
 
 export interface ContractMethodsProps {
   data?: ContractResults;
@@ -32,7 +33,7 @@ export const ContractMethods = ({
     return (
       <Box>
         {data?.contracts && data?.contracts[0]?.methods && (
-          <DetailsScript value={JSON.stringify(data?.contracts[0]?.methods)} />
+          <Methods data={data?.contracts[0]?.methods} />
         )}
       </Box>
     );

@@ -40,7 +40,7 @@ export const Instructions = ({ data }: InstructionsProps) => {
               value={split[1]}
               paragraph
               clipboard
-              mx={1}
+              spacing={1}
             />
           );
         })}
