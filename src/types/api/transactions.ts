@@ -5,8 +5,12 @@ export interface Transaction {
   hash?: string;
   block_hash?: string;
   block_height?: string;
+  fee?: string;
+  result?: string;
+  payload?: string;
   index?: number;
   date?: string;
+  expiration?: string;
   events?: EventResult[];
 }
 

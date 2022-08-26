@@ -230,4 +230,8 @@ export const en: EchoMsgs = {
   amount: 'Amount',
   'base-token': 'Base Token',
   'infused-token': 'Infused Token',
+  expiration: 'Expiration',
+  result: 'Result',
+  payload: 'Payload',
+  fee: 'Fee',
 };

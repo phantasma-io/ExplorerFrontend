@@ -52,11 +52,35 @@ export const useTransactionData = (
         showDesktop: true,
       },
       {
+        id: 'result',
+        label: echo('result'),
+        type: 'monospace',
+        size: 2,
+      },
+      {
+        id: 'payload',
+        label: echo('payload'),
+        type: 'monospace',
+        size: 2,
+      },
+      {
+        id: 'fee',
+        label: echo('fee'),
+        type: 'text',
+        size: 2,
+      },
+      {
         id: 'date',
         label: echo('date'),
         type: 'date',
         size: 2,
         showDesktop: true,
+      },
+      {
+        id: 'expiration',
+        label: echo('expiration'),
+        type: 'date',
+        size: 2,
       },
     ];
   }, [echo]);
@@ -67,7 +91,11 @@ export const useTransactionData = (
         item?.hash,
         item?.block_hash,
         item?.block_height,
+        item?.result,
+        item?.payload,
+        item?.fee,
         item?.date ? unixmsToDate(item.date) : undefined,
+        item?.expiration ? unixmsToDate(item.expiration) : undefined,
       ]) as TableDisplayRow[];
     }
 
