@@ -44,6 +44,12 @@ export const useBlockData = (data?: BlockResults, loading?: boolean) => {
         size: 1,
       },
       {
+        id: 'reward',
+        label: echo('reward'),
+        type: 'text',
+        size: 1,
+      },
+      {
         id: 'chain_address',
         label: echo('chainAddress'),
         type: 'monospace',
@@ -92,6 +98,7 @@ export const useBlockData = (data?: BlockResults, loading?: boolean) => {
         item?.hash,
         item?.height,
         item?.protocol,
+        item?.reward,
         item?.chain_address,
         item?.validator_address,
         item?.previous_hash,

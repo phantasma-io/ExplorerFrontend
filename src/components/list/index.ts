@@ -16,6 +16,8 @@ export { SearchResults } from './SearchResults';
 
 export { PlatformsList } from './Platforms';
 
+export { OraclesList } from './Oracles';
+
 export { NftsList } from './Nfts';
 
 export { TokensList } from './Tokens';

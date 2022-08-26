@@ -33,26 +33,28 @@ export const OraclesList = ({ block_hash }: OraclesListProps) => {
 
   return (
     <Box>
-      <Table
-        tableId="PhantasmaExplorer-Oracles"
-        raw={data?.oracles || []}
-        cols={cols}
-        rows={rows}
-        total={total}
-        dialogOptions={{
-          title: echo('details-oracle'),
-        }}
-        linkOptions={{
-          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-          // @ts-ignore
-          route: '/oracle',
-          key: 'hash',
-          title: echo('explore-oracle'),
-        }}
-        {...tableProps}
-        loading={loading}
-        error={error}
-      />
+      {block_hash ? (
+        <Table
+          tableId="PhantasmaExplorer-Oracles"
+          raw={data?.oracles || []}
+          cols={cols}
+          rows={rows}
+          total={total}
+          dialogOptions={{
+            title: echo('details-oracle'),
+          }}
+          // linkOptions={{
+          //   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          //   // @ts-ignore
+          //   route: '/oracle',
+          //   key: 'block_hash',
+          //   title: echo('explore-oracle'),
+          // }}
+          {...tableProps}
+          loading={loading}
+          error={error}
+        />
+      ) : null}
     </Box>
   );
 };

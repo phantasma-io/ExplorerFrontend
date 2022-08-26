@@ -9,6 +9,7 @@ export type ExplorerRoutes =
   | '/dao'
   | '/event'
   | '/platform'
+  | '/oracle'
   | '/nft'
   | '/series'
   | '/search'

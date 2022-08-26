@@ -14,6 +14,7 @@ export const routes: ExplorerRouter = {
   '/dao': (locale, params) => `/${locale}/dao${parseParams(params)}`,
   '/event': (locale, params) => `/${locale}/event${parseParams(params)}`,
   '/platform': (locale, params) => `/${locale}/platform${parseParams(params)}`,
+  '/oracle': (locale, params) => `/${locale}/oracle${parseParams(params)}`,
   '/nft': (locale, params) => `/${locale}/nft${parseParams(params)}`,
   '/series': (locale, params) => `/${locale}/series${parseParams(params)}`,
   '/search': (locale, params) => `/${locale}/search${parseParams(params)}`,

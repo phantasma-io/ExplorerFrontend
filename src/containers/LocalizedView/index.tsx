@@ -19,6 +19,7 @@ import {
   ViewSearch,
   ViewToken,
   ViewTransaction,
+  ViewOracle,
 } from '../index';
 
 interface LocalizedViewProps {
@@ -109,6 +110,8 @@ export const LocalizedView = ({ locale, route }: LocalizedViewProps) => {
         return <ViewEvent />;
       case '/platform':
         return <ViewPlatform />;
+      case '/oracle':
+        return <ViewOracle />;
       case '/nft':
         return <ViewNft />;
       case '/series':

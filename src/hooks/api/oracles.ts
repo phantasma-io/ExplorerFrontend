@@ -26,7 +26,7 @@ export const useOracleData = (data?: OracleResults, loading?: boolean) => {
       {
         id: 'content',
         label: echo('content'),
-        type: 'text',
+        type: 'monospace',
         size: 2,
       },
     ];

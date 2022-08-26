@@ -10,6 +10,7 @@ import { ExplorerTabs } from 'types/routes';
 import { BlockResults } from 'types/api';
 import { BlockOverview } from './overview';
 import { BlockEvents } from './events';
+import { BlockOracles } from './oracles';
 import { BlockTransactions } from './transactions';
 import { BlockRaw } from './raw';
 
@@ -51,12 +52,12 @@ export const ViewBlock = ({ tabForce = 'overview' }: ViewBlockProps) => {
         href: routes['/block'](echoActiveId as Locales),
         component: <BlockEvents />,
       },
-      // oracles: {
-      //   id: 'oracles',
-      //   label: echo('tab-oracles'),
-      //   href: routes['/block'](echoActiveId as Locales),
-      //   component: <OraclesList />,
-      // },
+      oracles: {
+        id: 'oracles',
+        label: echo('tab-oracles'),
+        href: routes['/block'](echoActiveId as Locales),
+        component: <BlockOracles hash={(query?.id as string) || ''} />,
+      },
       raw: {
         id: 'raw',
         label: echo('tab-raw'),

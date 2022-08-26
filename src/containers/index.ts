@@ -15,4 +15,5 @@ export { ViewSeries } from './ViewSeries';
 export { ViewNexus } from './ViewNexus';
 export { ViewSearch } from './ViewSearch';
 export { ViewToken } from './ViewToken';
+export { ViewOracle } from './ViewOracle';
 export { ViewTransaction } from './ViewTransaction';

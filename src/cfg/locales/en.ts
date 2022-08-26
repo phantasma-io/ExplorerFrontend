@@ -214,4 +214,9 @@ export const en: EchoMsgs = {
   eventKind: 'Event Kind',
   eventTransaction: 'Event Transaction',
   'tooltip-gotodex': 'Go to Dex',
+  reward: 'Reward',
+  url: 'URL',
+  content: 'Content',
+  'explore-oracle': 'Explore Oracle',
+  'details-oracle': 'Oracle details',
 };
