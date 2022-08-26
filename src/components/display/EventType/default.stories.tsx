@@ -14,17 +14,7 @@ export const Address: Story<EventTypeProps> = (args) => (
   <EventType
     {...args}
     data={{
-      event_id: 6498351,
-      chain: 'main',
-      date: '1661325511',
-      block_hash:
-        '663D7E16408983ECA3E9CF02A6C94F4F5354D631F2854C376E9DEB7F9E1FD8EC',
-      transaction_hash:
-        'FC5EF6D89A7F5E974F8A6C9AD44F34BAE05264F2EA6D3F8730DB137D6B8E7325',
-      token_id: '212000',
       event_kind: 'ValidatorElect',
-      address: 'P2KAPiHoaW4hp5b8wSUC1tojrihdRR56FU8tPoNVmNVDPYp',
-      contract: { name: 'GOATI', hash: 'GOATI', symbol: 'GOATI' },
       address_event: {
         address: 'P2K3oePWvffLvBG5BsuRs8mZBht7qDZvn8oG5cuyk8LYrpi',
         validator_kind: 'Invalid',
@@ -57,6 +47,23 @@ export const Address: Story<EventTypeProps> = (args) => (
             amount: '212',
           },
         ],
+      },
+    }}
+  />
+);
+
+export const Chain: Story<EventTypeProps> = (args) => (
+  <EventType
+    {...args}
+    data={{
+      event_kind: 'ValueCreate',
+      chain_event: {
+        name: 'Test Chain Event Name',
+        value: '1337',
+        chain: {
+          chain_name: 'Test Chain Name',
+          chain_height: '404',
+        },
       },
     }}
   />

@@ -39,6 +39,62 @@ export const EventType = ({ data }: EventTypeProps) => {
   const content = useMemo(() => {
     if (kind && type) {
       switch (type) {
+        case 'chain_event':
+          return (
+            <Box>
+              <Grid
+                container
+                spacing={1}
+                justifyContent="flex-start"
+                justifyItems="flex-start"
+                alignContent="center"
+                alignItems="center"
+              >
+                <Grid item>
+                  <Chip label={kind} color="info" />
+                </Grid>
+                <Grid item md={2}>
+                  {data?.chain_event?.name && (
+                    <DetailsText
+                      label={echo('name')}
+                      value={data?.chain_event?.name}
+                    />
+                  )}
+                </Grid>
+                <Grid item md={2}>
+                  <Box>
+                    {data?.chain_event?.value && (
+                      <DetailsNumber
+                        label={echo('value')}
+                        value={parseInt(data?.chain_event?.value, 10)}
+                      />
+                    )}
+                  </Box>
+                </Grid>
+                <Grid item md={2}>
+                  {data?.chain_event?.chain?.chain_name && (
+                    <DetailsText
+                      label={echo('chain')}
+                      value={data?.chain_event?.chain?.chain_name}
+                    />
+                  )}
+                </Grid>
+                <Grid item md={2}>
+                  <Box>
+                    {data?.chain_event?.chain?.chain_height && (
+                      <DetailsNumber
+                        label={echo('height')}
+                        value={parseInt(
+                          data?.chain_event?.chain?.chain_height,
+                          10,
+                        )}
+                      />
+                    )}
+                  </Box>
+                </Grid>
+              </Grid>
+            </Box>
+          );
         case 'address_event':
           return (
             <Box>
