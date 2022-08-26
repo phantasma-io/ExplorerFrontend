@@ -39,6 +39,36 @@ export const EventType = ({ data }: EventTypeProps) => {
   const content = useMemo(() => {
     if (kind && type) {
       switch (type) {
+        case 'address_event':
+          return (
+            <Box>
+              <Grid
+                container
+                spacing={1}
+                justifyContent="flex-start"
+                justifyItems="flex-start"
+                alignContent="center"
+                alignItems="center"
+              >
+                <Grid item>
+                  <Chip label={kind} />
+                </Grid>
+                <Grid item md={8}>
+                  {data?.address_event?.address && (
+                    <DetailsText
+                      label={echo('address')}
+                      value={data?.address_event?.address}
+                      linkOptions={{
+                        route: '/address',
+                        key: 'address',
+                        title: echo('explore-address'),
+                      }}
+                    />
+                  )}
+                </Grid>
+              </Grid>
+            </Box>
+          );
         case 'token_event':
           return (
             <Box>
@@ -92,7 +122,7 @@ export const EventType = ({ data }: EventTypeProps) => {
       }
     }
     return null;
-  }, [type, kind, data]);
+  }, [type, kind, data, echo]);
 
   console.log({ data, kind, type });
 

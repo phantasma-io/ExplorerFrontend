@@ -23,10 +23,6 @@ export type EventTypeMap = {
   [key in EventKinds]: EventTypes | null;
 };
 
-export type AddressEvent = {
-  address?: Address;
-};
-
 export type ChainEvent = {
   name?: string;
   value?: string;
@@ -86,7 +82,7 @@ export type TransactionSettleEvent = {
 };
 
 export interface EventData {
-  address_event?: AddressEvent;
+  address_event?: Address;
   chain_event?: ChainEvent;
   gas_event?: GasEvent;
   hash_event?: HashEvent;
