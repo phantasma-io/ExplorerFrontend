@@ -67,14 +67,19 @@ export const EventType = ({ data }: EventTypeProps) => {
                 alignContent="center"
                 alignItems="center"
               >
-                <Grid item>
+                <Grid item md={2}>
                   <Link
                     href={routes['/event'](echoActiveId as Locales, {
                       id: `${data?.event_id}`,
                     })}
                     sx={{ textDecoration: 'none' }}
                   >
-                    <Button color="warning" variant="contained" size="small">
+                    <Button
+                      fullWidth
+                      color="warning"
+                      variant="contained"
+                      size="small"
+                    >
                       {kind}
                     </Button>
                   </Link>
@@ -124,14 +129,19 @@ export const EventType = ({ data }: EventTypeProps) => {
                 alignContent="center"
                 alignItems="center"
               >
-                <Grid item>
+                <Grid item md={2}>
                   <Link
                     href={routes['/event'](echoActiveId as Locales, {
                       id: `${data?.event_id}`,
                     })}
                     sx={{ textDecoration: 'none' }}
                   >
-                    <Button color="info" variant="contained" size="small">
+                    <Button
+                      fullWidth
+                      color="info"
+                      variant="contained"
+                      size="small"
+                    >
                       {kind}
                     </Button>
                   </Link>
@@ -189,14 +199,19 @@ export const EventType = ({ data }: EventTypeProps) => {
                 alignContent="center"
                 alignItems="center"
               >
-                <Grid item>
+                <Grid item md={2}>
                   <Link
                     href={routes['/event'](echoActiveId as Locales, {
                       id: `${data?.event_id}`,
                     })}
                     sx={{ textDecoration: 'none' }}
                   >
-                    <Button color="primary" variant="contained" size="small">
+                    <Button
+                      fullWidth
+                      color="success"
+                      variant="contained"
+                      size="small"
+                    >
                       {kind}
                     </Button>
                   </Link>
@@ -228,14 +243,19 @@ export const EventType = ({ data }: EventTypeProps) => {
                 alignContent="center"
                 alignItems="center"
               >
-                <Grid item>
+                <Grid item md={2}>
                   <Link
                     href={routes['/event'](echoActiveId as Locales, {
                       id: `${data?.event_id}`,
                     })}
                     sx={{ textDecoration: 'none' }}
                   >
-                    <Button color="success" variant="contained" size="small">
+                    <Button
+                      fullWidth
+                      color="primary"
+                      variant="contained"
+                      size="small"
+                    >
                       {kind}
                     </Button>
                   </Link>
@@ -279,7 +299,7 @@ export const EventType = ({ data }: EventTypeProps) => {
       }
     }
     return null;
-  }, [type, kind, data, echo]);
+  }, [type, kind, data, echo, echoActiveId]);
 
   console.log({ data, kind, type });
 

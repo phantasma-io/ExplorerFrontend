@@ -5,6 +5,7 @@ import { useRenderOverview } from 'hooks/useRenderOverview';
 import { useBlockData } from 'hooks/api';
 import { BlockResults } from 'types/api';
 import { Error, Empty, Loading, Overview } from 'components/layout';
+import { EventActivity } from 'components/display/EventActivity';
 
 export interface BlockOverviewProps {
   data?: BlockResults;
@@ -37,6 +38,7 @@ export const BlockOverview = ({ data, error, loading }: BlockOverviewProps) => {
         raw={raw[0]}
       >
         <Box>{data && renderOverview(cols, rows)}</Box>
+        <EventActivity data={raw[0].events} />
       </Overview>
     );
   }, [loading, error, rows, data, renderOverview, cols, raw]);

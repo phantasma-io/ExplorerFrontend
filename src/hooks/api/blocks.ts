@@ -92,7 +92,7 @@ export const useBlockData = (data?: BlockResults, loading?: boolean) => {
     ];
   }, [echo]);
 
-  const rows = useMemo<TableDisplayRow[]>(() => {
+  const rows: TableDisplayRow[] = useMemo<TableDisplayRow[]>(() => {
     if (data) {
       return data?.blocks?.map((item) => [
         item?.hash,

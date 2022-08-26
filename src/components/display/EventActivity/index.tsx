@@ -21,7 +21,7 @@ export const EventActivity = ({ data }: EventActivityProps) => {
   if (data && data.length > 0) {
     return (
       <Box>
-        <Box>
+        <Box pt={1}>
           <Typography fontWeight={600} variant="body2" gutterBottom>
             {echo('activity')}:
           </Typography>

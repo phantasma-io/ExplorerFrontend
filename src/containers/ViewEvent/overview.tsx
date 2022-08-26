@@ -5,6 +5,7 @@ import { useRenderOverview } from 'hooks/useRenderOverview';
 import { useEventData } from 'hooks/api';
 import { EventResults } from 'types/api';
 import { Loading, Error, Empty, Overview } from 'components/layout';
+import { EventActivity } from 'components/display/EventActivity';
 
 export interface EventOverviewProps {
   data?: EventResults;
@@ -37,6 +38,7 @@ export const EventOverview = ({ data, loading, error }: EventOverviewProps) => {
         raw={raw[0]}
       >
         <Box>{data && renderOverview(cols, rows)}</Box>
+        <EventActivity data={raw} />
       </Overview>
     );
   }, [loading, error, rows, data, renderOverview, cols, raw]);
