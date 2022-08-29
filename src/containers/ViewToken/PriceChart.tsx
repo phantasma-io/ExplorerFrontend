@@ -79,8 +79,6 @@ export const TokenPriceChart = () => {
     return { colors, data: chartData };
   }, [data, fiatSelection]);
 
-  console.log({ data, chartCfg });
-
   return (
     <Box>
       {chartCfg.data && (

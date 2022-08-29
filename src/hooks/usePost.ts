@@ -15,12 +15,10 @@ export const usePost = (
     axios
       .post(endpoint, payload)
       .then((res) => {
-        // console.log({ res });
         loadingSet(false);
         dataSet(res.data);
       })
       .catch((err) => {
-        // console.log({ err });
         loadingSet(false);
         errorSet(err);
       });

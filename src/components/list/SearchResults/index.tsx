@@ -1,16 +1,22 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useCallback, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { useEcho } from '@ricardojrmcom/echo';
 import { useEmpathy } from '@ricardojrmcom/empathy';
 import { Box, Paper, Typography, Grid, Button } from '@mui/material';
 import { endpoints, routes } from 'cfg';
 import { Locales } from 'types/locales';
+import { ExplorerRoutes } from 'types/routes';
 import { SearchResultsType, SearchParams } from 'types/api';
 import { Loading, Error, Empty } from 'components/layout';
 import { Link } from 'components/display';
 
+interface SingleResult {
+  single: boolean;
+  type: string;
+}
+
 export const SearchResults = () => {
-  const { query } = useRouter();
+  const { query, push } = useRouter();
 
   const { echoActiveId, echo } = useEcho();
 
@@ -32,6 +38,58 @@ export const SearchResults = () => {
     }
     return false;
   }, [data]);
+
+  const isSingle: SingleResult | undefined = useMemo(() => {
+    if (!isEmpty && data && data.result) {
+      let count = 0;
+      let type = '';
+      data.result.forEach((item) => {
+        if (item.found) {
+          // eslint-disable-next-line no-plusplus
+          count++;
+          type = item.endpoint_name;
+        }
+      });
+      return {
+        single: count === 1,
+        type,
+      };
+    }
+    return {
+      single: false,
+      type: '',
+    };
+  }, [data, isEmpty]);
+
+  const switchType = useCallback((type: string) => {
+    switch (type) {
+      case 'tokens':
+        return '/token';
+      case 'platforms':
+        return '/platform';
+      case 'organizations':
+        return '/dao';
+      case 'contracts':
+        return '/contract';
+      // case 'chains':
+      //   return '/chain'
+      case 'blocks':
+        return '/block';
+      case 'addresses':
+      default:
+        return '/address';
+    }
+  }, []);
+
+  useEffect(() => {
+    if (isSingle.single) {
+      const route = switchType(isSingle.type) as ExplorerRoutes;
+      push({
+        pathname: routes[route](echoActiveId as Locales),
+        query,
+      });
+    }
+  }, [isSingle, switchType, push, query, echoActiveId]);
 
   return (
     <Paper>
@@ -64,7 +122,9 @@ export const SearchResults = () => {
                       id: query.id as string,
                     })}
                   >
-                    <Button>{echo('address')}</Button>
+                    <Button>
+                      {query.id} ({echo('address')})
+                    </Button>
                   </Link>
                 </Grid>
               )}
@@ -75,7 +135,9 @@ export const SearchResults = () => {
                       id: query.id as string,
                     })}
                   >
-                    <Button>{echo('block')}</Button>
+                    <Button>
+                      {query.id} ({echo('block')})
+                    </Button>
                   </Link>
                 </Grid>
               )}
@@ -86,7 +148,9 @@ export const SearchResults = () => {
                       id: query.id as string,
                     })}
                   >
-                    <Button>{echo('contract')}</Button>
+                    <Button>
+                      {query.id} ({echo('contract')})
+                    </Button>
                   </Link>
                 </Grid>
               )}
@@ -97,7 +161,9 @@ export const SearchResults = () => {
                       id: query.id as string,
                     })}
                   >
-                    <Button>{echo('platform')}</Button>
+                    <Button>
+                      {query.id} ({echo('platform')})
+                    </Button>
                   </Link>
                 </Grid>
               )}
@@ -108,7 +174,9 @@ export const SearchResults = () => {
                       id: query.id as string,
                     })}
                   >
-                    <Button>{echo('dao')}</Button>
+                    <Button>
+                      {query.id} ({echo('dao')})
+                    </Button>
                   </Link>
                 </Grid>
               )}
@@ -119,7 +187,9 @@ export const SearchResults = () => {
                       id: query.id as string,
                     })}
                   >
-                    <Button>{echo('token')}</Button>
+                    <Button>
+                      {query.id} ({echo('token')})
+                    </Button>
                   </Link>
                 </Grid>
               )}

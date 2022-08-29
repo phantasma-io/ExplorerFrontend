@@ -610,7 +610,5 @@ export const EventType = ({ data }: EventTypeProps) => {
     return null;
   }, [type, kind, data, echo, echoActiveId]);
 
-  console.log({ data, kind, type });
-
   return <Box>{content}</Box>;
 };
