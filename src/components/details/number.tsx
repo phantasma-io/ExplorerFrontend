@@ -2,7 +2,7 @@ import React from 'react';
 import { Text } from 'components/display';
 
 export interface DetailsNumberProps {
-  value: number;
+  value: number | string;
   label?: string;
   height?: string;
 }

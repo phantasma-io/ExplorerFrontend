@@ -112,6 +112,7 @@
     "@nivo/line": "^0.78.0",
     "@ricardojrmcom/ace": "2.0.1",
     "axios": "^0.27.2",
+    "bigintjs": "^0.3.5",
     "dayjs": "^1.11.2",
     "formik": "^2.2.9",
     "json-to-csv-export": "^1.1.0",

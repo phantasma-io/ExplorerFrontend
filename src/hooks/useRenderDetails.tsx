@@ -1,4 +1,5 @@
 import React, { useCallback } from 'react';
+import bigint from 'bigintjs';
 import {
   DetailsBoolean,
   DetailsDate,
@@ -58,7 +59,7 @@ export const useRenderDetails = () => {
           case 'number':
             return (
               <DetailsNumber
-                value={value as number}
+                value={value as string}
                 label={label}
                 height={inTable ? undefined : '30px'}
               />

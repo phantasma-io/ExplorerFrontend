@@ -135,9 +135,9 @@ export const useTokenData = (data?: TokenResults, loading?: boolean) => {
         item?.token_logos && item.token_logos[0] && item?.token_logos[0].url,
         // data
         item?.symbol,
-        parseDecimals(item?.current_supply || '0', item?.decimals || 0).number,
-        parseDecimals(item?.burned_supply || '0', item?.decimals || 0).number,
-        parseDecimals(item?.max_supply || '0', item?.decimals || 0).number,
+        item?.current_supply,
+        item?.burned_supply,
+        item?.max_supply,
         item?.decimals,
         item?.fungible,
         item?.transferable,

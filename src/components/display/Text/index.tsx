@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react';
 import { useSnackbar } from 'notistack';
+import bigint from 'bigintjs';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import {
   Box,
@@ -63,7 +64,7 @@ export interface TextProps
   /**
    * Formats `children: number` with commas
    */
-  formatNumber?: number;
+  formatNumber?: number | string;
   formatNumberStr?: string;
   /**
    * Formats given `Date`
@@ -141,7 +142,16 @@ export const Text = ({
     }
 
     if (formatNumber) {
-      return numberFormat(formatNumber, formatNumberStr);
+      const parsedNumber = parseInt(formatNumber as string, 10);
+      const bigNumber = bigint(formatNumber);
+      const formattedNumber = numberFormat(
+        parseInt(formatNumber as string, 10),
+        formatNumberStr,
+      );
+      if (Number.isNaN(formattedNumber) || formattedNumber === 'NaN') {
+        return bigNumber.toString();
+      }
+      return formattedNumber;
     }
 
     if (translate) {
