@@ -89,14 +89,7 @@ export const Localization = () => {
         >
           Deutsch
         </MenuItem>
-        <MenuItem
-          onClick={() => {
-            push(asPath.replace(`/${echoActiveId}`, '/fr'));
-            handleCloseLocales();
-          }}
-        >
-          Français
-        </MenuItem> */}
+         */}
       </Menu>
     </Box>
   );
