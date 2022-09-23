@@ -81,8 +81,12 @@ export type TransactionSettleEvent = {
   platform?: Platform;
 };
 
+export type AddressEvent = {
+  address: Address;
+};
+
 export interface EventData {
-  address_event?: Address;
+  address_event?: AddressEvent;
   chain_event?: ChainEvent;
   gas_event?: GasEvent;
   hash_event?: HashEvent;

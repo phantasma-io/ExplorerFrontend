@@ -529,7 +529,7 @@ export const EventType = ({ data }: EventTypeProps) => {
                   {data?.address_event?.address && (
                     <DetailsText
                       label={echo('address')}
-                      value={data?.address_event?.address}
+                      value={data?.address_event?.address?.address || ''}
                       linkOptions={{
                         route: '/address',
                         key: 'address',
@@ -577,7 +577,7 @@ export const EventType = ({ data }: EventTypeProps) => {
                     />
                   )}
                 </Grid>
-                <Grid item md={2}>
+                <Grid item md={4}>
                   <Box>
                     {data?.token_event?.value && (
                       <DetailsNumber

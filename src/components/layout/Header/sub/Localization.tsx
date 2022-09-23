@@ -77,26 +77,41 @@ export const Localization = () => {
             push(asPath.replace(`/${echoActiveId}`, '/pt'));
             handleCloseLocales();
           }}
+          sx={{
+            borderLeft: `3px solid ${
+              echoActiveId === 'pt'
+                ? furyActive.palette.primary.main
+                : 'rgba(0,0,0,0)'
+            }`,
+            borderRight: `3px solid ${
+              echoActiveId === 'pt'
+                ? furyActive.palette.primary.main
+                : 'rgba(0,0,0,0)'
+            }`,
+          }}
         >
           Português
         </MenuItem>
-        {/* 
         <MenuItem
           onClick={() => {
             push(asPath.replace(`/${echoActiveId}`, '/de'));
             handleCloseLocales();
           }}
+          sx={{
+            borderLeft: `3px solid ${
+              echoActiveId === 'de'
+                ? furyActive.palette.primary.main
+                : 'rgba(0,0,0,0)'
+            }`,
+            borderRight: `3px solid ${
+              echoActiveId === 'de'
+                ? furyActive.palette.primary.main
+                : 'rgba(0,0,0,0)'
+            }`,
+          }}
         >
           Deutsch
         </MenuItem>
-        <MenuItem
-          onClick={() => {
-            push(asPath.replace(`/${echoActiveId}`, '/fr'));
-            handleCloseLocales();
-          }}
-        >
-          Français
-        </MenuItem> */}
       </Menu>
     </Box>
   );
