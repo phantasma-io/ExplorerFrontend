@@ -577,7 +577,7 @@ export const EventType = ({ data }: EventTypeProps) => {
                     />
                   )}
                 </Grid>
-                <Grid item md={2}>
+                <Grid item md={4}>
                   <Box>
                     {data?.token_event?.value && (
                       <DetailsNumber
