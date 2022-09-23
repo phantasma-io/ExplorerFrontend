@@ -529,7 +529,7 @@ export const EventType = ({ data }: EventTypeProps) => {
                   {data?.address_event?.address && (
                     <DetailsText
                       label={echo('address')}
-                      value={data?.address_event?.address}
+                      value={data?.address_event?.address?.address || ''}
                       linkOptions={{
                         route: '/address',
                         key: 'address',
