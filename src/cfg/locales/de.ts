@@ -117,7 +117,7 @@ export const de: EchoMsgs = {
   'tab-series': 'Serie',
   'tab-nfts': 'NFTs',
   'tab-instructions': 'Anweisungen',
-  'tab-raw': 'Roh',
+  'tab-raw': 'Raw',
   // details
   'details-nexus': 'Erkunde den Nexus',
   'details-address': 'Adressen Details',
