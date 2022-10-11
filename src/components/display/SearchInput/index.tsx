@@ -17,6 +17,7 @@ import { routes } from 'cfg';
 import { Locales } from 'types/locales';
 
 export interface SearchInputProps {
+  white?: boolean;
   onApply?: () => void;
 }
 
@@ -31,6 +32,7 @@ const dark: ThemeOptions = {
 const theme: Theme = createTheme(dark);
 
 export const SearchInput: FC<SearchInputProps> = ({
+  white,
   onApply,
 }: SearchInputProps) => {
   const { push } = useRouter();
@@ -59,47 +61,86 @@ export const SearchInput: FC<SearchInputProps> = ({
     }
   }, [inputValue, echoActiveId, push, onApply]);
 
+  if (white) {
+    return (
+      <ThemeProvider theme={theme}>
+        <Box>
+          <TextField
+            // label={echo('search')}
+            variant="standard"
+            placeholder={echo('search')}
+            size="small"
+            fullWidth
+            color="info"
+            autoComplete={'off'}
+            value={inputValue}
+            onChange={(e) => handleChange(e)}
+            onKeyPress={(e) => {
+              if (e.key === 'Enter') {
+                applySearch();
+              }
+            }}
+            sx={{
+              input: {
+                color: '#fff',
+              },
+            }}
+            InputProps={{
+              startAdornment: (
+                <Tooltip title={echo('search')}>
+                  <IconButton size="small" onClick={() => applySearch()}>
+                    <SearchIcon />
+                  </IconButton>
+                </Tooltip>
+              ),
+              endAdornment: (
+                <Tooltip title={echo('clear')}>
+                  <IconButton size="small" onClick={() => clearInput()}>
+                    <ClearAllIcon />
+                  </IconButton>
+                </Tooltip>
+              ),
+            }}
+          />
+        </Box>
+      </ThemeProvider>
+    );
+  }
+
   return (
-    <ThemeProvider theme={theme}>
-      <Box>
-        <TextField
-          // label={echo('search')}
-          variant="standard"
-          placeholder={echo('search')}
-          size="small"
-          fullWidth
-          color="info"
-          autoComplete={'off'}
-          value={inputValue}
-          onChange={(e) => handleChange(e)}
-          onKeyPress={(e) => {
-            if (e.key === 'Enter') {
-              applySearch();
-            }
-          }}
-          sx={{
-            input: {
-              color: '#fff',
-            },
-          }}
-          InputProps={{
-            startAdornment: (
-              <Tooltip title={echo('search')}>
-                <IconButton size="small" onClick={() => applySearch()}>
-                  <SearchIcon sx={{ color: '#fff' }} />
-                </IconButton>
-              </Tooltip>
-            ),
-            endAdornment: (
-              <Tooltip title={echo('clear')}>
-                <IconButton size="small" onClick={() => clearInput()}>
-                  <ClearAllIcon sx={{ color: '#fff' }} />
-                </IconButton>
-              </Tooltip>
-            ),
-          }}
-        />
-      </Box>
-    </ThemeProvider>
+    <Box>
+      <TextField
+        // label={echo('search')}
+        variant="standard"
+        placeholder={echo('search')}
+        size="small"
+        fullWidth
+        color="info"
+        autoComplete={'off'}
+        value={inputValue}
+        onChange={(e) => handleChange(e)}
+        onKeyPress={(e) => {
+          if (e.key === 'Enter') {
+            applySearch();
+          }
+        }}
+        InputProps={{
+          startAdornment: (
+            <Tooltip title={echo('search')}>
+              <IconButton size="small" onClick={() => applySearch()}>
+                <SearchIcon />
+              </IconButton>
+            </Tooltip>
+          ),
+          endAdornment: (
+            <Tooltip title={echo('clear')}>
+              <IconButton size="small" onClick={() => clearInput()}>
+                <ClearAllIcon />
+              </IconButton>
+            </Tooltip>
+          ),
+        }}
+      />
+    </Box>
   );
 };

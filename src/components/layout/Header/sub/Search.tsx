@@ -18,7 +18,7 @@ export const Search = () => {
 
   return (
     <Box>
-      <Box display={{ xs: 'block', lg: 'none' }}>
+      <Box display={{ xs: 'block', md: 'none' }}>
         <Tooltip title={echo('tooltip-search')}>
           <IconButton size="small" onClick={handleSearchOpen}>
             <SearchIcon
