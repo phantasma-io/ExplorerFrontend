@@ -46,9 +46,9 @@ export const Header = ({ height }: HeaderProps) => {
         <Grid item xs={2} md>
           <HomeNav />
         </Grid>
-        <Grid item xs={0} lg={4}>
-          <Box display={{ xs: 'none', lg: 'block' }}>
-            <SearchInput />
+        <Grid item xs={0} md={4}>
+          <Box display={{ xs: 'none', md: 'block' }}>
+            <SearchInput white />
           </Box>
         </Grid>
         <Grid item xs>
