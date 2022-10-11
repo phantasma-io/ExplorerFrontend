@@ -3,6 +3,7 @@ import { useEcho } from '@ricardojrmcom/echo';
 import { TableDisplayRow, TableDisplayCol } from 'types/table';
 import { TransactionResults } from 'types/api';
 import { unixmsToDate } from 'scripts';
+import { decodeBase16 } from 'scripts/decodeBase16';
 
 export const useTransactionData = (
   data?: TransactionResults,
@@ -60,7 +61,7 @@ export const useTransactionData = (
       {
         id: 'payload',
         label: echo('payload'),
-        type: 'monospace',
+        type: 'text',
         size: 2,
       },
       {
@@ -92,7 +93,7 @@ export const useTransactionData = (
         item?.block_hash,
         item?.block_height,
         item?.result,
-        item?.payload,
+        item?.payload ? decodeBase16(item?.payload) : null,
         item?.fee,
         item?.date ? unixmsToDate(item.date) : undefined,
         item?.expiration ? unixmsToDate(item.expiration) : undefined,
