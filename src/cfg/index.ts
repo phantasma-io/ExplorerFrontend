@@ -23,6 +23,5 @@ export {
   DATE_FORMAT,
   NUMBER_FORMAT,
   DATE_SHORT,
-  DATE_CHART,
   DATE_FORMAT_UTC,
 } from './formats';
