@@ -584,7 +584,6 @@ export const EventType = ({ data }: EventTypeProps) => {
                         label={echo('value')}
                         value={parseInt(data?.token_event?.value, 10)}
                       />
-                      // TODO: make a custom component to handle decimals
                     )}
                   </Box>
                 </Grid>
