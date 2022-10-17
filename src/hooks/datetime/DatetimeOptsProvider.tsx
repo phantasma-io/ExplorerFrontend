@@ -11,7 +11,7 @@ export interface DatetimeOptsProviderProps {
 export const DatetimeOptsProvider = ({
   children,
 }: DatetimeOptsProviderProps) => {
-  const [dtOpts, dtOptsSet] = useLocalState<'local' | 'utc' | 'unix'>(
+  const [dtOpts, dtOptsSet] = useLocalState<DatetimeOptsChoices>(
     'PhantasmaExplorer-datetimeopts',
     'local',
   );

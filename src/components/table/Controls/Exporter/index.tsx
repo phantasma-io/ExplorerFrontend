@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { IconButton, Tooltip, Box, Button } from '@mui/material';
+import { Box, Button } from '@mui/material';
 import { useEcho } from '@ricardojrmcom/echo';
 import csvDownload from 'json-to-csv-export';
 import FileDownloadIcon from '@mui/icons-material/FileDownload';
@@ -21,22 +21,7 @@ export const TableExporter = ({
 
   return (
     <Box>
-      <Box display={{ xs: 'block', lg: 'none' }}>
-        <Tooltip title={echo('table-exportCsv')} placement="top">
-          <IconButton
-            size="small"
-            onClick={() => csvDownload(parsedData, filename, delimiter)}
-          >
-            <FileDownloadIcon
-              style={{
-                height: '18px',
-                width: 'auto',
-              }}
-            />
-          </IconButton>
-        </Tooltip>
-      </Box>
-      <Box display={{ xs: 'none', lg: 'block' }}>
+      <Box>
         <Button
           size="small"
           onClick={() => csvDownload(parsedData, filename, delimiter)}

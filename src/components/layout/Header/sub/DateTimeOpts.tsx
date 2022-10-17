@@ -78,6 +78,31 @@ export const DateTimeOpts = () => {
             </Grid>
           </Grid>
         </MenuItem>
+
+        <MenuItem
+          onClick={() => {
+            dtOptsSet('local-24');
+            handleCloseOptions();
+          }}
+          sx={{
+            borderLeft: `3px solid ${
+              dtOpts === 'local-24'
+                ? furyActive.palette.primary.main
+                : 'rgba(0,0,0,0)'
+            }`,
+            borderRight: `3px solid ${
+              dtOpts === 'local-24'
+                ? furyActive.palette.primary.main
+                : 'rgba(0,0,0,0)'
+            }`,
+          }}
+        >
+          <Grid container alignItems="center" spacing={1}>
+            <Grid item>
+              <Text value={echo('dt-local-24')} sx={{ fontWeight: 600 }} />
+            </Grid>
+          </Grid>
+        </MenuItem>
         <MenuItem
           onClick={() => {
             dtOptsSet('utc');
@@ -99,6 +124,30 @@ export const DateTimeOpts = () => {
           <Grid container alignItems="center" spacing={1}>
             <Grid item>
               <Text value={echo('dt-utc')} sx={{ fontWeight: 600 }} />
+            </Grid>
+          </Grid>
+        </MenuItem>
+        <MenuItem
+          onClick={() => {
+            dtOptsSet('utc-24');
+            handleCloseOptions();
+          }}
+          sx={{
+            borderLeft: `3px solid ${
+              dtOpts === 'utc-24'
+                ? furyActive.palette.primary.main
+                : 'rgba(0,0,0,0)'
+            }`,
+            borderRight: `3px solid ${
+              dtOpts === 'utc-24'
+                ? furyActive.palette.primary.main
+                : 'rgba(0,0,0,0)'
+            }`,
+          }}
+        >
+          <Grid container alignItems="center" spacing={1}>
+            <Grid item>
+              <Text value={echo('dt-utc-24')} sx={{ fontWeight: 600 }} />
             </Grid>
           </Grid>
         </MenuItem>

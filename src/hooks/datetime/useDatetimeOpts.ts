@@ -1,6 +1,11 @@
 import { useContext, createContext, SetStateAction, Dispatch } from 'react';
 
-export type DatetimeOptsChoices = 'local' | 'utc' | 'unix';
+export type DatetimeOptsChoices =
+  | 'local'
+  | 'utc'
+  | 'local-24'
+  | 'utc-24'
+  | 'unix';
 export interface DatetimeOptsContextType {
   dtOpts: DatetimeOptsChoices;
   dtOptsSet: Dispatch<SetStateAction<DatetimeOptsChoices>>;

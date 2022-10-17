@@ -2,7 +2,14 @@ import React, { useMemo } from 'react';
 import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc';
 import { Text } from 'components/display';
-import { DATE_SHORT, DATE_FORMAT, DATE_FORMAT_UTC } from 'cfg/formats';
+import {
+  DATE_SHORT,
+  DATE_FORMAT,
+  DATE_FORMAT_UTC,
+  DATE_FORMAT_UTC_24,
+  DATE_SHORT_24,
+  DATE_FORMAT_24,
+} from 'cfg/formats';
 import { useDatetimeOpts } from 'hooks/datetime/useDatetimeOpts';
 
 dayjs.extend(utc);
@@ -40,6 +47,30 @@ export const DetailsDate = ({
           <Text
             formatDate={dayjs.utc(value).toDate()}
             formatDateStr={short ? DATE_SHORT : DATE_FORMAT_UTC}
+            formatDateIcon={!short}
+            variant="body2"
+            label={label}
+            spacing={1}
+            height={height}
+          />
+        );
+      case 'utc-24':
+        return (
+          <Text
+            formatDate={dayjs.utc(value).toDate()}
+            formatDateStr={short ? DATE_SHORT_24 : DATE_FORMAT_UTC_24}
+            formatDateIcon={!short}
+            variant="body2"
+            label={label}
+            spacing={1}
+            height={height}
+          />
+        );
+      case 'local-24':
+        return (
+          <Text
+            formatDate={value}
+            formatDateStr={short ? DATE_SHORT_24 : DATE_FORMAT_24}
             formatDateIcon={!short}
             variant="body2"
             label={label}
