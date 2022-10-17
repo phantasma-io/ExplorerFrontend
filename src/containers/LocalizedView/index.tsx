@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo } from 'react';
+import { useRouter } from 'next/router';
 import { Box } from '@mui/material';
 import { useEcho } from '@ricardojrmcom/echo';
 import { Locales } from 'types/locales';
@@ -28,6 +29,7 @@ interface LocalizedViewProps {
 }
 
 export const LocalizedView = ({ locale, route }: LocalizedViewProps) => {
+  const { query } = useRouter();
   const { echo, echoSetById } = useEcho();
 
   useEffect(() => {
@@ -99,34 +101,67 @@ export const LocalizedView = ({ locale, route }: LocalizedViewProps) => {
       case '/nexus':
         return <ViewNexus />;
       case '/address':
-        return <ViewAddress />;
+        if (query?.id) {
+          return <ViewAddress />;
+        }
+        return null;
       case '/block':
-        return <ViewBlock />;
+        if (query?.id) {
+          return <ViewBlock />;
+        }
+        return null;
       case '/contract':
-        return <ViewContract />;
+        if (query?.id) {
+          return <ViewContract />;
+        }
+        return null;
       case '/dao':
-        return <ViewDao />;
+        if (query?.id) {
+          return <ViewDao />;
+        }
+        return null;
       case '/event':
-        return <ViewEvent />;
+        if (query?.id) {
+          return <ViewEvent />;
+        }
+        return null;
       case '/platform':
-        return <ViewPlatform />;
+        if (query?.id) {
+          return <ViewPlatform />;
+        }
+        return null;
       case '/oracle':
-        return <ViewOracle />;
+        if (query?.id) {
+          return <ViewOracle />;
+        }
+        return null;
       case '/nft':
-        return <ViewNft />;
+        if (query?.id) {
+          return <ViewNft />;
+        }
+        return null;
       case '/series':
-        return <ViewSeries />;
+        if (query?.id) {
+          return <ViewSeries />;
+        }
+        return null;
       case '/search':
         return <ViewSearch />;
       case '/token':
-        return <ViewToken />;
+        if (query?.id) {
+          return <ViewToken />;
+        }
+        return null;
       case '/transaction':
-        return <ViewTransaction />;
+        if (query?.id) {
+          return <ViewTransaction />;
+        }
+        return null;
       case '/':
       default:
         return <ViewHome />;
     }
-  }, [route]);
+  }, [route, query]);
 
   return (
     <AppLayout>
