@@ -39,7 +39,7 @@ export const AddressBalances = ({ data, address }: AddressBalancesProps) => {
         </Box>
         {balances.map((item) => {
           if (item?.amount) {
-            const { number, format } = parseDecimals(
+            const result = parseDecimals(
               item.amount,
               item?.token?.decimals || 0,
             );
@@ -51,8 +51,7 @@ export const AddressBalances = ({ data, address }: AddressBalancesProps) => {
                     label={item?.token?.symbol}
                     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                     // @ts-ignore
-                    formatNumber={number}
-                    formatNumberStr={format}
+                    formatNumber={result}
                     spacing={1}
                     linkOptions={{
                       link: routes['/token'](echoActiveId as Locales, {
