@@ -25,7 +25,11 @@ export const PlatformRaw = ({ data, loading, error }: PlatformRawProps) => {
       return <Empty />;
     }
 
-    return <Box>{data && <DetailsScript value={JSON.stringify(data)} />}</Box>;
+    return (
+      <Box>
+        {data && <DetailsScript value={JSON.stringify(data, null, 2)} />}
+      </Box>
+    );
   }, [loading, error, data]);
 
   return <Box p={1}>{content}</Box>;

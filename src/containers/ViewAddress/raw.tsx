@@ -25,7 +25,11 @@ export const AddressRaw = ({ data, loading, error }: AddressRawProps) => {
       return <Empty />;
     }
 
-    return <Box>{data && <DetailsScript value={JSON.stringify(data)} />}</Box>;
+    return (
+      <Box>
+        {data && <DetailsScript value={JSON.stringify(data, null, 2)} />}
+      </Box>
+    );
   }, [loading, error, data]);
 
   return <Box p={1}>{content}</Box>;
