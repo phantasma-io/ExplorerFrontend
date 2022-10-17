@@ -8,7 +8,6 @@ import { DetailsNumber, DetailsText } from 'components/details';
 import { Link } from 'components/display';
 import { routes } from 'cfg';
 import { Locales } from 'types/locales';
-import { parseDecimals } from 'scripts/parseDecimals';
 
 type Kind = EventKinds | undefined;
 type Type = EventTypes | undefined | null;
@@ -402,7 +401,7 @@ export const EventType = ({ data }: EventTypeProps) => {
                     />
                   )}
                 </Grid>
-                <Grid item md={2}>
+                <Grid item md={3}>
                   <Box>
                     {data?.gas_event?.amount && (
                       <DetailsNumber
@@ -578,23 +577,13 @@ export const EventType = ({ data }: EventTypeProps) => {
                     />
                   )}
                 </Grid>
-                <Grid item md={4}>
+                <Grid item md={3}>
                   <Box>
                     {data?.token_event?.value && (
                       <DetailsNumber
                         label={echo('value')}
                         value={parseInt(data?.token_event?.value, 10)}
                       />
-                      // TODO: make a custom component to handle decimals
-                      // <DetailsNumber
-                      //   label={echo('value')}
-                      //   value={
-                      //     parseDecimals(
-                      //       data?.token_event?.value,
-                      //       data?.token_event?.token?.decimals as number,
-                      //     ).parsed
-                      //   }
-                      // />
                     )}
                   </Box>
                 </Grid>

@@ -6,7 +6,6 @@ import { Text } from 'components/display';
 import { Address, AddressResults } from 'types/api';
 import { Locales } from 'types/locales';
 import { routes } from 'cfg';
-import { parseDecimals } from 'scripts';
 
 export interface AddressBalancesProps {
   data?: AddressResults;
@@ -39,20 +38,13 @@ export const AddressBalances = ({ data, address }: AddressBalancesProps) => {
         </Box>
         {balances.map((item) => {
           if (item?.amount) {
-            const { number, format } = parseDecimals(
-              item.amount,
-              item?.token?.decimals || 0,
-            );
             return (
               <Box px={2} py={0.6} key={nanoid()}>
                 <Grid item container xs={12} spacing={1}>
                   <Text
                     variant="body2"
                     label={item?.token?.symbol}
-                    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                    // @ts-ignore
-                    formatNumber={number}
-                    formatNumberStr={format}
+                    formatNumber={item?.amount}
                     spacing={1}
                     linkOptions={{
                       link: routes['/token'](echoActiveId as Locales, {

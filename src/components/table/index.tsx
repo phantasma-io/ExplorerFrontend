@@ -46,7 +46,7 @@ export const Table = ({
     'desktop',
   );
 
-  const strData = useMemo(() => JSON.stringify(raw), [raw]);
+  const strData = useMemo(() => JSON.stringify(raw, null, 2), [raw]);
 
   return (
     <Box p={1} id={tableId}>

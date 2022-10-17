@@ -142,7 +142,6 @@ export const Text = ({
     }
 
     if (formatNumber) {
-      const parsedNumber = parseInt(formatNumber as string, 10);
       const bigNumber = bigint(formatNumber);
       const formattedNumber = numberFormat(
         parseInt(formatNumber as string, 10),

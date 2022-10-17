@@ -2,7 +2,6 @@ import { useMemo, useState, useEffect } from 'react';
 import { useEcho } from '@ricardojrmcom/echo';
 import { TableDisplayRow, TableDisplayCol } from 'types/table';
 import { TokenResults } from 'types/api';
-import { parseDecimals } from 'scripts';
 
 export const useTokenData = (data?: TokenResults, loading?: boolean) => {
   const { echo } = useEcho();
@@ -119,12 +118,6 @@ export const useTokenData = (data?: TokenResults, loading?: boolean) => {
         type: 'boolean',
         size: 1,
       },
-      // {
-      //   id: 'script_raw',
-      //   label: echo('scriptRaw'),
-      //   type: 'script',
-      //   size: 12,
-      // },
     ];
   }, [echo]);
 
