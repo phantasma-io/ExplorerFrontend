@@ -49,6 +49,7 @@ export const AddressesList = ({ _organization_name }: EventsListProps) => {
       with_stakes,
       with_storage,
       address,
+      address_partial,
       address_name,
       organization_name,
       validator_kind,
