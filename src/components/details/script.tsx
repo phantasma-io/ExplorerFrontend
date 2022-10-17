@@ -16,8 +16,6 @@ export const DetailsScript = ({
 }: DetailsScriptProps) => {
   const { echo } = useEcho();
 
-  console.log({ value });
-
   return (
     <Box>
       <Grid container spacing={1}>
