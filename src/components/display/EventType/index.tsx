@@ -393,7 +393,7 @@ export const EventType = ({ data }: EventTypeProps) => {
                     </Button>
                   </Link>
                 </Grid>
-                <Grid item md={2}>
+                <Grid item md={3}>
                   {data?.gas_event?.price && (
                     <DetailsNumber
                       label={echo('price')}
@@ -401,7 +401,7 @@ export const EventType = ({ data }: EventTypeProps) => {
                     />
                   )}
                 </Grid>
-                <Grid item md={3}>
+                <Grid item md={2}>
                   <Box>
                     {data?.gas_event?.amount && (
                       <DetailsNumber
@@ -569,14 +569,6 @@ export const EventType = ({ data }: EventTypeProps) => {
                     </Button>
                   </Link>
                 </Grid>
-                <Grid item md={2}>
-                  {data?.token_event?.chain_name && (
-                    <DetailsText
-                      label={echo('chain')}
-                      value={data?.token_event?.chain_name}
-                    />
-                  )}
-                </Grid>
                 <Grid item md={3}>
                   <Box>
                     {data?.token_event?.value && (
@@ -596,6 +588,19 @@ export const EventType = ({ data }: EventTypeProps) => {
                         route: '/token',
                         key: 'symbol',
                         title: echo('explore-token'),
+                      }}
+                    />
+                  )}
+                </Grid>
+                <Grid item md={5}>
+                  {data?.address && (
+                    <DetailsText
+                      label={echo('address')}
+                      value={data?.address}
+                      linkOptions={{
+                        route: '/address',
+                        key: 'address',
+                        title: echo('explore-address'),
                       }}
                     />
                   )}
