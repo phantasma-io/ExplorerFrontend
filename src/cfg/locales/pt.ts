@@ -239,4 +239,10 @@ export const pt: EchoMsgs = {
   'quote-token': 'Token de cotação',
   'end-price': 'Preço final',
   'dao-name': 'Nome da DAO',
+  gas_limit: 'Limite de gás',
+  gas_price: 'Preço do gás',
+  gas_payer: 'Pagador do gás',
+  gas_target: 'Alvo do gás',
+  sender: 'Remetente',
+  state: 'Estado',
 };

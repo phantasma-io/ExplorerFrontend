@@ -32,7 +32,7 @@ export const eventTypeMap: EventTypeMap = {
   TokenCreate: 'string_event',
   TokenMint: 'token_event',
   TokenReceive: 'token_event',
-  TokenSend: 'token_event',
+  TokenSend: 'token_event', // <source> has sent <token> to <destination>
   TokenStake: 'token_event',
   ValidatorElect: 'address_event',
   ValidatorRemove: null,

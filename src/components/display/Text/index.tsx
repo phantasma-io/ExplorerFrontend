@@ -142,6 +142,10 @@ export const Text = ({
     }
 
     if (formatNumber) {
+      if (Number(formatNumber) === formatNumber && formatNumber % 1 !== 0) {
+        return formatNumber;
+      }
+
       const bigNumber = bigint(formatNumber);
       const formattedNumber = numberFormat(
         parseInt(formatNumber as string, 10),
@@ -150,6 +154,7 @@ export const Text = ({
       if (Number.isNaN(formattedNumber) || formattedNumber === 'NaN') {
         return bigNumber.toString();
       }
+
       return formattedNumber;
     }
 

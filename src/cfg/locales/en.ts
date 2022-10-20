@@ -239,4 +239,10 @@ export const en: EchoMsgs = {
   'quote-token': 'Quote token',
   'end-price': 'End price',
   'dao-name': 'DAO name',
+  gas_limit: 'Gas limit',
+  gas_price: 'Gas price',
+  gas_payer: 'Gas payer',
+  gas_target: 'Gas target',
+  sender: 'Sender',
+  state: 'State',
 };
