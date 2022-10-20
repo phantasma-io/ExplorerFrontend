@@ -393,7 +393,7 @@ export const EventType = ({ data }: EventTypeProps) => {
                     </Button>
                   </Link>
                 </Grid>
-                <Grid item md={3}>
+                <Grid item md={2}>
                   {data?.gas_event?.price && (
                     <DetailsNumber
                       label={echo('price')}
@@ -411,7 +411,7 @@ export const EventType = ({ data }: EventTypeProps) => {
                     )}
                   </Box>
                 </Grid>
-                <Grid item md={5}>
+                <Grid item md={6}>
                   {data?.gas_event?.address?.address && (
                     <DetailsText
                       label={echo('address')}
@@ -569,12 +569,12 @@ export const EventType = ({ data }: EventTypeProps) => {
                     </Button>
                   </Link>
                 </Grid>
-                <Grid item md={3}>
+                <Grid item md={2}>
                   <Box>
                     {data?.token_event?.value && (
                       <DetailsNumber
                         label={echo('value')}
-                        value={parseInt(data?.token_event?.value, 10)}
+                        value={parseFloat(data?.token_event?.value)}
                       />
                     )}
                   </Box>
@@ -592,7 +592,7 @@ export const EventType = ({ data }: EventTypeProps) => {
                     />
                   )}
                 </Grid>
-                <Grid item md={5}>
+                <Grid item md={6}>
                   {data?.address && (
                     <DetailsText
                       label={echo('address')}
