@@ -394,10 +394,11 @@ export const EventType = ({ data }: EventTypeProps) => {
                   </Link>
                 </Grid>
                 <Grid item md={2}>
-                  {data?.gas_event?.price && (
+                  {data?.gas_event?.fee && (
                     <DetailsNumber
-                      label={echo('price')}
-                      value={parseInt(data?.gas_event?.price, 10)}
+                      label={echo('fee')}
+                      value={parseFloat(data?.gas_event?.fee)}
+                      append=" KCAL"
                     />
                   )}
                 </Grid>
@@ -407,6 +408,7 @@ export const EventType = ({ data }: EventTypeProps) => {
                       <DetailsNumber
                         label={echo('amount')}
                         value={parseInt(data?.gas_event?.amount, 10)}
+                        append=" KCAL"
                       />
                     )}
                   </Box>

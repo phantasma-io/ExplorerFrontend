@@ -17,11 +17,12 @@ type RenderDetails = (
   label?: string,
   linkOptions?: DetailsItem['linkOptions'],
   inTable?: boolean,
+  append?: string,
 ) => JSX.Element | null;
 
 export const useRenderDetails = () => {
   const renderDetails = useCallback<RenderDetails>(
-    (type, value, label, linkOptions, inTable) => {
+    (type, value, label, linkOptions, inTable, append) => {
       if (value) {
         switch (type) {
           case 'thumbnail': {
@@ -61,6 +62,7 @@ export const useRenderDetails = () => {
                 value={value as string}
                 label={label}
                 height={inTable ? undefined : '30px'}
+                append={append}
               />
             );
           case 'script':
@@ -87,6 +89,7 @@ export const useRenderDetails = () => {
                 label={label}
                 linkOptions={linkOptions}
                 height={inTable ? undefined : '30px'}
+                append={append}
               />
             );
         }

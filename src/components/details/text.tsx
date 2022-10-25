@@ -10,6 +10,7 @@ export interface DetailsTextProps {
   label?: string;
   linkOptions?: DetailsLinkOptions;
   height?: string;
+  append?: string;
 }
 
 export const DetailsText = ({
@@ -17,6 +18,7 @@ export const DetailsText = ({
   label,
   linkOptions,
   height,
+  append,
 }: DetailsTextProps) => {
   const { echoActiveId } = useEcho();
 
@@ -37,6 +39,7 @@ export const DetailsText = ({
       label={label}
       spacing={1}
       height={height}
+      append={append}
       linkOptions={
         link
           ? {

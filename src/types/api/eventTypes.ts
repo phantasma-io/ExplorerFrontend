@@ -31,6 +31,7 @@ export type ChainEvent = {
 
 export type GasEvent = {
   price?: string;
+  fee?: string;
   amount?: string;
   address?: Address;
 };

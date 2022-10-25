@@ -5,9 +5,15 @@ export interface DetailsNumberProps {
   value: number | string;
   label?: string;
   height?: string;
+  append?: string;
 }
 
-export const DetailsNumber = ({ value, label, height }: DetailsNumberProps) => {
+export const DetailsNumber = ({
+  value,
+  label,
+  height,
+  append,
+}: DetailsNumberProps) => {
   return (
     <Text
       formatNumber={value}
@@ -16,6 +22,7 @@ export const DetailsNumber = ({ value, label, height }: DetailsNumberProps) => {
       label={label}
       spacing={1}
       height={height}
+      append={append}
     />
   );
 };

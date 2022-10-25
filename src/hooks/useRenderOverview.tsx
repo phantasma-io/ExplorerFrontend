@@ -30,6 +30,8 @@ export const useRenderOverview = () => {
                       rows[0][i],
                       col.label,
                       !col.linkOptions?.primary ? col.linkOptions : undefined,
+                      false,
+                      col.append,
                     )}
                   </Grid>
                 </Grid>
