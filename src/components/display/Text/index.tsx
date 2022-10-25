@@ -102,6 +102,7 @@ export interface TextProps
     link: string;
     title: string;
   };
+  append?: string;
 }
 
 /**
@@ -129,6 +130,7 @@ export const Text = ({
   script,
   linkOptions,
   height,
+  append,
   ...propsTypo
 }: TextProps) => {
   const { enqueueSnackbar } = useSnackbar();
@@ -182,7 +184,8 @@ export const Text = ({
   ]);
 
   const result = useMemo(() => {
-    let strDisplay = `${copy}`;
+    // eslint-disable-next-line no-unneeded-ternary
+    let strDisplay = `${copy}${append ? append : ''}`;
 
     if (truncate) {
       strDisplay = stringTruncate(copy, truncate.len, truncate.keepLastWord);
@@ -200,7 +203,7 @@ export const Text = ({
         {strDisplay}
       </Typography>
     );
-  }, [variant, propsTypo, copy, truncate, sx, wordBreak, monospace]);
+  }, [variant, propsTypo, copy, truncate, sx, wordBreak, monospace, append]);
 
   return (
     <Grid
