@@ -18,7 +18,7 @@ export const en: EchoMsgs = {
   'dt-local-24': 'Local Time (24H)',
   'dt-utc-24': 'UTC Time (24H)',
   'dt-unix': 'UNIX Time',
-  date: 'Date',
+  date: 'Time / Date',
   name: 'Name',
   details: 'Details',
   all: 'All',
@@ -80,7 +80,7 @@ export const en: EchoMsgs = {
   royalties: 'Royalties',
   fees: 'Fees',
   creator: 'Creator',
-  storage: 'Storage',
+  storage: 'Storage (KB)',
   'storage-available': 'Available in storage',
   'btn-enterNexus': 'Enter the Nexus',
   // tooltips
