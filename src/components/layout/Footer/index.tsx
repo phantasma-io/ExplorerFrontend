@@ -181,7 +181,7 @@ export const Footer = ({
                   color: '#fff',
                 }}
               >
-                {`Phantasma Explorer v4.0.1`}
+                {`Phantasma Explorer v4.0.2`}
               </Typography>
             </Grid>
           </Grid>
