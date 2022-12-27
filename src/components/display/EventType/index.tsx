@@ -46,7 +46,7 @@ export const EventType = ({ data }: EventTypeProps) => {
           return null;
         case 'string_event':
           return (
-            <Box>
+            <Box my={1}>
               <Grid
                 container
                 spacing={1}
@@ -85,7 +85,7 @@ export const EventType = ({ data }: EventTypeProps) => {
           );
         case 'sale_event':
           return (
-            <Box>
+            <Box my={1}>
               <Grid
                 container
                 spacing={1}
@@ -124,7 +124,7 @@ export const EventType = ({ data }: EventTypeProps) => {
           );
         case 'organization_event':
           return (
-            <Box>
+            <Box my={1}>
               <Grid
                 container
                 spacing={1}
@@ -181,7 +181,7 @@ export const EventType = ({ data }: EventTypeProps) => {
           );
         case 'market_event':
           return (
-            <Box>
+            <Box my={1}>
               <Grid
                 container
                 spacing={1}
@@ -258,7 +258,7 @@ export const EventType = ({ data }: EventTypeProps) => {
           );
         case 'infusion_event':
           return (
-            <Box>
+            <Box my={1}>
               <Grid
                 container
                 spacing={1}
@@ -328,7 +328,7 @@ export const EventType = ({ data }: EventTypeProps) => {
           );
         case 'hash_event':
           return (
-            <Box>
+            <Box my={1}>
               <Grid
                 container
                 spacing={1}
@@ -367,7 +367,7 @@ export const EventType = ({ data }: EventTypeProps) => {
           );
         case 'gas_event':
           return (
-            <Box>
+            <Box my={1}>
               <Grid
                 container
                 spacing={1}
@@ -431,7 +431,7 @@ export const EventType = ({ data }: EventTypeProps) => {
           );
         case 'chain_event':
           return (
-            <Box>
+            <Box my={1}>
               <Grid
                 container
                 spacing={1}
@@ -501,7 +501,7 @@ export const EventType = ({ data }: EventTypeProps) => {
           );
         case 'address_event':
           return (
-            <Box>
+            <Box my={1}>
               <Grid
                 container
                 spacing={1}
@@ -544,72 +544,75 @@ export const EventType = ({ data }: EventTypeProps) => {
             </Box>
           );
         case 'token_event':
-          return (
-            <Box>
-              <Grid
-                container
-                spacing={1}
-                justifyContent="flex-start"
-                justifyItems="flex-start"
-                alignContent="center"
-                alignItems="center"
-              >
-                <Grid item md={2}>
-                  <Link
-                    href={routes['/event'](echoActiveId as Locales, {
-                      id: `${data?.event_id}`,
-                    })}
-                    sx={{ textDecoration: 'none' }}
-                  >
-                    <Button
-                      fullWidth
-                      color="primary"
-                      variant="contained"
-                      size="small"
+          if (data?.token_event) {
+            return (
+              <Box my={1}>
+                <Grid
+                  container
+                  spacing={1}
+                  justifyContent="flex-start"
+                  justifyItems="flex-start"
+                  alignContent="center"
+                  alignItems="center"
+                >
+                  <Grid item md={2}>
+                    <Link
+                      href={routes['/event'](echoActiveId as Locales, {
+                        id: `${data?.event_id}`,
+                      })}
+                      sx={{ textDecoration: 'none' }}
                     >
-                      {kind}
-                    </Button>
-                  </Link>
-                </Grid>
-                <Grid item md={2}>
-                  <Box>
-                    {data?.token_event?.value && (
-                      <DetailsNumber
-                        label={echo('value')}
-                        value={parseFloat(data?.token_event?.value)}
+                      <Button
+                        fullWidth
+                        color="primary"
+                        variant="contained"
+                        size="small"
+                      >
+                        {kind}
+                      </Button>
+                    </Link>
+                  </Grid>
+                  <Grid item md={2}>
+                    <Box>
+                      {data?.token_event?.value && (
+                        <DetailsNumber
+                          label={echo('value')}
+                          value={parseFloat(data?.token_event?.value)}
+                        />
+                      )}
+                    </Box>
+                  </Grid>
+                  <Grid item md={2}>
+                    {data?.token_event?.token?.symbol && (
+                      <DetailsText
+                        label={echo('token')}
+                        value={data?.token_event?.token?.symbol}
+                        linkOptions={{
+                          route: '/token',
+                          key: 'symbol',
+                          title: echo('explore-token'),
+                        }}
                       />
                     )}
-                  </Box>
+                  </Grid>
+                  <Grid item md={6}>
+                    {data?.address && (
+                      <DetailsText
+                        label={echo('address')}
+                        value={data?.address}
+                        linkOptions={{
+                          route: '/address',
+                          key: 'address',
+                          title: echo('explore-address'),
+                        }}
+                      />
+                    )}
+                  </Grid>
                 </Grid>
-                <Grid item md={2}>
-                  {data?.token_event?.token?.symbol && (
-                    <DetailsText
-                      label={echo('token')}
-                      value={data?.token_event?.token?.symbol}
-                      linkOptions={{
-                        route: '/token',
-                        key: 'symbol',
-                        title: echo('explore-token'),
-                      }}
-                    />
-                  )}
-                </Grid>
-                <Grid item md={6}>
-                  {data?.address && (
-                    <DetailsText
-                      label={echo('address')}
-                      value={data?.address}
-                      linkOptions={{
-                        route: '/address',
-                        key: 'address',
-                        title: echo('explore-address'),
-                      }}
-                    />
-                  )}
-                </Grid>
-              </Grid>
-            </Box>
-          );
+              </Box>
+            );
+          }
+          return null;
         default:
           return null;
       }

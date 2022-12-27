@@ -107,145 +107,313 @@ export const EventLine = ({ data }: EventLineProps) => {
         case 'token_event':
           switch (kind) {
             case 'TokenCreate':
-              return (
-                <Typography gutterBottom>
-                  <Link
-                    href={routes['/address'](echoActiveId as Locales, {
-                      id: `${data?.address}`,
-                    })}
-                    sx={{ display: 'inline-block' }}
-                  >
-                    {data?.address_name || data?.address}
-                  </Link>{' '}
-                  {echo('desc-created')}{' '}
-                  <Link
-                    href={routes['/token'](echoActiveId as Locales, {
-                      id: `${data?.token_event?.token?.symbol}`,
-                    })}
-                    sx={{ display: 'inline-block' }}
-                  >{`${data?.token_event?.value} ${data?.token_event?.token?.symbol}`}</Link>
-                </Typography>
-              );
+              if (data?.token_event) {
+                return (
+                  <Typography gutterBottom>
+                    <Link
+                      href={routes['/address'](echoActiveId as Locales, {
+                        id: `${data?.address}`,
+                      })}
+                      sx={{ display: 'inline-block' }}
+                    >
+                      {data?.address_name || data?.address}
+                    </Link>{' '}
+                    {echo('desc-created')}{' '}
+                    <Link
+                      href={routes['/token'](echoActiveId as Locales, {
+                        id: `${data?.token_event?.token?.symbol}`,
+                      })}
+                      sx={{ display: 'inline-block' }}
+                    >{`${data?.token_event?.value} ${data?.token_event?.token?.symbol}`}</Link>
+                  </Typography>
+                );
+              }
+              if (data?.nft_metadata) {
+                return (
+                  <Typography gutterBottom>
+                    <Link
+                      href={routes['/address'](echoActiveId as Locales, {
+                        id: `${data?.address}`,
+                      })}
+                      sx={{ display: 'inline-block' }}
+                    >
+                      {data?.address_name || data?.address}
+                    </Link>{' '}
+                    {echo('desc-created')}{' '}
+                    <Link
+                      href={routes['/nft'](echoActiveId as Locales, {
+                        id: `${data?.token_id}`,
+                      })}
+                      sx={{ display: 'inline-block' }}
+                    >{`${data?.token_id}`}</Link>
+                  </Typography>
+                );
+              }
+              return null;
             case 'TokenMint':
-              return (
-                <Typography gutterBottom>
-                  <Link
-                    href={routes['/address'](echoActiveId as Locales, {
-                      id: `${data?.address}`,
-                    })}
-                    sx={{ display: 'inline-block' }}
-                  >
-                    {data?.address_name || data?.address}
-                  </Link>{' '}
-                  {echo('desc-minted')}{' '}
-                  <Link
-                    href={routes['/token'](echoActiveId as Locales, {
-                      id: `${data?.token_event?.token?.symbol}`,
-                    })}
-                    sx={{ display: 'inline-block' }}
-                  >{`${data?.token_event?.value} ${data?.token_event?.token?.symbol}`}</Link>
-                </Typography>
-              );
+              if (data?.token_event) {
+                return (
+                  <Typography gutterBottom>
+                    <Link
+                      href={routes['/address'](echoActiveId as Locales, {
+                        id: `${data?.address}`,
+                      })}
+                      sx={{ display: 'inline-block' }}
+                    >
+                      {data?.address_name || data?.address}
+                    </Link>{' '}
+                    {echo('desc-minted')}{' '}
+                    <Link
+                      href={routes['/token'](echoActiveId as Locales, {
+                        id: `${data?.token_event?.token?.symbol}`,
+                      })}
+                      sx={{ display: 'inline-block' }}
+                    >{`${data?.token_event?.value} ${data?.token_event?.token?.symbol}`}</Link>
+                  </Typography>
+                );
+              }
+              if (data?.nft_metadata) {
+                return (
+                  <Typography gutterBottom>
+                    <Link
+                      href={routes['/address'](echoActiveId as Locales, {
+                        id: `${data?.address}`,
+                      })}
+                      sx={{ display: 'inline-block' }}
+                    >
+                      {data?.address_name || data?.address}
+                    </Link>{' '}
+                    {echo('desc-minted')}{' '}
+                    <Link
+                      href={routes['/nft'](echoActiveId as Locales, {
+                        id: `${data?.token_id}`,
+                      })}
+                      sx={{ display: 'inline-block' }}
+                    >{`${data?.token_id}`}</Link>
+                  </Typography>
+                );
+              }
+              return null;
             case 'TokenBurn':
-              return (
-                <Typography gutterBottom>
-                  <Link
-                    href={routes['/address'](echoActiveId as Locales, {
-                      id: `${data?.address}`,
-                    })}
-                    sx={{ display: 'inline-block' }}
-                  >
-                    {data?.address_name || data?.address}
-                  </Link>{' '}
-                  {echo('desc-burned')}{' '}
-                  <Link
-                    href={routes['/token'](echoActiveId as Locales, {
-                      id: `${data?.token_event?.token?.symbol}`,
-                    })}
-                    sx={{ display: 'inline-block' }}
-                  >{`${data?.token_event?.value} ${data?.token_event?.token?.symbol}`}</Link>
-                </Typography>
-              );
+              if (data?.token_event) {
+                return (
+                  <Typography gutterBottom>
+                    <Link
+                      href={routes['/address'](echoActiveId as Locales, {
+                        id: `${data?.address}`,
+                      })}
+                      sx={{ display: 'inline-block' }}
+                    >
+                      {data?.address_name || data?.address}
+                    </Link>{' '}
+                    {echo('desc-burned')}{' '}
+                    <Link
+                      href={routes['/token'](echoActiveId as Locales, {
+                        id: `${data?.token_event?.token?.symbol}`,
+                      })}
+                      sx={{ display: 'inline-block' }}
+                    >{`${data?.token_event?.value} ${data?.token_event?.token?.symbol}`}</Link>
+                  </Typography>
+                );
+              }
+              if (data?.nft_metadata) {
+                return (
+                  <Typography gutterBottom>
+                    <Link
+                      href={routes['/address'](echoActiveId as Locales, {
+                        id: `${data?.address}`,
+                      })}
+                      sx={{ display: 'inline-block' }}
+                    >
+                      {data?.address_name || data?.address}
+                    </Link>{' '}
+                    {echo('desc-burned')}{' '}
+                    <Link
+                      href={routes['/nft'](echoActiveId as Locales, {
+                        id: `${data?.token_id}`,
+                      })}
+                      sx={{ display: 'inline-block' }}
+                    >{`${data?.token_id}`}</Link>
+                  </Typography>
+                );
+              }
+              return null;
             case 'TokenClaim':
-              return (
-                <Typography gutterBottom>
-                  <Link
-                    href={routes['/address'](echoActiveId as Locales, {
-                      id: `${data?.address}`,
-                    })}
-                    sx={{ display: 'inline-block' }}
-                  >
-                    {data?.address_name || data?.address}
-                  </Link>{' '}
-                  {echo('desc-claimed')}{' '}
-                  <Link
-                    href={routes['/token'](echoActiveId as Locales, {
-                      id: `${data?.token_event?.token?.symbol}`,
-                    })}
-                    sx={{ display: 'inline-block' }}
-                  >{`${data?.token_event?.value} ${data?.token_event?.token?.symbol}`}</Link>
-                </Typography>
-              );
+              if (data?.token_event) {
+                return (
+                  <Typography gutterBottom>
+                    <Link
+                      href={routes['/address'](echoActiveId as Locales, {
+                        id: `${data?.address}`,
+                      })}
+                      sx={{ display: 'inline-block' }}
+                    >
+                      {data?.address_name || data?.address}
+                    </Link>{' '}
+                    {echo('desc-claimed')}{' '}
+                    <Link
+                      href={routes['/token'](echoActiveId as Locales, {
+                        id: `${data?.token_event?.token?.symbol}`,
+                      })}
+                      sx={{ display: 'inline-block' }}
+                    >{`${data?.token_event?.value} ${data?.token_event?.token?.symbol}`}</Link>
+                  </Typography>
+                );
+              }
+              if (data?.nft_metadata) {
+                return (
+                  <Typography gutterBottom>
+                    <Link
+                      href={routes['/address'](echoActiveId as Locales, {
+                        id: `${data?.address}`,
+                      })}
+                      sx={{ display: 'inline-block' }}
+                    >
+                      {data?.address_name || data?.address}
+                    </Link>{' '}
+                    {echo('desc-claimed')}{' '}
+                    <Link
+                      href={routes['/nft'](echoActiveId as Locales, {
+                        id: `${data?.token_id}`,
+                      })}
+                      sx={{ display: 'inline-block' }}
+                    >{`${data?.token_id}`}</Link>
+                  </Typography>
+                );
+              }
+              return null;
             case 'TokenReceive':
-              return (
-                <Typography gutterBottom>
-                  <Link
-                    href={routes['/address'](echoActiveId as Locales, {
-                      id: `${data?.address}`,
-                    })}
-                    sx={{ display: 'inline-block' }}
-                  >
-                    {data?.address_name || data?.address}
-                  </Link>{' '}
-                  {echo('desc-sent')}{' '}
-                  <Link
-                    href={routes['/token'](echoActiveId as Locales, {
-                      id: `${data?.token_event?.token?.symbol}`,
-                    })}
-                    sx={{ display: 'inline-block' }}
-                  >{`${data?.token_event?.value} ${data?.token_event?.token?.symbol}`}</Link>
-                </Typography>
-              );
+              if (data?.token_event) {
+                return (
+                  <Typography gutterBottom>
+                    <Link
+                      href={routes['/address'](echoActiveId as Locales, {
+                        id: `${data?.address}`,
+                      })}
+                      sx={{ display: 'inline-block' }}
+                    >
+                      {data?.address_name || data?.address}
+                    </Link>{' '}
+                    {echo('desc-received')}{' '}
+                    <Link
+                      href={routes['/token'](echoActiveId as Locales, {
+                        id: `${data?.token_event?.token?.symbol}`,
+                      })}
+                      sx={{ display: 'inline-block' }}
+                    >{`${data?.token_event?.value} ${data?.token_event?.token?.symbol}`}</Link>
+                  </Typography>
+                );
+              }
+              if (data?.nft_metadata) {
+                return (
+                  <Typography gutterBottom>
+                    <Link
+                      href={routes['/address'](echoActiveId as Locales, {
+                        id: `${data?.address}`,
+                      })}
+                      sx={{ display: 'inline-block' }}
+                    >
+                      {data?.address_name || data?.address}
+                    </Link>{' '}
+                    {echo('desc-received')}{' '}
+                    <Link
+                      href={routes['/nft'](echoActiveId as Locales, {
+                        id: `${data?.token_id}`,
+                      })}
+                      sx={{ display: 'inline-block' }}
+                    >{`${data?.token_id}`}</Link>
+                  </Typography>
+                );
+              }
+              return null;
             case 'TokenSend':
-              return (
-                <Typography gutterBottom>
-                  <Link
-                    href={routes['/address'](echoActiveId as Locales, {
-                      id: `${data?.address}`,
-                    })}
-                    sx={{ display: 'inline-block' }}
-                  >
-                    {data?.address_name || data?.address}
-                  </Link>{' '}
-                  {echo('desc-received')}{' '}
-                  <Link
-                    href={routes['/token'](echoActiveId as Locales, {
-                      id: `${data?.token_event?.token?.symbol}`,
-                    })}
-                    sx={{ display: 'inline-block' }}
-                  >{`${data?.token_event?.value} ${data?.token_event?.token?.symbol}`}</Link>
-                </Typography>
-              );
+              if (data?.token_event) {
+                return (
+                  <Typography gutterBottom>
+                    <Link
+                      href={routes['/address'](echoActiveId as Locales, {
+                        id: `${data?.address}`,
+                      })}
+                      sx={{ display: 'inline-block' }}
+                    >
+                      {data?.address_name || data?.address}
+                    </Link>{' '}
+                    {echo('desc-sent')}{' '}
+                    <Link
+                      href={routes['/token'](echoActiveId as Locales, {
+                        id: `${data?.token_event?.token?.symbol}`,
+                      })}
+                      sx={{ display: 'inline-block' }}
+                    >{`${data?.token_event?.value} ${data?.token_event?.token?.symbol}`}</Link>
+                  </Typography>
+                );
+              }
+              if (data?.nft_metadata) {
+                return (
+                  <Typography gutterBottom>
+                    <Link
+                      href={routes['/address'](echoActiveId as Locales, {
+                        id: `${data?.address}`,
+                      })}
+                      sx={{ display: 'inline-block' }}
+                    >
+                      {data?.address_name || data?.address}
+                    </Link>{' '}
+                    {echo('desc-sent')}{' '}
+                    <Link
+                      href={routes['/nft'](echoActiveId as Locales, {
+                        id: `${data?.token_id}`,
+                      })}
+                      sx={{ display: 'inline-block' }}
+                    >{`${data?.token_id}`}</Link>
+                  </Typography>
+                );
+              }
+              return null;
             case 'TokenStake':
-              return (
-                <Typography gutterBottom>
-                  <Link
-                    href={routes['/address'](echoActiveId as Locales, {
-                      id: `${data?.address}`,
-                    })}
-                    sx={{ display: 'inline-block' }}
-                  >
-                    {data?.address_name || data?.address}
-                  </Link>{' '}
-                  {echo('desc-staked')}{' '}
-                  <Link
-                    href={routes['/token'](echoActiveId as Locales, {
-                      id: `${data?.token_event?.token?.symbol}`,
-                    })}
-                    sx={{ display: 'inline-block' }}
-                  >{`${data?.token_event?.value} ${data?.token_event?.token?.symbol}`}</Link>
-                </Typography>
-              );
+              if (data?.token_event) {
+                return (
+                  <Typography gutterBottom>
+                    <Link
+                      href={routes['/address'](echoActiveId as Locales, {
+                        id: `${data?.address}`,
+                      })}
+                      sx={{ display: 'inline-block' }}
+                    >
+                      {data?.address_name || data?.address}
+                    </Link>{' '}
+                    {echo('desc-staked')}{' '}
+                    <Link
+                      href={routes['/token'](echoActiveId as Locales, {
+                        id: `${data?.token_event?.token?.symbol}`,
+                      })}
+                      sx={{ display: 'inline-block' }}
+                    >{`${data?.token_event?.value} ${data?.token_event?.token?.symbol}`}</Link>
+                  </Typography>
+                );
+              }
+              if (data?.nft_metadata) {
+                return (
+                  <Typography gutterBottom>
+                    <Link
+                      href={routes['/address'](echoActiveId as Locales, {
+                        id: `${data?.address}`,
+                      })}
+                      sx={{ display: 'inline-block' }}
+                    >
+                      {data?.address_name || data?.address}
+                    </Link>{' '}
+                    {echo('desc-staked')}{' '}
+                    <Link
+                      href={routes['/nft'](echoActiveId as Locales, {
+                        id: `${data?.token_id}`,
+                      })}
+                      sx={{ display: 'inline-block' }}
+                    >{`${data?.token_id}`}</Link>
+                  </Typography>
+                );
+              }
+              return null;
             default:
               return null;
           }
