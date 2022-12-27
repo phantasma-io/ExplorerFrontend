@@ -2,11 +2,11 @@ import React, { useMemo } from 'react';
 import dayjs from 'dayjs';
 import { useRouter } from 'next/router';
 import { useFury } from '@ricardojrmcom/fury';
-import { Box, Grid } from '@mui/material';
+import { Box, Grid, Typography } from '@mui/material';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import RedditIcon from '@mui/icons-material/Reddit';
 import GitHubIcon from '@mui/icons-material/GitHub';
-import LinkedInIcon from '@mui/icons-material/LinkedIn';
+// import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import { Link, Image } from 'components/display';
 import { FOOTER_HEIGHT, FOOTER_OFFSET, routesHome } from 'cfg';
 
@@ -163,39 +163,26 @@ export const Footer = ({
                     />
                   </Link>
                 </Grid>
-                <Grid item>
-                  <Link
-                    href="https://medium.com/phantasticphantasma"
-                    external
-                    sx={{
-                      color: '#fff',
-                      textDecoration: 'none',
-                    }}
-                  >
-                    <Image
-                      src="/static/v1/img/medium.png"
-                      height="42px"
-                      responsive
-                    />
-                  </Link>
-                </Grid>
-                <Grid item>
-                  <Link
-                    href="https://www.linkedin.com/company/phantasmachain/"
-                    external
-                    sx={{
-                      color: '#fff',
-                      textDecoration: 'none',
-                    }}
-                  >
-                    <LinkedInIcon
-                      sx={{
-                        fontSize: '42px',
-                      }}
-                    />
-                  </Link>
-                </Grid>
               </Grid>
+            </Grid>
+          </Grid>
+        </Grid>
+        <Grid item xs={12}>
+          <Grid
+            container
+            alignItems="center"
+            alignContent="center"
+            justifyItems="center"
+            justifyContent="center"
+          >
+            <Grid item>
+              <Typography
+                sx={{
+                  color: '#fff',
+                }}
+              >
+                {`Phantasma Explorer v4.0.0`}
+              </Typography>
             </Grid>
           </Grid>
         </Grid>
@@ -212,9 +199,10 @@ export const Footer = ({
                 align="center"
                 href="https://phantasma.io/"
                 external
+                withDec
                 sx={{
                   color: '#fff',
-                  textDecoration: 'none',
+                  // textDecoration: 'none',
                 }}
               >
                 {`Copyright © Phantasma Team ${dayjs().year()}`}
