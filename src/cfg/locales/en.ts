@@ -253,7 +253,7 @@ export const en: EchoMsgs = {
   'desc-received': 'received',
   'desc-claimed': 'claimed',
   'desc-burned': 'burned',
-  'desc-payed': 'payed',
+  'desc-paid': 'paid',
   'desc-escrowed': 'escrowed',
   'desc-minted': 'minted',
   'desc-created': 'created',

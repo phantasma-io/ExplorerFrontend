@@ -88,7 +88,7 @@ export const EventLine = ({ data }: EventLineProps) => {
                   >
                     {data?.address_name || data?.address}
                   </Link>{' '}
-                  {echo('desc-payed')}{' '}
+                  {echo('desc-paid')}{' '}
                   <Link
                     href={routes['/token'](echoActiveId as Locales, {
                       id: `KCAL`,
