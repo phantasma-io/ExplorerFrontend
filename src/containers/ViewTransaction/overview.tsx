@@ -5,6 +5,7 @@ import { useRenderOverview } from 'hooks/useRenderOverview';
 import { useTransactionData } from 'hooks/api';
 import { TransactionResults } from 'types/api';
 import { Loading, Error, Empty, Overview } from 'components/layout';
+import { EventDesc } from 'components/display/EventDesc';
 
 export interface TransactionOverviewProps {
   data?: TransactionResults;
@@ -41,6 +42,9 @@ export const TransactionOverview = ({
         raw={raw[0]}
       >
         <Box>{data && renderOverview(cols, rows)}</Box>
+        <Box>
+          <EventDesc data={raw[0].events} />
+        </Box>
       </Overview>
     );
   }, [loading, error, rows, data, renderOverview, cols, raw]);

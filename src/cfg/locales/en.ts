@@ -247,4 +247,14 @@ export const en: EchoMsgs = {
   state: 'State',
   //
   'tab-advanced': 'Advanced',
+  desc: 'Description',
+  'desc-staked': 'staked',
+  'desc-sent': 'sent',
+  'desc-received': 'received',
+  'desc-claimed': 'claimed',
+  'desc-burned': 'burned',
+  'desc-payed': 'payed',
+  'desc-escrowed': 'escrowed',
+  'desc-minted': 'minted',
+  'desc-created': 'created',
 };

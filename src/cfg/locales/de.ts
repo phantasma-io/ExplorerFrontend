@@ -245,4 +245,16 @@ export const de: EchoMsgs = {
   gas_target: 'Gas-Ziel',
   sender: 'Absender',
   state: 'Zustand',
+  //
+  'tab-advanced': 'Fortschrittlich',
+  desc: 'Beschreibung',
+  'desc-staked': 'staked',
+  'desc-sent': 'geschickt',
+  'desc-received': 'empfangen',
+  'desc-claimed': 'behauptet',
+  'desc-burned': 'verbrannt',
+  'desc-payed': 'ausbezahlt',
+  'desc-escrowed': 'hinterlegt',
+  'desc-minted': 'minted',
+  'desc-created': 'erstellt',
 };
