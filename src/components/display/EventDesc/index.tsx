@@ -27,7 +27,7 @@ export const EventDesc = ({ data }: EventDescProps) => {
           </Typography>
         </Box>
         <Grid container>
-          {data.map((event) => {
+          {data.reverse().map((event) => {
             return (
               <Grid item xs={12} key={nanoid()}>
                 <EventLine data={event} />
