@@ -253,7 +253,7 @@ export const pt: EchoMsgs = {
   'desc-received': 'recebido',
   'desc-claimed': 'reivindicado',
   'desc-burned': 'queimado',
-  'desc-payed': 'pago',
+  'desc-paid': 'pago',
   'desc-escrowed': 'depositado',
   'desc-minted': 'minted',
   'desc-created': 'criado',
