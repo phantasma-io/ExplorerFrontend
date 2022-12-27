@@ -29,7 +29,7 @@ export const EventActivity = ({ data }: EventActivityProps) => {
         <Grid container>
           {data.map((event) => {
             return (
-              <Grid item xs={12} key={nanoid()} my={1}>
+              <Grid item xs={12} key={nanoid()}>
                 <EventType data={event} />
               </Grid>
             );
