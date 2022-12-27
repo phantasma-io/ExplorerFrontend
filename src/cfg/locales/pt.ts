@@ -245,4 +245,16 @@ export const pt: EchoMsgs = {
   gas_target: 'Alvo do gás',
   sender: 'Remetente',
   state: 'Estado',
+  //
+  'tab-advanced': 'Avançado',
+  desc: 'Descrição',
+  'desc-staked': 'staked',
+  'desc-sent': 'enviado',
+  'desc-received': 'recebido',
+  'desc-claimed': 'reivindicado',
+  'desc-burned': 'queimado',
+  'desc-payed': 'pago',
+  'desc-escrowed': 'depositado',
+  'desc-minted': 'minted',
+  'desc-created': 'criado',
 };

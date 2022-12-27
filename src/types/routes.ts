@@ -33,6 +33,7 @@ export type ExplorerTabs =
   | 'instructions'
   | 'raw'
   | 'script'
+  | 'advanced'
   | 'series';
 
 export type RouterParams = {

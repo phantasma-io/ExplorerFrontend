@@ -8,6 +8,7 @@ import { Typography, TypographyProps, Link as MuiLink } from '@mui/material';
 export interface LinkProps extends TypographyProps {
   external?: boolean;
   href: string;
+  withDec?: boolean;
 }
 
 /**
@@ -18,6 +19,7 @@ export const Link = ({
   external,
   href,
   sx,
+  withDec,
   ...propsTypo
 }: LinkProps) => {
   const linkProps = external
@@ -25,15 +27,23 @@ export const Link = ({
     : {};
 
   const linkComponent = (
-    <MuiLink href={href} {...linkProps} sx={{ textDecoration: 'none', ...sx }}>
+    <MuiLink
+      href={href}
+      {...linkProps}
+      sx={{ textDecoration: withDec ? 'underline' : 'none', ...sx }}
+    >
       {children}
     </MuiLink>
   );
   if (external) {
-    return <Typography {...propsTypo}>{linkComponent}</Typography>;
+    return (
+      <Typography {...propsTypo} sx={sx}>
+        {linkComponent}
+      </Typography>
+    );
   }
   return (
-    <Typography {...propsTypo}>
+    <Typography {...propsTypo} sx={sx}>
       <NextLink href={href} passHref>
         {linkComponent}
       </NextLink>
