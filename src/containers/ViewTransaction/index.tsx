@@ -11,6 +11,7 @@ import { TransactionResults } from 'types/api';
 import { TransactionOverview } from './overview';
 import { TransactionEvents } from './events';
 import { TransactionRaw } from './raw';
+import { TransactionAdvanced } from './advanced';
 
 export interface ViewTransactionProps {
   tabForce?: ExplorerTabs;
@@ -41,6 +42,14 @@ export const ViewTransaction = ({
         href: routes['/transaction'](echoActiveId as Locales),
         component: (
           <TransactionOverview data={data} loading={loading} error={error} />
+        ),
+      },
+      advanced: {
+        id: 'advanced',
+        label: echo('tab-advanced'),
+        href: routes['/transaction'](echoActiveId as Locales),
+        component: (
+          <TransactionAdvanced data={data} loading={loading} error={error} />
         ),
       },
       events: {

@@ -2,7 +2,6 @@ import { useMemo, useState, useEffect } from 'react';
 import { useEcho } from '@ricardojrmcom/echo';
 import { TableDisplayRow, TableDisplayCol } from 'types/table';
 import { TransactionResults } from 'types/api';
-import { unixmsToDate } from 'scripts';
 import { decodeBase16 } from 'scripts/decodeBase16';
 
 export const useTransactionData = (
@@ -77,66 +76,6 @@ export const useTransactionData = (
         size: 2,
         append: ' KCAL',
       },
-      {
-        id: 'gas_limit',
-        label: echo('gas_limit'),
-        type: 'text',
-        size: 2,
-        append: ' KCAL',
-      },
-      {
-        id: 'gas_price',
-        label: echo('gas_price'),
-        type: 'text',
-        size: 2,
-        append: ' KCAL',
-      },
-      {
-        id: 'gas_target',
-        label: echo('gas_target'),
-        type: 'text',
-        size: 2,
-        linkOptions: {
-          route: '/address',
-          key: 'address',
-          title: echo('explore-address'),
-        },
-      },
-      {
-        id: 'gas_payer',
-        label: echo('gas_payer'),
-        type: 'text',
-        size: 2,
-        linkOptions: {
-          route: '/address',
-          key: 'address',
-          title: echo('explore-address'),
-        },
-      },
-      {
-        id: 'sender',
-        label: echo('sender'),
-        type: 'text',
-        size: 2,
-        linkOptions: {
-          route: '/address',
-          key: 'address',
-          title: echo('explore-address'),
-        },
-      },
-      {
-        id: 'date',
-        label: echo('date'),
-        type: 'date',
-        size: 2,
-        showDesktop: true,
-      },
-      {
-        id: 'expiration',
-        label: echo('expiration'),
-        type: 'date',
-        size: 2,
-      },
     ];
   }, [echo]);
 
@@ -150,13 +89,6 @@ export const useTransactionData = (
         item?.payload ? decodeBase16(item?.payload) : null,
         item?.state === 'Halt' ? 'Successful' : item?.state,
         item?.fee,
-        item?.gas_limit,
-        item?.gas_price,
-        item?.gas_target?.address,
-        item?.gas_payer?.address,
-        item?.sender?.address,
-        item?.date ? unixmsToDate(item.date) : undefined,
-        item?.expiration ? unixmsToDate(item.expiration) : undefined,
       ]) as TableDisplayRow[];
     }
 

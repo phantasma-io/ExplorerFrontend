@@ -245,4 +245,6 @@ export const en: EchoMsgs = {
   gas_target: 'Gas target',
   sender: 'Sender',
   state: 'State',
+  //
+  'tab-advanced': 'Advanced',
 };
