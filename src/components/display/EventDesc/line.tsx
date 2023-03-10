@@ -77,26 +77,26 @@ export const EventLine = ({ data }: EventLineProps) => {
             //       >{`${data?.gas_event?.fee} SOUL`}</Link>
             //     </Typography>
             //   );
-            case 'GasPayment':
-              return (
-                <Typography gutterBottom>
-                  <Link
-                    href={routes['/address'](echoActiveId as Locales, {
-                      id: `${data?.address}`,
-                    })}
-                    sx={{ display: 'inline-block' }}
-                  >
-                    {data?.address_name || data?.address}
-                  </Link>{' '}
-                  {echo('desc-paid')}{' '}
-                  <Link
-                    href={routes['/token'](echoActiveId as Locales, {
-                      id: `KCAL`,
-                    })}
-                    sx={{ display: 'inline-block' }}
-                  >{`${data?.gas_event?.fee} KCAL`}</Link>
-                </Typography>
-              );
+            // case 'GasPayment':
+            //   return (
+            //     <Typography gutterBottom>
+            //       <Link
+            //         href={routes['/address'](echoActiveId as Locales, {
+            //           id: `${data?.address}`,
+            //         })}
+            //         sx={{ display: 'inline-block' }}
+            //       >
+            //         {data?.address_name || data?.address}
+            //       </Link>{' '}
+            //       {echo('desc-paid')}{' '}
+            //       <Link
+            //         href={routes['/token'](echoActiveId as Locales, {
+            //           id: `KCAL`,
+            //         })}
+            //         sx={{ display: 'inline-block' }}
+            //       >{`${data?.gas_event?.fee} KCAL`}</Link>
+            //     </Typography>
+            //   );
             default:
               return null;
           }
