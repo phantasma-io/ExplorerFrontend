@@ -27,8 +27,8 @@ export const ViewHome = () => {
               src="/static/v1/img/phantasma-logo-icon-white.png"
               responsive
               height="99px"
-              title="Phantasma Team"
-              alt="Phantasma.io"
+              title="Phantasma Explorer"
+              alt="Phantasma Explorer"
             />
           </Box>
         </Grid>

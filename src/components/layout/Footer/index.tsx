@@ -1,5 +1,4 @@
 import React, { useMemo } from 'react';
-import dayjs from 'dayjs';
 import { useRouter } from 'next/router';
 import { useFury } from '@ricardojrmcom/fury';
 import { Box, Grid, Typography } from '@mui/material';
@@ -9,6 +8,8 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 // import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import { Link, Image } from 'components/display';
 import { FOOTER_HEIGHT, FOOTER_OFFSET, routesHome } from 'cfg';
+
+const VERSION = '4.0.4';
 
 /**
  * Footer props
@@ -181,32 +182,8 @@ export const Footer = ({
                   color: '#fff',
                 }}
               >
-                {`Phantasma Explorer v4.0.3`}
+                {`Phantasma Explorer v${VERSION}`}
               </Typography>
-            </Grid>
-          </Grid>
-        </Grid>
-        <Grid item xs={12}>
-          <Grid
-            container
-            alignItems="center"
-            alignContent="center"
-            justifyItems="center"
-            justifyContent="center"
-          >
-            <Grid item>
-              <Link
-                align="center"
-                href="https://phantasma.io/"
-                external
-                withDec
-                sx={{
-                  color: '#fff',
-                  // textDecoration: 'none',
-                }}
-              >
-                {`Copyright © Phantasma Team ${dayjs().year()}`}
-              </Link>
             </Grid>
           </Grid>
         </Grid>

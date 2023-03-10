@@ -87,7 +87,7 @@ export const TranslateCapitalizeCopy: Story<TextProps> = () => (
 export const WithLink: Story<TextProps> = () => (
   <Text label="Link" spacing={1} value="https://phantasma.io/" clipboard>
     <Link href="https://phantasma.io/" external>
-      Phantasma Team
+      Phantasma
     </Link>
   </Text>
 );
