@@ -7,10 +7,6 @@
     "type": "git",
     "url": "https://github.com/phantasma-io/ExplorerFrontend.git"
   },
-  "author": {
-    "name": "Phantasma Team",
-    "url": "https://github.com/phantasma-io"
-  },
   "homepage": "https://github.com/phantasma-io/ExplorerFrontend#readme",
   "bugs": {
     "url": "https://github.com/phantasma-io/ExplorerFrontend/issues"

@@ -90,13 +90,3 @@ yarn sb
 - `Semantic Release`
 
 <br />
-
----
-
-<br />
-
-### <b>License</b>
-
-[Apache-2.0](https://github.com/phantasma-io/ExplorerFrontend/blob/main/LICENSE) © Phantasma Team ([@phantasma-io](https://github.com/phantasma-io))
-
-<br />
