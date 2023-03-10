@@ -51,9 +51,10 @@ export const SearchInput: FC<SearchInputProps> = ({
 
   const applySearch = useCallback(() => {
     if (inputValue && inputValue !== '') {
+      const trimmed = inputValue.trim();
       push({
         pathname: routes['/search'](echoActiveId as Locales),
-        query: { id: inputValue },
+        query: { id: trimmed },
       });
       if (onApply) {
         onApply();
