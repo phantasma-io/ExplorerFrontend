@@ -57,26 +57,26 @@ export const EventLine = ({ data }: EventLineProps) => {
           return null;
         case 'gas_event':
           switch (kind) {
-            case 'GasEscrow':
-              return (
-                <Typography gutterBottom>
-                  <Link
-                    href={routes['/address'](echoActiveId as Locales, {
-                      id: `${data?.address}`,
-                    })}
-                    sx={{ display: 'inline-block' }}
-                  >
-                    {data?.address_name || data?.address}
-                  </Link>{' '}
-                  {echo('desc-escrowed')}{' '}
-                  <Link
-                    href={routes['/token'](echoActiveId as Locales, {
-                      id: `KCAL`,
-                    })}
-                    sx={{ display: 'inline-block' }}
-                  >{`${data?.gas_event?.fee} KCAL`}</Link>
-                </Typography>
-              );
+            // case 'GasEscrow':
+            //   return (
+            //     <Typography gutterBottom>
+            //       <Link
+            //         href={routes['/address'](echoActiveId as Locales, {
+            //           id: `${data?.address}`,
+            //         })}
+            //         sx={{ display: 'inline-block' }}
+            //       >
+            //         {data?.address_name || data?.address}
+            //       </Link>{' '}
+            //       {echo('desc-escrowed')}{' '}
+            //       <Link
+            //         href={routes['/token'](echoActiveId as Locales, {
+            //           id: `SOUL`,
+            //         })}
+            //         sx={{ display: 'inline-block' }}
+            //       >{`${data?.gas_event?.fee} SOUL`}</Link>
+            //     </Typography>
+            //   );
             case 'GasPayment':
               return (
                 <Typography gutterBottom>
