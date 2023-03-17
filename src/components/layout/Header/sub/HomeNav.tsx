@@ -40,6 +40,7 @@ export const HomeNav = () => {
                     <Image
                       src={'/static/v1/img/phantasma-logo-icon-white.png'}
                       height={'24px'}
+                      maxHeight={'24px'}
                       title="Phantasma"
                       alt="Phantasma Explorer"
                     />
