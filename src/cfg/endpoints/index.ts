@@ -7,7 +7,7 @@ const parseParams = (params: ApiParams | undefined) =>
 const testnet = process.env.NEXT_PUBLIC_TESTNET === 'testnet';
 
 export const url = `https://${
-  testnet ? 'testnet' : 'api'
+  testnet ? 'testnet' : 'ngexplorer'
 }.phantasma.io:8001/api/v1`;
 
 export const endpoints: ExplorerApi = {
