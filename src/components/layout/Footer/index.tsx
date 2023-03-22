@@ -9,7 +9,7 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 import { Link, Image } from 'components/display';
 import { FOOTER_HEIGHT, FOOTER_OFFSET, routesHome } from 'cfg';
 
-const VERSION = '4.0.7';
+const VERSION = '4.0.8';
 
 /**
  * Footer props
