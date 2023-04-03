@@ -1,9 +1,10 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { useEcho } from '@ricardojrmcom/echo';
-import { useEmpathy } from '@ricardojrmcom/empathy';
+// import { useEmpathy } from '@ricardojrmcom/empathy';
 import { Box } from '@mui/material';
 import { NavTabs, NavTabsRecord, Breadcrumbs } from 'components/layout';
+import { useGet } from 'hooks/useGet';
 import { routes, endpoints } from 'cfg';
 import { Locales } from 'types/locales';
 import { ExplorerTabs } from 'types/routes';
@@ -24,7 +25,7 @@ export const ViewTransaction = ({
 
   const { query } = useRouter();
 
-  const { data, loading, error } = useEmpathy<TransactionResults>(
+  const { data, error, loading, request } = useGet<TransactionResults>(
     endpoints['/transactions']({
       hash: (query?.id as string) || '',
       with_events: 1,
@@ -33,6 +34,20 @@ export const ViewTransaction = ({
       with_nft: 1,
     }),
   );
+
+  useEffect(() => {
+    request();
+  }, [request]);
+
+  // const { data, loading, error } = useEmpathy<TransactionResults>(
+  //   endpoints['/transactions']({
+  //     hash: (query?.id as string) || '',
+  //     with_events: 1,
+  //     with_event_data: 1,
+  //     with_fiat: 1,
+  //     with_nft: 1,
+  //   }),
+  // );
 
   const tabs: NavTabsRecord = useMemo(
     () => ({
