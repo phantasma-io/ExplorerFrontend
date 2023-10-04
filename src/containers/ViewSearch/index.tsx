@@ -1,5 +1,6 @@
 import React from 'react';
 import { Box } from '@mui/material';
+import { Breadcrumbs } from 'components/layout';
 import { SearchResults } from 'components/list';
 
 export interface ViewSearchProps {}
@@ -7,7 +8,12 @@ export interface ViewSearchProps {}
 export const ViewSearch = () => {
   return (
     <Box>
-      <SearchResults />
+      <Box>
+        <Breadcrumbs tab="addresses" route="/search" />
+      </Box>
+      <Box>
+        <SearchResults />
+      </Box>
     </Box>
   );
 };

@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import { useEcho } from '@ricardojrmcom/echo';
 // import { useEmpathy } from '@ricardojrmcom/empathy';
 import { Box } from '@mui/material';
-import { NavTabs, NavTabsRecord } from 'components/layout';
+import { NavTabs, NavTabsRecord, Breadcrumbs } from 'components/layout';
 import { useGet } from 'hooks/useGet';
 import { routes, endpoints } from 'cfg';
 import { Locales } from 'types/locales';
@@ -87,7 +87,12 @@ export const ViewTransaction = ({
 
   return (
     <Box>
-      <NavTabs tabs={tabs} tabsDefault={tabForce} />
+      <Box>
+        <Breadcrumbs tab="transactions" route="/transaction" />
+      </Box>
+      <Box>
+        <NavTabs tabs={tabs} tabsDefault={tabForce} />
+      </Box>
     </Box>
   );
 };

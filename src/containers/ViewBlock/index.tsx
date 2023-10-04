@@ -3,7 +3,7 @@ import { Box } from '@mui/material';
 import { useRouter } from 'next/router';
 import { useEmpathy } from '@ricardojrmcom/empathy';
 import { useEcho } from '@ricardojrmcom/echo';
-import { NavTabs, NavTabsRecord } from 'components/layout';
+import { NavTabs, NavTabsRecord, Breadcrumbs } from 'components/layout';
 import { endpoints, routes } from 'cfg';
 import { Locales } from 'types/locales';
 import { ExplorerTabs } from 'types/routes';
@@ -73,7 +73,12 @@ export const ViewBlock = ({ tabForce = 'overview' }: ViewBlockProps) => {
 
   return (
     <Box>
-      <NavTabs tabs={tabs} tabsDefault={tabForce} />
+      <Box>
+        <Breadcrumbs tab="blocks" route="/block" />
+      </Box>
+      <Box>
+        <NavTabs tabs={tabs} tabsDefault={tabForce} />
+      </Box>
     </Box>
   );
 };

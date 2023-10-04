@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { Box } from '@mui/material';
 import { useEcho } from '@ricardojrmcom/echo';
-import { NavTabs, NavTabsRecord } from 'components/layout';
+import { NavTabs, NavTabsRecord, Breadcrumbs } from 'components/layout';
 import {
   AddressesList,
   BlocksList,
@@ -99,7 +99,12 @@ export const ViewNexus = ({ tabForce = 'addresses' }: ViewNexusProps) => {
 
   return (
     <Box>
-      <NavTabs tabs={tabs} tabsDefault={tabForce} />
+      <Box>
+        <Breadcrumbs tab="addresses" route="/nexus" />
+      </Box>
+      <Box>
+        <NavTabs tabs={tabs} tabsDefault={tabForce} />
+      </Box>
     </Box>
   );
 };
