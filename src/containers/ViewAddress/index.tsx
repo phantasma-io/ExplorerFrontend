@@ -3,7 +3,7 @@ import { Box } from '@mui/material';
 import { useRouter } from 'next/router';
 import { useEmpathy } from '@ricardojrmcom/empathy';
 import { useEcho } from '@ricardojrmcom/echo';
-import { NavTabs, NavTabsRecord, Breadcrumbs } from 'components/layout';
+import { NavTabs, NavTabsRecord } from 'components/layout';
 import { routes, endpoints } from 'cfg';
 import { AddressResults } from 'types/api';
 import { Locales } from 'types/locales';
@@ -65,12 +65,7 @@ export const ViewAddress = ({ tabForce = 'overview' }: ViewAddressProps) => {
 
   return (
     <Box>
-      <Box>
-        <Breadcrumbs tab="addresses" route="/address" />
-      </Box>
-      <Box>
-        <NavTabs tabs={tabs} tabsDefault={tabForce} />
-      </Box>
+      <NavTabs tabs={tabs} tabsDefault={tabForce} />
     </Box>
   );
 };

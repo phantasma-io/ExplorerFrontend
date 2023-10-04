@@ -1,4 +1,3 @@
-export { Breadcrumbs } from './Breadcrumbs';
 export { Dialog } from './Dialog';
 export { Footer } from './Footer';
 export { Fullscreen } from './Fullscreen';
