@@ -22,7 +22,7 @@ export interface ViewNexusProps {
   tabForce?: ExplorerTabs;
 }
 
-export const ViewNexus = ({ tabForce = 'addresses' }: ViewNexusProps) => {
+export const ViewNexus = ({ tabForce = 'blocks' }: ViewNexusProps) => {
   const { echo, echoActiveId } = useEcho();
 
   const tabs: NavTabsRecord = useMemo(
