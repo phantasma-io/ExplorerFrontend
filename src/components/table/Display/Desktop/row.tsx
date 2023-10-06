@@ -99,24 +99,6 @@ export const TableRow = ({
               justifyContent="center"
               alignItems="center"
             >
-              <Grid item>
-                <Tooltip title={echo('table-exportCsv')} placement="top">
-                  <IconButton
-                    size="small"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      csvDownload([raw], csvFilename, ',');
-                    }}
-                  >
-                    <FileDownloadIcon
-                      style={{
-                        height: '15px',
-                        width: 'auto',
-                      }}
-                    />
-                  </IconButton>
-                </Tooltip>
-              </Grid>
               {linkOptions && (
                 <Grid item>
                   <Link
