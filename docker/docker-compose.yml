@@ -1,0 +1,27 @@
+version: "3.9"
+
+services:
+  frontend:
+    image: "explorer-frontend-production"
+    container_name: explorer-frontend-production
+    volumes:
+      - ./logs:/app/logs
+      - ./config:/app/config
+    environment:
+      SENTRY_ENVIRONMENT: Production
+      NEXT_PUBLIC_TESTNET: testnet
+    command: yarn start
+    networks:
+      - frontend-production
+    ports:
+      - 3000:3000
+    restart: unless-stopped
+    logging:
+      driver: "json-file"
+      options:
+        max-file: "5"
+        max-size: "20m"
+
+networks:
+   frontend-production:
+      name: frontend-production-network
