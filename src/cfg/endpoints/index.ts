@@ -4,9 +4,7 @@ import { ExplorerApi, ApiParams } from 'types/endpoints';
 const parseParams = (params: ApiParams | undefined) =>
   params ? objToQuery(params) : '';
 
-const testnet = process.env.NEXT_PUBLIC_TESTNET === 'testnet';
-
-export const url = `https://${testnet ? 'testnet-backend-explorer' : 'api-explorer'}.phantasma.info/api/v1`;
+export const url = `https://api-explorer.phantasma.info/api/v1`;
 
 export const endpoints: ExplorerApi = {
   '/addresses': (params) => `${url}/addresses${parseParams(params)}`,
