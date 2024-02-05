@@ -15,7 +15,7 @@ export const GetWallet = () => {
   return (
     <Box>
       <Box>
-        <Link href="https://phantasma.io/wallets/" external>
+        <Link href="https://phantasma.info/wallets/" external>
           <Tooltip title={echo('tooltip-dlwallet')}>
             <IconButton size="small">
               <AccountBalanceWalletIcon
