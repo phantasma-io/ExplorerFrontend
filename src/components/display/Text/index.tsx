@@ -150,7 +150,7 @@ export const Text = ({
 
       const bigNumber = bigint(formatNumber);
       const formattedNumber = numberFormat(
-        parseInt(formatNumber as string, 10),
+        parseFloat(formatNumber as string, 10),
         formatNumberStr,
       );
       if (Number.isNaN(formattedNumber) || formattedNumber === 'NaN') {
