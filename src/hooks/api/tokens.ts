@@ -38,17 +38,24 @@ export const useTokenData = (data?: TokenResults, loading?: boolean) => {
         },
       },
       {
+        id: 'name',
+        label: echo('name'),
+        type: 'text',
+        size: 2,
+        showDesktop: true
+      },
+      {
         id: 'current_supply',
         label: echo('currentSupply'),
         type: 'number',
-        size: 3,
+        size: 2,
         showDesktop: true,
       },
       {
         id: 'burned_supply',
         label: echo('burnedSupply'),
         type: 'number',
-        size: 3,
+        size: 2,
         showDesktop: true,
       },
       {
@@ -128,6 +135,7 @@ export const useTokenData = (data?: TokenResults, loading?: boolean) => {
         item?.token_logos && item.token_logos[0] && item?.token_logos[0].url,
         // data
         item?.symbol,
+        item?.name,
         item?.current_supply?.split('.')[0] == '0' ? item?.current_supply : item?.current_supply?.split('.')[0],
         item?.burned_supply?.split('.')[0] == '0' ? item?.burned_supply : item?.burned_supply?.split('.')[0],
         item?.max_supply,
