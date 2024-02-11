@@ -128,8 +128,8 @@ export const useTokenData = (data?: TokenResults, loading?: boolean) => {
         item?.token_logos && item.token_logos[0] && item?.token_logos[0].url,
         // data
         item?.symbol,
-        item?.current_supply,
-        item?.burned_supply,
+        item?.current_supply?.split('.')[0] == '0' ? item?.current_supply : item?.current_supply?.split('.')[0],
+        item?.burned_supply?.split('.')[0] == '0' ? item?.burned_supply : item?.burned_supply?.split('.')[0],
         item?.max_supply,
         item?.decimals,
         item?.fungible,
