@@ -52,7 +52,7 @@ export const en: EchoMsgs = {
   dao: 'DAO',
   token: 'Token',
   transaction: 'Transaction',
-  block_height: 'Block height',
+  block_height: 'Block',
   height: 'Height',
   symbol: 'Symbol',
   prevHash: 'Previous Hash',
