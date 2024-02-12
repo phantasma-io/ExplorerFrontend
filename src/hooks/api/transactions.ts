@@ -35,12 +35,6 @@ export const useTransactionData = (
         },
       },
       {
-        id: 'block_hash',
-        label: echo('block_hash'),
-        type: 'monospace',
-        size: 2
-      },
-      {
         id: 'block_height',
         label: echo('block_height'),
         type: 'string',
@@ -91,7 +85,6 @@ export const useTransactionData = (
     if (data) {
       return data?.transactions?.map((item) => [
         item?.hash,
-        item?.block_hash,
         item?.block_height,
         item?.date ? unixmsToDate(item.date) : undefined,
         item?.result,
