@@ -140,7 +140,12 @@ export const Text = ({
 
   const copy: string = useMemo(() => {
     if (formatDate) {
-      return dateFormat(formatDate, formatDateStr);
+      if(formatDateIcon) {
+        return dateRelative(formatDate).fromNow + " (" + dateFormat(formatDate, formatDateStr) + ")";
+      }
+      else {
+        return dateFormat(formatDate, formatDateStr);
+      }
     }
 
     if (formatNumber) {
@@ -236,30 +241,6 @@ export const Text = ({
         </Grid>
       ) : (
         <Grid item>{children || result}</Grid>
-      )}
-      {formatDate && formatDateIcon && (
-        <Grid item>
-          <Tooltip title={dateRelative(formatDate).fromNow} placement="right">
-            <Typography variant={variant} {...propsTypo} sx={sx}>
-              <CopyToClipboard text={copy}>
-                <IconButton
-                  size="small"
-                  onClick={(e) => {
-                    enqueueSnackbar(echo('copied-to-clipboard'));
-                    e.stopPropagation();
-                  }}
-                >
-                  <EventIcon
-                    style={{
-                      fontSize: furyActive.typography[variant].fontSize,
-                      opacity: 0.45,
-                    }}
-                  />
-                </IconButton>
-              </CopyToClipboard>
-            </Typography>
-          </Tooltip>
-        </Grid>
       )}
       {clipboard && (
         <Grid item>
