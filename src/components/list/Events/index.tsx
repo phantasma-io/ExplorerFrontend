@@ -42,7 +42,7 @@ export const EventsList = ({
       chain: 'main',
       address: _address,
       address_partial,
-      block_hash: block,
+      block_height: block,
       transaction_hash: transaction,
       with_event_data: 1,
       with_fiat: 1,

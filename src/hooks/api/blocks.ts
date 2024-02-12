@@ -22,20 +22,20 @@ export const useBlockData = (data?: BlockResults, loading?: boolean) => {
         label: echo('hash'),
         type: 'monospace',
         size: 7,
-        showDesktop: true,
-        linkOptions: {
-          route: '/block',
-          key: 'hash',
-          title: echo('explore-block'),
-          primary: true,
-        },
+        showDesktop: true
       },
       {
         id: 'height',
         label: echo('height'),
-        type: 'number',
+        type: 'string',
         size: 2,
         showDesktop: true,
+        linkOptions: {
+          route: '/block',
+          key: 'height',
+          title: echo('explore-block'),
+          primary: true,
+        },
       },
       {
         id: 'protocol',

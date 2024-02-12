@@ -38,19 +38,19 @@ export const useTransactionData = (
         id: 'block_hash',
         label: echo('block_hash'),
         type: 'monospace',
-        size: 2,
-        linkOptions: {
-          route: '/block',
-          key: 'block_hash',
-          title: echo('explore-block'),
-        },
+        size: 2
       },
       {
         id: 'block_height',
         label: echo('block_height'),
-        type: 'number',
+        type: 'string',
         size: 2,
         showDesktop: true,
+        linkOptions: {
+          route: '/block',
+          key: 'block_height',
+          title: echo('explore-block'),
+        },
       },
       {
         id: 'date',
