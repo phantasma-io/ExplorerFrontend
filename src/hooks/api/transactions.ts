@@ -43,7 +43,7 @@ export const useTransactionData = (
       {
         id: 'block_height',
         label: echo('block_height'),
-        type: 'string',
+        type: 'text',
         size: 2,
         showDesktop: true,
         linkOptions: {

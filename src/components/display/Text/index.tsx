@@ -23,15 +23,16 @@ import EventIcon from '@mui/icons-material/Event';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { NUMBER_FORMAT, DATE_FORMAT } from 'cfg';
 import { useDarkMode } from 'hooks';
-import { Link } from '../Link';
-
-import { useDatetimeOpts } from 'hooks/datetime/useDatetimeOpts';
 
 import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc';
 import timezone from 'dayjs/plugin/timezone';
 import advancedFormat from 'dayjs/plugin/advancedFormat';
 import relativeTime from 'dayjs/plugin/relativeTime';
+
+import { useDatetimeOpts } from 'hooks/datetime/useDatetimeOpts';
+
+import { Link } from '../Link';
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
@@ -155,11 +156,11 @@ export const Text = ({
       if(formatDateIcon) {
         switch (dtOpts) {
           case 'utc':
-            return dayjs(formatDate).fromNow() + " (" + dayjs(formatDate).utc().format(formatDateStr) + ")";
+            return '{dayjs(formatDate).fromNow()} ({dayjs(formatDate).utc().format(formatDateStr)})';
           case 'utc-24':
-            return dayjs(formatDate).fromNow() + " (" + dayjs(formatDate).utc().format(formatDateStr) + ")";
+            return '{dayjs(formatDate).fromNow()} ({dayjs(formatDate).utc().format(formatDateStr)})';
           default:
-            return dayjs(formatDate).fromNow() + " (" + dayjs(formatDate).format(formatDateStr) + ")";
+            return '{dayjs(formatDate).fromNow()} ({dayjs(formatDate).format(formatDateStr)})';
         }
       }
       else {

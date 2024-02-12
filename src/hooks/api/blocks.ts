@@ -20,7 +20,7 @@ export const useBlockData = (data?: BlockResults, loading?: boolean) => {
       {
         id: 'height',
         label: echo('height'),
-        type: 'string',
+        type: 'text',
         size: 2,
         showDesktop: true,
         linkOptions: {
