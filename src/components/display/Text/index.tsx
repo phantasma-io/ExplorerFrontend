@@ -156,11 +156,11 @@ export const Text = ({
       if(formatDateIcon) {
         switch (dtOpts) {
           case 'utc':
-            return '{dayjs(formatDate).fromNow()} ({dayjs(formatDate).utc().format(formatDateStr)})';
+            return `${dayjs(formatDate).fromNow()} (${dayjs(formatDate).utc().format(formatDateStr)})`;
           case 'utc-24':
-            return '{dayjs(formatDate).fromNow()} ({dayjs(formatDate).utc().format(formatDateStr)})';
+            return `${dayjs(formatDate).fromNow()} (${dayjs(formatDate).utc().format(formatDateStr)})`;
           default:
-            return '{dayjs(formatDate).fromNow()} ({dayjs(formatDate).format(formatDateStr)})';
+            return `${dayjs(formatDate).fromNow()} (${dayjs(formatDate).format(formatDateStr)})`;
         }
       }
       else {
