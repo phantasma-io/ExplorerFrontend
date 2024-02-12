@@ -80,7 +80,7 @@ export const de: EchoMsgs = {
   royalties: 'Lizenzgebühren',
   fees: 'Honorare',
   creator: 'Schöpfer',
-  storage: 'Speicherplatz (KB)',
+  storage: 'Speicherplatz',
   'storage-available': 'Im Lager verfügbar',
   'btn-enterNexus': 'Treten Sie Nexus bei',
   // tooltips

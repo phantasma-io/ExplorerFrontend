@@ -56,7 +56,7 @@ export const useAddressData = (data?: AddressResults, loading?: boolean) => {
         label: echo('storage'),
         type: 'number',
         size: 3,
-        append: ' KB',
+        append: ' Bytes',
         showDesktop: true,
       },
       {

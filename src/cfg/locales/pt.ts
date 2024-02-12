@@ -80,7 +80,7 @@ export const pt: EchoMsgs = {
   royalties: 'Royalties',
   fees: 'Taxas',
   creator: 'Criador',
-  storage: 'Armazenamento (KB)',
+  storage: 'Armazenamento',
   'storage-available': 'Disponível em armazenamento',
   'btn-enterNexus': 'Entre no Nexus',
   // tooltips
