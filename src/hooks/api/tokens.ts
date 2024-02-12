@@ -25,6 +25,13 @@ export const useTokenData = (data?: TokenResults, loading?: boolean) => {
       },
       // data
       {
+        id: 'name',
+        label: echo('name'),
+        type: 'text',
+        size: 2,
+        showDesktop: true
+      },
+      {
         id: 'symbol',
         label: echo('symbol'),
         type: 'text',
@@ -36,13 +43,6 @@ export const useTokenData = (data?: TokenResults, loading?: boolean) => {
           title: echo('explore-token'),
           primary: true,
         },
-      },
-      {
-        id: 'name',
-        label: echo('name'),
-        type: 'text',
-        size: 2,
-        showDesktop: true
       },
       {
         id: 'current_supply',
@@ -134,8 +134,8 @@ export const useTokenData = (data?: TokenResults, loading?: boolean) => {
         // thumb
         item?.token_logos && item.token_logos[0] && item?.token_logos[0].url,
         // data
-        item?.symbol,
         item?.name,
+        item?.symbol,
         item?.current_supply?.split('.')[0] == '0' ? item?.current_supply : item?.current_supply?.split('.')[0],
         item?.burned_supply?.split('.')[0] == '0' ? item?.burned_supply : item?.burned_supply?.split('.')[0],
         item?.max_supply,
