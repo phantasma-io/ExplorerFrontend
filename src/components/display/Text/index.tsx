@@ -15,8 +15,6 @@ import { useEcho } from '@ricardojrmcom/echo';
 import { useFury } from '@ricardojrmcom/fury';
 import {
   numberFormat,
-  dateFormat,
-  dateRelative,
   stringCapitalize,
   stringTruncate,
 } from '@ricardojrmcom/dervish';
@@ -26,6 +24,19 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { NUMBER_FORMAT, DATE_FORMAT } from 'cfg';
 import { useDarkMode } from 'hooks';
 import { Link } from '../Link';
+
+import { useDatetimeOpts } from 'hooks/datetime/useDatetimeOpts';
+
+import dayjs from 'dayjs';
+import utc from 'dayjs/plugin/utc';
+import timezone from 'dayjs/plugin/timezone';
+import advancedFormat from 'dayjs/plugin/advancedFormat';
+import relativeTime from 'dayjs/plugin/relativeTime';
+
+dayjs.extend(utc);
+dayjs.extend(timezone);
+dayjs.extend(advancedFormat);
+dayjs.extend(relativeTime);
 
 /**
  * Text props
@@ -137,14 +148,29 @@ export const Text = ({
   const { furyActive } = useFury();
   const { echo } = useEcho();
   const { isDark } = useDarkMode();
+  const { dtOpts } = useDatetimeOpts();
 
   const copy: string = useMemo(() => {
     if (formatDate) {
       if(formatDateIcon) {
-        return dateRelative(formatDate).fromNow + " (" + dateFormat(formatDate, formatDateStr) + ")";
+        switch (dtOpts) {
+          case 'utc':
+            return dayjs(formatDate).fromNow() + " (" + dayjs(formatDate).utc().format(formatDateStr) + ")";
+          case 'utc-24':
+            return dayjs(formatDate).fromNow() + " (" + dayjs(formatDate).utc().format(formatDateStr) + ")";
+          default:
+            return dayjs(formatDate).fromNow() + " (" + dayjs(formatDate).format(formatDateStr) + ")";
+        }
       }
       else {
-        return dateFormat(formatDate, formatDateStr);
+        switch (dtOpts) {
+          case 'utc':
+            return dayjs(formatDate).utc().format(formatDateStr);
+          case 'utc-24':
+            return dayjs(formatDate).utc().format(formatDateStr);
+          default:
+            return dayjs(formatDate).format(formatDateStr);
+        }
       }
     }
 
