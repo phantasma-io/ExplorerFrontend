@@ -25,7 +25,7 @@ export const ViewBlock = ({ tabForce = 'overview' }: ViewBlockProps) => {
 
   const { data, loading, error } = useEmpathy<BlockResults>(
     endpoints['/blocks']({
-      height: (query?.id as string) || '',
+      id: (query?.id as string) || '',
       with_fiat: 1,
       with_events: 1,
       with_event_data: 1,
