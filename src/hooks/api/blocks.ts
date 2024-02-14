@@ -18,22 +18,22 @@ export const useBlockData = (data?: BlockResults, loading?: boolean) => {
   const cols = useMemo<TableDisplayCol[]>(() => {
     return [
       {
-        id: 'hash',
-        label: echo('hash'),
-        type: 'monospace',
-        size: 7,
+        id: 'height',
+        label: echo('height'),
+        type: 'text',
+        size: 2,
         showDesktop: true,
         linkOptions: {
           route: '/block',
-          key: 'hash',
+          key: 'height',
           title: echo('explore-block'),
           primary: true,
         },
       },
       {
-        id: 'height',
-        label: echo('height'),
-        type: 'number',
+        id: 'date',
+        label: echo('date'),
+        type: 'date',
         size: 2,
         showDesktop: true,
       },
@@ -72,6 +72,13 @@ export const useBlockData = (data?: BlockResults, loading?: boolean) => {
         },
       },
       {
+        id: 'hash',
+        label: echo('hash'),
+        type: 'monospace',
+        size: 7,
+        showDesktop: true
+      },
+      {
         id: 'previous_hash',
         label: echo('prevHash'),
         type: 'monospace',
@@ -82,27 +89,20 @@ export const useBlockData = (data?: BlockResults, loading?: boolean) => {
           title: echo('explore-block'),
         },
       },
-      {
-        id: 'date',
-        label: echo('date'),
-        type: 'date',
-        size: 2,
-        showDesktop: true,
-      },
     ];
   }, [echo]);
 
   const rows: TableDisplayRow[] = useMemo<TableDisplayRow[]>(() => {
     if (data) {
       return data?.blocks?.map((item) => [
-        item?.hash,
         item?.height,
+        item?.date ? unixmsToDate(item.date) : undefined,
         item?.protocol,
         item?.reward,
         item?.chain_address,
         item?.validator_address,
+        item?.hash,
         item?.previous_hash,
-        item?.date ? unixmsToDate(item.date) : undefined,
       ]) as TableDisplayRow[];
     }
 

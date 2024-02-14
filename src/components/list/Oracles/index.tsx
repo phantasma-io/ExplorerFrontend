@@ -25,7 +25,7 @@ export const OraclesList = ({ block_hash }: OraclesListProps) => {
       order_by,
       order_direction,
       with_total,
-      block_hash,
+      block_height: block_hash,
     } as OracleParams),
   );
 

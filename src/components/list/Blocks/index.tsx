@@ -49,7 +49,7 @@ export const BlocksList = () => {
         }}
         linkOptions={{
           route: '/block',
-          key: 'hash',
+          key: 'height',
           title: echo('explore-block'),
         }}
         {...tableProps}

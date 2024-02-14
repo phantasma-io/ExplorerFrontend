@@ -75,6 +75,8 @@ export const SearchResults = () => {
       //   return '/chain'
       case 'blocks':
         return '/block';
+      case 'transactions':
+        return '/transaction';
       case 'addresses':
       default:
         return '/address';
@@ -189,6 +191,19 @@ export const SearchResults = () => {
                   >
                     <Button>
                       {query.id} ({echo('token')})
+                    </Button>
+                  </Link>
+                </Grid>
+              )}
+              {data && data.result[7].found && (
+                <Grid item xs={12}>
+                  <Link
+                    href={routes['/transaction'](echoActiveId as Locales, {
+                      id: query.id as string,
+                    })}
+                  >
+                    <Button>
+                      {query.id} ({echo('transaction')})
                     </Button>
                   </Link>
                 </Grid>

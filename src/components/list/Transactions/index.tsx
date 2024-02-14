@@ -33,7 +33,7 @@ export const TransactionsList = ({ address, block }: TransactionsListProps) => {
       order_direction,
       with_total,
       address: _address,
-      block_hash: block,
+      block_height: block,
     }),
   );
 

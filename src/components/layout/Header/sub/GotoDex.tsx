@@ -15,7 +15,7 @@ export const GotoDex = () => {
   return (
     <Box>
       <Box>
-        <Link href="https://dex.phantasma.io/Dex" external>
+        <Link href="https://phantasma.info/soul-swap" external>
           <Tooltip title={echo('tooltip-gotodex')}>
             <IconButton size="small">
               <SwapHorizIcon

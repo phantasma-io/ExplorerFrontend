@@ -52,7 +52,7 @@ export const pt: EchoMsgs = {
   dao: 'DAO',
   token: 'Token',
   transaction: 'Transação',
-  block_height: 'Altura do bloco',
+  block_height: 'Bloco',
   height: 'Altura',
   symbol: 'Símbolo',
   prevHash: 'Hash Anterior',
@@ -80,7 +80,7 @@ export const pt: EchoMsgs = {
   royalties: 'Royalties',
   fees: 'Taxas',
   creator: 'Criador',
-  storage: 'Armazenamento (KB)',
+  storage: 'Armazenamento',
   'storage-available': 'Disponível em armazenamento',
   'btn-enterNexus': 'Entre no Nexus',
   // tooltips

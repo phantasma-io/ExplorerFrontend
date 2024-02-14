@@ -3,6 +3,7 @@ import { useEcho } from '@ricardojrmcom/echo';
 import { TableDisplayRow, TableDisplayCol } from 'types/table';
 import { TransactionResults } from 'types/api';
 import { decodeBase16 } from 'scripts/decodeBase16';
+import { unixmsToDate } from 'scripts';
 
 export const useTransactionData = (
   data?: TransactionResults,
@@ -34,20 +35,27 @@ export const useTransactionData = (
         },
       },
       {
-        id: 'block_hash',
-        label: echo('block_hash'),
-        type: 'monospace',
-        size: 2,
-        linkOptions: {
-          route: '/block',
-          key: 'block_hash',
-          title: echo('explore-block'),
-        },
+        id: 'state',
+        label: echo('state'),
+        type: 'text',
+        size: 2
       },
       {
         id: 'block_height',
         label: echo('block_height'),
-        type: 'number',
+        type: 'text',
+        size: 2,
+        showDesktop: true,
+        linkOptions: {
+          route: '/block',
+          key: 'block_height',
+          title: echo('explore-block'),
+        },
+      },
+      {
+        id: 'date',
+        label: echo('date'),
+        type: 'date',
         size: 2,
         showDesktop: true,
       },
@@ -60,12 +68,6 @@ export const useTransactionData = (
       {
         id: 'payload',
         label: echo('payload'),
-        type: 'text',
-        size: 2,
-      },
-      {
-        id: 'state',
-        label: echo('state'),
         type: 'text',
         size: 2,
       },
@@ -83,11 +85,11 @@ export const useTransactionData = (
     if (data) {
       return data?.transactions?.map((item) => [
         item?.hash,
-        item?.block_hash,
+        item?.state === 'Halt' ? 'Successful' : item?.state,
         item?.block_height,
+        item?.date ? unixmsToDate(item.date) : undefined,
         item?.result,
         item?.payload ? decodeBase16(item?.payload) : null,
-        item?.state === 'Halt' ? 'Successful' : item?.state,
         item?.fee,
       ]) as TableDisplayRow[];
     }

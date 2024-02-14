@@ -8,6 +8,7 @@ export interface TokenLogo {
 }
 
 export interface Token {
+  name?: string;
   symbol?: string;
   fungible?: boolean;
   transferable?: boolean;
