@@ -2,16 +2,25 @@
 just:
     just -l
 
-set dotenv-load
-TMUX_SESSION_NAME := env("TMUX_SESSION_NAME")
+set dotenv-load     := true
+set dotenv-required := false
 
+# TMUX_SESSION_NAME := env("TMUX_SESSION_NAME")
+
+alias inst := install-deps
 [group('deployment')]
 install-deps:
-    npm install
+  yarn install
 
+
+alias b := build
 [group('build')]
-b:
-    yarn next build
+build:
+  yarn build
+
+[group('run')]
+run:
+    yarn dev
 
 [group('run')]
 r0:
