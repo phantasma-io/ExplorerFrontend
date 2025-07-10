@@ -28,4 +28,8 @@ r0:
 
 [group('run')]
 r:
-    sh ./scripts/run_in_tmux.sh
+    sh ./scripts/run_in_tmux.sh "explorer_front" "just r0"
+
+[group('run')]
+rd:
+    sh ./scripts/run_in_tmux.sh "explorer_front" "just r0" --detached
