@@ -159,16 +159,21 @@ export const useAddressesTopTokenHoldersData = (token_id: string, data?: Address
 
   const extract_amount = (addr: Address, token_id: string): number => {
     let bal = addr.balances?.find((v) => {
-        return v.token?.symbol?.toString().toUpperCase() == token_id.toUpperCase()
+      return (
+        v.token?.symbol?.toString().toUpperCase() == token_id.toUpperCase()
+      );
     });
     if (!bal) {
       if (is_token_soul) {
-        return parseFloat(addr.stake ?? "0")
+        let result = parseFloat(addr.stake ?? '0');
+        return result > 1 ? Math.floor(result) : result;
       }
-      return 0
+      return 0;
     }
-    return get_amount(addr, bal)
-  }
+
+    let result = get_amount(addr, bal);
+    return result > 1 ? Math.floor(result) : result;
+  };
 
 
   const rows = useMemo<TableDisplayRow[]>(() => {
