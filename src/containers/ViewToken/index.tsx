@@ -7,11 +7,15 @@ import { NavTabs, NavTabsRecord, Breadcrumbs } from 'components/layout';
 import { endpoints, routes } from 'cfg';
 import { Locales } from 'types/locales';
 import { ExplorerTabs } from 'types/routes';
-import { TokenResults, TokenParams } from 'types/api';
+import { TokenResults, TokenParams, AddressResults } from 'types/api';
 import { TokenOverview } from './overview';
 import { TokenScript } from './script';
 import { TokenInstructions } from './instructions';
 import { TokenRaw } from './raw';
+import { AddressOverview } from 'containers/ViewAddress/overview';
+import { useAddressesTopTokenHoldersData } from 'hooks/api/addresses';
+import { Table } from 'components/table';
+import { useTable } from 'hooks';
 
 export interface ViewTokenProps {
   tabForce?: ExplorerTabs;
@@ -30,6 +34,25 @@ export const ViewToken = ({ tabForce = 'overview' }: ViewTokenProps) => {
     } as TokenParams),
   );
 
+  const holders_res = useEmpathy<AddressResults>(
+    endpoints['/addresses']({
+      order_by: "balance",
+      order_direction: "desc",
+      offset: 0,
+      limit: 100,
+      chain: "main",
+      symbol: (query?.id as string) || '',
+      with_balance: 1,
+    } as TokenParams),
+  );
+
+  // let holders_data = holders_res.data;
+  // let holders_error = holders_res.error;
+  // let holders_loading = holders_res.loading;
+
+  const { cols: holder_cols, rows: holder_rows, total: holder_total } = useAddressesTopTokenHoldersData(query.id as string, holders_res.data, holders_res.loading);
+  const holdersTableProps = useTable();
+
   const tabs: NavTabsRecord = useMemo(
     () => ({
       overview: {
@@ -38,6 +61,29 @@ export const ViewToken = ({ tabForce = 'overview' }: ViewTokenProps) => {
         href: routes['/token'](echoActiveId as Locales),
         component: (
           <TokenOverview data={data} loading={loading} error={error} />
+        ),
+      },
+      holders: {
+        id: 'holders',
+        label: "Top Holders",
+        href: routes['/token'](echoActiveId as Locales),
+        component: (
+            <Table
+              tableId="PhantasmaExplorer-Addresses-TopHolders"
+              raw={holders_res.data?.addresses || []}
+              cols={holder_cols}
+              rows={holder_rows}
+              total={holder_total}
+              linkOptions={{
+                route: '/address',
+                key: 'address',
+                title: echo('explore-address'),
+              }}
+              {...holdersTableProps}
+              loading={holders_res.loading}
+              error={holders_res.error}
+              hideControls={true}
+            />
         ),
       },
       instructions: {
@@ -66,7 +112,16 @@ export const ViewToken = ({ tabForce = 'overview' }: ViewTokenProps) => {
         component: <TokenRaw data={data} loading={loading} error={error} />,
       },
     }),
-    [echo, echoActiveId, data, error, loading],
+    [
+      echo,
+      echoActiveId,
+      data,
+      error,
+      loading,
+      holders_res.loading,
+      holders_res.data,
+      holders_res.error,
+    ],
   );
 
   return (
