@@ -6,7 +6,7 @@ const parseParams = (params: ApiParams | undefined) =>
 
 const testnet = process.env.NEXT_PUBLIC_TESTNET === 'testnet';
 
-const fallbackUrl = `https://${testnet ? 'testnet-backend-explorer' : 'api-explorer-dev'}.phantasma.info/api/v1`;
+const fallbackUrl = `https://${testnet ? 'testnet-backend-explorer' : 'api-explorer'}.phantasma.info/api/v1`;
 export const url = process.env.NEXT_PUBLIC_API_URL ? process.env.NEXT_PUBLIC_API_URL : fallbackUrl
 
 export const endpoints: ExplorerApi = {
