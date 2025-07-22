@@ -4,6 +4,7 @@ import { useFury } from '@ricardojrmcom/fury';
 import { Box, Grid, Typography } from '@mui/material';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import GitHubIcon from '@mui/icons-material/GitHub';
+import TelegramIcon from '@mui/icons-material/Telegram';
 // import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import { Link, Image } from 'components/display';
 import { FOOTER_HEIGHT, FOOTER_OFFSET, routesHome } from 'cfg';
@@ -107,6 +108,22 @@ export const Footer = ({
                     }}
                   >
                     <TwitterIcon
+                      sx={{
+                        fontSize: '42px',
+                      }}
+                    />
+                  </Link>
+                </Grid>
+                <Grid item>
+                  <Link
+                    href="https://t.me/phantasma_io"
+                    external
+                    sx={{
+                      color: '#fff',
+                      textDecoration: 'none',
+                    }}
+                  >
+                    <TelegramIcon
                       sx={{
                         fontSize: '42px',
                       }}
