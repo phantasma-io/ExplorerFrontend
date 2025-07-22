@@ -16,6 +16,7 @@ export interface TableProps
     TableParamControls,
     TableUrlParams {
   addon?: React.ReactNode;
+  hideControls?: boolean,
 }
 
 export const Table = ({
@@ -40,6 +41,7 @@ export const Table = ({
   loading,
   error,
   addon,
+  hideControls,
 }: TableProps) => {
   const [viewMode, viewModeSet] = useLocalState<TableViewModes>(
     'PhantasmaExplorer-table-viewMode',
@@ -50,6 +52,7 @@ export const Table = ({
 
   return (
     <Box p={1} id={tableId}>
+      {!hideControls &&
       <Box mb={1}>
         <TableControls
           tableId={tableId}
@@ -68,6 +71,7 @@ export const Table = ({
           addon={addon}
         />
       </Box>
+      }
       <Box>
         <TableDisplay
           tableId={tableId}

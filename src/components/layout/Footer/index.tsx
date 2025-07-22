@@ -3,13 +3,11 @@ import { useRouter } from 'next/router';
 import { useFury } from '@ricardojrmcom/fury';
 import { Box, Grid, Typography } from '@mui/material';
 import TwitterIcon from '@mui/icons-material/Twitter';
-import RedditIcon from '@mui/icons-material/Reddit';
 import GitHubIcon from '@mui/icons-material/GitHub';
+import TelegramIcon from '@mui/icons-material/Telegram';
 // import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import { Link, Image } from 'components/display';
 import { FOOTER_HEIGHT, FOOTER_OFFSET, routesHome } from 'cfg';
-
-const VERSION = '4.3.0';
 
 /**
  * Footer props
@@ -118,6 +116,22 @@ export const Footer = ({
                 </Grid>
                 <Grid item>
                   <Link
+                    href="https://t.me/phantasma_io"
+                    external
+                    sx={{
+                      color: '#fff',
+                      textDecoration: 'none',
+                    }}
+                  >
+                    <TelegramIcon
+                      sx={{
+                        fontSize: '42px',
+                      }}
+                    />
+                  </Link>
+                </Grid>
+                <Grid item>
+                  <Link
                     href="https://discord.com/invite/u7D74kH"
                     external
                     sx={{
@@ -129,22 +143,6 @@ export const Footer = ({
                       src="/static/v1/img/discord.png"
                       height="42px"
                       responsive
-                    />
-                  </Link>
-                </Grid>
-                <Grid item>
-                  <Link
-                    href="https://www.reddit.com/r/phantasma/"
-                    external
-                    sx={{
-                      color: '#fff',
-                      textDecoration: 'none',
-                    }}
-                  >
-                    <RedditIcon
-                      sx={{
-                        fontSize: '42px',
-                      }}
                     />
                   </Link>
                 </Grid>
@@ -165,25 +163,6 @@ export const Footer = ({
                   </Link>
                 </Grid>
               </Grid>
-            </Grid>
-          </Grid>
-        </Grid>
-        <Grid item xs={12}>
-          <Grid
-            container
-            alignItems="center"
-            alignContent="center"
-            justifyItems="center"
-            justifyContent="center"
-          >
-            <Grid item>
-              <Typography
-                sx={{
-                  color: '#fff',
-                }}
-              >
-                {`Phantasma Explorer v${VERSION}`}
-              </Typography>
             </Grid>
           </Grid>
         </Grid>
