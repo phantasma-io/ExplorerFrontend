@@ -69,114 +69,273 @@ export const EventLine = ({ data }: EventLineProps) => {
     if (kind && type) {
       switch (type) {
         case 'transaction_settle_event':
-          return null;
-        case 'string_event':
-          return null;
+          return (
+            <Typography gutterBottom>
+              {kind}:{' '}
+              {data?.transaction_settle_event?.hash && (
+                <Typography component="span" variant="body2">
+                  {data?.transaction_settle_event?.hash}
+                </Typography>
+              )}{' '}
+              {data?.transaction_settle_event?.platform?.name && (
+                <Typography component="span" variant="body2">
+                  on {data?.transaction_settle_event?.platform?.name}
+                </Typography>
+              )}
+              {data?.transaction_settle_event?.chain && (
+                <Typography component="span" variant="body2">
+                  {' '}
+                  ({data?.transaction_settle_event?.chain})
+                </Typography>
+              )}
+            </Typography>
+          );
+        case 'string_event': {
+          const subject = data?.address_name || data?.address;
+
+          if (kind === 'TokenCreate') {
+            const tokenId =
+              data?.token_event?.token?.symbol || data?.token_id || data?.string_event?.string_value || '';
+            return (
+              <Typography gutterBottom>
+                {subject && (
+                  <Link
+                    href={routes['/address'](echoActiveId as Locales, { id: `${data?.address}` })}
+                    sx={{ display: 'inline-block' }}
+                  >
+                {subject}
+              </Link>
+            )}{' '}
+            <Typography component="span" variant="body1">
+              created token{' '}
+            </Typography>
+            {tokenId && (
+              <Link
+                href={routes['/token'](echoActiveId as Locales, { id: `${tokenId}` })}
+                sx={{ display: 'inline-block' }}
+              >
+                {tokenId}
+              </Link>
+            )}
+          </Typography>
+        );
+      }
+
+          const label =
+            kind === 'PlatformCreate'
+              ? 'created platform'
+              : kind === 'ContractDeploy'
+              ? 'deployed contract'
+              : kind === 'OrganizationCreate'
+              ? 'created organization'
+              : kind === 'ChainCreate'
+              ? 'created chain'
+              : 'value';
+
+          return (
+            <Typography gutterBottom>
+              {subject && (
+                <Link
+                  href={routes['/address'](echoActiveId as Locales, { id: `${data?.address}` })}
+                  sx={{ display: 'inline-block' }}
+                >
+                  {subject}
+                </Link>
+              )}{' '}
+              <Typography component="span" variant="body2">
+                {label}
+              </Typography>
+              {data?.string_event?.string_value && (
+                <Typography component="span" variant="body2">
+                  {' '}
+                  {data?.string_event?.string_value}
+                </Typography>
+              )}
+            </Typography>
+          );
+        }
         case 'sale_event':
-          return null;
+          return (
+            <Typography gutterBottom>
+              {kind}:{' '}
+              <Typography component="span" variant="body2">
+                {data?.sale_event?.sale_event_kind || ''}
+              </Typography>
+              {data?.sale_event?.hash && (
+                <Typography component="span" variant="body2">
+                  {' '}
+                  {data?.sale_event?.hash}
+                </Typography>
+              )}
+            </Typography>
+          );
         case 'organization_event':
-          return null;
+          return (
+            <Typography gutterBottom>
+              {kind}:{' '}
+              {data?.organization_event?.organization?.name && (
+                <Typography component="span" variant="body2">
+                  {data?.organization_event?.organization?.name}
+                </Typography>
+              )}{' '}
+              {data?.organization_event?.address?.address && (
+                <Link
+                  href={routes['/address'](echoActiveId as Locales, {
+                    id: `${data?.organization_event?.address?.address}`,
+                  })}
+                  sx={{ display: 'inline-block' }}
+                >
+                  {data?.organization_event?.address?.address}
+                </Link>
+              )}
+            </Typography>
+          );
         case 'market_event':
-          return null;
+          return (
+            <Typography gutterBottom>
+              {kind}:{' '}
+              {data?.market_event?.market_event_kind && (
+                <Typography component="span" variant="body2">
+                  {data?.market_event?.market_event_kind}{' '}
+                </Typography>
+              )}
+              {(data?.market_event?.base_token?.symbol ||
+                data?.market_event?.quote_token?.symbol) && (
+                <Typography component="span" variant="body2">
+                  {data?.market_event?.base_token?.symbol || ''}/
+                  {data?.market_event?.quote_token?.symbol || ''}
+                </Typography>
+              )}{' '}
+              {data?.market_event?.price && (
+                <Typography component="span" variant="body2">
+                  {data?.market_event?.price}
+                  {data?.market_event?.quote_token?.symbol
+                    ? ` ${data?.market_event?.quote_token?.symbol}`
+                    : ''}
+                </Typography>
+              )}
+            </Typography>
+          );
         case 'infusion_event':
-          return null;
+          return (
+            <Typography gutterBottom>
+              {kind}:{' '}
+              {data?.infusion_event?.infused_value && (
+                <Typography component="span" variant="body2">
+                  {data?.infusion_event?.infused_value}{' '}
+                  {data?.infusion_event?.infused_token?.symbol}
+                </Typography>
+              )}{' '}
+              {data?.infusion_event?.base_token?.symbol && (
+                <Typography component="span" variant="body2">
+                  into {data?.infusion_event?.base_token?.symbol}
+                </Typography>
+              )}
+              {data?.infusion_event?.token_id && (
+                <Typography component="span" variant="body2">
+                  {' '}
+                  (#{data?.infusion_event?.token_id})
+                </Typography>
+              )}
+            </Typography>
+          );
         case 'hash_event':
-          return null;
+          return (
+            <Typography gutterBottom>
+              {kind}:{' '}
+              <Typography component="span" variant="body2">
+                {data?.hash_event?.hash}
+              </Typography>
+            </Typography>
+          );
         case 'gas_event':
-          switch (kind) {
-            // case 'GasEscrow':
-            //   return (
-            //     <Typography gutterBottom>
-            //       <Link
-            //         href={routes['/address'](echoActiveId as Locales, {
-            //           id: `${data?.address}`,
-            //         })}
-            //         sx={{ display: 'inline-block' }}
-            //       >
-            //         {data?.address_name || data?.address}
-            //       </Link>{' '}
-            //       {echo('desc-escrowed')}{' '}
-            //       <Link
-            //         href={routes['/token'](echoActiveId as Locales, {
-            //           id: `SOUL`,
-            //         })}
-            //         sx={{ display: 'inline-block' }}
-            //       >{`${data?.gas_event?.fee} SOUL`}</Link>
-            //     </Typography>
-            //   );
-            // case 'GasPayment':
-            //   return (
-            //     <Typography gutterBottom>
-            //       <Link
-            //         href={routes['/address'](echoActiveId as Locales, {
-            //           id: `${data?.address}`,
-            //         })}
-            //         sx={{ display: 'inline-block' }}
-            //       >
-            //         {data?.address_name || data?.address}
-            //       </Link>{' '}
-            //       {echo('desc-paid')}{' '}
-            //       <Link
-            //         href={routes['/token'](echoActiveId as Locales, {
-            //           id: `KCAL`,
-            //         })}
-            //         sx={{ display: 'inline-block' }}
-            //       >{`${data?.gas_event?.fee} KCAL`}</Link>
-            //     </Typography>
-            //   );
-            default:
-              return null;
-          }
+          return (
+            <Typography gutterBottom>
+              {kind}:{' '}
+              {data?.gas_event?.address?.address && (
+                <Link
+                  href={routes['/address'](echoActiveId as Locales, {
+                    id: `${data?.gas_event?.address?.address}`,
+                  })}
+                  sx={{ display: 'inline-block' }}
+                >
+                  {data?.gas_event?.address?.address}
+                </Link>
+              )}
+              {data?.gas_event?.address?.address ? ' ' : null}
+              {data?.gas_event?.fee && (
+                <Typography component="span" variant="body2">
+                  paid {data?.gas_event?.fee} KCAL
+                </Typography>
+              )}
+              {!data?.gas_event?.fee && data?.gas_event?.amount && (
+                <Typography component="span" variant="body2">
+                  paid {data?.gas_event?.amount} KCAL
+                </Typography>
+              )}
+            </Typography>
+          );
         case 'chain_event':
-          return null;
+          return (
+            <Typography gutterBottom>
+              {kind}:{' '}
+              {data?.chain_event?.name && (
+                <Typography component="span" variant="body2">
+                  {data?.chain_event?.name}
+                </Typography>
+              )}{' '}
+              {data?.chain_event?.value && (
+                <Typography component="span" variant="body2">
+                  {data?.chain_event?.value}
+                </Typography>
+              )}{' '}
+              {data?.chain_event?.chain?.chain_name && (
+                <Typography component="span" variant="body2">
+                  ({data?.chain_event?.chain?.chain_name})
+                </Typography>
+              )}
+            </Typography>
+          );
         case 'address_event':
-          return null;
+          return (
+            <Typography gutterBottom>
+              {kind}:{' '}
+              {data?.address_event?.address?.address && (
+                <Link
+                  href={routes['/address'](echoActiveId as Locales, {
+                    id: `${data?.address_event?.address?.address}`,
+                  })}
+                  sx={{ display: 'inline-block' }}
+                >
+                  {data?.address_event?.address?.address}
+                </Link>
+              )}
+            </Typography>
+          );
         case 'token_event':
           switch (kind) {
             case 'TokenCreate':
-              if (data?.token_event) {
-                return (
-                  <Typography gutterBottom>
-                    <Link
-                      href={routes['/address'](echoActiveId as Locales, {
-                        id: `${data?.address}`,
-                      })}
-                      sx={{ display: 'inline-block' }}
-                    >
-                      {data?.address_name || data?.address}
-                    </Link>{' '}
-                    {echo('desc-created')}{' '}
-                    <Link
-                      href={routes['/token'](echoActiveId as Locales, {
-                        id: `${data?.token_event?.token?.symbol}`,
-                      })}
-                      sx={{ display: 'inline-block' }}
-                    >{`${data?.token_event?.value} ${data?.token_event?.token?.symbol}`}</Link>
-                  </Typography>
-                );
-              }
-              if (data?.nft_metadata) {
-                return (
-                  <Typography gutterBottom>
-                    <Link
-                      href={routes['/address'](echoActiveId as Locales, {
-                        id: `${data?.address}`,
-                      })}
-                      sx={{ display: 'inline-block' }}
-                    >
-                      {data?.address_name || data?.address}
-                    </Link>{' '}
-                    {echo('desc-created')}{' '}
-                    <Link
-                      href={routes['/nft'](echoActiveId as Locales, {
-                        id: `${data?.token_id}`,
-                      })}
-                      sx={{ display: 'inline-block' }}
-                    >{`${data?.token_id}`}</Link>
-                  </Typography>
-                );
-              }
-              return null;
+              return (
+                <Typography gutterBottom>
+                  <Link
+                    href={routes['/address'](echoActiveId as Locales, {
+                      id: `${data?.address}`,
+                    })}
+                    sx={{ display: 'inline-block' }}
+                  >
+                    {data?.address_name || data?.address}
+                  </Link>{' '}
+                  created token{' '}
+                  <Link
+                    href={routes['/token'](echoActiveId as Locales, {
+                      id: `${data?.token_event?.token?.symbol || data?.token_id}`,
+                    })}
+                    sx={{ display: 'inline-block' }}
+                  >
+                    {data?.token_event?.token?.symbol || data?.token_id || ''}
+                  </Link>
+                </Typography>
+              );
             case 'TokenMint':
               if (data?.token_event) {
                 return (

@@ -595,7 +595,7 @@ export const EventType = ({ data }: EventTypeProps) => {
                     </Button>
                   </Link>
                 </Grid>
-                <Grid item md={8}>
+                <Grid item md={10}>
                   {data?.address_event?.address && (
                     <DetailsText
                       label={echo('address')}

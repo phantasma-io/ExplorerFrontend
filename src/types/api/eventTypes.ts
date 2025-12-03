@@ -46,6 +46,7 @@ export type InfusionEvent = {
   base_token?: Token;
   infused_token?: Token;
   infused_value?: string;
+  infused_value_raw?: string;
 };
 
 export type MarketEvent = {
@@ -75,12 +76,14 @@ export type StringEvent = {
 export type TokenEvent = {
   token?: Token;
   value?: string;
+  value_raw?: string;
   chain_name?: string;
 };
 
 export type TransactionSettleEvent = {
   hash?: string;
   platform?: Platform;
+  chain?: string;
 };
 
 export type UnknownEvent = {
