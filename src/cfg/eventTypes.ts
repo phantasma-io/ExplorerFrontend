@@ -5,7 +5,7 @@ export const eventTypeMap: EventTypeMap = {
   AddressRegister: 'string_event',
   AddressUnregister: null,
   ChainSwap: 'transaction_settle_event',
-  ContractDeploy: 'string_event',
+  ContractDeploy: 'unknown_event',
   ContractUpgrade: 'string_event',
   Crowdsale: 'sale_event',
   CrownRewards: 'token_event',
