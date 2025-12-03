@@ -312,6 +312,95 @@ export const EventLine = ({ data }: EventLineProps) => {
               )}
             </Typography>
           );
+        case 'token_create_event': {
+          const token = data?.token_create_event?.token || data?.contract;
+          const ownerAddress = data?.address;
+          const ownerLabel = data?.address_name || ownerAddress;
+          const limits = [];
+          if (data?.token_create_event?.max_supply) limits.push(`max supply ${data.token_create_event.max_supply}`);
+          if (data?.token_create_event?.decimals) limits.push(`${data.token_create_event.decimals} decimals`);
+
+          return (
+            <Typography gutterBottom>
+              {ownerAddress && (
+                <Link
+                  href={routes['/address'](echoActiveId as Locales, { id: `${ownerAddress}` })}
+                  sx={{ display: 'inline-block' }}
+                >
+                  {ownerLabel}
+                </Link>
+              )}{' '}
+              <Typography component="span" variant="body2">
+                created token
+              </Typography>{' '}
+              {token?.symbol && (
+                <Link
+                  href={routes['/token'](echoActiveId as Locales, { id: `${token?.symbol}` })}
+                  sx={{ display: 'inline-block' }}
+                >
+                  {token?.symbol}
+                </Link>
+              )}
+              {limits.length > 0 && (
+                <Typography component="span" variant="body2">
+                  {' '}
+                  ({limits.join(', ')})
+                </Typography>
+              )}
+            </Typography>
+          );
+        }
+        case 'token_series_event': {
+          const series = data?.token_series_event;
+          const ownerAddress = series?.owner?.address || data?.address;
+          const ownerLabel = series?.owner?.address_name || data?.address_name || ownerAddress;
+          const tokenSymbol = series?.token?.symbol || data?.contract?.symbol;
+          const seriesId = series?.series_id || data?.token_id;
+          const limits = [];
+          if (series?.max_supply) limits.push(`max supply ${series.max_supply}`);
+          if (series?.max_mint) limits.push(`max mint ${series.max_mint}`);
+
+          return (
+            <Typography gutterBottom>
+              {ownerAddress && (
+                <Link
+                  href={routes['/address'](echoActiveId as Locales, { id: `${ownerAddress}` })}
+                  sx={{ display: 'inline-block' }}
+                >
+                  {ownerLabel}
+                </Link>
+              )}{' '}
+              <Typography component="span" variant="body2">
+                created series
+              </Typography>{' '}
+              {seriesId && (
+                <Typography component="span" variant="body2">
+                  #{seriesId}
+                </Typography>
+              )}
+              {tokenSymbol && (
+                <>
+                  {' '}
+                  <Typography component="span" variant="body2">
+                    for
+                  </Typography>{' '}
+                  <Link
+                    href={routes['/token'](echoActiveId as Locales, { id: `${tokenSymbol}` })}
+                    sx={{ display: 'inline-block' }}
+                  >
+                    {tokenSymbol}
+                  </Link>
+                </>
+              )}
+              {limits.length > 0 && (
+                <Typography component="span" variant="body2">
+                  {' '}
+                  ({limits.join(', ')})
+                </Typography>
+              )}
+            </Typography>
+          );
+        }
         case 'token_event':
           switch (kind) {
             case 'TokenCreate':

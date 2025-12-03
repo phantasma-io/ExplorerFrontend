@@ -247,6 +247,134 @@ export const EventType = ({ data }: EventTypeProps) => {
               </Grid>
             </Box>
           );
+        case 'token_create_event':
+          return (
+            <Box my={1}>
+              <Grid
+                container
+                spacing={1}
+                justifyContent="flex-start"
+                justifyItems="flex-start"
+                alignContent="center"
+                alignItems="center"
+              >
+                <Grid item md={2}>
+                  <Link
+                    href={routes['/event'](echoActiveId as Locales, {
+                      id: `${data?.event_id}`,
+                    })}
+                    sx={{ textDecoration: 'none' }}
+                  >
+                    <Button fullWidth color="success" variant="contained" size="small">
+                      {kind}
+                    </Button>
+                  </Link>
+                </Grid>
+                <Grid item md={8}>
+                  {data?.token_create_event?.token?.symbol && (
+                    <DetailsText
+                      label="token"
+                      value={data?.token_create_event?.token?.symbol}
+                    />
+                  )}
+                  {data?.token_create_event?.max_supply && (
+                    <DetailsText
+                      label="max supply"
+                      value={data?.token_create_event?.max_supply}
+                    />
+                  )}
+                  {data?.token_create_event?.decimals && (
+                    <DetailsText
+                      label="decimals"
+                      value={data?.token_create_event?.decimals}
+                    />
+                  )}
+                  {data?.token_create_event?.is_non_fungible !== undefined && (
+                    <DetailsText
+                      label="non-fungible"
+                      value={`${data?.token_create_event?.is_non_fungible}`}
+                    />
+                  )}
+                  {data?.token_create_event?.carbon_token_id && (
+                    <DetailsText
+                      label="carbon token"
+                      value={data?.token_create_event?.carbon_token_id}
+                    />
+                  )}
+                </Grid>
+              </Grid>
+            </Box>
+          );
+        case 'token_series_event':
+          return (
+            <Box my={1}>
+              <Grid
+                container
+                spacing={1}
+                justifyContent="flex-start"
+                justifyItems="flex-start"
+                alignContent="center"
+                alignItems="center"
+              >
+                <Grid item md={2}>
+                  <Link
+                    href={routes['/event'](echoActiveId as Locales, {
+                      id: `${data?.event_id}`,
+                    })}
+                    sx={{ textDecoration: 'none' }}
+                  >
+                    <Button fullWidth color="success" variant="contained" size="small">
+                      {kind}
+                    </Button>
+                  </Link>
+                </Grid>
+                <Grid item md={8}>
+                  {data?.token_series_event?.series_id && (
+                    <DetailsText
+                      label="series"
+                      value={data?.token_series_event?.series_id}
+                    />
+                  )}
+                  {data?.token_series_event?.token?.symbol && (
+                    <DetailsText
+                      label="token"
+                      value={data?.token_series_event?.token?.symbol}
+                    />
+                  )}
+                  {data?.token_series_event?.owner?.address && (
+                    <DetailsText
+                      label="owner"
+                      value={data?.token_series_event?.owner?.address}
+                    />
+                  )}
+                  {data?.token_series_event?.max_supply && (
+                    <DetailsText
+                      label="max supply"
+                      value={data?.token_series_event?.max_supply}
+                    />
+                  )}
+                  {data?.token_series_event?.max_mint && (
+                    <DetailsText
+                      label="max mint"
+                      value={data?.token_series_event?.max_mint}
+                    />
+                  )}
+                  {data?.token_series_event?.carbon_series_id && (
+                    <DetailsText
+                      label="carbon series"
+                      value={data?.token_series_event?.carbon_series_id}
+                    />
+                  )}
+                  {data?.token_series_event?.carbon_token_id && (
+                    <DetailsText
+                      label="carbon token"
+                      value={data?.token_series_event?.carbon_token_id}
+                    />
+                  )}
+                </Grid>
+              </Grid>
+            </Box>
+          );
         case 'market_event':
           return (
             <Box my={1}>

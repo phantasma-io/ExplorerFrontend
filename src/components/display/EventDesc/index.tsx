@@ -23,6 +23,7 @@ export const EventDesc = ({ data }: EventDescProps) => {
     const priority = (evt: EventResult) => {
       switch (evt.event_kind) {
         case 'TokenCreate':
+        case 'TokenSeriesCreate':
         case 'ContractDeploy':
         case 'PlatformCreate':
         case 'OrganizationCreate':

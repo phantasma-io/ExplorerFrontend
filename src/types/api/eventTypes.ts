@@ -16,7 +16,9 @@ export type EventTypes =
   | 'organization_event'
   | 'sale_event'
   | 'string_event'
+  | 'token_create_event'
   | 'token_event'
+  | 'token_series_event'
   | 'transaction_settle_event'
   | 'unknown_event';
 
@@ -80,6 +82,26 @@ export type TokenEvent = {
   chain_name?: string;
 };
 
+export type TokenCreateEvent = {
+  token?: Token;
+  max_supply?: string;
+  decimals?: string;
+  is_non_fungible?: boolean;
+  carbon_token_id?: string;
+  metadata?: Record<string, string>;
+};
+
+export type TokenSeriesEvent = {
+  token?: Token;
+  series_id?: string;
+  max_mint?: string;
+  max_supply?: string;
+  owner?: Address;
+  carbon_token_id?: string;
+  carbon_series_id?: string;
+  metadata?: Record<string, string>;
+};
+
 export type TransactionSettleEvent = {
   hash?: string;
   platform?: Platform;
@@ -105,7 +127,9 @@ export interface EventData {
   organization_event?: OrganizationEvent;
   sale_event?: SaleEvent;
   string_event?: StringEvent;
+  token_create_event?: TokenCreateEvent;
   token_event?: TokenEvent;
+  token_series_event?: TokenSeriesEvent;
   transaction_settle_event?: TransactionSettleEvent;
   unknown_event?: UnknownEvent;
 }

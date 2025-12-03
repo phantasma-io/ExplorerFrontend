@@ -37,6 +37,7 @@ export type EventKinds =
   | 'TokenBurn'
   | 'TokenClaim'
   | 'TokenCreate'
+  | 'TokenSeriesCreate'
   | 'TokenMint'
   | 'TokenReceive'
   | 'TokenSend'
