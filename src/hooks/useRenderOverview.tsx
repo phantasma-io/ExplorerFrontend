@@ -10,7 +10,12 @@ export const useRenderOverview = () => {
   const renderDetails = useRenderDetails();
 
   const renderOverview = useCallback(
-    (cols: TableDisplayCol[], rows: TableDisplayRow[], data?: any) => {
+    (
+      cols: TableDisplayCol[],
+      rows: TableDisplayRow[],
+      data?: any,
+      hashActions?: React.ReactNode,
+    ) => {
       return (
         <Box>
           <Grid spacing={1} container>
@@ -24,20 +29,44 @@ export const useRenderOverview = () => {
                   xs={12}
                   alignItems="center"
                 >
-                  <Grid item container>
-                    {renderDetails(
-                      col.type,
-                      rows[0][i],
-                      col.label,
-                      !col.linkOptions?.primary ? col.linkOptions : undefined,
-                      false,
-                      col.append,
-                    )}
-                  </Grid>
+                  {col.id === 'hash' && hashActions ? (
+                    <Grid
+                      container
+                      item
+                      spacing={1}
+                      alignItems="center"
+                      wrap="nowrap"
+                    >
+                      <Grid item xs>
+                        {renderDetails(
+                          col.type,
+                          rows[0][i],
+                          col.label,
+                          !col.linkOptions?.primary
+                            ? col.linkOptions
+                            : undefined,
+                          false,
+                          col.append,
+                        )}
+                      </Grid>
+                      <Grid item>{hashActions}</Grid>
+                    </Grid>
+                  ) : (
+                    <Grid item container>
+                      {renderDetails(
+                        col.type,
+                        rows[0][i],
+                        col.label,
+                        !col.linkOptions?.primary ? col.linkOptions : undefined,
+                        false,
+                        col.append,
+                      )}
+                    </Grid>
+                  )}
                 </Grid>
               ) : null,
             )}
-            {data?.addresses[0]?.balances && (
+            {data?.addresses?.[0]?.balances && (
               <Grid item xs={12}>
                 <Box>
                   <AddressBalances data={data} />
