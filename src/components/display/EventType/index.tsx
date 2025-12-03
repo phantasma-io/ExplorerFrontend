@@ -625,6 +625,133 @@ export const EventType = ({ data }: EventTypeProps) => {
               </Grid>
             </Box>
           );
+        case 'governance_gas_config_event': {
+          const fields =
+            [
+              { label: 'version', value: data?.governance_gas_config_event?.version },
+              { label: 'fee multiplier', value: data?.governance_gas_config_event?.fee_multiplier },
+              { label: 'fee shift', value: data?.governance_gas_config_event?.fee_shift },
+              { label: 'gas token id', value: data?.governance_gas_config_event?.gas_token_id },
+              { label: 'data token id', value: data?.governance_gas_config_event?.data_token_id },
+              { label: 'minimum gas offer', value: data?.governance_gas_config_event?.minimum_gas_offer },
+              { label: 'gas fee transfer', value: data?.governance_gas_config_event?.gas_fee_transfer },
+              { label: 'gas fee query', value: data?.governance_gas_config_event?.gas_fee_query },
+              { label: 'gas fee per byte', value: data?.governance_gas_config_event?.gas_fee_per_byte },
+              {
+                label: 'gas fee create token (base)',
+                value: data?.governance_gas_config_event?.gas_fee_create_token_base,
+              },
+              {
+                label: 'gas fee create token (symbol)',
+                value: data?.governance_gas_config_event?.gas_fee_create_token_symbol,
+              },
+              {
+                label: 'gas fee create token (series)',
+                value: data?.governance_gas_config_event?.gas_fee_create_token_series,
+              },
+              {
+                label: 'gas fee register name',
+                value: data?.governance_gas_config_event?.gas_fee_register_name,
+              },
+              { label: 'max structure size', value: data?.governance_gas_config_event?.max_structure_size },
+              { label: 'max name length', value: data?.governance_gas_config_event?.max_name_length },
+              {
+                label: 'max token symbol length',
+                value: data?.governance_gas_config_event?.max_token_symbol_length,
+              },
+              { label: 'data escrow per row', value: data?.governance_gas_config_event?.data_escrow_per_row },
+              { label: 'gas burn ratio (mul)', value: data?.governance_gas_config_event?.gas_burn_ratio_mul },
+              { label: 'gas burn ratio (shift)', value: data?.governance_gas_config_event?.gas_burn_ratio_shift },
+            ].filter(
+              (item) =>
+                item.value !== undefined &&
+                item.value !== null &&
+                `${item.value}` !== '',
+            );
+
+          return (
+            <Box my={1}>
+              <Grid container spacing={1} alignContent="center" alignItems="center">
+                <Grid item md={2}>
+                  <Link
+                    href={routes['/event'](echoActiveId as Locales, {
+                      id: `${data?.event_id}`,
+                    })}
+                    sx={{ textDecoration: 'none' }}
+                  >
+                    <Button
+                      fullWidth
+                      color="info"
+                      variant="contained"
+                      size="small"
+                    >
+                      {kind}
+                    </Button>
+                  </Link>
+                </Grid>
+                <Grid item md={10}>
+                  <Grid container spacing={1}>
+                    {fields.map((item) => (
+                      <Grid item md={3} sm={6} xs={12} key={item.label}>
+                        <DetailsText label={item.label} value={`${item.value}`} />
+                      </Grid>
+                    ))}
+                  </Grid>
+                </Grid>
+              </Grid>
+            </Box>
+          );
+        }
+        case 'governance_chain_config_event': {
+          const fields =
+            [
+              { label: 'version', value: data?.governance_chain_config_event?.version },
+              { label: 'allowed tx types', value: data?.governance_chain_config_event?.allowed_tx_types },
+              { label: 'expiry window', value: data?.governance_chain_config_event?.expiry_window },
+              { label: 'block rate target', value: data?.governance_chain_config_event?.block_rate_target },
+              { label: 'reserved 1', value: data?.governance_chain_config_event?.reserved_1 },
+              { label: 'reserved 2', value: data?.governance_chain_config_event?.reserved_2 },
+              { label: 'reserved 3', value: data?.governance_chain_config_event?.reserved_3 },
+            ].filter(
+              (item) =>
+                item.value !== undefined &&
+                item.value !== null &&
+                `${item.value}` !== '',
+            );
+
+          return (
+            <Box my={1}>
+              <Grid container spacing={1} alignContent="center" alignItems="center">
+                <Grid item md={2}>
+                  <Link
+                    href={routes['/event'](echoActiveId as Locales, {
+                      id: `${data?.event_id}`,
+                    })}
+                    sx={{ textDecoration: 'none' }}
+                  >
+                    <Button
+                      fullWidth
+                      color="info"
+                      variant="contained"
+                      size="small"
+                    >
+                      {kind}
+                    </Button>
+                  </Link>
+                </Grid>
+                <Grid item md={10}>
+                  <Grid container spacing={1}>
+                    {fields.map((item) => (
+                      <Grid item md={3} sm={6} xs={12} key={item.label}>
+                        <DetailsText label={item.label} value={`${item.value}`} />
+                      </Grid>
+                    ))}
+                  </Grid>
+                </Grid>
+              </Grid>
+            </Box>
+          );
+        }
         case 'chain_event':
           return (
             <Box my={1}>

@@ -275,6 +275,49 @@ export const EventLine = ({ data }: EventLineProps) => {
               )}
             </Typography>
           );
+        case 'governance_gas_config_event': {
+          const cfg = data?.governance_gas_config_event;
+          const summaryParts = [];
+          if (cfg?.fee_multiplier) summaryParts.push(`multiplier ${cfg.fee_multiplier}`);
+          if (cfg?.gas_fee_transfer) summaryParts.push(`transfer ${cfg.gas_fee_transfer}`);
+          if (cfg?.gas_fee_query) summaryParts.push(`query ${cfg.gas_fee_query}`);
+          if (cfg?.gas_fee_per_byte) summaryParts.push(`per byte ${cfg.gas_fee_per_byte}`);
+          if (cfg?.minimum_gas_offer) summaryParts.push(`min offer ${cfg.minimum_gas_offer}`);
+
+          if (summaryParts.length === 0 && cfg?.version) summaryParts.push(`version ${cfg.version}`);
+          if (summaryParts.length === 0) return fallbackLine;
+
+          const prefix = 'Gas config updated:';
+
+          return (
+            <Typography gutterBottom>
+              {prefix}{' '}
+              <Typography component="span" variant="body2">
+                {summaryParts.join(', ')}
+              </Typography>
+            </Typography>
+          );
+        }
+        case 'governance_chain_config_event': {
+          const cfg = data?.governance_chain_config_event;
+          const summaryParts = [];
+          if (cfg?.allowed_tx_types) summaryParts.push(`allowed ${cfg.allowed_tx_types}`);
+          if (cfg?.expiry_window) summaryParts.push(`expiry window ${cfg.expiry_window}`);
+          if (cfg?.block_rate_target) summaryParts.push(`block rate target ${cfg.block_rate_target}`);
+          if (summaryParts.length === 0 && cfg?.version) summaryParts.push(`version ${cfg.version}`);
+          if (summaryParts.length === 0) return fallbackLine;
+
+          const prefix = 'Chain config updated:';
+
+          return (
+            <Typography gutterBottom>
+              {prefix}{' '}
+              <Typography component="span" variant="body2">
+                {summaryParts.join(', ')}
+              </Typography>
+            </Typography>
+          );
+        }
         case 'chain_event':
           return (
             <Typography gutterBottom>
