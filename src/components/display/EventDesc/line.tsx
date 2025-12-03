@@ -38,6 +38,33 @@ export const EventLine = ({ data }: EventLineProps) => {
     return undefined;
   }, [kind]);
 
+  const rawPayload = useMemo(() => {
+    return data?.unknown_event?.payload_json ?? data?.payload_json ?? '';
+  }, [data]);
+
+  const rawData = useMemo(() => {
+    return data?.unknown_event?.raw_data ?? data?.raw_data ?? '';
+  }, [data]);
+
+  const fallbackLine = useMemo(() => {
+    const snippetSource = rawPayload || rawData || '';
+    const snippet =
+      snippetSource.length > 120
+        ? `${snippetSource.slice(0, 120)}…`
+        : snippetSource;
+
+    return (
+      <Typography gutterBottom>
+        {kind || 'Unknown'}{' '}
+        {snippet && (
+          <Typography component="span" variant="body2">
+            {snippet}
+          </Typography>
+        )}
+      </Typography>
+    );
+  }, [kind, rawData, rawPayload]);
+
   const content = useMemo(() => {
     if (kind && type) {
       switch (type) {
@@ -418,11 +445,11 @@ export const EventLine = ({ data }: EventLineProps) => {
               return null;
           }
         default:
-          return null;
+          return fallbackLine;
       }
     }
-    return null;
-  }, [type, kind, data, echo, echoActiveId]);
+    return fallbackLine;
+  }, [type, kind, data, echo, echoActiveId, fallbackLine]);
 
   return <Box>{content}</Box>;
 };

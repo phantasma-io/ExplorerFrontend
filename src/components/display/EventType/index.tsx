@@ -5,7 +5,7 @@ import { useEcho } from '@ricardojrmcom/echo';
 import { EventResult, EventTypes, EventKinds } from 'types/api';
 import { eventTypeMap } from 'cfg/eventTypes';
 import { DetailsNumber, DetailsText } from 'components/details';
-import { Link } from 'components/display';
+import { Link, Text } from 'components/display';
 import { routes } from 'cfg';
 import { Locales } from 'types/locales';
 
@@ -38,6 +38,74 @@ export const EventType = ({ data }: EventTypeProps) => {
     }
     return undefined;
   }, [kind]);
+
+  const rawPayload = useMemo(() => {
+    return (
+      data?.unknown_event?.payload_json ??
+      data?.payload_json ??
+      data?.string_event?.string_value ??
+      ''
+    );
+  }, [data]);
+
+  const rawData = useMemo(() => {
+    return data?.unknown_event?.raw_data ?? data?.raw_data ?? '';
+  }, [data]);
+
+  const renderUnknown = useMemo(() => {
+    if (!data || (!rawPayload && !rawData)) return null;
+
+    const formatPayload = (value?: string) => {
+      if (!value) return '';
+      try {
+        return JSON.stringify(JSON.parse(value), null, 2);
+      } catch {
+        return value;
+      }
+    };
+
+    const payloadFormatted = formatPayload(rawPayload);
+    const rawDataFormatted = rawData && rawData !== rawPayload ? rawData : '';
+
+    return (
+      <Box my={1}>
+        <Grid container spacing={1} alignItems="center">
+          <Grid item md={2}>
+            <Link
+              href={routes['/event'](echoActiveId as Locales, {
+                id: `${data?.event_id}`,
+              })}
+              sx={{ textDecoration: 'none' }}
+            >
+              <Button fullWidth color="warning" variant="contained" size="small">
+                {data?.event_kind || 'Unknown'}
+              </Button>
+            </Link>
+          </Grid>
+          <Grid item md={10}>
+            {payloadFormatted && (
+              <Text
+                label={echo('payload')}
+                value={payloadFormatted}
+                variant="body2"
+                monospace
+                wordBreak="break-word"
+              />
+            )}
+            {!payloadFormatted && rawDataFormatted && (
+              <Text
+                label={echo('raw-data')}
+                value={rawDataFormatted}
+                variant="body2"
+                monospace
+                wordBreak="break-word"
+              />
+            )}
+          </Grid>
+        </Grid>
+      </Box>
+    );
+  }, [data, echo, echoActiveId, rawData, rawPayload]);
 
   const content = useMemo(() => {
     if (kind && type) {
@@ -612,13 +680,15 @@ export const EventType = ({ data }: EventTypeProps) => {
               </Box>
             );
           }
-          return null;
+          return renderUnknown;
+        case 'unknown_event':
+          return renderUnknown;
         default:
-          return null;
+          return renderUnknown;
       }
     }
-    return null;
-  }, [type, kind, data, echo, echoActiveId]);
+    return renderUnknown;
+  }, [type, kind, data, echo, echoActiveId, renderUnknown]);
 
   return <Box>{content}</Box>;
 };

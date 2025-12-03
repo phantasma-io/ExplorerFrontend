@@ -17,6 +17,8 @@ export interface EventResult extends EventData {
   series?: Series;
   token_id?: string;
   transaction_hash?: string;
+  payload_json?: string;
+  raw_data?: string;
 }
 
 export interface EventParams extends ListParams {

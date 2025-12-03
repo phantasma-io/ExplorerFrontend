@@ -17,7 +17,8 @@ export type EventTypes =
   | 'sale_event'
   | 'string_event'
   | 'token_event'
-  | 'transaction_settle_event';
+  | 'transaction_settle_event'
+  | 'unknown_event';
 
 export type EventTypeMap = {
   [key in EventKinds]: EventTypes | null;
@@ -82,6 +83,11 @@ export type TransactionSettleEvent = {
   platform?: Platform;
 };
 
+export type UnknownEvent = {
+  payload_json?: string;
+  raw_data?: string;
+};
+
 export type AddressEvent = {
   address: Address;
 };
@@ -98,4 +104,5 @@ export interface EventData {
   string_event?: StringEvent;
   token_event?: TokenEvent;
   transaction_settle_event?: TransactionSettleEvent;
+  unknown_event?: UnknownEvent;
 }
