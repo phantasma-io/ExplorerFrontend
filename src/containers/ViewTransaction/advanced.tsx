@@ -28,6 +28,11 @@ export const TransactionAdvanced = ({
 
   const rows = useMemo(() => {
     if (data) {
+      const sanitizeExpiration = (expiration?: string) => {
+        if (!expiration || expiration === '0') return undefined;
+        return unixmsToDate(expiration);
+      };
+
       return data?.transactions?.map((item) => [
         item?.gas_limit ? `${item.gas_limit} KCAL` : 'unlimited',
         item?.gas_price,
@@ -35,7 +40,7 @@ export const TransactionAdvanced = ({
         item?.gas_payer?.address,
         item?.sender?.address,
         item?.date ? unixmsToDate(item.date) : undefined,
-        item?.expiration ? unixmsToDate(item.expiration) : undefined,
+        sanitizeExpiration(item?.expiration),
         item?.fee,
       ]) as TableDisplayRow[];
     }
