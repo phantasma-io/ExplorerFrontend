@@ -1,13 +1,12 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState, useCallback } from 'react';
-import { useEcho } from '@ricardojrmcom/echo';
 import { Box, Button, Grid, Typography, TextField } from '@mui/material';
 import { Dialog } from 'components/layout';
 import { TransactionParams } from 'types/api';
 import FilterAltIcon from '@mui/icons-material/FilterAlt';
 import CheckIcon from '@mui/icons-material/Check';
 import ClearAllIcon from '@mui/icons-material/ClearAll';
-import { boolean } from 'yup';
+import { useI18n } from 'hooks';
 
 export interface TransactionsListFiltersProps extends TransactionParams {
   addressSet: React.Dispatch<React.SetStateAction<string | undefined>>;
@@ -19,7 +18,7 @@ export const TransactionsListFilters = ({
   addressSet,
   address_disable,
 }: TransactionsListFiltersProps) => {
-  const { echo } = useEcho();
+  const { t } = useI18n();
 
   const [isOpen, isOpenSet] = useState<boolean>(false);
   const handleOpen = useCallback(() => {
@@ -54,12 +53,12 @@ export const TransactionsListFilters = ({
         size="small"
         onClick={handleOpen}
       >
-        {echo('filterData')}
+        {t('filterData')}
       </Button>
       <Dialog
         handleClose={handleClose}
         isOpen={isOpen}
-        title={echo('filter-transactions')}
+        title={t('filter-transactions')}
         actions={
           <Box textAlign="right">
             <Box display="inline-block" mr={1.5}>
@@ -69,7 +68,7 @@ export const TransactionsListFilters = ({
                 onClick={clearFields}
                 endIcon={<ClearAllIcon />}
               >
-                {echo('clear')}
+                {t('clear')}
               </Button>
             </Box>
             <Box display="inline-block">
@@ -79,7 +78,7 @@ export const TransactionsListFilters = ({
                 onClick={applyFields}
                 endIcon={<CheckIcon />}
               >
-                {echo('apply')}
+                {t('apply')}
               </Button>
             </Box>
           </Box>
@@ -97,7 +96,7 @@ export const TransactionsListFilters = ({
             {/* field */}
             <Grid item xs={12} container alignItems="center" spacing={1}>
               <Grid item xs={12} lg={2}>
-                <Typography fontWeight={600}>{`${echo(
+                <Typography fontWeight={600}>{`${t(
                   'addressExact',
                 )}:`}</Typography>
               </Grid>

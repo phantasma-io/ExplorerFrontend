@@ -1,15 +1,14 @@
 import React, { useState } from 'react';
-import { useEcho } from '@ricardojrmcom/echo';
 import { Box } from '@mui/material';
 import { endpoints } from 'cfg';
-import { useApi, useTable } from 'hooks';
+import { useApi, useI18n, useTable } from 'hooks';
 import { useNftData } from 'hooks/api';
 import { NftResults, NftParams } from 'types/api';
 import { Table } from 'components/table';
 import { NftsListFilters } from './filters';
 
 export const NftsList = () => {
-  const { echo } = useEcho();
+  const { t } = useI18n();
 
   const tableProps = useTable();
   const { limit, order_by, offset, with_total, order_direction } = tableProps;
@@ -41,12 +40,12 @@ export const NftsList = () => {
         rows={rows}
         total={total}
         dialogOptions={{
-          title: echo('details-nft'),
+          title: t('details-nft'),
         }}
         linkOptions={{
           route: '/nft',
           key: 'token_id',
-          title: echo('explore-nft'),
+          title: t('explore-nft'),
         }}
         {...tableProps}
         loading={loading}

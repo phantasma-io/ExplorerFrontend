@@ -1,16 +1,16 @@
 import React, { useState, useCallback } from 'react';
 import { Box, IconButton, Tooltip, Dialog, Paper } from '@mui/material';
-import { useFury } from '@ricardojrmcom/fury';
-import { useEcho } from '@ricardojrmcom/echo';
+import { useTheme } from '@mui/material/styles';
 import { SearchInput } from 'components/display';
 import SearchIcon from '@mui/icons-material/Search';
+import { useI18n } from 'hooks';
 
 /**
  * Search
  */
 export const Search = () => {
-  const { furyActive } = useFury();
-  const { echo } = useEcho();
+  const theme = useTheme();
+  const { t } = useI18n();
 
   const [openSearch, openSearchSet] = useState(false);
   const handleSearchOpen = useCallback(() => openSearchSet(true), []);
@@ -19,11 +19,11 @@ export const Search = () => {
   return (
     <Box>
       <Box display={{ xs: 'block', md: 'none' }}>
-        <Tooltip title={echo('tooltip-search')}>
+        <Tooltip title={t('tooltip-search')}>
           <IconButton size="small" onClick={handleSearchOpen}>
             <SearchIcon
               sx={{
-                fontSize: furyActive.typography.h5.fontSize,
+                fontSize: theme.typography.h5.fontSize,
                 color: '#fff',
               }}
             />

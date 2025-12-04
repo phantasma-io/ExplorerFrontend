@@ -1,8 +1,7 @@
 import React, { useMemo } from 'react';
 import { Box } from '@mui/material';
 import { useRouter } from 'next/router';
-import { useApi } from 'hooks';
-import { useEcho } from '@ricardojrmcom/echo';
+import { useApi, useI18n } from 'hooks';
 import { NavTabs, NavTabsRecord, Breadcrumbs } from 'components/layout';
 import { routes, endpoints } from 'cfg';
 import { AddressResults } from 'types/api';
@@ -18,7 +17,7 @@ export interface ViewAddressProps {
 }
 
 export const ViewAddress = ({ tabForce = 'overview' }: ViewAddressProps) => {
-  const { echo, echoActiveId } = useEcho();
+  const { t, locale } = useI18n();
 
   const { query } = useRouter();
 
@@ -35,32 +34,32 @@ export const ViewAddress = ({ tabForce = 'overview' }: ViewAddressProps) => {
     () => ({
       overview: {
         id: 'overview',
-        label: echo('tab-overview'),
-        href: routes['/address'](echoActiveId as Locales),
+        label: t('tab-overview'),
+        href: routes['/address'](locale as Locales),
         component: (
           <AddressOverview data={data} loading={loading} error={error} />
         ),
       },
       transactions: {
         id: 'transactions',
-        label: echo('tab-transactions'),
-        href: routes['/address'](echoActiveId as Locales),
+        label: t('tab-transactions'),
+        href: routes['/address'](locale as Locales),
         component: <AddressTransactions />,
       },
       events: {
         id: 'events',
-        label: echo('tab-events'),
-        href: routes['/address'](echoActiveId as Locales),
+        label: t('tab-events'),
+        href: routes['/address'](locale as Locales),
         component: <AddressEvents />,
       },
       raw: {
         id: 'raw',
-        label: echo('tab-raw'),
-        href: routes['/address'](echoActiveId as Locales),
+        label: t('tab-raw'),
+        href: routes['/address'](locale as Locales),
         component: <AddressRaw data={data} loading={loading} error={error} />,
       },
     }),
-    [echo, echoActiveId, data, error, loading],
+    [t, locale, data, error, loading],
   );
 
   return (

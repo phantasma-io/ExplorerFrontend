@@ -1,22 +1,17 @@
-import React, { useState, useCallback, useMemo } from 'react';
-import { nanoid } from 'nanoid';
+import React, { useState, useCallback } from 'react';
 import { Box, Grid, GridSpacing, IconButton, Tooltip } from '@mui/material';
-import { useFury } from '@ricardojrmcom/fury';
+import { useTheme } from '@mui/material/styles';
 import { Link } from 'components/display';
-import { useDarkMode, useRenderDetails } from 'hooks';
+import { useDarkMode, useRenderDetails, useI18n } from 'hooks';
 import { routes } from 'cfg';
 import { Locales } from 'types/locales';
 import { TableDisplayRow, TableDisplayCol } from 'types/table';
 import { DetailsValue } from 'types/components';
-import { useEcho } from '@ricardojrmcom/echo';
-import csvDownload from 'json-to-csv-export';
-import FileDownloadIcon from '@mui/icons-material/FileDownload';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
 export interface TableRowProps {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   raw: any;
-  tableId: string;
   index: number;
   row: TableDisplayRow;
   cols: TableDisplayCol[];
@@ -28,7 +23,6 @@ export interface TableRowProps {
 
 export const TableRow = ({
   raw,
-  tableId,
   index,
   cols,
   row,
@@ -37,8 +31,8 @@ export const TableRow = ({
   openDialog,
   linkOptions,
 }: TableRowProps) => {
-  const { echo, echoActiveId } = useEcho();
-  const { furyActive } = useFury();
+  const { locale } = useI18n();
+  const theme = useTheme();
   const { isDark } = useDarkMode();
   const renderDetails = useRenderDetails();
 
@@ -50,22 +44,23 @@ export const TableRow = ({
     }
   }, [hasClick, openDialog, row, index]);
 
-  const csvFilename = useMemo(() => `${tableId}-${nanoid()}.csv`, [tableId]);
-
   return (
     <Box
       py={0.81}
       onMouseEnter={() => isHoverSet(true)}
       onMouseLeave={() => isHoverSet(false)}
       style={{
-        backgroundColor:
-          !isDark && isHover ? '#e5e5e5' : furyActive.palette.background.paper,
+        backgroundColor: isHover
+          ? !isDark
+            ? theme.palette.action.hover
+            : theme.palette.background.paper
+          : theme.palette.background.paper,
         backgroundImage:
           isDark && isHover
             ? undefined
             : `linear-gradient(rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05))`,
         cursor: hasClick ? 'pointer' : 'default',
-        borderBottom: `1px solid ${furyActive.palette.divider}`,
+        borderBottom: `1px solid ${theme.palette.divider}`,
       }}
       onClick={shouldOpenDialog}
     >
@@ -102,7 +97,7 @@ export const TableRow = ({
               {linkOptions && (
                 <Grid item>
                   <Link
-                    href={routes[linkOptions.route](echoActiveId as Locales, {
+                    href={routes[linkOptions.route](locale as Locales, {
                       id: raw[linkOptions.key],
                     })}
                   >

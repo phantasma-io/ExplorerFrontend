@@ -1,7 +1,6 @@
 import React, { useMemo } from 'react';
-import { nanoid } from 'nanoid';
 import { Box, Grid } from '@mui/material';
-import { useFury } from '@ricardojrmcom/fury';
+import { useTheme } from '@mui/material/styles';
 import { TableDisplayProps } from 'types/table';
 import { useRenderDetails } from 'hooks';
 import { Loading, Empty, Error } from 'components/layout';
@@ -21,7 +20,7 @@ export const TableDisplayMobile = ({
   loading,
   error,
 }: TableDisplayMobileProps) => {
-  const { furyActive } = useFury();
+  const theme = useTheme();
   const renderDetails = useRenderDetails();
 
   const isSuccess = useMemo(() => !loading && !error, [loading, error]);
@@ -40,37 +39,40 @@ export const TableDisplayMobile = ({
     }
 
     if (isSuccess && rows) {
-      return rows.map((row) => (
-        <Box
-          key={nanoid()}
-          py={2}
-          sx={{ borderTop: `1px solid ${furyActive.palette.divider}` }}
-        >
-          <Grid spacing={spacing} container>
-            {cols.map((col, i) =>
-              row[i] ? (
-                <Grid
-                  container
-                  spacing={spacing}
-                  key={nanoid()}
-                  item
-                  xs={12}
-                  alignItems="center"
-                >
-                  <Grid item container>
-                    {renderDetails(
-                      col.type,
-                      row[i],
-                      col.label,
-                      col.linkOptions,
-                    )}
+      return rows.map((row) => {
+        const rowKey = `${row[0] ?? row.join('-') ?? 'row'}`;
+        return (
+          <Box
+            key={`row-${rowKey}`}
+            py={2}
+            sx={{ borderTop: `1px solid ${theme.palette.divider}` }}
+          >
+            <Grid spacing={spacing} container>
+              {cols.map((col, i) =>
+                row[i] ? (
+                  <Grid
+                    container
+                    spacing={spacing}
+                    key={`${col.id}-${rowKey}`}
+                    item
+                    xs={12}
+                    alignItems="center"
+                  >
+                    <Grid item container>
+                      {renderDetails(
+                        col.type,
+                        row[i],
+                        col.label,
+                        col.linkOptions,
+                      )}
+                    </Grid>
                   </Grid>
-                </Grid>
-              ) : null,
-            )}
-          </Grid>
-        </Box>
-      ));
+                ) : null,
+              )}
+            </Grid>
+          </Box>
+        );
+      });
     }
 
     return null;
@@ -82,7 +84,7 @@ export const TableDisplayMobile = ({
     rows,
     spacing,
     renderDetails,
-    furyActive,
+    theme,
   ]);
 
   return <Box sx={{ overflow: 'auto', height }}>{content}</Box>;

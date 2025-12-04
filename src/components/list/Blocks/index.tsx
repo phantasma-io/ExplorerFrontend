@@ -1,15 +1,14 @@
 import React, { useState } from 'react';
-import { useEcho } from '@ricardojrmcom/echo';
 import { Box } from '@mui/material';
 import { endpoints } from 'cfg';
-import { useApi, useTable } from 'hooks';
+import { useApi, useI18n, useTable } from 'hooks';
 import { useBlockData } from 'hooks/api';
 import { BlockResults, BlockParams } from 'types/api';
 import { Table } from 'components/table';
 import { BlocksListFilters } from './filters';
 
 export const BlocksList = () => {
-  const { echo } = useEcho();
+  const { t } = useI18n();
 
   // filter states
   const [hash, hashSet] = useState<BlockParams['hash']>(undefined);
@@ -44,12 +43,12 @@ export const BlocksList = () => {
         rows={rows}
         total={total}
         dialogOptions={{
-          title: echo('details-block'),
+          title: t('details-block'),
         }}
         linkOptions={{
           route: '/block',
           key: 'height',
-          title: echo('explore-block'),
+          title: t('explore-block'),
         }}
         {...tableProps}
         loading={loading}

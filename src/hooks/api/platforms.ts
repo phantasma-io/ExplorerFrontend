@@ -1,10 +1,10 @@
 import { useMemo, useState, useEffect } from 'react';
-import { useEcho } from '@ricardojrmcom/echo';
+import { useI18n } from 'hooks';
 import { TableDisplayRow, TableDisplayCol } from 'types/table';
 import { PlatformResults } from 'types/api';
 
 export const usePlatformData = (data?: PlatformResults, loading?: boolean) => {
-  const { echo } = useEcho();
+  const { t } = useI18n();
 
   const [total, totalSet] = useState<number>(0);
 
@@ -18,33 +18,33 @@ export const usePlatformData = (data?: PlatformResults, loading?: boolean) => {
     return [
       {
         id: 'name',
-        label: echo('name'),
+        label: t('name'),
         type: 'text',
         size: 3,
         showDesktop: true,
         linkOptions: {
           route: '/platform',
           key: 'platform',
-          title: echo('explore-platform'),
+          title: t('explore-platform'),
           primary: true,
         },
       },
       {
         id: 'fuel',
-        label: echo('fuel'),
+        label: t('fuel'),
         type: 'text',
         size: 3,
         showDesktop: true,
       },
       {
         id: 'chain',
-        label: echo('chain'),
+        label: t('chain'),
         type: 'monospace',
         size: 5,
         showDesktop: true,
       },
     ];
-  }, [echo]);
+  }, [t]);
 
   const rows = useMemo<TableDisplayRow[]>(() => {
     if (data) {

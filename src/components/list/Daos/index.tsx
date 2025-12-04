@@ -1,15 +1,14 @@
 import React, { useState } from 'react';
-import { useEcho } from '@ricardojrmcom/echo';
 import { Box } from '@mui/material';
 import { endpoints } from 'cfg';
-import { useApi, useTable } from 'hooks';
+import { useApi, useI18n, useTable } from 'hooks';
 import { useDaoData } from 'hooks/api';
 import { DaoResults, DaoParams } from 'types/api';
 import { Table } from 'components/table';
 import { DaosListFilters } from './filters';
 
 export const DaosList = () => {
-  const { echo } = useEcho();
+  const { t } = useI18n();
 
   const tableProps = useTable();
   const { limit, order_by, offset, with_total } = tableProps;
@@ -45,12 +44,12 @@ export const DaosList = () => {
         rows={rows}
         total={total}
         dialogOptions={{
-          title: echo('details-dao'),
+          title: t('details-dao'),
         }}
         linkOptions={{
           route: '/dao',
           key: 'name',
-          title: echo('explore-dao'),
+          title: t('explore-dao'),
         }}
         {...tableProps}
         loading={loading}

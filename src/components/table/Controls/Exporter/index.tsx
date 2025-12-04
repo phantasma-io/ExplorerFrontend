@@ -1,11 +1,11 @@
-import React, { useMemo } from 'react';
+import React, { useCallback } from 'react';
 import { Box, Button } from '@mui/material';
-import { useEcho } from '@ricardojrmcom/echo';
 import csvDownload from 'json-to-csv-export';
 import FileDownloadIcon from '@mui/icons-material/FileDownload';
+import { useI18n } from 'hooks';
 
 export interface TableExporterProps {
-  data: string;
+  data: unknown[] | string;
   filename?: string;
   delimiter?: ',' | ';';
 }
@@ -15,20 +15,31 @@ export const TableExporter = ({
   filename = 'export.csv',
   delimiter = ',',
 }: TableExporterProps) => {
-  const { echo } = useEcho();
+  const { t } = useI18n();
 
-  const parsedData = useMemo(() => JSON.parse(data), [data]);
+  const handleExport = useCallback(() => {
+    try {
+      const parsed =
+        typeof data === 'string' ? (JSON.parse(data) as unknown) : data;
+      if (!Array.isArray(parsed)) {
+        return;
+      }
+      csvDownload(parsed, filename, delimiter);
+    } catch (err) {
+      // swallow export errors to avoid crashing UI
+    }
+  }, [data, delimiter, filename]);
 
   return (
     <Box>
       <Box>
         <Button
           size="small"
-          onClick={() => csvDownload(parsedData, filename, delimiter)}
+          onClick={handleExport}
           endIcon={<FileDownloadIcon color="inherit" />}
           color="inherit"
         >
-          {echo('table-exportCsv')}
+          {t('table-exportCsv')}
         </Button>
       </Box>
     </Box>

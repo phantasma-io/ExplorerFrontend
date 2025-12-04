@@ -1,8 +1,7 @@
 import React, { useMemo } from 'react';
 import { Box } from '@mui/material';
 import { useRouter } from 'next/router';
-import { useApi } from 'hooks';
-import { useEcho } from '@ricardojrmcom/echo';
+import { useApi, useI18n } from 'hooks';
 import { NavTabs, NavTabsRecord, Breadcrumbs } from 'components/layout';
 import { endpoints, routes } from 'cfg';
 import { Locales } from 'types/locales';
@@ -19,7 +18,7 @@ export interface ViewContractProps {
 }
 
 export const ViewContract = ({ tabForce = 'overview' }: ViewContractProps) => {
-  const { echo, echoActiveId } = useEcho();
+  const { t, locale } = useI18n();
 
   const { query } = useRouter();
 
@@ -37,24 +36,24 @@ export const ViewContract = ({ tabForce = 'overview' }: ViewContractProps) => {
     () => ({
       overview: {
         id: 'overview',
-        label: echo('tab-overview'),
-        href: routes['/contract'](echoActiveId as Locales),
+        label: t('tab-overview'),
+        href: routes['/contract'](locale as Locales),
         component: (
           <ContractOverview data={data} loading={loading} error={error} />
         ),
       },
       methods: {
         id: 'methods',
-        label: echo('tab-methods'),
-        href: routes['/contract'](echoActiveId as Locales),
+        label: t('tab-methods'),
+        href: routes['/contract'](locale as Locales),
         component: (
           <ContractMethods data={data} loading={loading} error={error} />
         ),
       },
       instructions: {
         id: 'instructions',
-        label: echo('tab-instructions'),
-        href: routes['/contract'](echoActiveId as Locales),
+        label: t('tab-instructions'),
+        href: routes['/contract'](locale as Locales),
         component: (
           <ContractInstructions
             data={data}
@@ -70,20 +69,20 @@ export const ViewContract = ({ tabForce = 'overview' }: ViewContractProps) => {
       },
       script: {
         id: 'script',
-        label: echo('tab-script'),
-        href: routes['/contract'](echoActiveId as Locales),
+        label: t('tab-script'),
+        href: routes['/contract'](locale as Locales),
         component: (
           <ContractScript data={data} loading={loading} error={error} />
         ),
       },
       raw: {
         id: 'raw',
-        label: echo('tab-raw'),
-        href: routes['/contract'](echoActiveId as Locales),
+        label: t('tab-raw'),
+        href: routes['/contract'](locale as Locales),
         component: <ContractRaw data={data} loading={loading} error={error} />,
       },
     }),
-    [echo, echoActiveId, data, error, loading],
+    [t, locale, data, error, loading],
   );
 
   return (

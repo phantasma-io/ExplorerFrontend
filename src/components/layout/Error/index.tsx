@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Typography, Grid } from '@mui/material';
-import { useEcho } from '@ricardojrmcom/echo';
 import ErrorIcon from '@mui/icons-material/Error';
+import { useI18n } from 'hooks';
 
 export interface ErrorProps {
   msg?: string;
@@ -9,7 +9,7 @@ export interface ErrorProps {
 }
 
 export const Error = ({ msg, height }: ErrorProps) => {
-  const { echo } = useEcho();
+  const { t } = useI18n();
 
   return (
     <Grid container sx={{ height: height || '300px' }} alignItems="center">
@@ -22,7 +22,7 @@ export const Error = ({ msg, height }: ErrorProps) => {
           </Box>
           <Box pt={1.5}>
             <Typography variant="h6" color="error">
-              {msg || echo('error')}
+              {msg || t('error')}
             </Typography>
           </Box>
         </Box>

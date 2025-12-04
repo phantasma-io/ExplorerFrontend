@@ -1,10 +1,10 @@
 import { useMemo, useState, useEffect } from 'react';
-import { useEcho } from '@ricardojrmcom/echo';
+import { useI18n } from 'hooks';
 import { TableDisplayRow, TableDisplayCol } from 'types/table';
 import { ContractResults } from 'types/api';
 
 export const useContractData = (data?: ContractResults, loading?: boolean) => {
-  const { echo } = useEcho();
+  const { t } = useI18n();
 
   const [total, totalSet] = useState<number>(0);
 
@@ -18,61 +18,61 @@ export const useContractData = (data?: ContractResults, loading?: boolean) => {
     return [
       {
         id: 'name',
-        label: echo('name'),
+        label: t('name'),
         type: 'text',
         size: 5,
         showDesktop: true,
       },
       {
         id: 'hash',
-        label: echo('hash'),
+        label: t('hash'),
         type: 'text',
         size: 3,
         showDesktop: true,
       },
       {
         id: 'symbol',
-        label: echo('symbol'),
+        label: t('symbol'),
         type: 'text',
         size: 3,
         showDesktop: true,
         linkOptions: {
           route: '/contract',
           key: 'symbol',
-          title: echo('explore-contract'),
+          title: t('explore-contract'),
           primary: true,
         },
       },
       {
         id: 'address',
-        label: echo('address'),
+        label: t('address'),
         type: 'text',
         size: 3,
         linkOptions: {
           route: '/address',
           key: 'address',
-          title: echo('explore-address'),
+          title: t('explore-address'),
         },
       },
       {
         id: 'address_name',
-        label: echo('address_name'),
+        label: t('address_name'),
         type: 'text',
         size: 3,
       },
       {
         id: 'token',
-        label: echo('token'),
+        label: t('token'),
         type: 'text',
         size: 3,
         linkOptions: {
           route: '/token',
           key: 'token',
-          title: echo('explore-token'),
+          title: t('explore-token'),
         },
       },
     ];
-  }, [echo]);
+  }, [t]);
 
   const rows = useMemo<TableDisplayRow[]>(() => {
     if (data) {

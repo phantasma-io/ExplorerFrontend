@@ -1,11 +1,11 @@
 import { useMemo, useState, useEffect } from 'react';
-import { useEcho } from '@ricardojrmcom/echo';
+import { useI18n } from 'hooks';
 import { unixToDate } from 'scripts';
 import { TableDisplayRow, TableDisplayCol } from 'types/table';
 import { EventResults } from 'types/api';
 
 export const useEventData = (data?: EventResults, loading?: boolean) => {
-  const { echo } = useEcho();
+  const { t } = useI18n();
 
   const [total, totalSet] = useState<number>(0);
 
@@ -19,77 +19,77 @@ export const useEventData = (data?: EventResults, loading?: boolean) => {
     return [
       {
         id: 'event_kind',
-        label: echo('event_kind'),
+        label: t('event_kind'),
         type: 'text',
         size: 2,
         showDesktop: true,
       },
       {
         id: 'address',
-        label: echo('address'),
+        label: t('address'),
         type: 'monospace',
         size: 3,
         linkOptions: {
           route: '/address',
           key: 'address',
-          title: echo('explore-address'),
+          title: t('explore-address'),
         },
       },
       {
         id: 'address_name',
-        label: echo('address_name'),
+        label: t('address_name'),
         type: 'text',
         size: 3,
       },
       {
         id: 'block_hash',
-        label: echo('block_hash'),
+        label: t('block_hash'),
         type: 'monospace',
         size: 7,
         linkOptions: {
           route: '/block',
           key: 'block_hash',
-          title: echo('explore-block'),
+          title: t('explore-block'),
         },
       },
       {
         id: 'transaction_hash',
-        label: echo('transaction_hash'),
+        label: t('transaction_hash'),
         type: 'monospace',
         size: 7,
         showDesktop: true,
         linkOptions: {
           route: '/transaction',
           key: 'transaction_hash',
-          title: echo('explore-transaction'),
+          title: t('explore-transaction'),
         },
       },
       {
         id: 'chain',
-        label: echo('chain'),
+        label: t('chain'),
         type: 'text',
         size: 3,
       },
       {
         id: 'contract',
-        label: echo('contract'),
+        label: t('contract'),
         type: 'text',
         size: 3,
         linkOptions: {
           route: '/contract',
           key: 'contract',
-          title: echo('explore-contract'),
+          title: t('explore-contract'),
         },
       },
       {
         id: 'date',
-        label: echo('date'),
+        label: t('date'),
         type: 'date',
         size: 2,
         showDesktop: true,
       },
     ];
-  }, [echo]);
+  }, [t]);
 
   const rows = useMemo<TableDisplayRow[]>(() => {
     if (data) {

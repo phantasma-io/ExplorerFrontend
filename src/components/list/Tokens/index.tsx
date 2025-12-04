@@ -1,15 +1,14 @@
 import React, { useState } from 'react';
-import { useEcho } from '@ricardojrmcom/echo';
 import { Box } from '@mui/material';
 import { endpoints } from 'cfg';
-import { useApi, useTable } from 'hooks';
+import { useApi, useI18n, useTable } from 'hooks';
 import { useTokenData } from 'hooks/api';
 import { TokenResults, TokenParams } from 'types/api';
 import { Table } from 'components/table';
 import { TokensListFilters } from './filters';
 
 export const TokensList = () => {
-  const { echo } = useEcho();
+  const { t } = useI18n();
 
   const tableProps = useTable();
   const { limit, order_by, offset, with_total } = tableProps;
@@ -41,12 +40,12 @@ export const TokensList = () => {
         rows={rows}
         total={total}
         dialogOptions={{
-          title: echo('details-token'),
+          title: t('details-token'),
         }}
         linkOptions={{
           route: '/token',
           key: 'symbol',
-          title: echo('explore-token'),
+          title: t('explore-token'),
         }}
         {...tableProps}
         loading={loading}

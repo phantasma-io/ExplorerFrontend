@@ -1,8 +1,7 @@
 import React, { useMemo } from 'react';
 import { Box } from '@mui/material';
 import { useRouter } from 'next/router';
-import { useApi } from 'hooks';
-import { useEcho } from '@ricardojrmcom/echo';
+import { useApi, useI18n } from 'hooks';
 import { NavTabs, NavTabsRecord, Breadcrumbs } from 'components/layout';
 import { endpoints, routes } from 'cfg';
 import { Locales } from 'types/locales';
@@ -17,7 +16,7 @@ export interface ViewDaoProps {
 }
 
 export const ViewDao = ({ tabForce = 'overview' }: ViewDaoProps) => {
-  const { echo, echoActiveId } = useEcho();
+  const { t, locale } = useI18n();
 
   const { query } = useRouter();
 
@@ -34,24 +33,24 @@ export const ViewDao = ({ tabForce = 'overview' }: ViewDaoProps) => {
     () => ({
       overview: {
         id: 'overview',
-        label: echo('tab-overview'),
-        href: routes['/dao'](echoActiveId as Locales),
+        label: t('tab-overview'),
+        href: routes['/dao'](locale as Locales),
         component: <DaoOverview data={data} loading={loading} error={error} />,
       },
       members: {
         id: 'members',
-        label: echo('tab-members'),
-        href: routes['/dao'](echoActiveId as Locales),
+        label: t('tab-members'),
+        href: routes['/dao'](locale as Locales),
         component: <DaoMembers />,
       },
       raw: {
         id: 'raw',
-        label: echo('tab-raw'),
-        href: routes['/dao'](echoActiveId as Locales),
+        label: t('tab-raw'),
+        href: routes['/dao'](locale as Locales),
         component: <DaoRaw data={data} loading={loading} error={error} />,
       },
     }),
-    [echo, echoActiveId, data, error, loading],
+    [t, locale, data, error, loading],
   );
 
   return (

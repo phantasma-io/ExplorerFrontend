@@ -1,13 +1,12 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState, useCallback } from 'react';
-import { useEcho } from '@ricardojrmcom/echo';
 import { Box, Button, Grid, Typography, TextField } from '@mui/material';
 import { Dialog } from 'components/layout';
 import { EventParams } from 'types/api';
 import FilterAltIcon from '@mui/icons-material/FilterAlt';
 import CheckIcon from '@mui/icons-material/Check';
 import ClearAllIcon from '@mui/icons-material/ClearAll';
-import { boolean } from 'yup';
+import { useI18n } from 'hooks';
 
 export interface EventsListFiltersProps extends EventParams {
   addressSet: React.Dispatch<React.SetStateAction<string | undefined>>;
@@ -22,7 +21,7 @@ export const EventsListFilters = ({
   address_partialSet,
   address_disable,
 }: EventsListFiltersProps) => {
-  const { echo } = useEcho();
+  const { t } = useI18n();
 
   const [isOpen, isOpenSet] = useState<boolean>(false);
   const handleOpen = useCallback(() => {
@@ -74,12 +73,12 @@ export const EventsListFilters = ({
         size="small"
         onClick={handleOpen}
       >
-        {echo('filterData')}
+        {t('filterData')}
       </Button>
       <Dialog
         handleClose={handleClose}
         isOpen={isOpen}
-        title={echo('filter-events')}
+        title={t('filter-events')}
         actions={
           <Box textAlign="right">
             <Box display="inline-block" mr={1.5}>
@@ -89,7 +88,7 @@ export const EventsListFilters = ({
                 onClick={clearFields}
                 endIcon={<ClearAllIcon />}
               >
-                {echo('clear')}
+                {t('clear')}
               </Button>
             </Box>
             <Box display="inline-block">
@@ -99,7 +98,7 @@ export const EventsListFilters = ({
                 onClick={applyFields}
                 endIcon={<CheckIcon />}
               >
-                {echo('apply')}
+                {t('apply')}
               </Button>
             </Box>
           </Box>
@@ -117,7 +116,7 @@ export const EventsListFilters = ({
             {/* field */}
             <Grid item xs={12} container alignItems="center" spacing={1}>
               <Grid item xs={12} lg={2}>
-                <Typography fontWeight={600}>{`${echo(
+                <Typography fontWeight={600}>{`${t(
                   'addressExact',
                 )}:`}</Typography>
               </Grid>
@@ -134,7 +133,7 @@ export const EventsListFilters = ({
             {/* field */}
             <Grid item xs={12} container alignItems="center" spacing={1}>
               <Grid item xs={12} lg={2}>
-                <Typography fontWeight={600}>{`${echo(
+                <Typography fontWeight={600}>{`${t(
                   'address_partial',
                 )}:`}</Typography>
               </Grid>

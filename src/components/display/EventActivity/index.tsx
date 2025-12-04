@@ -1,9 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react';
-import { nanoid } from 'nanoid';
 import { Box, Grid, Typography } from '@mui/material';
-import { useEcho } from '@ricardojrmcom/echo';
 import { EventResult } from 'types/api';
+import { useI18n } from 'hooks';
 import { EventType } from '../EventType';
 
 /**
@@ -17,19 +16,23 @@ export interface EventActivityProps {
  * EventActivity
  */
 export const EventActivity = ({ data }: EventActivityProps) => {
-  const { echo } = useEcho();
+  const { t } = useI18n();
   if (data && data.length > 0) {
     return (
       <Box>
         <Box pt={1}>
           <Typography fontWeight={600} variant="body2" gutterBottom>
-            {echo('activity')}:
+            {t('activity')}:
           </Typography>
         </Box>
         <Grid container>
-          {data.map((event) => {
+          {data.map((event, index) => {
             return (
-              <Grid item xs={12} key={nanoid()}>
+              <Grid
+                item
+                xs={12}
+                key={event.event_id ?? `${event.transaction_hash}-${event.event_kind}-${index}`}
+              >
                 <EventType data={event} />
               </Grid>
             );

@@ -1,11 +1,10 @@
 import React, { useMemo } from 'react';
-import { nanoid } from 'nanoid';
-import { useEcho } from '@ricardojrmcom/echo';
 import { Box, Grid } from '@mui/material';
 import { Text } from 'components/display';
 import { Address, AddressResults } from 'types/api';
 import { Locales } from 'types/locales';
 import { routes } from 'cfg';
+import { useI18n } from 'hooks';
 
 export interface AddressBalancesProps {
   data?: AddressResults;
@@ -13,7 +12,7 @@ export interface AddressBalancesProps {
 }
 
 export const AddressBalances = ({ data, address }: AddressBalancesProps) => {
-  const { echo, echoActiveId } = useEcho();
+  const { t, locale } = useI18n();
 
   const balances = useMemo<Address['balances']>(() => {
     if (address) {
@@ -32,14 +31,18 @@ export const AddressBalances = ({ data, address }: AddressBalancesProps) => {
         <Box mb={1.5}>
           <Text
             variant="body2"
-            value={`${echo('tab-balances')}:`}
+            value={`${t('tab-balances')}:`}
             fontWeight={600}
           />
         </Box>
-        {balances.map((item) => {
+        {balances.map((item, index) => {
           if (item?.amount) {
             return (
-              <Box px={2} py={0.6} key={nanoid()}>
+              <Box
+                px={2}
+                py={0.6}
+                key={`${item?.token?.symbol ?? 'balance'}-${index}`}
+              >
                 <Grid item container xs={12} spacing={1}>
                   <Text
                     variant="body2"
@@ -47,10 +50,10 @@ export const AddressBalances = ({ data, address }: AddressBalancesProps) => {
                     formatNumber={item?.amount}
                     spacing={1}
                     linkOptions={{
-                      link: routes['/token'](echoActiveId as Locales, {
+                      link: routes['/token'](locale as Locales, {
                         id: item?.token?.symbol,
                       }),
-                      title: echo('explore-token'),
+                      title: t('explore-token'),
                     }}
                   />
                 </Grid>

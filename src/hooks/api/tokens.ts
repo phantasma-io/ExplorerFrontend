@@ -1,10 +1,10 @@
 import { useMemo, useState, useEffect } from 'react';
-import { useEcho } from '@ricardojrmcom/echo';
+import { useI18n } from 'hooks';
 import { TableDisplayRow, TableDisplayCol } from 'types/table';
 import { TokenResults } from 'types/api';
 
 export const useTokenData = (data?: TokenResults, loading?: boolean) => {
-  const { echo } = useEcho();
+  const { t } = useI18n();
 
   const [total, totalSet] = useState<number>(0);
 
@@ -19,114 +19,114 @@ export const useTokenData = (data?: TokenResults, loading?: boolean) => {
       // thumb
       {
         id: 'thumbnail',
-        label: echo('image'),
+        label: t('image'),
         type: 'thumbnail-mini',
         size: 2,
       },
       // data
       {
         id: 'name',
-        label: echo('name'),
+        label: t('name'),
         type: 'text',
         size: 2,
         showDesktop: true
       },
       {
         id: 'symbol',
-        label: echo('symbol'),
+        label: t('symbol'),
         type: 'text',
         size: 2,
         showDesktop: true,
         linkOptions: {
           route: '/token',
           key: 'symbol',
-          title: echo('explore-token'),
+          title: t('explore-token'),
           primary: true,
         },
       },
       {
         id: 'current_supply',
-        label: echo('currentSupply'),
+        label: t('currentSupply'),
         type: 'number',
         size: 2,
         showDesktop: true,
       },
       {
         id: 'burned_supply',
-        label: echo('burnedSupply'),
+        label: t('burnedSupply'),
         type: 'number',
         size: 2,
         showDesktop: true,
       },
       {
         id: 'max_supply',
-        label: echo('maxSupply'),
+        label: t('maxSupply'),
         type: 'number',
         size: 3,
         showDesktop: true,
       },
       {
         id: 'decimals',
-        label: echo('decimals'),
+        label: t('decimals'),
         type: 'number',
         size: 1,
       },
       {
         id: 'fungible',
-        label: echo('fungible'),
+        label: t('fungible'),
         type: 'boolean',
         size: 1,
       },
       {
         id: 'transferable',
-        label: echo('transferable'),
+        label: t('transferable'),
         type: 'boolean',
         size: 1,
       },
       {
         id: 'finite',
-        label: echo('finite'),
+        label: t('finite'),
         type: 'boolean',
         size: 1,
       },
       {
         id: 'divisible',
-        label: echo('divisible'),
+        label: t('divisible'),
         type: 'boolean',
         size: 1,
       },
       {
         id: 'fuel',
-        label: echo('fuel'),
+        label: t('fuel'),
         type: 'boolean',
         size: 1,
       },
       {
         id: 'stakable',
-        label: echo('stakable'),
+        label: t('stakable'),
         type: 'boolean',
         size: 1,
       },
       {
         id: 'fiat',
-        label: echo('fiat'),
+        label: t('fiat'),
         type: 'boolean',
         size: 1,
       },
       {
         id: 'swappable',
-        label: echo('swappable'),
+        label: t('swappable'),
         type: 'boolean',
         size: 1,
       },
       {
         id: 'burnable',
-        label: echo('burnable'),
+        label: t('burnable'),
         type: 'boolean',
         size: 1,
       },
     ];
-  }, [echo]);
+  }, [t]);
 
   const rows = useMemo<TableDisplayRow[]>(() => {
     if (data) {

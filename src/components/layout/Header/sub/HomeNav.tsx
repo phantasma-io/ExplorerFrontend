@@ -1,22 +1,22 @@
 import React from 'react';
 import { Box, Grid } from '@mui/material';
-import { useEcho } from '@ricardojrmcom/echo';
 import { routes } from 'cfg';
 import { Image, Link } from 'components/display';
 import { Locales } from 'types/locales';
+import { useI18n } from 'hooks';
 
 /**
  * HomeNav
  */
 export const HomeNav = () => {
-  const { echoActiveId } = useEcho();
+  const { locale } = useI18n();
 
   return (
     <Box>
       <Grid container alignItems="center" spacing={1}>
         <Grid item>
           <Box pt={0.5}>
-            <Link href={routes['/'](echoActiveId as Locales)}>
+            <Link href={routes['/'](locale as Locales)}>
               <Box
                 display={{ xs: 'none', md: 'block' }}
                 style={{

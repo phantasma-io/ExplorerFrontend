@@ -1,14 +1,13 @@
 import React, { useMemo } from 'react';
-import { useEcho } from '@ricardojrmcom/echo';
 import { Box } from '@mui/material';
 import { endpoints } from 'cfg';
-import { useApi, useTable } from 'hooks';
+import { useApi, useI18n, useTable } from 'hooks';
 import { TableDisplayCol, TableDisplayRow } from 'types/table';
 import { ChainResults } from 'types/api';
 import { Table } from 'components/table';
 
 export const ChainsList = () => {
-  const { echo } = useEcho();
+  const { t } = useI18n();
 
   const tableProps = useTable();
   const { limit, order_by, order_direction, offset, with_total } = tableProps;
@@ -27,20 +26,20 @@ export const ChainsList = () => {
     () => [
       {
         id: 'chain_name',
-        label: echo('chain'),
+        label: t('chain'),
         type: 'text',
         size: 8,
         showDesktop: true,
       },
       {
         id: 'chain_height',
-        label: echo('height'),
+        label: t('height'),
         type: 'number',
         size: 3,
         showDesktop: true,
       },
     ],
-    [echo],
+    [t],
   );
 
   const rows = useMemo<TableDisplayRow[]>(() => {

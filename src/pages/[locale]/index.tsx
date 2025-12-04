@@ -5,9 +5,8 @@ import type {
   GetStaticProps,
   GetStaticPaths,
 } from 'next';
-import { EchoProvider } from '@ricardojrmcom/echo';
 import { LocalizedView } from 'containers/LocalizedView';
-import { locales, localesKeys } from 'cfg';
+import { localesKeys } from 'cfg';
 import { Locales } from 'types/locales';
 import { ExplorerRoutes } from 'types/routes';
 
@@ -31,16 +30,9 @@ export const getStaticProps: GetStaticProps = async (context) => {
 };
 
 const HomePage: NextPage = ({
-  locale,
   route,
 }: InferGetStaticPropsType<typeof getStaticProps>) => (
-  <EchoProvider
-    echo={locales}
-    echoDefault={locale}
-    lsid="phantasma-explorer-locale"
-  >
-    <LocalizedView locale={locale} route={route} />
-  </EchoProvider>
+  <LocalizedView route={route} />
 );
 
 export default HomePage;

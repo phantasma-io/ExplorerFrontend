@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react';
-import { useEcho } from '@ricardojrmcom/echo';
 import {
   Accordion,
   AccordionSummary,
@@ -10,6 +9,7 @@ import {
 } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { Empty } from 'components/layout';
+import { useI18n } from 'hooks';
 import { Text } from '../Text';
 
 interface MethodParam {
@@ -34,7 +34,7 @@ export interface MethodsProps {
  * Methods
  */
 export const Methods = ({ data }: MethodsProps) => {
-  const { echo } = useEcho();
+  const { t } = useI18n();
 
   if (!data || data?.length === 0) {
     return <Empty />;
@@ -45,7 +45,11 @@ export const Methods = ({ data }: MethodsProps) => {
       <>
         {data.map((met) => {
           return (
-            <Accordion>
+            <Accordion
+              key={`${met?.name ?? 'method'}-${met?.returnType ?? 'return'}-${
+                met?.parameters?.length ?? 0
+              }`}
+            >
               <AccordionSummary
                 expandIcon={<ExpandMoreIcon />}
                 aria-controls="panel1a-content"
@@ -55,7 +59,7 @@ export const Methods = ({ data }: MethodsProps) => {
               </AccordionSummary>
               <AccordionDetails>
                 <Text
-                  label={echo('return-type')}
+                  label={t('return-type')}
                   value={met?.returnType}
                   spacing={1}
                   paragraph
@@ -65,20 +69,23 @@ export const Methods = ({ data }: MethodsProps) => {
                   <Box>
                     <Box>
                       <Typography variant="body1" fontWeight={600} gutterBottom>
-                        {echo('params')}
+                        {t('params')}
                       </Typography>
                     </Box>
                     <Box>
                       {met?.parameters.map((param) => (
-                        <Box py={1}>
+                        <Box
+                          py={1}
+                          key={`${param?.name ?? 'param'}-${param?.type ?? 'type'}`}
+                        >
                           <Text
-                            label={echo('name')}
+                            label={t('name')}
                             value={param?.name}
                             spacing={1}
                             variant="body2"
                           />
                           <Text
-                            label={echo('type')}
+                            label={t('type')}
                             value={param?.type}
                             spacing={1}
                             variant="body2"

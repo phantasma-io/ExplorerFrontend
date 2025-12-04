@@ -1,15 +1,14 @@
 import React, { useState } from 'react';
-import { useEcho } from '@ricardojrmcom/echo';
 import { Box } from '@mui/material';
 import { endpoints } from 'cfg';
-import { useApi, useTable } from 'hooks';
+import { useApi, useI18n, useTable } from 'hooks';
 import { usePlatformData } from 'hooks/api';
 import { PlatformResults, PlatformParams } from 'types/api';
 import { Table } from 'components/table';
 import { PlatformsListFilters } from './filters';
 
 export const PlatformsList = () => {
-  const { echo } = useEcho();
+  const { t } = useI18n();
 
   const tableProps = useTable();
   const { limit, order_by, order_direction, offset, with_total } = tableProps;
@@ -39,12 +38,12 @@ export const PlatformsList = () => {
         rows={rows}
         total={total}
         dialogOptions={{
-          title: echo('details-platform'),
+          title: t('details-platform'),
         }}
         linkOptions={{
           route: '/platform',
           key: 'name',
-          title: echo('explore-platform'),
+          title: t('explore-platform'),
         }}
         {...tableProps}
         loading={loading}

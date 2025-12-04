@@ -1,8 +1,7 @@
 import React, { useMemo } from 'react';
 import { Box } from '@mui/material';
 import { useRouter } from 'next/router';
-import { useApi } from 'hooks';
-import { useEcho } from '@ricardojrmcom/echo';
+import { useApi, useI18n } from 'hooks';
 import { NavTabs, NavTabsRecord, Breadcrumbs } from 'components/layout';
 import { endpoints, routes } from 'cfg';
 import { Locales } from 'types/locales';
@@ -16,7 +15,7 @@ export interface ViewPlatformProps {
 }
 
 export const ViewPlatform = ({ tabForce = 'overview' }: ViewPlatformProps) => {
-  const { echo, echoActiveId } = useEcho();
+  const { t, locale } = useI18n();
 
   const { query } = useRouter();
 
@@ -30,20 +29,20 @@ export const ViewPlatform = ({ tabForce = 'overview' }: ViewPlatformProps) => {
     () => ({
       overview: {
         id: 'overview',
-        label: echo('tab-overview'),
-        href: routes['/platform'](echoActiveId as Locales),
+        label: t('tab-overview'),
+        href: routes['/platform'](locale as Locales),
         component: (
           <PlatformOverview data={data} loading={loading} error={error} />
         ),
       },
       raw: {
         id: 'raw',
-        label: echo('tab-raw'),
-        href: routes['/platform'](echoActiveId as Locales),
+        label: t('tab-raw'),
+        href: routes['/platform'](locale as Locales),
         component: <PlatformRaw data={data} loading={loading} error={error} />,
       },
     }),
-    [echo, echoActiveId, data, error, loading],
+    [t, locale, data, error, loading],
   );
 
   return (

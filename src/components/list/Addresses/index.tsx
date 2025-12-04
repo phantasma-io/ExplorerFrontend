@@ -1,9 +1,8 @@
 /* eslint-disable react/jsx-wrap-multilines */
 import React, { useState } from 'react';
-import { useEcho } from '@ricardojrmcom/echo';
 import { Box } from '@mui/material';
 import { endpoints } from 'cfg';
-import { useApi, useTable } from 'hooks';
+import { useApi, useI18n, useTable } from 'hooks';
 import { useAddressData } from 'hooks/api';
 import { AddressResults, AddressParams } from 'types/api';
 import { Table } from 'components/table';
@@ -14,7 +13,7 @@ export interface EventsListProps {
 }
 
 export const AddressesList = ({ _organization_name }: EventsListProps) => {
-  const { echo } = useEcho();
+  const { t } = useI18n();
 
   // filter states
   const [address, addressSet] = useState<AddressParams['address']>(undefined);
@@ -66,12 +65,12 @@ export const AddressesList = ({ _organization_name }: EventsListProps) => {
         rows={rows}
         total={total}
         dialogOptions={{
-          title: echo('details-address'),
+          title: t('details-address'),
         }}
         linkOptions={{
           route: '/address',
           key: 'address',
-          title: echo('explore-address'),
+          title: t('explore-address'),
         }}
         {...tableProps}
         loading={loading}

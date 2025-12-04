@@ -1,8 +1,8 @@
 import React, { useCallback, useState } from 'react';
-import { useEcho } from '@ricardojrmcom/echo';
 import { numberFormat } from '@ricardojrmcom/dervish';
 import { Box, Grid, Typography, Menu, MenuItem, Button } from '@mui/material';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import { useI18n } from 'hooks';
 
 export interface TablePageSizeProps {
   pageSize: number;
@@ -17,7 +17,7 @@ export const TablePageSize = ({
   total,
   options,
 }: TablePageSizeProps) => {
-  const { echo } = useEcho();
+  const { t } = useI18n();
 
   const [anchorMenu, anchorMenuSet] = useState<null | HTMLElement>(null);
   const openMenu = Boolean(anchorMenu);
@@ -40,7 +40,7 @@ export const TablePageSize = ({
             color="inherit"
             endIcon={<ArrowDropDownIcon />}
             onClick={handleOpen}
-          >{`${echo('table-pageSize')}: ${numberFormat(pageSize)}`}</Button>
+          >{`${t('table-pageSize')}: ${numberFormat(pageSize)}`}</Button>
         </Grid>
       </Grid>
       <Menu anchorEl={anchorMenu} open={openMenu} onClose={handleClose}>
@@ -63,7 +63,7 @@ export const TablePageSize = ({
                 handleClose();
               }}
             >
-              <Typography variant="body2">{echo('all')}</Typography>
+              <Typography variant="body2">{t('all')}</Typography>
             </MenuItem>
           ),
         )}

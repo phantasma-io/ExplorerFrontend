@@ -1,10 +1,9 @@
-import React, { useEffect, useMemo } from 'react';
+import React, { useMemo } from 'react';
 import { useRouter } from 'next/router';
 import { Box } from '@mui/material';
-import { useEcho } from '@ricardojrmcom/echo';
-import { Locales } from 'types/locales';
 import { ExplorerRoutes } from 'types/routes';
 import { MetaDynamic } from 'components/meta';
+import { useI18n } from 'hooks';
 import {
   AppLayout,
   ViewHome,
@@ -24,77 +23,72 @@ import {
 } from '../index';
 
 interface LocalizedViewProps {
-  locale: Locales;
   route: ExplorerRoutes;
 }
 
-export const LocalizedView = ({ locale, route }: LocalizedViewProps) => {
+export const LocalizedView = ({ route }: LocalizedViewProps) => {
   const { query } = useRouter();
-  const { echo, echoSetById } = useEcho();
-
-  useEffect(() => {
-    echoSetById(locale);
-  });
+  const { t } = useI18n();
 
   const title = useMemo(() => {
     switch (route) {
       case '/nexus':
-        return `${echo('nexus')} | ${echo('meta-title')}`;
+        return `${t('nexus')} | ${t('meta-title')}`;
       case '/address':
-        return `${echo('address')} | ${echo('meta-title')}`;
+        return `${t('address')} | ${t('meta-title')}`;
       case '/block':
-        return `${echo('block')} | ${echo('meta-title')}`;
+        return `${t('block')} | ${t('meta-title')}`;
       case '/contract':
-        return `${echo('contract')} | ${echo('meta-title')}`;
+        return `${t('contract')} | ${t('meta-title')}`;
       case '/dao':
-        return `${echo('dao')} | ${echo('meta-title')}`;
+        return `${t('dao')} | ${t('meta-title')}`;
       case '/event':
-        return `${echo('event')} | ${echo('meta-title')}`;
+        return `${t('event')} | ${t('meta-title')}`;
       case '/platform':
-        return `${echo('platform')} | ${echo('meta-title')}`;
+        return `${t('platform')} | ${t('meta-title')}`;
       case '/nft':
-        return `${echo('nft')} | ${echo('meta-title')}`;
+        return `${t('nft')} | ${t('meta-title')}`;
       case '/series':
-        return `${echo('series')} | ${echo('meta-title')}`;
+        return `${t('series')} | ${t('meta-title')}`;
       case '/token':
-        return `${echo('token')} | ${echo('meta-title')}`;
+        return `${t('token')} | ${t('meta-title')}`;
       case '/transaction':
-        return `${echo('transaction')} | ${echo('meta-title')}`;
+        return `${t('transaction')} | ${t('meta-title')}`;
       case '/':
       default:
-        return `${echo('meta-title')}`;
+        return `${t('meta-title')}`;
     }
-  }, [route, echo]);
+  }, [route, t]);
 
   const description = useMemo(() => {
     switch (route) {
       case '/nexus':
-        return `${echo('meta-nexus')}`;
+        return `${t('meta-nexus')}`;
       case '/address':
-        return `${echo('meta-address')}`;
+        return `${t('meta-address')}`;
       case '/block':
-        return `${echo('meta-block')}`;
+        return `${t('meta-block')}`;
       case '/contract':
-        return `${echo('meta-contract')}`;
+        return `${t('meta-contract')}`;
       case '/dao':
-        return `${echo('meta-dao')}`;
+        return `${t('meta-dao')}`;
       case '/event':
-        return `${echo('meta-event')}`;
+        return `${t('meta-event')}`;
       case '/platform':
-        return `${echo('meta-platform')}`;
+        return `${t('meta-platform')}`;
       case '/nft':
-        return `${echo('meta-nft')}`;
+        return `${t('meta-nft')}`;
       case '/series':
-        return `${echo('meta-series')}`;
+        return `${t('meta-series')}`;
       case '/token':
-        return `${echo('meta-token')}`;
+        return `${t('meta-token')}`;
       case '/transaction':
-        return `${echo('meta-transaction')}`;
+        return `${t('meta-transaction')}`;
       case '/':
       default:
-        return `${echo('meta-home')}`;
+        return `${t('meta-home')}`;
     }
-  }, [route, echo]);
+  }, [route, t]);
 
   const children = useMemo(() => {
     switch (route) {

@@ -1,11 +1,11 @@
 import { useMemo, useState, useEffect } from 'react';
-import { useEcho } from '@ricardojrmcom/echo';
 import { TableDisplayRow, TableDisplayCol } from 'types/table';
 import { Address, AddressResults } from 'types/api';
 import { Balance } from 'types/api/addresses';
+import { useI18n } from 'hooks';
 
 export const useAddressData = (data?: AddressResults, loading?: boolean) => {
-  const { echo } = useEcho();
+  const { t } = useI18n();
 
   const [total, totalSet] = useState<number>(0);
 
@@ -19,20 +19,20 @@ export const useAddressData = (data?: AddressResults, loading?: boolean) => {
     return [
       {
         id: 'address',
-        label: echo('address'),
+        label: t('address'),
         type: 'monospace',
         size: 6,
         showDesktop: true,
         linkOptions: {
           route: '/address',
           key: 'address',
-          title: echo('explore-address'),
+          title: t('explore-address'),
           primary: true,
         },
       },
       {
         id: 'name',
-        label: echo('name'),
+        label: t('name'),
         type: 'text',
         append: ' @ Phantasma',
         size: 2,
@@ -40,21 +40,21 @@ export const useAddressData = (data?: AddressResults, loading?: boolean) => {
       },
       {
         id: 'stake',
-        label: echo('stake'),
+        label: t('stake'),
         type: 'number',
         size: 10,
         append: ' SOUL',
       },
       {
         id: 'unclaimed',
-        label: echo('unclaimed'),
+        label: t('unclaimed'),
         type: 'number',
         size: 10,
         append: ' KCAL',
       },
       {
         id: 'storage',
-        label: echo('storage'),
+        label: t('storage'),
         type: 'number',
         size: 3,
         append: ' Bytes',
@@ -62,12 +62,12 @@ export const useAddressData = (data?: AddressResults, loading?: boolean) => {
       },
       {
         id: 'storage-used',
-        label: echo('used'),
+        label: t('used'),
         type: 'number',
         size: 10,
       },
     ];
-  }, [echo]);
+  }, [t]);
 
   const rows = useMemo<TableDisplayRow[]>(() => {
     if (data) {
@@ -100,7 +100,7 @@ export const useAddressData = (data?: AddressResults, loading?: boolean) => {
 };
 
 export const useAddressesTopTokenHoldersData = (token_id: string, data?: AddressResults, loading?: boolean) => {
-  const { echo } = useEcho();
+  const { t } = useI18n();
 
   const [total, totalSet] = useState<number>(0);
 
@@ -114,20 +114,20 @@ export const useAddressesTopTokenHoldersData = (token_id: string, data?: Address
     return [
       {
         id: 'address',
-        label: echo('address'),
+        label: t('address'),
         type: 'monospace',
         size: 6,
         showDesktop: true,
         linkOptions: {
           route: '/address',
           key: 'address',
-          title: echo('explore-address'),
+          title: t('explore-address'),
           primary: true,
         },
       },
       {
         id: 'name',
-        label: echo('name'),
+        label: t('name'),
         type: 'text',
         append: ' @ Phantasma',
         size: 2,
@@ -135,14 +135,14 @@ export const useAddressesTopTokenHoldersData = (token_id: string, data?: Address
       },
       {
         id: 'amount',
-        label: echo('amount'),
+        label: t('amount'),
         type: 'number',
         size: 2,
         append: ` ${token_id}`,
         showDesktop: true,
       }
     ];
-  }, [echo]);
+  }, [t, token_id]);
 
   let is_token_soul = token_id == "SOUL";
 

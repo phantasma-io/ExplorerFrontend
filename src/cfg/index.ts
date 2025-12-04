@@ -15,7 +15,8 @@ export { endpoints, url } from './endpoints';
 
 export { locales, localesKeys, localesDefault } from './locales';
 
-export { themes } from './themes';
+export { themes, themeIds, defaultThemeId } from './themes';
+export type { ThemeId } from './themes';
 
 export { routes, routesKeys, routesViews, routesHome } from './routes';
 

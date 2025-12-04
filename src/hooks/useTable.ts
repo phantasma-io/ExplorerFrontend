@@ -1,13 +1,13 @@
-import { useState, useMemo } from 'react';
-import { useLocalState } from '@ricardojrmcom/reaper';
+import { useEffect, useState, useMemo } from 'react';
 import { WithOption } from 'types/api';
 import { useTableParams } from './useTableParams';
+import { useLocalStorage } from './useLocalStorage';
 
 export const useTable = () => {
-  const tableParams = useTableParams();
+  const { hasInitialParams, ...tableParams } = useTableParams();
 
   const [page, pageSet] = useState(tableParams.page);
-  const [pageSize, pageSizeSet] = useLocalState(
+  const [pageSize, pageSizeSet] = useLocalStorage(
     'PhantasmaExplorer-rowSize',
     tableParams.pageSize,
   );
@@ -15,6 +15,12 @@ export const useTable = () => {
   const [orderDirection, orderDirectionSet] = useState(
     tableParams.orderDirection,
   );
+
+  useEffect(() => {
+    if (hasInitialParams) {
+      pageSizeSet(tableParams.pageSize);
+    }
+  }, [hasInitialParams, pageSizeSet, tableParams.pageSize]);
 
   const offset = useMemo(() => (page - 1) * pageSize, [page, pageSize]);
 

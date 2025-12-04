@@ -1,15 +1,14 @@
 import React, { useState } from 'react';
-import { useEcho } from '@ricardojrmcom/echo';
 import { Box } from '@mui/material';
 import { endpoints } from 'cfg';
-import { useApi, useTable } from 'hooks';
+import { useApi, useI18n, useTable } from 'hooks';
 import { useSeriesData } from 'hooks/api';
 import { SeriesResults, SeriesParams } from 'types/api';
 import { Table } from 'components/table';
 import { SeriesListFilters } from './filters';
 
 export const SeriesList = () => {
-  const { echo } = useEcho();
+  const { t } = useI18n();
 
   const tableProps = useTable();
   const { limit, order_by, offset, with_total, order_direction } = tableProps;
@@ -41,12 +40,12 @@ export const SeriesList = () => {
         rows={rows}
         total={total}
         dialogOptions={{
-          title: echo('details-series'),
+          title: t('details-series'),
         }}
         linkOptions={{
           route: '/series',
           key: 'id',
-          title: echo('explore-series'),
+          title: t('explore-series'),
         }}
         {...tableProps}
         loading={loading}

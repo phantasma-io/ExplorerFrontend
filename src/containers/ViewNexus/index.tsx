@@ -1,6 +1,5 @@
 import React, { useMemo } from 'react';
 import { Box } from '@mui/material';
-import { useEcho } from '@ricardojrmcom/echo';
 import { NavTabs, NavTabsRecord, Breadcrumbs } from 'components/layout';
 import {
   AddressesList,
@@ -17,74 +16,75 @@ import {
 import { routes } from 'cfg';
 import { Locales } from 'types/locales';
 import { ExplorerTabs } from 'types/routes';
+import { useI18n } from 'hooks';
 
 export interface ViewNexusProps {
   tabForce?: ExplorerTabs;
 }
 
 export const ViewNexus = ({ tabForce = 'blocks' }: ViewNexusProps) => {
-  const { echo, echoActiveId } = useEcho();
+  const { t, locale } = useI18n();
 
   const tabs: NavTabsRecord = useMemo(
     () => ({
       addresses: {
         id: 'addresses',
-        label: echo('tab-addresses'),
-        href: routes['/nexus'](echoActiveId as Locales),
+        label: t('tab-addresses'),
+        href: routes['/nexus'](locale as Locales),
         component: <AddressesList />,
       },
       blocks: {
         id: 'blocks',
-        label: echo('tab-blocks'),
-        href: routes['/nexus'](echoActiveId as Locales),
+        label: t('tab-blocks'),
+        href: routes['/nexus'](locale as Locales),
         component: <BlocksList />,
       },
       contracts: {
         id: 'contracts',
-        label: echo('tab-contracts'),
-        href: routes['/nexus'](echoActiveId as Locales),
+        label: t('tab-contracts'),
+        href: routes['/nexus'](locale as Locales),
         component: <ContractsList />,
       },
       daos: {
         id: 'daos',
-        label: echo('tab-daos'),
-        href: routes['/nexus'](echoActiveId as Locales),
+        label: t('tab-daos'),
+        href: routes['/nexus'](locale as Locales),
         component: <DaosList />,
       },
       events: {
         id: 'events',
-        label: echo('tab-events'),
-        href: routes['/nexus'](echoActiveId as Locales),
+        label: t('tab-events'),
+        href: routes['/nexus'](locale as Locales),
         component: <EventsList />,
       },
       nfts: {
         id: 'nfts',
-        label: echo('tab-nfts'),
-        href: routes['/nexus'](echoActiveId as Locales),
+        label: t('tab-nfts'),
+        href: routes['/nexus'](locale as Locales),
         component: <NftsList />,
       },
       platforms: {
         id: 'platforms',
-        label: echo('tab-platforms'),
-        href: routes['/nexus'](echoActiveId as Locales),
+        label: t('tab-platforms'),
+        href: routes['/nexus'](locale as Locales),
         component: <PlatformsList />,
       },
       series: {
         id: 'series',
-        label: echo('tab-series'),
-        href: routes['/nexus'](echoActiveId as Locales),
+        label: t('tab-series'),
+        href: routes['/nexus'](locale as Locales),
         component: <SeriesList />,
       },
       tokens: {
         id: 'tokens',
-        label: echo('tab-tokens'),
-        href: routes['/nexus'](echoActiveId as Locales),
+        label: t('tab-tokens'),
+        href: routes['/nexus'](locale as Locales),
         component: <TokensList />,
       },
       transactions: {
         id: 'transactions',
-        label: echo('tab-transactions'),
-        href: routes['/nexus'](echoActiveId as Locales),
+        label: t('tab-transactions'),
+        href: routes['/nexus'](locale as Locales),
         component: <TransactionsList />,
       },
       // chains: {
@@ -94,7 +94,7 @@ export const ViewNexus = ({ tabForce = 'blocks' }: ViewNexusProps) => {
       //   component: <ChainsList />,
       // },
     }),
-    [echo, echoActiveId],
+    [t, locale],
   );
 
   return (

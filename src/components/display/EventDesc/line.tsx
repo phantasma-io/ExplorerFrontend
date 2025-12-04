@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useMemo } from 'react';
 import { Box, Typography } from '@mui/material';
-import { useEcho } from '@ricardojrmcom/echo';
 import { EventResult, EventTypes, EventKinds } from 'types/api';
 import { eventTypeMap } from 'cfg/eventTypes';
 import { Link } from 'components/display';
 import { routes } from 'cfg';
 import { Locales } from 'types/locales';
+import { useI18n } from 'hooks';
 
 type Kind = EventKinds | undefined;
 type Type = EventTypes | undefined | null;
@@ -22,7 +22,7 @@ export interface EventLineProps {
  * EventLine
  */
 export const EventLine = ({ data }: EventLineProps) => {
-  const { echo, echoActiveId } = useEcho();
+  const { t, locale } = useI18n();
 
   const kind: Kind = useMemo(() => {
     if (data) {
@@ -107,7 +107,7 @@ export const EventLine = ({ data }: EventLineProps) => {
             <Typography gutterBottom>
               {subject && (
                 <Link
-                  href={routes['/address'](echoActiveId as Locales, { id: `${data?.address}` })}
+                  href={routes['/address'](locale as Locales, { id: `${data?.address}` })}
                   sx={{ display: 'inline-block' }}
                 >
                   {subject}
@@ -151,7 +151,7 @@ export const EventLine = ({ data }: EventLineProps) => {
               )}{' '}
               {data?.organization_event?.address?.address && (
                 <Link
-                  href={routes['/address'](echoActiveId as Locales, {
+                  href={routes['/address'](locale as Locales, {
                     id: `${data?.organization_event?.address?.address}`,
                   })}
                   sx={{ display: 'inline-block' }}
@@ -225,7 +225,7 @@ export const EventLine = ({ data }: EventLineProps) => {
               {kind}:{' '}
               {data?.gas_event?.address?.address && (
                 <Link
-                  href={routes['/address'](echoActiveId as Locales, {
+                  href={routes['/address'](locale as Locales, {
                     id: `${data?.gas_event?.address?.address}`,
                   })}
                   sx={{ display: 'inline-block' }}
@@ -316,7 +316,7 @@ export const EventLine = ({ data }: EventLineProps) => {
               {kind}:{' '}
               {data?.address_event?.address?.address && (
                 <Link
-                  href={routes['/address'](echoActiveId as Locales, {
+                  href={routes['/address'](locale as Locales, {
                     id: `${data?.address_event?.address?.address}`,
                   })}
                   sx={{ display: 'inline-block' }}
@@ -327,9 +327,10 @@ export const EventLine = ({ data }: EventLineProps) => {
             </Typography>
           );
         case 'token_create_event': {
-          const tokenSymbol = data?.token_create_event?.token?.symbol;
+          const token = data?.token_create_event?.token;
+          const tokenSymbol = token?.symbol;
+          const tokenName = token?.name;
           if (!tokenSymbol) return fallbackLine;
-          const token = {symbol: tokenSymbol};
           const ownerAddress = data?.address;
           const ownerLabel = data?.address_name || ownerAddress;
           const limits = [];
@@ -342,7 +343,7 @@ export const EventLine = ({ data }: EventLineProps) => {
             <Typography gutterBottom>
               {ownerAddress && (
                 <Link
-                  href={routes['/address'](echoActiveId as Locales, { id: `${ownerAddress}` })}
+                  href={routes['/address'](locale as Locales, { id: `${ownerAddress}` })}
                   sx={{ display: 'inline-block' }}
                 >
                   {ownerLabel}
@@ -353,13 +354,13 @@ export const EventLine = ({ data }: EventLineProps) => {
               </Typography>{' '}
               {token?.symbol ? (
                 <Link
-                  href={routes['/token'](echoActiveId as Locales, { id: `${token?.symbol}` })}
+                  href={routes['/token'](locale as Locales, { id: `${token?.symbol}` })}
                   sx={{ display: 'inline-block' }}
                 >
                   {token?.symbol}
                 </Link>
               ) : (
-                token?.name ?? token?.symbol ?? null
+                tokenName ?? tokenSymbol ?? null
               )}
               {limits.length > 0 && (
                 <Typography component="span" variant="inherit">
@@ -384,7 +385,7 @@ export const EventLine = ({ data }: EventLineProps) => {
             <Typography gutterBottom>
               {ownerAddress && (
                 <Link
-                  href={routes['/address'](echoActiveId as Locales, { id: `${ownerAddress}` })}
+                  href={routes['/address'](locale as Locales, { id: `${ownerAddress}` })}
                   sx={{ display: 'inline-block' }}
                 >
                   {ownerLabel}
@@ -405,7 +406,7 @@ export const EventLine = ({ data }: EventLineProps) => {
                     for
                   </Typography>{' '}
                   <Link
-                    href={routes['/token'](echoActiveId as Locales, { id: `${tokenSymbol}` })}
+                    href={routes['/token'](locale as Locales, { id: `${tokenSymbol}` })}
                     sx={{ display: 'inline-block' }}
                   >
                     {tokenSymbol}
@@ -427,7 +428,7 @@ export const EventLine = ({ data }: EventLineProps) => {
               return (
                 <Typography gutterBottom>
                   <Link
-                    href={routes['/address'](echoActiveId as Locales, {
+                    href={routes['/address'](locale as Locales, {
                       id: `${data?.address}`,
                     })}
                     sx={{ display: 'inline-block' }}
@@ -436,7 +437,7 @@ export const EventLine = ({ data }: EventLineProps) => {
                   </Link>{' '}
                   created token{' '}
                   <Link
-                    href={routes['/token'](echoActiveId as Locales, {
+                    href={routes['/token'](locale as Locales, {
                       id: `${data?.token_event?.token?.symbol || data?.token_id}`,
                     })}
                     sx={{ display: 'inline-block' }}
@@ -450,16 +451,16 @@ export const EventLine = ({ data }: EventLineProps) => {
                 return (
                   <Typography gutterBottom>
                     <Link
-                      href={routes['/address'](echoActiveId as Locales, {
+                      href={routes['/address'](locale as Locales, {
                         id: `${data?.address}`,
                       })}
                       sx={{ display: 'inline-block' }}
                     >
                       {data?.address_name || data?.address}
                     </Link>{' '}
-                    {echo('desc-minted')}{' '}
+                    {t('desc-minted')}{' '}
                     <Link
-                      href={routes['/token'](echoActiveId as Locales, {
+                      href={routes['/token'](locale as Locales, {
                         id: `${data?.token_event?.token?.symbol}`,
                       })}
                       sx={{ display: 'inline-block' }}
@@ -471,16 +472,16 @@ export const EventLine = ({ data }: EventLineProps) => {
                 return (
                   <Typography gutterBottom>
                     <Link
-                      href={routes['/address'](echoActiveId as Locales, {
+                      href={routes['/address'](locale as Locales, {
                         id: `${data?.address}`,
                       })}
                       sx={{ display: 'inline-block' }}
                     >
                       {data?.address_name || data?.address}
                     </Link>{' '}
-                    {echo('desc-minted')}{' '}
+                    {t('desc-minted')}{' '}
                     <Link
-                      href={routes['/nft'](echoActiveId as Locales, {
+                      href={routes['/nft'](locale as Locales, {
                         id: `${data?.token_id}`,
                       })}
                       sx={{ display: 'inline-block' }}
@@ -494,16 +495,16 @@ export const EventLine = ({ data }: EventLineProps) => {
                 return (
                   <Typography gutterBottom>
                     <Link
-                      href={routes['/address'](echoActiveId as Locales, {
+                      href={routes['/address'](locale as Locales, {
                         id: `${data?.address}`,
                       })}
                       sx={{ display: 'inline-block' }}
                     >
                       {data?.address_name || data?.address}
                     </Link>{' '}
-                    {echo('desc-burned')}{' '}
+                    {t('desc-burned')}{' '}
                     <Link
-                      href={routes['/token'](echoActiveId as Locales, {
+                      href={routes['/token'](locale as Locales, {
                         id: `${data?.token_event?.token?.symbol}`,
                       })}
                       sx={{ display: 'inline-block' }}
@@ -515,16 +516,16 @@ export const EventLine = ({ data }: EventLineProps) => {
                 return (
                   <Typography gutterBottom>
                     <Link
-                      href={routes['/address'](echoActiveId as Locales, {
+                      href={routes['/address'](locale as Locales, {
                         id: `${data?.address}`,
                       })}
                       sx={{ display: 'inline-block' }}
                     >
                       {data?.address_name || data?.address}
                     </Link>{' '}
-                    {echo('desc-burned')}{' '}
+                    {t('desc-burned')}{' '}
                     <Link
-                      href={routes['/nft'](echoActiveId as Locales, {
+                      href={routes['/nft'](locale as Locales, {
                         id: `${data?.token_id}`,
                       })}
                       sx={{ display: 'inline-block' }}
@@ -538,16 +539,16 @@ export const EventLine = ({ data }: EventLineProps) => {
                 return (
                   <Typography gutterBottom>
                     <Link
-                      href={routes['/address'](echoActiveId as Locales, {
+                      href={routes['/address'](locale as Locales, {
                         id: `${data?.address}`,
                       })}
                       sx={{ display: 'inline-block' }}
                     >
                       {data?.address_name || data?.address}
                     </Link>{' '}
-                    {echo('desc-claimed')}{' '}
+                    {t('desc-claimed')}{' '}
                     <Link
-                      href={routes['/token'](echoActiveId as Locales, {
+                      href={routes['/token'](locale as Locales, {
                         id: `${data?.token_event?.token?.symbol}`,
                       })}
                       sx={{ display: 'inline-block' }}
@@ -559,16 +560,16 @@ export const EventLine = ({ data }: EventLineProps) => {
                 return (
                   <Typography gutterBottom>
                     <Link
-                      href={routes['/address'](echoActiveId as Locales, {
+                      href={routes['/address'](locale as Locales, {
                         id: `${data?.address}`,
                       })}
                       sx={{ display: 'inline-block' }}
                     >
                       {data?.address_name || data?.address}
                     </Link>{' '}
-                    {echo('desc-claimed')}{' '}
+                    {t('desc-claimed')}{' '}
                     <Link
-                      href={routes['/nft'](echoActiveId as Locales, {
+                      href={routes['/nft'](locale as Locales, {
                         id: `${data?.token_id}`,
                       })}
                       sx={{ display: 'inline-block' }}
@@ -582,16 +583,16 @@ export const EventLine = ({ data }: EventLineProps) => {
                 return (
                   <Typography gutterBottom>
                     <Link
-                      href={routes['/address'](echoActiveId as Locales, {
+                      href={routes['/address'](locale as Locales, {
                         id: `${data?.address}`,
                       })}
                       sx={{ display: 'inline-block' }}
                     >
                       {data?.address_name || data?.address}
                     </Link>{' '}
-                    {echo('desc-received')}{' '}
+                    {t('desc-received')}{' '}
                     <Link
-                      href={routes['/token'](echoActiveId as Locales, {
+                      href={routes['/token'](locale as Locales, {
                         id: `${data?.token_event?.token?.symbol}`,
                       })}
                       sx={{ display: 'inline-block' }}
@@ -603,16 +604,16 @@ export const EventLine = ({ data }: EventLineProps) => {
                 return (
                   <Typography gutterBottom>
                     <Link
-                      href={routes['/address'](echoActiveId as Locales, {
+                      href={routes['/address'](locale as Locales, {
                         id: `${data?.address}`,
                       })}
                       sx={{ display: 'inline-block' }}
                     >
                       {data?.address_name || data?.address}
                     </Link>{' '}
-                    {echo('desc-received')}{' '}
+                    {t('desc-received')}{' '}
                     <Link
-                      href={routes['/nft'](echoActiveId as Locales, {
+                      href={routes['/nft'](locale as Locales, {
                         id: `${data?.token_id}`,
                       })}
                       sx={{ display: 'inline-block' }}
@@ -626,16 +627,16 @@ export const EventLine = ({ data }: EventLineProps) => {
                 return (
                   <Typography gutterBottom>
                     <Link
-                      href={routes['/address'](echoActiveId as Locales, {
+                      href={routes['/address'](locale as Locales, {
                         id: `${data?.address}`,
                       })}
                       sx={{ display: 'inline-block' }}
                     >
                       {data?.address_name || data?.address}
                     </Link>{' '}
-                    {echo('desc-sent')}{' '}
+                    {t('desc-sent')}{' '}
                     <Link
-                      href={routes['/token'](echoActiveId as Locales, {
+                      href={routes['/token'](locale as Locales, {
                         id: `${data?.token_event?.token?.symbol}`,
                       })}
                       sx={{ display: 'inline-block' }}
@@ -647,16 +648,16 @@ export const EventLine = ({ data }: EventLineProps) => {
                 return (
                   <Typography gutterBottom>
                     <Link
-                      href={routes['/address'](echoActiveId as Locales, {
+                      href={routes['/address'](locale as Locales, {
                         id: `${data?.address}`,
                       })}
                       sx={{ display: 'inline-block' }}
                     >
                       {data?.address_name || data?.address}
                     </Link>{' '}
-                    {echo('desc-sent')}{' '}
+                    {t('desc-sent')}{' '}
                     <Link
-                      href={routes['/nft'](echoActiveId as Locales, {
+                      href={routes['/nft'](locale as Locales, {
                         id: `${data?.token_id}`,
                       })}
                       sx={{ display: 'inline-block' }}
@@ -670,16 +671,16 @@ export const EventLine = ({ data }: EventLineProps) => {
                 return (
                   <Typography gutterBottom>
                     <Link
-                      href={routes['/address'](echoActiveId as Locales, {
+                      href={routes['/address'](locale as Locales, {
                         id: `${data?.address}`,
                       })}
                       sx={{ display: 'inline-block' }}
                     >
                       {data?.address_name || data?.address}
                     </Link>{' '}
-                    {echo('desc-staked')}{' '}
+                    {t('desc-staked')}{' '}
                     <Link
-                      href={routes['/token'](echoActiveId as Locales, {
+                      href={routes['/token'](locale as Locales, {
                         id: `${data?.token_event?.token?.symbol}`,
                       })}
                       sx={{ display: 'inline-block' }}
@@ -691,16 +692,16 @@ export const EventLine = ({ data }: EventLineProps) => {
                 return (
                   <Typography gutterBottom>
                     <Link
-                      href={routes['/address'](echoActiveId as Locales, {
+                      href={routes['/address'](locale as Locales, {
                         id: `${data?.address}`,
                       })}
                       sx={{ display: 'inline-block' }}
                     >
                       {data?.address_name || data?.address}
                     </Link>{' '}
-                    {echo('desc-staked')}{' '}
+                    {t('desc-staked')}{' '}
                     <Link
-                      href={routes['/nft'](echoActiveId as Locales, {
+                      href={routes['/nft'](locale as Locales, {
                         id: `${data?.token_id}`,
                       })}
                       sx={{ display: 'inline-block' }}
@@ -717,7 +718,7 @@ export const EventLine = ({ data }: EventLineProps) => {
       }
     }
     return fallbackLine;
-  }, [type, kind, data, echo, echoActiveId, fallbackLine]);
+  }, [type, kind, data, locale, fallbackLine, t]);
 
   return <Box>{content}</Box>;
 };

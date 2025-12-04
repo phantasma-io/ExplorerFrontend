@@ -1,5 +1,5 @@
 import { useMemo, useState, useEffect } from 'react';
-import { useEcho } from '@ricardojrmcom/echo';
+import { useI18n } from 'hooks';
 import { TableDisplayRow, TableDisplayCol } from 'types/table';
 import { TransactionResults } from 'types/api';
 import { decodeBase16 } from 'scripts/decodeBase16';
@@ -9,7 +9,7 @@ export const useTransactionData = (
   data?: TransactionResults,
   loading?: boolean,
 ) => {
-  const { echo } = useEcho();
+  const { t } = useI18n();
 
   const [total, totalSet] = useState<number>(0);
 
@@ -23,63 +23,63 @@ export const useTransactionData = (
     return [
       {
         id: 'hash',
-        label: echo('hash'),
+        label: t('hash'),
         type: 'monospace',
         size: 7,
         showDesktop: true,
         linkOptions: {
           route: '/transaction',
           key: 'hash',
-          title: echo('explore-transaction'),
+          title: t('explore-transaction'),
           primary: true,
         },
       },
       {
         id: 'state',
-        label: echo('state'),
+        label: t('state'),
         type: 'text',
         size: 2
       },
       {
         id: 'block_height',
-        label: echo('block_height'),
+        label: t('block_height'),
         type: 'text',
         size: 2,
         showDesktop: true,
         linkOptions: {
           route: '/block',
           key: 'block_height',
-          title: echo('explore-block'),
+          title: t('explore-block'),
         },
       },
       {
         id: 'date',
-        label: echo('date'),
+        label: t('date'),
         type: 'date',
         size: 2,
         showDesktop: true,
       },
       {
         id: 'result',
-        label: echo('result'),
+        label: t('result'),
         type: 'monospace',
         size: 2,
       },
       {
         id: 'payload',
-        label: echo('payload'),
+        label: t('payload'),
         type: 'text',
         size: 2,
       },
       {
         id: 'fee',
-        label: echo('fee'),
+        label: t('fee'),
         type: 'text',
         size: 2,
         append: ' KCAL',
       },
     ];
-  }, [echo]);
+  }, [t]);
 
   const rows = useMemo<TableDisplayRow[]>(() => {
     if (data) {

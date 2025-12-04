@@ -1,11 +1,11 @@
 import { useMemo, useState, useEffect } from 'react';
-import { useEcho } from '@ricardojrmcom/echo';
+import { useI18n } from 'hooks';
 import { TableDisplayRow, TableDisplayCol } from 'types/table';
 import { BlockResults } from 'types/api';
 import { unixToDate } from 'scripts';
 
 export const useBlockData = (data?: BlockResults, loading?: boolean) => {
-  const { echo } = useEcho();
+  const { t } = useI18n();
 
   const [total, totalSet] = useState<number>(0);
 
@@ -19,78 +19,78 @@ export const useBlockData = (data?: BlockResults, loading?: boolean) => {
     return [
       {
         id: 'height',
-        label: echo('height'),
+        label: t('height'),
         type: 'text',
         size: 2,
         showDesktop: true,
         linkOptions: {
           route: '/block',
           key: 'height',
-          title: echo('explore-block'),
+          title: t('explore-block'),
           primary: true,
         },
       },
       {
         id: 'date',
-        label: echo('date'),
+        label: t('date'),
         type: 'date',
         size: 2,
         showDesktop: true,
       },
       {
         id: 'protocol',
-        label: echo('protocol'),
+        label: t('protocol'),
         type: 'number',
         size: 1,
       },
       {
         id: 'reward',
-        label: echo('reward'),
+        label: t('reward'),
         type: 'text',
         size: 1,
       },
       {
         id: 'chain_address',
-        label: echo('chainAddress'),
+        label: t('chainAddress'),
         type: 'monospace',
         size: 12,
         linkOptions: {
           route: '/address',
           key: 'chain_address',
-          title: echo('explore-address'),
+          title: t('explore-address'),
         },
       },
       {
         id: 'validator_address',
-        label: echo('validatorAddress'),
+        label: t('validatorAddress'),
         type: 'monospace',
         size: 12,
         linkOptions: {
           route: '/address',
           key: 'validator_address',
-          title: echo('explore-address'),
+          title: t('explore-address'),
         },
       },
       {
         id: 'hash',
-        label: echo('hash'),
+        label: t('hash'),
         type: 'monospace',
         size: 7,
         showDesktop: true
       },
       {
         id: 'previous_hash',
-        label: echo('prevHash'),
+        label: t('prevHash'),
         type: 'monospace',
         size: 12,
         linkOptions: {
           route: '/block',
           key: 'previous_hash',
-          title: echo('explore-block'),
+          title: t('explore-block'),
         },
       },
     ];
-  }, [echo]);
+  }, [t]);
 
   const rows: TableDisplayRow[] = useMemo<TableDisplayRow[]>(() => {
     if (data) {

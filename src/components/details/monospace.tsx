@@ -1,9 +1,9 @@
 import React, { useMemo } from 'react';
-import { useEcho } from '@ricardojrmcom/echo';
 import { Text } from 'components/display';
 import { routes } from 'cfg';
 import { DetailsLinkOptions } from 'types/components';
 import { Locales } from 'types/locales';
+import { useI18n } from 'hooks';
 
 export interface DetailsMonospaceProps {
   value: string;
@@ -18,16 +18,16 @@ export const DetailsMonospace = ({
   linkOptions,
   height,
 }: DetailsMonospaceProps) => {
-  const { echoActiveId } = useEcho();
+  const { locale } = useI18n();
 
   const link = useMemo(() => {
     if (linkOptions) {
-      return routes[linkOptions?.route](echoActiveId as Locales, {
+      return routes[linkOptions?.route](locale as Locales, {
         id: value,
       });
     }
     return null;
-  }, [linkOptions, value, echoActiveId]);
+  }, [linkOptions, value, locale]);
 
   return (
     <Text

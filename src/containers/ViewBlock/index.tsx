@@ -1,8 +1,7 @@
 import React, { useMemo } from 'react';
 import { Box } from '@mui/material';
 import { useRouter } from 'next/router';
-import { useApi } from 'hooks';
-import { useEcho } from '@ricardojrmcom/echo';
+import { useApi, useI18n } from 'hooks';
 import { NavTabs, NavTabsRecord, Breadcrumbs } from 'components/layout';
 import { endpoints, routes } from 'cfg';
 import { Locales } from 'types/locales';
@@ -19,7 +18,7 @@ export interface ViewBlockProps {
 }
 
 export const ViewBlock = ({ tabForce = 'overview' }: ViewBlockProps) => {
-  const { echo, echoActiveId } = useEcho();
+  const { t, locale } = useI18n();
 
   const { query } = useRouter();
 
@@ -37,38 +36,38 @@ export const ViewBlock = ({ tabForce = 'overview' }: ViewBlockProps) => {
     () => ({
       overview: {
         id: 'overview',
-        label: echo('tab-overview'),
-        href: routes['/block'](echoActiveId as Locales),
+        label: t('tab-overview'),
+        href: routes['/block'](locale as Locales),
         component: (
           <BlockOverview data={data} loading={loading} error={error} />
         ),
       },
       transactions: {
         id: 'transactions',
-        label: echo('tab-transactions'),
-        href: routes['/block'](echoActiveId as Locales),
+        label: t('tab-transactions'),
+        href: routes['/block'](locale as Locales),
         component: <BlockTransactions />,
       },
       events: {
         id: 'events',
-        label: echo('tab-events'),
-        href: routes['/block'](echoActiveId as Locales),
+        label: t('tab-events'),
+        href: routes['/block'](locale as Locales),
         component: <BlockEvents />,
       },
       oracles: {
         id: 'oracles',
-        label: echo('tab-oracles'),
-        href: routes['/block'](echoActiveId as Locales),
+        label: t('tab-oracles'),
+        href: routes['/block'](locale as Locales),
         component: <BlockOracles hash={(query?.id as string) || ''} />,
       },
       raw: {
         id: 'raw',
-        label: echo('tab-raw'),
-        href: routes['/block'](echoActiveId as Locales),
+        label: t('tab-raw'),
+        href: routes['/block'](locale as Locales),
         component: <BlockRaw data={data} loading={loading} error={error} />,
       },
     }),
-    [echo, echoActiveId, data, error, loading, query],
+    [t, locale, data, error, loading, query],
   );
 
   return (

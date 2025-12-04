@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { Box } from '@mui/material';
-import { useEcho } from '@ricardojrmcom/echo';
 import { useRenderOverview } from 'hooks/useRenderOverview';
+import { useI18n } from 'hooks';
 import { useTransactionData } from 'hooks/api';
 import { TransactionResults } from 'types/api';
 import { Loading, Error, Empty, Overview } from 'components/layout';
@@ -21,7 +21,7 @@ export const TransactionAdvanced = ({
   loading,
   error,
 }: TransactionAdvancedProps) => {
-  const { echo } = useEcho();
+  const { t } = useI18n();
   const renderOverview = useRenderOverview();
 
   const { raw } = useTransactionData(data);
@@ -52,72 +52,72 @@ export const TransactionAdvanced = ({
     return [
       {
         id: 'gas_limit',
-        label: echo('gas_limit'),
+        label: t('gas_limit'),
         type: 'text',
         size: 2,
       },
       {
         id: 'gas_price',
-        label: echo('gas_price'),
+        label: t('gas_price'),
         type: 'text',
         size: 2,
         append: ' KCAL',
       },
       {
         id: 'gas_target',
-        label: echo('gas_target'),
+        label: t('gas_target'),
         type: 'text',
         size: 2,
         linkOptions: {
           route: '/address',
           key: 'address',
-          title: echo('explore-address'),
+          title: t('explore-address'),
         },
       },
       {
         id: 'gas_payer',
-        label: echo('gas_payer'),
+        label: t('gas_payer'),
         type: 'text',
         size: 2,
         linkOptions: {
           route: '/address',
           key: 'address',
-          title: echo('explore-address'),
+          title: t('explore-address'),
         },
       },
       {
         id: 'sender',
-        label: echo('sender'),
+        label: t('sender'),
         type: 'text',
         size: 2,
         linkOptions: {
           route: '/address',
           key: 'address',
-          title: echo('explore-address'),
+          title: t('explore-address'),
         },
       },
       {
         id: 'date',
-        label: echo('date'),
+        label: t('date'),
         type: 'date',
         size: 2,
         showDesktop: true,
       },
       {
         id: 'expiration',
-        label: echo('expiration'),
+        label: t('expiration'),
         type: 'date',
         size: 2,
       },
       {
         id: 'fee',
-        label: echo('fee'),
+        label: t('fee'),
         type: 'text',
         size: 2,
         append: ' KCAL',
       },
     ];
-  }, [echo]);
+  }, [t]);
 
   const content = useMemo(() => {
     if (loading) {

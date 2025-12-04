@@ -1,13 +1,12 @@
 import React from 'react';
 import NextLink from 'next/link';
-import { Typography, TypographyProps, Link as MuiLink } from '@mui/material';
+import { Link as MuiLink, LinkProps as MuiLinkProps } from '@mui/material';
 
 /**
  * Link props
  */
-export interface LinkProps extends TypographyProps {
+export interface LinkProps extends MuiLinkProps {
   external?: boolean;
-  href: string;
   withDec?: boolean;
 }
 
@@ -20,7 +19,7 @@ export const Link = ({
   href,
   sx,
   withDec,
-  ...propsTypo
+  ...propsLink
 }: LinkProps) => {
   const linkProps = external
     ? { target: '_blank', rel: 'noopener noreferrer' }
@@ -30,23 +29,20 @@ export const Link = ({
     <MuiLink
       href={href}
       {...linkProps}
+      {...propsLink}
       sx={{ textDecoration: withDec ? 'underline' : 'none', ...sx }}
     >
       {children}
     </MuiLink>
   );
+
   if (external) {
-    return (
-      <Typography {...propsTypo} sx={sx}>
-        {linkComponent}
-      </Typography>
-    );
+    return linkComponent;
   }
+
   return (
-    <Typography {...propsTypo} sx={sx}>
-      <NextLink href={href} passHref>
-        {linkComponent}
-      </NextLink>
-    </Typography>
+    <NextLink href={href as string} passHref legacyBehavior>
+      {linkComponent}
+    </NextLink>
   );
 };

@@ -11,18 +11,16 @@ import {
   IconButton,
   Tooltip,
 } from '@mui/material';
-import { useEcho } from '@ricardojrmcom/echo';
-import { useFury } from '@ricardojrmcom/fury';
 import {
   numberFormat,
   stringCapitalize,
   stringTruncate,
 } from '@ricardojrmcom/dervish';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
-import EventIcon from '@mui/icons-material/Event';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { NUMBER_FORMAT, DATE_FORMAT } from 'cfg';
-import { useDarkMode } from 'hooks';
+import { useDarkMode, useI18n } from 'hooks';
+import { useTheme } from '@mui/material/styles';
 
 import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc';
@@ -146,14 +144,14 @@ export const Text = ({
   ...propsTypo
 }: TextProps) => {
   const { enqueueSnackbar } = useSnackbar();
-  const { furyActive } = useFury();
-  const { echo } = useEcho();
+  const theme = useTheme();
+  const { t } = useI18n();
   const { isDark } = useDarkMode();
   const { dtOpts } = useDatetimeOpts();
 
   const copy: string = useMemo(() => {
     if (formatDate) {
-      if(formatDateIcon) {
+      if (formatDateIcon) {
         switch (dtOpts) {
           case 'utc':
             return `${dayjs(formatDate).fromNow()} (${dayjs(formatDate).utc().format(formatDateStr)})`;
@@ -162,8 +160,7 @@ export const Text = ({
           default:
             return `${dayjs(formatDate).fromNow()} (${dayjs(formatDate).format(formatDateStr)})`;
         }
-      }
-      else {
+      } else {
         switch (dtOpts) {
           case 'utc':
             return dayjs(formatDate).utc().format(formatDateStr);
@@ -194,9 +191,9 @@ export const Text = ({
 
     if (translate) {
       if (capitalize) {
-        return stringCapitalize(echo(`${value}`), capitalize === 'allWords');
+        return stringCapitalize(t(`${value}`), capitalize === 'allWords');
       }
-      return echo(`${value}`);
+      return t(`${value}`);
     }
 
     if (capitalize) {
@@ -211,7 +208,7 @@ export const Text = ({
     formatNumberStr,
     value,
     translate,
-    echo,
+    t,
     capitalize,
     dtOpts,
     formatDateIcon,
@@ -250,7 +247,7 @@ export const Text = ({
       {label && (
         <Grid item>
           <Typography variant={variant} {...propsTypo} sx={sx}>
-            <b>{translate ? echo(label) : label}:</b>
+            <b>{translate ? t(label) : label}:</b>
           </Typography>
         </Grid>
       )}
@@ -273,19 +270,19 @@ export const Text = ({
       )}
       {clipboard && (
         <Grid item>
-          <Tooltip title={echo('copy-to-clipboard')} placement="right">
+          <Tooltip title={t('copy-to-clipboard')} placement="right">
             <Typography variant={variant} {...propsTypo} sx={sx}>
               <CopyToClipboard text={copy}>
                 <IconButton
                   size="small"
                   onClick={(e) => {
-                    enqueueSnackbar(echo('copied-to-clipboard'));
+                    enqueueSnackbar(t('copied-to-clipboard'));
                     e.stopPropagation();
                   }}
                 >
                   <ContentCopyIcon
                     style={{
-                      fontSize: furyActive.typography[variant].fontSize,
+                      fontSize: theme.typography[variant]?.fontSize,
                       opacity: 0.45,
                     }}
                   />
@@ -308,7 +305,7 @@ export const Text = ({
               >
                 <ArrowForwardIosIcon
                   style={{
-                    fontSize: furyActive.typography[variant].fontSize,
+                    fontSize: theme.typography[variant]?.fontSize,
                     width: 'auto',
                   }}
                 />

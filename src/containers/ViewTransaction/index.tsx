@@ -1,9 +1,8 @@
 import React, { useMemo } from 'react';
 import { useRouter } from 'next/router';
-import { useEcho } from '@ricardojrmcom/echo';
 import { Box } from '@mui/material';
 import { NavTabs, NavTabsRecord, Breadcrumbs } from 'components/layout';
-import { useApi } from 'hooks';
+import { useApi, useI18n } from 'hooks';
 import { routes, endpoints } from 'cfg';
 import { Locales } from 'types/locales';
 import { ExplorerTabs } from 'types/routes';
@@ -20,7 +19,7 @@ export interface ViewTransactionProps {
 export const ViewTransaction = ({
   tabForce = 'overview',
 }: ViewTransactionProps) => {
-  const { echo, echoActiveId } = useEcho();
+  const { t, locale } = useI18n();
 
   const { query } = useRouter();
 
@@ -42,36 +41,36 @@ export const ViewTransaction = ({
     () => ({
       overview: {
         id: 'overview',
-        label: echo('tab-overview'),
-        href: routes['/transaction'](echoActiveId as Locales),
+        label: t('tab-overview'),
+        href: routes['/transaction'](locale as Locales),
         component: (
           <TransactionOverview data={data} loading={loading} error={error} />
         ),
       },
       advanced: {
         id: 'advanced',
-        label: echo('tab-advanced'),
-        href: routes['/transaction'](echoActiveId as Locales),
+        label: t('tab-advanced'),
+        href: routes['/transaction'](locale as Locales),
         component: (
           <TransactionAdvanced data={data} loading={loading} error={error} />
         ),
       },
       events: {
         id: 'events',
-        label: echo('tab-events'),
-        href: routes['/transaction'](echoActiveId as Locales),
+        label: t('tab-events'),
+        href: routes['/transaction'](locale as Locales),
         component: <TransactionEvents />,
       },
       raw: {
         id: 'raw',
-        label: echo('tab-raw'),
-        href: routes['/transaction'](echoActiveId as Locales),
+        label: t('tab-raw'),
+        href: routes['/transaction'](locale as Locales),
         component: (
           <TransactionRaw data={data} loading={loading} error={error} />
         ),
       },
     }),
-    [data, echo, echoActiveId, error, loading],
+    [data, t, locale, error, loading],
   );
 
   return (

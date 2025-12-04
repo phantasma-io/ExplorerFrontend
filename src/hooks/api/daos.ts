@@ -1,10 +1,10 @@
 import { useMemo, useState, useEffect } from 'react';
-import { useEcho } from '@ricardojrmcom/echo';
+import { useI18n } from 'hooks';
 import { TableDisplayRow, TableDisplayCol } from 'types/table';
 import { DaoResults } from 'types/api';
 
 export const useDaoData = (data?: DaoResults, loading?: boolean) => {
-  const { echo } = useEcho();
+  const { t } = useI18n();
 
   const [total, totalSet] = useState<number>(0);
 
@@ -18,111 +18,111 @@ export const useDaoData = (data?: DaoResults, loading?: boolean) => {
     return [
       {
         id: 'name',
-        label: echo('name'),
+        label: t('name'),
         type: 'text',
         size: 7,
         showDesktop: true,
         linkOptions: {
           route: '/dao',
           key: 'name',
-          title: echo('explore-dao'),
+          title: t('explore-dao'),
           primary: true,
         },
       },
       {
         id: 'size',
-        label: echo('size'),
+        label: t('size'),
         type: 'text',
         size: 4,
         showDesktop: true,
       },
       {
         id: 'addressName',
-        label: echo('addressName'),
+        label: t('addressName'),
         type: 'text',
         size: 2,
       },
       {
         id: 'address',
-        label: echo('address'),
+        label: t('address'),
         type: 'text',
         size: 2,
         linkOptions: {
           route: '/address',
           key: 'address',
-          title: echo('explore-address'),
+          title: t('explore-address'),
         },
       },
       {
         id: 'eventAddress',
-        label: echo('eventAddress'),
+        label: t('eventAddress'),
         type: 'text',
         size: 2,
         linkOptions: {
           route: '/address',
           key: 'eventAddress',
-          title: echo('explore-address'),
+          title: t('explore-address'),
         },
       },
       {
         id: 'eventBlock',
-        label: echo('eventBlock'),
+        label: t('eventBlock'),
         type: 'text',
         size: 2,
         linkOptions: {
           route: '/block',
           key: 'eventBlock',
-          title: echo('explore-block'),
+          title: t('explore-block'),
         },
       },
       {
         id: 'eventChain',
-        label: echo('eventChain'),
+        label: t('eventChain'),
         type: 'text',
         size: 2,
       },
       {
         id: 'eventContract',
-        label: echo('eventContract'),
+        label: t('eventContract'),
         type: 'text',
         size: 2,
         linkOptions: {
           route: '/contract',
           key: 'eventContract',
-          title: echo('explore-contract'),
+          title: t('explore-contract'),
         },
       },
       {
         id: 'eventID',
-        label: echo('eventID'),
+        label: t('eventID'),
         type: 'text',
         size: 2,
       },
       {
         id: 'eventKind',
-        label: echo('eventKind'),
+        label: t('eventKind'),
         type: 'text',
         size: 2,
       },
       {
         id: 'eventTransaction',
-        label: echo('eventTransaction'),
+        label: t('eventTransaction'),
         type: 'text',
         size: 2,
         linkOptions: {
           route: '/transaction',
           key: 'eventTransaction',
-          title: echo('explore-transaction'),
+          title: t('explore-transaction'),
         },
       },
       {
         id: 'eventDate',
-        label: echo('eventDate'),
+        label: t('eventDate'),
         type: 'date',
         size: 2,
       },
     ];
-  }, [echo]);
+  }, [t]);
 
   const rows = useMemo<TableDisplayRow[]>(() => {
     if (data) {
