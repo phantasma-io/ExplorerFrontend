@@ -1,9 +1,9 @@
 import React, { useMemo } from 'react';
 import { Box } from '@mui/material';
 import { useRouter } from 'next/router';
-import { useEmpathy } from '@ricardojrmcom/empathy';
 import { useEcho } from '@ricardojrmcom/echo';
 import { NavTabs, NavTabsRecord, Breadcrumbs } from 'components/layout';
+import { useApi, useTable } from 'hooks';
 import { endpoints, routes } from 'cfg';
 import { Locales } from 'types/locales';
 import { ExplorerTabs } from 'types/routes';
@@ -15,7 +15,6 @@ import { TokenRaw } from './raw';
 import { AddressOverview } from 'containers/ViewAddress/overview';
 import { useAddressesTopTokenHoldersData } from 'hooks/api/addresses';
 import { Table } from 'components/table';
-import { useTable } from 'hooks';
 
 export interface ViewTokenProps {
   tabForce?: ExplorerTabs;
@@ -26,7 +25,7 @@ export const ViewToken = ({ tabForce = 'overview' }: ViewTokenProps) => {
 
   const { query } = useRouter();
 
-  const { data, error, loading } = useEmpathy<TokenResults>(
+  const { data, error, loading } = useApi<TokenResults>(
     endpoints['/tokens']({
       symbol: (query?.id as string) || '',
       with_logo: 1,
@@ -34,7 +33,7 @@ export const ViewToken = ({ tabForce = 'overview' }: ViewTokenProps) => {
     } as TokenParams),
   );
 
-  const holders_res = useEmpathy<AddressResults>(
+  const holders_res = useApi<AddressResults>(
     endpoints['/addresses']({
       order_by: "balance",
       order_direction: "desc",

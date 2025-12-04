@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import { useEcho } from '@ricardojrmcom/echo';
-import { useEmpathy } from '@ricardojrmcom/empathy';
 import { Box } from '@mui/material';
 import { endpoints } from 'cfg';
-import { useTable } from 'hooks';
+import { useApi, useTable } from 'hooks';
 import { useEventData } from 'hooks/api';
 import { EventResults, EventParams } from 'types/api';
 import { Table } from 'components/table';
@@ -32,7 +31,7 @@ export const EventsList = ({
   const [address_partial, address_partialSet] =
     useState<EventParams['address_partial']>(undefined);
 
-  const { data, loading, error } = useEmpathy<EventResults>(
+  const { data, loading, error } = useApi<EventResults>(
     endpoints['/events']({
       offset,
       limit,

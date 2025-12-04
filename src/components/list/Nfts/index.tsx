@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import { useEcho } from '@ricardojrmcom/echo';
-import { useEmpathy } from '@ricardojrmcom/empathy';
 import { Box } from '@mui/material';
 import { endpoints } from 'cfg';
-import { useTable } from 'hooks';
+import { useApi, useTable } from 'hooks';
 import { useNftData } from 'hooks/api';
 import { NftResults, NftParams } from 'types/api';
 import { Table } from 'components/table';
@@ -19,7 +18,7 @@ export const NftsList = () => {
   const [name, nameSet] = useState<NftParams['name']>(undefined);
   const [symbol, symbolSet] = useState<NftParams['symbol']>(undefined);
 
-  const { data, loading, error } = useEmpathy<NftResults>(
+  const { data, loading, error } = useApi<NftResults>(
     endpoints['/nfts']({
       offset,
       limit,

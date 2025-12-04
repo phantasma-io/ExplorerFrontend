@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import { useEcho } from '@ricardojrmcom/echo';
-import { useEmpathy } from '@ricardojrmcom/empathy';
 import { Box } from '@mui/material';
 import { endpoints } from 'cfg';
-import { useTable } from 'hooks';
+import { useApi, useTable } from 'hooks';
 import { TransactionResults, TransactionParams } from 'types/api';
 import { Table } from 'components/table';
 import { useTransactionData } from 'hooks/api';
@@ -25,7 +24,7 @@ export const TransactionsList = ({ address, block }: TransactionsListProps) => {
     address || undefined,
   );
 
-  const { data, loading, error } = useEmpathy<TransactionResults>(
+  const { data, loading, error } = useApi<TransactionResults>(
     endpoints['/transactions']({
       offset,
       limit,

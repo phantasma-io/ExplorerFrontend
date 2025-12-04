@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { Box } from '@mui/material';
 import { useRouter } from 'next/router';
-import { useEmpathy } from '@ricardojrmcom/empathy';
+import { useApi } from 'hooks';
 import { useEcho } from '@ricardojrmcom/echo';
 import { NavTabs, NavTabsRecord, Breadcrumbs } from 'components/layout';
 import { endpoints, routes } from 'cfg';
@@ -23,7 +23,7 @@ export const ViewBlock = ({ tabForce = 'overview' }: ViewBlockProps) => {
 
   const { query } = useRouter();
 
-  const { data, loading, error } = useEmpathy<BlockResults>(
+  const { data, loading, error } = useApi<BlockResults>(
     endpoints['/blocks']({
       id: (query?.id as string) || '',
       with_fiat: 1,

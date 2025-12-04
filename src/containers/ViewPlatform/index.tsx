@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { Box } from '@mui/material';
 import { useRouter } from 'next/router';
-import { useEmpathy } from '@ricardojrmcom/empathy';
+import { useApi } from 'hooks';
 import { useEcho } from '@ricardojrmcom/echo';
 import { NavTabs, NavTabsRecord, Breadcrumbs } from 'components/layout';
 import { endpoints, routes } from 'cfg';
@@ -20,7 +20,7 @@ export const ViewPlatform = ({ tabForce = 'overview' }: ViewPlatformProps) => {
 
   const { query } = useRouter();
 
-  const { data, error, loading } = useEmpathy<PlatformResults>(
+  const { data, error, loading } = useApi<PlatformResults>(
     endpoints['/platforms']({
       name: (query?.id as string) || '',
     } as PlatformParams),

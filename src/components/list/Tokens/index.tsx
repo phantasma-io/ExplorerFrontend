@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import { useEcho } from '@ricardojrmcom/echo';
-import { useEmpathy } from '@ricardojrmcom/empathy';
 import { Box } from '@mui/material';
 import { endpoints } from 'cfg';
-import { useTable } from 'hooks';
+import { useApi, useTable } from 'hooks';
 import { useTokenData } from 'hooks/api';
 import { TokenResults, TokenParams } from 'types/api';
 import { Table } from 'components/table';
@@ -18,7 +17,7 @@ export const TokensList = () => {
   // filter states
   const [symbol, symbolSet] = useState<TokenParams['symbol']>(undefined);
 
-  const { data, loading, error } = useEmpathy<TokenResults>(
+  const { data, loading, error } = useApi<TokenResults>(
     endpoints['/tokens']({
       offset,
       limit,

@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import { useEcho } from '@ricardojrmcom/echo';
-import { useEmpathy } from '@ricardojrmcom/empathy';
 import { Box } from '@mui/material';
 import { endpoints } from 'cfg';
-import { useTable } from 'hooks';
+import { useApi, useTable } from 'hooks';
 import { useContractData } from 'hooks/api';
 import { ContractResults, ContractParams } from 'types/api';
 import { Table } from 'components/table';
@@ -19,7 +18,7 @@ export const ContractsList = () => {
   const [hash, hashSet] = useState<ContractParams['hash']>(undefined);
   const [symbol, symbolSet] = useState<ContractParams['symbol']>(undefined);
 
-  const { data, loading, error } = useEmpathy<ContractResults>(
+  const { data, loading, error } = useApi<ContractResults>(
     endpoints['/contracts']({
       offset,
       limit,

@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import { useEcho } from '@ricardojrmcom/echo';
-import { useEmpathy } from '@ricardojrmcom/empathy';
 import { Box } from '@mui/material';
 import { endpoints } from 'cfg';
-import { useTable } from 'hooks';
+import { useApi, useTable } from 'hooks';
 import { useSeriesData } from 'hooks/api';
 import { SeriesResults, SeriesParams } from 'types/api';
 import { Table } from 'components/table';
@@ -19,7 +18,7 @@ export const SeriesList = () => {
   const [name, nameSet] = useState<SeriesParams['name']>(undefined);
   const [symbol, symbolSet] = useState<SeriesParams['symbol']>(undefined);
 
-  const { data, loading, error } = useEmpathy<SeriesResults>(
+  const { data, loading, error } = useApi<SeriesResults>(
     endpoints['/series']({
       offset,
       limit,

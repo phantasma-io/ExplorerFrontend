@@ -1,9 +1,8 @@
 import React, { useMemo } from 'react';
 import { useEcho } from '@ricardojrmcom/echo';
-import { useEmpathy } from '@ricardojrmcom/empathy';
 import { Box } from '@mui/material';
 import { endpoints } from 'cfg';
-import { useTable } from 'hooks';
+import { useApi, useTable } from 'hooks';
 import { TableDisplayCol, TableDisplayRow } from 'types/table';
 import { ChainResults } from 'types/api';
 import { Table } from 'components/table';
@@ -14,7 +13,7 @@ export const ChainsList = () => {
   const tableProps = useTable();
   const { limit, order_by, order_direction, offset, with_total } = tableProps;
 
-  const { data } = useEmpathy<ChainResults>(
+  const { data } = useApi<ChainResults>(
     endpoints['/chains']({
       offset,
       limit,

@@ -1,10 +1,9 @@
 /* eslint-disable react/jsx-wrap-multilines */
 import React, { useState } from 'react';
 import { useEcho } from '@ricardojrmcom/echo';
-import { useEmpathy } from '@ricardojrmcom/empathy';
 import { Box } from '@mui/material';
 import { endpoints } from 'cfg';
-import { useTable } from 'hooks';
+import { useApi, useTable } from 'hooks';
 import { useAddressData } from 'hooks/api';
 import { AddressResults, AddressParams } from 'types/api';
 import { Table } from 'components/table';
@@ -38,7 +37,7 @@ export const AddressesList = ({ _organization_name }: EventsListProps) => {
   const tableProps = useTable();
   const { limit, order_by, order_direction, offset, with_total } = tableProps;
 
-  const { data, loading, error } = useEmpathy<AddressResults>(
+  const { data, loading, error } = useApi<AddressResults>(
     endpoints['/addresses']({
       offset,
       limit,

@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { Box } from '@mui/material';
 import { useRouter } from 'next/router';
-import { useEmpathy } from '@ricardojrmcom/empathy';
+import { useApi } from 'hooks';
 import { useEcho } from '@ricardojrmcom/echo';
 import { NavTabs, NavTabsRecord, Breadcrumbs } from 'components/layout';
 import { endpoints, routes } from 'cfg';
@@ -21,7 +21,7 @@ export const ViewDao = ({ tabForce = 'overview' }: ViewDaoProps) => {
 
   const { query } = useRouter();
 
-  const { data, error, loading } = useEmpathy<DaoResults>(
+  const { data, error, loading } = useApi<DaoResults>(
     endpoints['/organizations']({
       organization_name: (query?.id as string) || '',
       with_creation_event: 1,

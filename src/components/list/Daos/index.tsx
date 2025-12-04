@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import { useEcho } from '@ricardojrmcom/echo';
-import { useEmpathy } from '@ricardojrmcom/empathy';
 import { Box } from '@mui/material';
 import { endpoints } from 'cfg';
-import { useTable } from 'hooks';
+import { useApi, useTable } from 'hooks';
 import { useDaoData } from 'hooks/api';
 import { DaoResults, DaoParams } from 'types/api';
 import { Table } from 'components/table';
@@ -21,7 +20,7 @@ export const DaosList = () => {
   const [organization_name_partial, organization_name_partialSet] =
     useState<DaoParams['organization_name_partial']>(undefined);
 
-  const { data, loading, error } = useEmpathy<DaoResults>(
+  const { data, loading, error } = useApi<DaoResults>(
     endpoints['/organizations']({
       offset,
       limit,

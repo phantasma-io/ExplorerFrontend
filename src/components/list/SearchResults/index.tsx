@@ -1,7 +1,7 @@
 import React, { useMemo, useCallback, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { useEcho } from '@ricardojrmcom/echo';
-import { useEmpathy } from '@ricardojrmcom/empathy';
+import { useApi } from 'hooks';
 import { Box, Paper, Typography, Grid, Button } from '@mui/material';
 import { endpoints, routes } from 'cfg';
 import { Locales } from 'types/locales';
@@ -20,7 +20,7 @@ export const SearchResults = () => {
 
   const { echoActiveId, echo } = useEcho();
 
-  const { data, loading, error } = useEmpathy<SearchResultsType>(
+  const { data, loading, error } = useApi<SearchResultsType>(
     endpoints['/searches']({
       value: query.id,
     } as SearchParams),

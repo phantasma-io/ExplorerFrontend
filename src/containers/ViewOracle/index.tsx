@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { Box } from '@mui/material';
 import { useRouter } from 'next/router';
-import { useEmpathy } from '@ricardojrmcom/empathy';
+import { useApi } from 'hooks';
 import { useEcho } from '@ricardojrmcom/echo';
 import { NavTabs, NavTabsRecord, Breadcrumbs } from 'components/layout';
 import { endpoints, routes } from 'cfg';
@@ -20,7 +20,7 @@ export const ViewOracle = ({ tabForce = 'overview' }: ViewOracleProps) => {
 
   const { query } = useRouter();
 
-  const { data, error, loading } = useEmpathy<OracleResults>(
+  const { data, error, loading } = useApi<OracleResults>(
     endpoints['/oracles']({
       block_hash: (query?.id as string) || '',
     } as OracleParams),
