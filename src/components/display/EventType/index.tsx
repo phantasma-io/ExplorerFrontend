@@ -590,24 +590,27 @@ export const EventType = ({ data }: EventTypeProps) => {
                   </Link>
                 </Grid>
                 <Grid item md={2}>
-                  {data?.gas_event?.fee && (
-                    <DetailsNumber
-                      label={echo('fee')}
-                      value={parseFloat(data?.gas_event?.fee)}
-                      append=" KCAL"
-                    />
-                  )}
-                </Grid>
-                <Grid item md={2}>
-                  <Box>
-                    {data?.gas_event?.amount && (
+                  {data?.gas_event?.fee !== undefined &&
+                    data?.gas_event?.fee !== null && (
                       <DetailsNumber
-                        label={echo('amount')}
-                        value={parseInt(data?.gas_event?.amount, 10)}
+                        label={echo('fee')}
+                        value={parseFloat(`${data?.gas_event?.fee}`)}
                         append=" KCAL"
                       />
                     )}
-                  </Box>
+                </Grid>
+                <Grid item md={2}>
+                  {data?.gas_event?.amount !== undefined &&
+                  data?.gas_event?.amount !== null &&
+                  data?.gas_event?.amount !== '' ? (
+                    <DetailsText
+                      label={echo('amount')}
+                      value={data?.gas_event?.amount}
+                      append=" KCAL"
+                    />
+                  ) : (
+                    <DetailsText label={echo('amount')} value="unlimited" />
+                  )}
                 </Grid>
                 <Grid item md={6}>
                   {data?.gas_event?.address?.address && (
@@ -868,6 +871,10 @@ export const EventType = ({ data }: EventTypeProps) => {
           );
         case 'token_event':
           if (data?.token_event) {
+            const tokenValue =
+              data?.token_event?.value ??
+              data?.token_event?.value_raw ??
+              '';
             return (
               <Box my={1}>
                 <Grid
@@ -897,11 +904,8 @@ export const EventType = ({ data }: EventTypeProps) => {
                   </Grid>
                   <Grid item md={2}>
                     <Box>
-                      {data?.token_event?.value && (
-                        <DetailsNumber
-                          label={echo('value')}
-                          value={parseFloat(data?.token_event?.value)}
-                        />
+                      {tokenValue && (
+                        <DetailsText label={echo('value')} value={tokenValue} />
                       )}
                     </Box>
                   </Grid>

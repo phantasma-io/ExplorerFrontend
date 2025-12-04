@@ -29,13 +29,14 @@ export const TransactionAdvanced = ({
   const rows = useMemo(() => {
     if (data) {
       return data?.transactions?.map((item) => [
-        item?.gas_limit,
+        item?.gas_limit ? `${item.gas_limit} KCAL` : 'unlimited',
         item?.gas_price,
         item?.gas_target?.address,
         item?.gas_payer?.address,
         item?.sender?.address,
         item?.date ? unixmsToDate(item.date) : undefined,
         item?.expiration ? unixmsToDate(item.expiration) : undefined,
+        item?.fee,
       ]) as TableDisplayRow[];
     }
 
@@ -49,7 +50,6 @@ export const TransactionAdvanced = ({
         label: echo('gas_limit'),
         type: 'text',
         size: 2,
-        append: ' KCAL',
       },
       {
         id: 'gas_price',
@@ -103,6 +103,13 @@ export const TransactionAdvanced = ({
         label: echo('expiration'),
         type: 'date',
         size: 2,
+      },
+      {
+        id: 'fee',
+        label: echo('fee'),
+        type: 'text',
+        size: 2,
+        append: ' KCAL',
       },
     ];
   }, [echo]);
