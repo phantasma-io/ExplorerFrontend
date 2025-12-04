@@ -263,7 +263,7 @@ export const EventLine = ({ data }: EventLineProps) => {
           return (
             <Typography gutterBottom>
               {prefix}{' '}
-              <Typography component="span" variant="body2">
+              <Typography component="span" variant="inherit">
                 {summaryParts.join(', ')}
               </Typography>
             </Typography>
@@ -283,7 +283,7 @@ export const EventLine = ({ data }: EventLineProps) => {
           return (
             <Typography gutterBottom>
               {prefix}{' '}
-              <Typography component="span" variant="body2">
+              <Typography component="span" variant="inherit">
                 {summaryParts.join(', ')}
               </Typography>
             </Typography>
@@ -348,7 +348,7 @@ export const EventLine = ({ data }: EventLineProps) => {
                   {ownerLabel}
                 </Link>
               )}{' '}
-              <Typography component="span" variant="body2">
+              <Typography component="span" variant="inherit">
                 created {fungibilityLabel}
               </Typography>{' '}
               {token?.symbol ? (
@@ -362,7 +362,7 @@ export const EventLine = ({ data }: EventLineProps) => {
                 token?.name ?? token?.symbol ?? null
               )}
               {limits.length > 0 && (
-                <Typography component="span" variant="body2">
+                <Typography component="span" variant="inherit">
                   {' '}
                   ({limits.join(', ')})
                 </Typography>
@@ -390,18 +390,18 @@ export const EventLine = ({ data }: EventLineProps) => {
                   {ownerLabel}
                 </Link>
               )}{' '}
-              <Typography component="span" variant="body2">
+              <Typography component="span" variant="inherit">
                 created series
               </Typography>{' '}
               {seriesId && (
-                <Typography component="span" variant="body2">
+                <Typography component="span" variant="inherit">
                   #{seriesId}
                 </Typography>
               )}
               {tokenSymbol && (
                 <>
                   {' '}
-                  <Typography component="span" variant="body2">
+                  <Typography component="span" variant="inherit">
                     for
                   </Typography>{' '}
                   <Link
@@ -413,7 +413,7 @@ export const EventLine = ({ data }: EventLineProps) => {
                 </>
               )}
               {limits.length > 0 && (
-                <Typography component="span" variant="body2">
+                <Typography component="span" variant="inherit">
                   {' '}
                   ({limits.join(', ')})
                 </Typography>
