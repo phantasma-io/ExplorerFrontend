@@ -92,35 +92,6 @@ export const EventLine = ({ data }: EventLineProps) => {
           );
         case 'string_event': {
           const subject = data?.address_name || data?.address;
-
-          if (kind === 'TokenCreate') {
-            const tokenId =
-              data?.token_event?.token?.symbol || data?.token_id || data?.string_event?.string_value || '';
-            return (
-              <Typography gutterBottom>
-                {subject && (
-                  <Link
-                    href={routes['/address'](echoActiveId as Locales, { id: `${data?.address}` })}
-                    sx={{ display: 'inline-block' }}
-                  >
-                {subject}
-              </Link>
-            )}{' '}
-            <Typography component="span" variant="body1">
-              created token{' '}
-            </Typography>
-            {tokenId && (
-              <Link
-                href={routes['/token'](echoActiveId as Locales, { id: `${tokenId}` })}
-                sx={{ display: 'inline-block' }}
-              >
-                {tokenId}
-              </Link>
-            )}
-          </Typography>
-        );
-      }
-
           const label =
             kind === 'PlatformCreate'
               ? 'created platform'
@@ -356,7 +327,9 @@ export const EventLine = ({ data }: EventLineProps) => {
             </Typography>
           );
         case 'token_create_event': {
-          const token = data?.token_create_event?.token || data?.contract;
+          const tokenSymbol = data?.token_create_event?.token?.symbol;
+          if (!tokenSymbol) return fallbackLine;
+          const token = {symbol: tokenSymbol};
           const ownerAddress = data?.address;
           const ownerLabel = data?.address_name || ownerAddress;
           const limits = [];
@@ -376,13 +349,15 @@ export const EventLine = ({ data }: EventLineProps) => {
               <Typography component="span" variant="body2">
                 created token
               </Typography>{' '}
-              {token?.symbol && (
+              {token?.symbol ? (
                 <Link
                   href={routes['/token'](echoActiveId as Locales, { id: `${token?.symbol}` })}
                   sx={{ display: 'inline-block' }}
                 >
                   {token?.symbol}
                 </Link>
+              ) : (
+                token?.name ?? token?.symbol ?? null
               )}
               {limits.length > 0 && (
                 <Typography component="span" variant="body2">
