@@ -4,23 +4,56 @@ import { Box } from '@mui/material';
 import { ExplorerRoutes } from 'types/routes';
 import { MetaDynamic } from 'components/meta';
 import { useI18n } from 'hooks';
-import {
-  AppLayout,
-  ViewHome,
-  ViewAddress,
-  ViewBlock,
-  ViewContract,
-  ViewDao,
-  ViewEvent,
-  ViewPlatform,
-  ViewNft,
-  ViewNexus,
-  ViewSeries,
-  ViewSearch,
-  ViewToken,
-  ViewTransaction,
-  ViewOracle,
-} from '../index';
+import { AppLayout } from '../AppLayout';
+import { ViewBlock } from '../ViewBlock';
+import dynamic from 'next/dynamic';
+
+type ViewComponent = React.ComponentType<Record<string, unknown>>;
+
+// Load views on demand to avoid pulling the whole app tree for simple routes.
+// Casts are needed because views are named exports, not defaults.
+const makeDynamicView = (loader: () => Promise<unknown>) =>
+  dynamic(loader as any) as unknown as ViewComponent;
+
+const ViewHome = makeDynamicView(() =>
+  import('../ViewHome').then((mod) => mod.ViewHome),
+);
+const ViewAddress = makeDynamicView(() =>
+  import('../ViewAddress').then((mod) => mod.ViewAddress),
+);
+const ViewContract = makeDynamicView(() =>
+  import('../ViewContract').then((mod) => mod.ViewContract),
+);
+const ViewDao = makeDynamicView(() =>
+  import('../ViewDao').then((mod) => mod.ViewDao),
+);
+const ViewEvent = makeDynamicView(() =>
+  import('../ViewEvent').then((mod) => mod.ViewEvent),
+);
+const ViewPlatform = makeDynamicView(() =>
+  import('../ViewPlatform').then((mod) => mod.ViewPlatform),
+);
+const ViewNft = makeDynamicView(() =>
+  import('../ViewNft').then((mod) => mod.ViewNft),
+);
+const ViewNexus = makeDynamicView(() =>
+  import('../ViewNexus').then((mod) => mod.ViewNexus),
+);
+const ViewSeries = makeDynamicView(() =>
+  import('../ViewSeries').then((mod) => mod.ViewSeries),
+);
+const ViewSearch = makeDynamicView(() =>
+  import('../ViewSearch').then((mod) => mod.ViewSearch),
+);
+const ViewToken = makeDynamicView(() =>
+  import('../ViewToken').then((mod) => mod.ViewToken),
+);
+const ViewTransaction = makeDynamicView(() =>
+  import('../ViewTransaction').then((mod) => mod.ViewTransaction),
+);
+const ViewOracle = makeDynamicView(() =>
+  import('../ViewOracle').then((mod) => mod.ViewOracle),
+);
 
 interface LocalizedViewProps {
   route: ExplorerRoutes;
