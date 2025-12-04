@@ -335,6 +335,8 @@ export const EventLine = ({ data }: EventLineProps) => {
           const limits = [];
           if (data?.token_create_event?.max_supply) limits.push(`max supply ${data.token_create_event.max_supply}`);
           if (data?.token_create_event?.decimals) limits.push(`${data.token_create_event.decimals} decimals`);
+          const fungibilityLabel =
+            data?.token_create_event?.is_non_fungible === true ? 'NFT token' : 'fungible token';
 
           return (
             <Typography gutterBottom>
@@ -347,7 +349,7 @@ export const EventLine = ({ data }: EventLineProps) => {
                 </Link>
               )}{' '}
               <Typography component="span" variant="body2">
-                created token
+                created {fungibilityLabel}
               </Typography>{' '}
               {token?.symbol ? (
                 <Link
