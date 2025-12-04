@@ -9,7 +9,7 @@ export const usePlatformData = (data?: PlatformResults, loading?: boolean) => {
   const [total, totalSet] = useState<number>(0);
 
   useEffect(() => {
-    if (data?.total_results && !loading) {
+    if (typeof data?.total_results === 'number' && !loading) {
       totalSet(data.total_results);
     }
   }, [data, loading]);

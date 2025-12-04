@@ -68,7 +68,7 @@ export const TableDisplayDesktop = ({
                 <Grid
                   container
                   spacing={spacing}
-                  key={nanoid()}
+                  key={`${tableId}-dialog-${col.id}-${i}`}
                   item
                   xs={12}
                   alignItems="center"
@@ -176,7 +176,7 @@ export const TableDisplayDesktop = ({
           row={row}
           spacing={spacing}
           cols={cols}
-          key={nanoid()}
+          key={`${tableId}-row-${i}`}
           hasClick={!!withDetails}
           openDialog={openDialog}
           linkOptions={linkOptions}

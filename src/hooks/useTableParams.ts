@@ -1,4 +1,5 @@
-import { useMemo } from 'react';
+import { useEffect, useMemo, useState } from 'react';
+import { useRouter } from 'next/router';
 import {
   TABLE_PAGE,
   TABLE_SIZE,
@@ -10,15 +11,18 @@ import { decode, queryToObj } from 'scripts';
 import { TableUrlParams, TableOrderDirection } from 'types/table';
 
 export const useTableParams = () => {
-  let location: Location | undefined;
+  const { asPath } = useRouter();
+  const [search, searchSet] = useState<string | undefined>(undefined);
 
-  if (typeof window !== 'undefined') {
-    location = window.location;
-  }
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      searchSet(window.location.search);
+    }
+  }, [asPath]);
 
   const params = useMemo<TableUrlParams>(() => {
-    if (location) {
-      const obj = queryToObj(location.search);
+    if (search) {
+      const obj = queryToObj(search);
       if (obj.t) {
         const decoded = decode(obj.t as string);
         return {
@@ -39,7 +43,7 @@ export const useTableParams = () => {
       orderDirection: TABLE_ORDERDIR,
       total: TABLE_TOTAL,
     };
-  }, [location]);
+  }, [search]);
 
   return params;
 };

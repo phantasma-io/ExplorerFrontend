@@ -6,7 +6,7 @@ import { useTransactionData } from 'hooks/api';
 import { TransactionResults } from 'types/api';
 import { Loading, Error, Empty, Overview } from 'components/layout';
 import { EventActivity } from 'components/display/EventActivity';
-import { unixmsToDate } from 'scripts';
+import { unixToDate } from 'scripts';
 import { TableDisplayRow, TableDisplayCol } from 'types/table';
 
 export interface TransactionAdvancedProps {
@@ -30,7 +30,7 @@ export const TransactionAdvanced = ({
     if (data) {
       const sanitizeExpiration = (expiration?: string) => {
         if (!expiration || expiration === '0') return undefined;
-        return unixmsToDate(expiration);
+        return unixToDate(expiration);
       };
 
       return data?.transactions?.map((item) => [
@@ -39,7 +39,7 @@ export const TransactionAdvanced = ({
         item?.gas_target?.address,
         item?.gas_payer?.address,
         item?.sender?.address,
-        item?.date ? unixmsToDate(item.date) : undefined,
+        item?.date ? unixToDate(item.date) : undefined,
         sanitizeExpiration(item?.expiration),
         item?.fee,
       ]) as TableDisplayRow[];

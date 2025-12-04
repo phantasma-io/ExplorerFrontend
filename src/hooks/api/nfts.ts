@@ -2,7 +2,7 @@ import { useMemo, useState, useEffect } from 'react';
 import { useEcho } from '@ricardojrmcom/echo';
 import { TableDisplayRow, TableDisplayCol } from 'types/table';
 import { NftResults } from 'types/api';
-import { unixmsToDate } from 'scripts';
+import { unixToDate } from 'scripts';
 
 export const useNftData = (data?: NftResults, loading?: boolean) => {
   const { echo } = useEcho();
@@ -10,7 +10,7 @@ export const useNftData = (data?: NftResults, loading?: boolean) => {
   const [total, totalSet] = useState<number>(0);
 
   useEffect(() => {
-    if (data?.total_results && !loading) {
+    if (typeof data?.total_results === 'number' && !loading) {
       totalSet(data.total_results);
     }
   }, [data, loading]);
@@ -217,7 +217,7 @@ export const useNftData = (data?: NftResults, loading?: boolean) => {
         item?.series?.max_supply,
         item?.nft_metadata?.mint_number,
         item?.nft_metadata?.mint_date
-          ? unixmsToDate(item?.nft_metadata?.mint_date)
+          ? unixToDate(item?.nft_metadata?.mint_date)
           : undefined,
         item?.contract?.name,
         item?.symbol,

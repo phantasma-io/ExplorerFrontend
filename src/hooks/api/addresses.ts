@@ -10,7 +10,7 @@ export const useAddressData = (data?: AddressResults, loading?: boolean) => {
   const [total, totalSet] = useState<number>(0);
 
   useEffect(() => {
-    if (data?.total_results && !loading) {
+    if (typeof data?.total_results === 'number' && !loading) {
       totalSet(data.total_results);
     }
   }, [data, loading]);
@@ -105,7 +105,7 @@ export const useAddressesTopTokenHoldersData = (token_id: string, data?: Address
   const [total, totalSet] = useState<number>(0);
 
   useEffect(() => {
-    if (data?.total_results && !loading) {
+    if (typeof data?.total_results === 'number' && !loading) {
       totalSet(data.total_results);
     }
   }, [data, loading]);
@@ -186,7 +186,7 @@ export const useAddressesTopTokenHoldersData = (token_id: string, data?: Address
     }
 
     return [];
-  }, [data]);
+  }, [data, token_id]);
 
   const raw = useMemo(() => data?.addresses || [], [data]);
 

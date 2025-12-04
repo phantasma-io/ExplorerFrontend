@@ -2,7 +2,7 @@ import { useMemo, useState, useEffect } from 'react';
 import { useEcho } from '@ricardojrmcom/echo';
 import { TableDisplayRow, TableDisplayCol } from 'types/table';
 import { BlockResults } from 'types/api';
-import { unixmsToDate } from 'scripts';
+import { unixToDate } from 'scripts';
 
 export const useBlockData = (data?: BlockResults, loading?: boolean) => {
   const { echo } = useEcho();
@@ -10,7 +10,7 @@ export const useBlockData = (data?: BlockResults, loading?: boolean) => {
   const [total, totalSet] = useState<number>(0);
 
   useEffect(() => {
-    if (data?.total_results && !loading) {
+    if (typeof data?.total_results === 'number' && !loading) {
       totalSet(data.total_results);
     }
   }, [data, loading]);
@@ -96,7 +96,7 @@ export const useBlockData = (data?: BlockResults, loading?: boolean) => {
     if (data) {
       return data?.blocks?.map((item) => [
         item?.height,
-        item?.date ? unixmsToDate(item.date) : undefined,
+        item?.date ? unixToDate(item.date) : undefined,
         item?.protocol,
         item?.reward,
         item?.chain_address,

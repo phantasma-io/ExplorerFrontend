@@ -1,6 +1,6 @@
 import { useMemo, useState, useEffect } from 'react';
 import { useEcho } from '@ricardojrmcom/echo';
-import { unixmsToDate } from 'scripts';
+import { unixToDate } from 'scripts';
 import { TableDisplayRow, TableDisplayCol } from 'types/table';
 import { EventResults } from 'types/api';
 
@@ -10,7 +10,7 @@ export const useEventData = (data?: EventResults, loading?: boolean) => {
   const [total, totalSet] = useState<number>(0);
 
   useEffect(() => {
-    if (data?.total_results && !loading) {
+    if (typeof data?.total_results === 'number' && !loading) {
       totalSet(data.total_results);
     }
   }, [data, loading]);
@@ -101,7 +101,7 @@ export const useEventData = (data?: EventResults, loading?: boolean) => {
         item?.transaction_hash,
         item?.chain,
         item?.contract?.name,
-        item?.date ? unixmsToDate(item.date) : undefined,
+        item?.date ? unixToDate(item.date) : undefined,
       ]) as TableDisplayRow[];
     }
 

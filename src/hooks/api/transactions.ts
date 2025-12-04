@@ -3,7 +3,7 @@ import { useEcho } from '@ricardojrmcom/echo';
 import { TableDisplayRow, TableDisplayCol } from 'types/table';
 import { TransactionResults } from 'types/api';
 import { decodeBase16 } from 'scripts/decodeBase16';
-import { unixmsToDate } from 'scripts';
+import { unixToDate } from 'scripts';
 
 export const useTransactionData = (
   data?: TransactionResults,
@@ -14,7 +14,7 @@ export const useTransactionData = (
   const [total, totalSet] = useState<number>(0);
 
   useEffect(() => {
-    if (data?.total_results && !loading) {
+    if (typeof data?.total_results === 'number' && !loading) {
       totalSet(data.total_results);
     }
   }, [data, loading]);
@@ -87,7 +87,7 @@ export const useTransactionData = (
         item?.hash,
         item?.state === 'Halt' ? 'Successful' : item?.state,
         item?.block_height,
-        item?.date ? unixmsToDate(item.date) : undefined,
+        item?.date ? unixToDate(item.date) : undefined,
         item?.result,
         item?.payload ? decodeBase16(item?.payload) : null,
         item?.fee,

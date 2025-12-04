@@ -15,6 +15,10 @@ interface SingleResult {
   type: string;
 }
 
+type SearchMap = {
+  [endpoint: string]: { found: boolean; value: string };
+};
+
 export const SearchResults = () => {
   const { query, push } = useRouter();
 
@@ -26,40 +30,24 @@ export const SearchResults = () => {
     } as SearchParams),
   );
 
-  const isEmpty = useMemo(() => {
-    if (data && data.result) {
-      let empty = true;
-      data.result.forEach((item) => {
-        if (item.found) {
-          empty = false;
-        }
-      });
-      return empty;
-    }
-    return false;
-  }, [data]);
+  const { isEmpty, isSingle, byType } = useMemo(() => {
+    const result = data?.result || [];
+    const foundItems = result.filter((item) => item.found);
 
-  const isSingle: SingleResult | undefined = useMemo(() => {
-    if (!isEmpty && data && data.result) {
-      let count = 0;
-      let type = '';
-      data.result.forEach((item) => {
-        if (item.found) {
-          // eslint-disable-next-line no-plusplus
-          count++;
-          type = item.endpoint_name;
-        }
-      });
-      return {
-        single: count === 1,
-        type,
-      };
-    }
+    const map: SearchMap = {};
+    foundItems.forEach((item) => {
+      map[item.endpoint_name] = { found: item.found, value: query.id as string };
+    });
+
     return {
-      single: false,
-      type: '',
+      isEmpty: foundItems.length === 0,
+      isSingle: {
+        single: foundItems.length === 1,
+        type: foundItems[0]?.endpoint_name || '',
+      } as SingleResult,
+      byType: map,
     };
-  }, [data, isEmpty]);
+  }, [data?.result, query.id]);
 
   const switchType = useCallback((type: string) => {
     switch (type) {
@@ -117,7 +105,7 @@ export const SearchResults = () => {
                   {echo('search-results')}:
                 </Typography>
               </Grid>
-              {data && data.result[0].found && (
+              {byType.addresses?.found && (
                 <Grid item xs={12}>
                   <Link
                     href={routes['/address'](echoActiveId as Locales, {
@@ -130,7 +118,7 @@ export const SearchResults = () => {
                   </Link>
                 </Grid>
               )}
-              {data && data.result[1].found && (
+              {byType.blocks?.found && (
                 <Grid item xs={12}>
                   <Link
                     href={routes['/block'](echoActiveId as Locales, {
@@ -143,7 +131,7 @@ export const SearchResults = () => {
                   </Link>
                 </Grid>
               )}
-              {data && data.result[3].found && (
+              {byType.contracts?.found && (
                 <Grid item xs={12}>
                   <Link
                     href={routes['/contract'](echoActiveId as Locales, {
@@ -156,7 +144,7 @@ export const SearchResults = () => {
                   </Link>
                 </Grid>
               )}
-              {data && data.result[5].found && (
+              {byType.platforms?.found && (
                 <Grid item xs={12}>
                   <Link
                     href={routes['/platform'](echoActiveId as Locales, {
@@ -169,7 +157,7 @@ export const SearchResults = () => {
                   </Link>
                 </Grid>
               )}
-              {data && data.result[4].found && (
+              {byType.organizations?.found && (
                 <Grid item xs={12}>
                   <Link
                     href={routes['/dao'](echoActiveId as Locales, {
@@ -182,7 +170,7 @@ export const SearchResults = () => {
                   </Link>
                 </Grid>
               )}
-              {data && data.result[6].found && (
+              {byType.tokens?.found && (
                 <Grid item xs={12}>
                   <Link
                     href={routes['/token'](echoActiveId as Locales, {
@@ -195,7 +183,7 @@ export const SearchResults = () => {
                   </Link>
                 </Grid>
               )}
-              {data && data.result[7].found && (
+              {byType.transactions?.found && (
                 <Grid item xs={12}>
                   <Link
                     href={routes['/transaction'](echoActiveId as Locales, {

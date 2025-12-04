@@ -213,6 +213,8 @@ export const Text = ({
     translate,
     echo,
     capitalize,
+    dtOpts,
+    formatDateIcon,
   ]);
 
   const result = useMemo(() => {
