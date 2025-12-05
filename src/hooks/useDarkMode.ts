@@ -1,18 +1,21 @@
 import { useMemo, useCallback } from 'react';
-import { useFury } from '@ricardojrmcom/fury';
+import { useThemeMode } from 'containers/ThemeProvider';
 
 export const useDarkMode = () => {
-  const { furyActiveId, furySetById } = useFury();
+  const { themeActiveId, themeSetById } = useThemeMode();
 
-  const isDark = useMemo(() => furyActiveId.includes('-dark'), [furyActiveId]);
+  const isDark = useMemo(
+    () => themeActiveId.includes('-dark'),
+    [themeActiveId],
+  );
 
   const toggleDarkMode = useCallback(() => {
     if (isDark) {
-      furySetById(furyActiveId.split('-')[0]);
+      themeSetById('soul');
     } else {
-      furySetById(`${furyActiveId}-dark`);
+      themeSetById('soul-dark');
     }
-  }, [isDark, furyActiveId, furySetById]);
+  }, [isDark, themeSetById]);
 
   return { isDark, toggleDarkMode };
 };

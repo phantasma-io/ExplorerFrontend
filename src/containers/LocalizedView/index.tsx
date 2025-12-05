@@ -29,12 +29,28 @@ interface LocalizedViewProps {
 }
 
 export const LocalizedView = ({ locale, route }: LocalizedViewProps) => {
-  const { query } = useRouter();
+  const { query, isReady } = useRouter();
   const { echo, echoSetById } = useEcho();
+  const needsQuery =
+    route === '/address' ||
+    route === '/block' ||
+    route === '/contract' ||
+    route === '/dao' ||
+    route === '/event' ||
+    route === '/platform' ||
+    route === '/oracle' ||
+    route === '/nft' ||
+    route === '/series' ||
+    route === '/token' ||
+    route === '/transaction' ||
+    route === '/search';
+
+  const ready =
+    typeof window === 'undefined' ? !needsQuery : !needsQuery || isReady;
 
   useEffect(() => {
     echoSetById(locale);
-  });
+  }, [echoSetById, locale]);
 
   const title = useMemo(() => {
     switch (route) {
@@ -97,6 +113,10 @@ export const LocalizedView = ({ locale, route }: LocalizedViewProps) => {
   }, [route, echo]);
 
   const children = useMemo(() => {
+    if (needsQuery && (!ready || !query?.id)) {
+      return null;
+    }
+
     switch (route) {
       case '/nexus':
         return <ViewNexus />;
@@ -161,7 +181,7 @@ export const LocalizedView = ({ locale, route }: LocalizedViewProps) => {
       default:
         return <ViewHome />;
     }
-  }, [route, query]);
+  }, [needsQuery, ready, route, query]);
 
   return (
     <AppLayout>

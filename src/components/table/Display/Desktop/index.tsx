@@ -2,9 +2,9 @@ import React, { useState, useCallback, useMemo } from 'react';
 import FileDownloadIcon from '@mui/icons-material/FileDownload';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { nanoid } from 'nanoid';
-import { useFury } from '@ricardojrmcom/fury';
 import { useEcho } from '@ricardojrmcom/echo';
 import { Box, Grid, Typography, Button } from '@mui/material';
+import { useThemeMode } from 'containers/ThemeProvider';
 import { Link } from 'components/display';
 import { Dialog, Loading, Empty, Error } from 'components/layout';
 import { routes } from 'cfg';
@@ -33,7 +33,7 @@ export const TableDisplayDesktop = ({
   error,
 }: TableDisplayProps) => {
   const { echo, echoActiveId } = useEcho();
-  const { furyActive } = useFury();
+  const { themeActive } = useThemeMode();
 
   const isSuccess = useMemo(() => !loading && !error, [loading, error]);
 
@@ -125,6 +125,7 @@ export const TableDisplayDesktop = ({
                       id: raw[selectedRowIndex][linkOptions.key],
                     })}
                     title={linkOptions.title}
+                    asChild
                   >
                     <Button
                       onClick={closeDialog}
@@ -204,7 +205,7 @@ export const TableDisplayDesktop = ({
       {/* header */}
       <Box
         py={1}
-        style={{ borderBottom: `2px solid ${furyActive.palette.divider}` }}
+        style={{ borderBottom: `2px solid ${themeActive.palette.divider}` }}
       >
         <Grid container>
           {cols.map((col: TableDisplayCol) => {

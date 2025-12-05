@@ -1,7 +1,7 @@
 import React, { useMemo, useCallback } from 'react';
 import { Box, IconButton, Tooltip } from '@mui/material';
-import { useFury } from '@ricardojrmcom/fury';
 import { useEcho } from '@ricardojrmcom/echo';
+import { useThemeMode } from 'containers/ThemeProvider';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 
@@ -9,18 +9,21 @@ import Brightness4Icon from '@mui/icons-material/Brightness4';
  * DarkMode
  */
 export const DarkMode = () => {
-  const { furyActive, furyActiveId, furySetById } = useFury();
+  const { themeActive, themeActiveId, themeSetById } = useThemeMode();
   const { echo } = useEcho();
 
-  const isDark = useMemo(() => furyActiveId.includes('-dark'), [furyActiveId]);
+  const isDark = useMemo(
+    () => themeActiveId === 'soul-dark',
+    [themeActiveId],
+  );
 
   const toggleDarkMode = useCallback(() => {
     if (isDark) {
-      furySetById(furyActiveId.split('-')[0]);
+      themeSetById('soul');
     } else {
-      furySetById(`${furyActiveId}-dark`);
+      themeSetById('soul-dark');
     }
-  }, [isDark, furyActiveId, furySetById]);
+  }, [isDark, themeSetById]);
 
   return (
     <Box>
@@ -30,14 +33,14 @@ export const DarkMode = () => {
             {isDark ? (
               <Brightness4Icon
                 sx={{
-                  fontSize: furyActive.typography.h5.fontSize,
+                  fontSize: themeActive.typography.h5.fontSize,
                   color: '#fff',
                 }}
               />
             ) : (
               <DarkModeIcon
                 sx={{
-                  fontSize: furyActive.typography.h5.fontSize,
+                  fontSize: themeActive.typography.h5.fontSize,
                   color: '#fff',
                 }}
               />

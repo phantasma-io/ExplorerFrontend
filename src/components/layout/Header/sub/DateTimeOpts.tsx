@@ -1,10 +1,10 @@
 import React, { useState, useCallback } from 'react';
 import { IconButton, Box, Grid, Tooltip, Menu, MenuItem } from '@mui/material';
-import { useFury } from '@ricardojrmcom/fury';
 import { useEcho } from '@ricardojrmcom/echo';
 import AccessTimeFilledIcon from '@mui/icons-material/AccessTimeFilled';
 import { Text } from 'components/display';
 import { useDatetimeOpts } from 'hooks/datetime/useDatetimeOpts';
+import { useThemeMode } from 'containers/ThemeProvider';
 
 /**
  * DateTimeOpts
@@ -12,7 +12,7 @@ import { useDatetimeOpts } from 'hooks/datetime/useDatetimeOpts';
 export const DateTimeOpts = () => {
   const { dtOpts, dtOptsSet } = useDatetimeOpts();
 
-  const { furyActive } = useFury();
+  const { themeActive } = useThemeMode();
   const { echo } = useEcho();
 
   const [anchorOptions, anchorOptionsSet] = useState<null | HTMLElement>(null);
@@ -34,7 +34,7 @@ export const DateTimeOpts = () => {
           <IconButton size="small" onClick={handleOpenOptions}>
             <AccessTimeFilledIcon
               sx={{
-                fontSize: furyActive.typography.h5.fontSize,
+                fontSize: themeActive.typography.h5.fontSize,
                 color: '#fff',
               }}
             />
@@ -62,12 +62,12 @@ export const DateTimeOpts = () => {
           sx={{
             borderLeft: `3px solid ${
               dtOpts === 'local'
-                ? furyActive.palette.primary.main
+                ? themeActive.palette.primary.main
                 : 'rgba(0,0,0,0)'
             }`,
             borderRight: `3px solid ${
               dtOpts === 'local'
-                ? furyActive.palette.primary.main
+                ? themeActive.palette.primary.main
                 : 'rgba(0,0,0,0)'
             }`,
           }}
@@ -87,12 +87,12 @@ export const DateTimeOpts = () => {
           sx={{
             borderLeft: `3px solid ${
               dtOpts === 'local-24'
-                ? furyActive.palette.primary.main
+                ? themeActive.palette.primary.main
                 : 'rgba(0,0,0,0)'
             }`,
             borderRight: `3px solid ${
               dtOpts === 'local-24'
-                ? furyActive.palette.primary.main
+                ? themeActive.palette.primary.main
                 : 'rgba(0,0,0,0)'
             }`,
           }}
@@ -111,12 +111,12 @@ export const DateTimeOpts = () => {
           sx={{
             borderLeft: `3px solid ${
               dtOpts === 'utc'
-                ? furyActive.palette.primary.main
+                ? themeActive.palette.primary.main
                 : 'rgba(0,0,0,0)'
             }`,
             borderRight: `3px solid ${
               dtOpts === 'utc'
-                ? furyActive.palette.primary.main
+                ? themeActive.palette.primary.main
                 : 'rgba(0,0,0,0)'
             }`,
           }}
@@ -135,12 +135,12 @@ export const DateTimeOpts = () => {
           sx={{
             borderLeft: `3px solid ${
               dtOpts === 'utc-24'
-                ? furyActive.palette.primary.main
+                ? themeActive.palette.primary.main
                 : 'rgba(0,0,0,0)'
             }`,
             borderRight: `3px solid ${
               dtOpts === 'utc-24'
-                ? furyActive.palette.primary.main
+                ? themeActive.palette.primary.main
                 : 'rgba(0,0,0,0)'
             }`,
           }}
@@ -159,12 +159,12 @@ export const DateTimeOpts = () => {
           sx={{
             borderLeft: `3px solid ${
               dtOpts === 'unix'
-                ? furyActive.palette.primary.main
+                ? themeActive.palette.primary.main
                 : 'rgba(0,0,0,0)'
             }`,
             borderRight: `3px solid ${
               dtOpts === 'unix'
-                ? furyActive.palette.primary.main
+                ? themeActive.palette.primary.main
                 : 'rgba(0,0,0,0)'
             }`,
           }}

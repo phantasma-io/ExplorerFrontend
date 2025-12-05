@@ -1,7 +1,7 @@
 import React, { useState, useCallback, useMemo } from 'react';
 import { nanoid } from 'nanoid';
 import { Box, Grid, GridSpacing, IconButton, Tooltip } from '@mui/material';
-import { useFury } from '@ricardojrmcom/fury';
+import { useThemeMode } from 'containers/ThemeProvider';
 import { Link } from 'components/display';
 import { useDarkMode, useRenderDetails } from 'hooks';
 import { routes } from 'cfg';
@@ -38,7 +38,7 @@ export const TableRow = ({
   linkOptions,
 }: TableRowProps) => {
   const { echo, echoActiveId } = useEcho();
-  const { furyActive } = useFury();
+  const { themeActive } = useThemeMode();
   const { isDark } = useDarkMode();
   const renderDetails = useRenderDetails();
 
@@ -59,13 +59,13 @@ export const TableRow = ({
       onMouseLeave={() => isHoverSet(false)}
       style={{
         backgroundColor:
-          !isDark && isHover ? '#e5e5e5' : furyActive.palette.background.paper,
+          !isDark && isHover ? '#e5e5e5' : themeActive.palette.background.paper,
         backgroundImage:
           isDark && isHover
             ? undefined
             : `linear-gradient(rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05))`,
         cursor: hasClick ? 'pointer' : 'default',
-        borderBottom: `1px solid ${furyActive.palette.divider}`,
+        borderBottom: `1px solid ${themeActive.palette.divider}`,
       }}
       onClick={shouldOpenDialog}
     >
@@ -105,6 +105,7 @@ export const TableRow = ({
                     href={routes[linkOptions.route](echoActiveId as Locales, {
                       id: raw[linkOptions.key],
                     })}
+                    asChild
                   >
                     <Tooltip title={linkOptions.title} placement="top">
                       <IconButton

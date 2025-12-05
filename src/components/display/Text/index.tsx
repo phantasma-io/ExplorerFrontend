@@ -12,7 +12,7 @@ import {
   Tooltip,
 } from '@mui/material';
 import { useEcho } from '@ricardojrmcom/echo';
-import { useFury } from '@ricardojrmcom/fury';
+import { useThemeMode } from 'containers/ThemeProvider';
 import {
   numberFormat,
   stringCapitalize,
@@ -146,7 +146,7 @@ export const Text = ({
   ...propsTypo
 }: TextProps) => {
   const { enqueueSnackbar } = useSnackbar();
-  const { furyActive } = useFury();
+  const { themeActive } = useThemeMode();
   const { echo } = useEcho();
   const { isDark } = useDarkMode();
   const { dtOpts } = useDatetimeOpts();
@@ -285,7 +285,7 @@ export const Text = ({
                 >
                   <ContentCopyIcon
                     style={{
-                      fontSize: furyActive.typography[variant].fontSize,
+                      fontSize: themeActive.typography[variant].fontSize,
                       opacity: 0.45,
                     }}
                   />
@@ -308,7 +308,7 @@ export const Text = ({
               >
                 <ArrowForwardIosIcon
                   style={{
-                    fontSize: furyActive.typography[variant].fontSize,
+                    fontSize: themeActive.typography[variant].fontSize,
                     width: 'auto',
                   }}
                 />

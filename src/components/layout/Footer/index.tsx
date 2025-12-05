@@ -1,13 +1,13 @@
 import React, { useMemo } from 'react';
 import { useRouter } from 'next/router';
-import { useFury } from '@ricardojrmcom/fury';
+import { useThemeMode } from 'containers/ThemeProvider';
 import { Box, Grid, Typography } from '@mui/material';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import TelegramIcon from '@mui/icons-material/Telegram';
 // import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import { Link, Image } from 'components/display';
-import { FOOTER_HEIGHT, FOOTER_OFFSET, routesHome } from 'cfg';
+import { FOOTER_HEIGHT, FOOTER_OFFSET } from 'cfg';
 
 /**
  * Footer props
@@ -27,11 +27,16 @@ export const Footer = ({
   height = FOOTER_HEIGHT,
   offset = FOOTER_OFFSET,
 }: FooterProps) => {
-  const { asPath } = useRouter();
+  const { route, query } = useRouter();
 
-  const { furyActive } = useFury();
+  const { themeActive } = useThemeMode();
+  const bg = themeActive?.palette?.secondary?.main || '#17b1e8';
+  const textColor = '#fff';
 
-  const isHome = useMemo(() => routesHome.includes(asPath), [asPath]);
+  const isHome = useMemo(
+    () => route === '/[locale]' && !('view' in query),
+    [route, query],
+  );
 
   return (
     <Box>
@@ -60,7 +65,7 @@ export const Footer = ({
         >
           <path
             d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
-            fill={furyActive.palette.secondary.main}
+            fill={bg}
           />
         </svg>
       </div>
@@ -74,7 +79,7 @@ export const Footer = ({
           width: '100%',
           backgroundColor: isHome
             ? 'transparent'
-            : furyActive.palette.secondary.main,
+            : bg,
         }}
         alignItems="center"
         alignContent="center"
@@ -103,7 +108,7 @@ export const Footer = ({
                     href="https://twitter.com/phantasmachain"
                     external
                     sx={{
-                      color: '#fff',
+                      color: textColor,
                       textDecoration: 'none',
                     }}
                   >
@@ -119,7 +124,7 @@ export const Footer = ({
                     href="https://t.me/phantasma_io"
                     external
                     sx={{
-                      color: '#fff',
+                      color: textColor,
                       textDecoration: 'none',
                     }}
                   >
@@ -135,7 +140,7 @@ export const Footer = ({
                     href="https://discord.com/invite/u7D74kH"
                     external
                     sx={{
-                      color: '#fff',
+                      color: textColor,
                       textDecoration: 'none',
                     }}
                   >
@@ -151,7 +156,7 @@ export const Footer = ({
                     href="https://github.com/Phantasma-io"
                     external
                     sx={{
-                      color: '#fff',
+                      color: textColor,
                       textDecoration: 'none',
                     }}
                   >

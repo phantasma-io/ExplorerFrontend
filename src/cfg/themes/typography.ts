@@ -3,11 +3,12 @@ import { ThemeOptions, createTheme } from '@mui/material';
 const { breakpoints } = createTheme();
 
 export const typography: ThemeOptions['typography'] = {
+  // Use system stack to avoid font flashing/jumps on hard reloads.
   fontFamily: [
-    'Source Sans Pro',
     '-apple-system',
     'BlinkMacSystemFont',
     '"Segoe UI"',
+    'Roboto',
     '"Helvetica Neue"',
     'Arial',
     'sans-serif',

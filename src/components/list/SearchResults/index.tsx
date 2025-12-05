@@ -84,6 +84,7 @@ export const SearchResults = () => {
   return (
     <Paper>
       <Box p={2} minHeight="210px">
+        <>
         <Box pb={1.5}>
           <Grid container spacing={1} alignItems="center">
             <Grid item>
@@ -111,6 +112,7 @@ export const SearchResults = () => {
                     href={routes['/address'](echoActiveId as Locales, {
                       id: query.id as string,
                     })}
+                    asChild
                   >
                     <Button>
                       {query.id} ({echo('address')})
@@ -124,6 +126,7 @@ export const SearchResults = () => {
                     href={routes['/block'](echoActiveId as Locales, {
                       id: query.id as string,
                     })}
+                    asChild
                   >
                     <Button>
                       {query.id} ({echo('block')})
@@ -137,6 +140,7 @@ export const SearchResults = () => {
                     href={routes['/contract'](echoActiveId as Locales, {
                       id: query.id as string,
                     })}
+                    asChild
                   >
                     <Button>
                       {query.id} ({echo('contract')})
@@ -150,6 +154,7 @@ export const SearchResults = () => {
                     href={routes['/platform'](echoActiveId as Locales, {
                       id: query.id as string,
                     })}
+                    asChild
                   >
                     <Button>
                       {query.id} ({echo('platform')})
@@ -163,6 +168,7 @@ export const SearchResults = () => {
                     href={routes['/dao'](echoActiveId as Locales, {
                       id: query.id as string,
                     })}
+                    asChild
                   >
                     <Button>
                       {query.id} ({echo('dao')})
@@ -176,6 +182,7 @@ export const SearchResults = () => {
                     href={routes['/token'](echoActiveId as Locales, {
                       id: query.id as string,
                     })}
+                    asChild
                   >
                     <Button>
                       {query.id} ({echo('token')})
@@ -189,6 +196,7 @@ export const SearchResults = () => {
                     href={routes['/transaction'](echoActiveId as Locales, {
                       id: query.id as string,
                     })}
+                    asChild
                   >
                     <Button>
                       {query.id} ({echo('transaction')})
@@ -199,6 +207,7 @@ export const SearchResults = () => {
             </Grid>
           </Box>
         )}
+        </>
       </Box>
     </Paper>
   );

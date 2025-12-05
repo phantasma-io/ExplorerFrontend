@@ -18,14 +18,17 @@ export interface ViewEventProps {
 export const ViewEvent = ({ tabForce = 'overview' }: ViewEventProps) => {
   const { echo, echoActiveId } = useEcho();
 
-  const { query } = useRouter();
+  const { query, isReady } = useRouter();
+  const ready = typeof window === 'undefined' ? true : isReady;
 
   const { data, error, loading } = useApi<EventResults>(
-    endpoints['/events']({
-      event_id: (query?.id as string) || '',
-      with_fiat: 1,
-      with_event_data: 1,
-    } as EventParams),
+    ready && query?.id
+      ? endpoints['/events']({
+          event_id: (query?.id as string) || '',
+          with_fiat: 1,
+          with_event_data: 1,
+        } as EventParams)
+      : null,
   );
 
   const tabs: NavTabsRecord = useMemo(
@@ -47,6 +50,10 @@ export const ViewEvent = ({ tabForce = 'overview' }: ViewEventProps) => {
     }),
     [echo, echoActiveId, data, error, loading],
   );
+
+  if (!ready || !query?.id) {
+    return null;
+  }
 
   return (
     <Box>

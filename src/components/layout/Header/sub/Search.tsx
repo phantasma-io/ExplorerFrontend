@@ -1,15 +1,15 @@
 import React, { useState, useCallback } from 'react';
 import { Box, IconButton, Tooltip, Dialog, Paper } from '@mui/material';
-import { useFury } from '@ricardojrmcom/fury';
 import { useEcho } from '@ricardojrmcom/echo';
 import { SearchInput } from 'components/display';
 import SearchIcon from '@mui/icons-material/Search';
+import { useThemeMode } from 'containers/ThemeProvider';
 
 /**
  * Search
  */
 export const Search = () => {
-  const { furyActive } = useFury();
+  const { themeActive } = useThemeMode();
   const { echo } = useEcho();
 
   const [openSearch, openSearchSet] = useState(false);
@@ -23,7 +23,7 @@ export const Search = () => {
           <IconButton size="small" onClick={handleSearchOpen}>
             <SearchIcon
               sx={{
-                fontSize: furyActive.typography.h5.fontSize,
+                fontSize: themeActive.typography.h5.fontSize,
                 color: '#fff',
               }}
             />

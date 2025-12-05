@@ -1,12 +1,18 @@
 {
   "compilerOptions": {
     "target": "esnext",
-    "lib": ["dom", "es2017"],
-    "jsx": "preserve",
+    "lib": [
+      "dom",
+      "es2017"
+    ],
+    "jsx": "react-jsx",
     "module": "CommonJS",
     "moduleResolution": "node",
     "baseUrl": "./src",
-    "typeRoots": ["**/types/*", "./node_modules/@types"],
+    "typeRoots": [
+      "**/types/*",
+      "./node_modules/@types"
+    ],
     "resolveJsonModule": true,
     "allowJs": true,
     "checkJs": true,
@@ -46,5 +52,8 @@
     "src/**/*.stories.tsx",
     "src/jest.setup.ts"
   ],
-  "include": ["./src/**/*.ts", "./src/**/*.tsx"]
+  "include": [
+    "./src/**/*.ts",
+    "./src/**/*.tsx"
+  ]
 }

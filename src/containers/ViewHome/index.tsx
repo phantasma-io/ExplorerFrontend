@@ -46,6 +46,7 @@ export const ViewHome = () => {
           <Box pt={3} textAlign="center">
             <Link
               href={routes['/nexus'](echoActiveId as Locales)}
+              asChild
               sx={{ textDecoration: 'none' }}
             >
               <Button size="large" variant="contained" color="primary">

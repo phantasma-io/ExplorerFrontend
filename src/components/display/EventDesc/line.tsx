@@ -329,7 +329,7 @@ export const EventLine = ({ data }: EventLineProps) => {
         case 'token_create_event': {
           const tokenSymbol = data?.token_create_event?.token?.symbol;
           if (!tokenSymbol) return fallbackLine;
-          const token = {symbol: tokenSymbol};
+          const token = data?.token_create_event?.token;
           const ownerAddress = data?.address;
           const ownerLabel = data?.address_name || ownerAddress;
           const limits = [];

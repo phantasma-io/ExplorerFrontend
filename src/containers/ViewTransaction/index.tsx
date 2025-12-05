@@ -22,12 +22,13 @@ export const ViewTransaction = ({
 }: ViewTransactionProps) => {
   const { echo, echoActiveId } = useEcho();
 
-  const { query } = useRouter();
+  const { query, isReady } = useRouter();
+  const ready = typeof window === 'undefined' ? true : isReady;
 
   const txHash = query?.id as string | undefined;
 
   const { data, error, loading } = useApi<TransactionResults>(
-    txHash
+    ready && txHash
       ? endpoints['/transactions']({
           hash: txHash,
           with_events: 1,
@@ -73,6 +74,10 @@ export const ViewTransaction = ({
     }),
     [data, echo, echoActiveId, error, loading],
   );
+
+  if (!ready || !txHash) {
+    return null;
+  }
 
   return (
     <Box>
