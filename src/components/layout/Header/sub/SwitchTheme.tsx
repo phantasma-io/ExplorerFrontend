@@ -1,6 +1,6 @@
 import React, { useState, useMemo, useCallback } from 'react';
 import { IconButton, Box, Tooltip, Menu, MenuItem } from '@mui/material';
-import { useEcho } from '@ricardojrmcom/echo';
+import { useEcho } from 'hooks/useEcho';
 import PaletteIcon from '@mui/icons-material/Palette';
 import { useThemeMode } from 'containers/ThemeProvider';
 

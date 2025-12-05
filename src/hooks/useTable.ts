@@ -1,13 +1,13 @@
 import { useState, useMemo } from 'react';
-import { useLocalState } from '@ricardojrmcom/reaper';
 import { WithOption } from 'types/api';
+import { usePersistentState } from './usePersistentState';
 import { useTableParams } from './useTableParams';
 
 export const useTable = () => {
   const tableParams = useTableParams();
 
   const [page, pageSet] = useState(tableParams.page);
-  const [pageSize, pageSizeSet] = useLocalState(
+  const [pageSize, pageSizeSet] = usePersistentState(
     'PhantasmaExplorer-rowSize',
     tableParams.pageSize,
   );

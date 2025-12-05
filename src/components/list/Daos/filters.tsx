@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState, useCallback } from 'react';
-import { useEcho } from '@ricardojrmcom/echo';
+import { useEcho } from 'hooks/useEcho';
 import { Box, Button, Grid, Typography, TextField } from '@mui/material';
 import { Dialog } from 'components/layout';
 import { DaoParams } from 'types/api';

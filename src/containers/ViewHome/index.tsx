@@ -1,5 +1,5 @@
 import React from 'react';
-import { useEcho } from '@ricardojrmcom/echo';
+import { useEcho } from 'hooks/useEcho';
 import { Box, Grid, Button } from '@mui/material';
 import { Image, Link } from 'components/display';
 import { Fullscreen } from 'components/layout';

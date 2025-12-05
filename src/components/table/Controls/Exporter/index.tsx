@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 import { Box, Button } from '@mui/material';
-import { useEcho } from '@ricardojrmcom/echo';
+import { useEcho } from 'hooks/useEcho';
 import csvDownload from 'json-to-csv-export';
 import FileDownloadIcon from '@mui/icons-material/FileDownload';
 

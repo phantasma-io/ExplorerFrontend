@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 import { Box } from '@mui/material';
-import { useEcho } from '@ricardojrmcom/echo';
+import { useEcho } from 'hooks/useEcho';
 import { useRenderOverview } from 'hooks/useRenderOverview';
 import { useTransactionData } from 'hooks/api';
 import { TransactionResults } from 'types/api';

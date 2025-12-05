@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-wrap-multilines */
 import React, { useState } from 'react';
-import { useEcho } from '@ricardojrmcom/echo';
+import { useEcho } from 'hooks/useEcho';
 import { Box } from '@mui/material';
 import { endpoints } from 'cfg';
 import { useApi, useTable } from 'hooks';

@@ -1,6 +1,6 @@
-import { EchoMsgs } from '@ricardojrmcom/echo';
+import { LocaleMessages } from 'types/locales';
 
-export const pt: EchoMsgs = {
+export const pt: LocaleMessages = {
   // sys
   example: 'example pt',
   wip: '🚧 Trabalho em progresso 🚧',

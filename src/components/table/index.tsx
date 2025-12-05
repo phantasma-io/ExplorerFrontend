@@ -1,6 +1,5 @@
 import React, { useMemo } from 'react';
 import { Box } from '@mui/material';
-import { useLocalState } from '@ricardojrmcom/reaper';
 import {
   TableDisplayProps,
   TableUrlParams,
@@ -8,6 +7,7 @@ import {
   TableViewModes,
 } from 'types/table';
 import { TABLE_HEIGHT, TABLE_SPACING } from 'cfg';
+import { usePersistentState } from 'hooks/usePersistentState';
 import { TableControls } from './Controls';
 import { TableDisplay } from './Display';
 
@@ -43,7 +43,7 @@ export const Table = ({
   addon,
   hideControls,
 }: TableProps) => {
-  const [viewMode, viewModeSet] = useLocalState<TableViewModes>(
+  const [viewMode, viewModeSet] = usePersistentState<TableViewModes>(
     'PhantasmaExplorer-table-viewMode',
     'desktop',
   );

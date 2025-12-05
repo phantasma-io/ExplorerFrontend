@@ -1,5 +1,5 @@
 import { useMemo, useState, useEffect } from 'react';
-import { useEcho } from '@ricardojrmcom/echo';
+import { useEcho } from 'hooks/useEcho';
 import { TableDisplayRow, TableDisplayCol } from 'types/table';
 import { TransactionResults } from 'types/api';
 import { decodeBase16 } from 'scripts/decodeBase16';

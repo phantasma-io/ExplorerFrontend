@@ -2,7 +2,7 @@ import React, { useMemo } from 'react';
 import { Box } from '@mui/material';
 import { useRouter } from 'next/router';
 import { useApi } from 'hooks';
-import { useEcho } from '@ricardojrmcom/echo';
+import { useEcho } from 'hooks/useEcho';
 import { NavTabs, NavTabsRecord, Breadcrumbs } from 'components/layout';
 import { routes, endpoints } from 'cfg';
 import { AddressResults } from 'types/api';

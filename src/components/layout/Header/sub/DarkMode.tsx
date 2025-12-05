@@ -1,6 +1,6 @@
 import React, { useMemo, useCallback } from 'react';
 import { Box, IconButton, Tooltip } from '@mui/material';
-import { useEcho } from '@ricardojrmcom/echo';
+import { useEcho } from 'hooks/useEcho';
 import { useThemeMode } from 'containers/ThemeProvider';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import Brightness4Icon from '@mui/icons-material/Brightness4';

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box } from '@mui/material';
-import { useEcho } from '@ricardojrmcom/echo';
+import { useEcho } from 'hooks/useEcho';
 import { Text } from 'components/display';
 import { ExplorerTabs, ExplorerRoutes } from 'types/routes';
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, IconButton, Tooltip } from '@mui/material';
-import { useEcho } from '@ricardojrmcom/echo';
+import { useEcho } from 'hooks/useEcho';
 import { Link } from 'components/display';
 import SwapHorizIcon from '@mui/icons-material/SwapHoriz';
 import { useThemeMode } from 'containers/ThemeProvider';

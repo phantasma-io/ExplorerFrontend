@@ -1,5 +1,5 @@
 import { useMemo, useState, useEffect } from 'react';
-import { useEcho } from '@ricardojrmcom/echo';
+import { useEcho } from 'hooks/useEcho';
 import { unixToDate } from 'scripts';
 import { TableDisplayRow, TableDisplayCol } from 'types/table';
 import { EventResults } from 'types/api';

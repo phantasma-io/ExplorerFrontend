@@ -11,13 +11,13 @@ import {
   IconButton,
   Tooltip,
 } from '@mui/material';
-import { useEcho } from '@ricardojrmcom/echo';
+import { useEcho } from 'hooks/useEcho';
 import { useThemeMode } from 'containers/ThemeProvider';
 import {
   numberFormat,
   stringCapitalize,
   stringTruncate,
-} from '@ricardojrmcom/dervish';
+} from 'scripts/format';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import EventIcon from '@mui/icons-material/Event';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';

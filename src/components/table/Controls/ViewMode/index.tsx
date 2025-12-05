@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, Button } from '@mui/material';
-import { useEcho } from '@ricardojrmcom/echo';
+import { useEcho } from 'hooks/useEcho';
 import { TableViewModes } from 'types/table';
 import ViewListIcon from '@mui/icons-material/ViewList';
 import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';

@@ -7,7 +7,7 @@ import { TransactionResults } from 'types/api';
 import { Loading, Error, Empty, Overview } from 'components/layout';
 import { EventDesc } from 'components/display/EventDesc';
 import { endpoints, routes } from 'cfg';
-import { useEcho } from '@ricardojrmcom/echo';
+import { useEcho } from 'hooks/useEcho';
 import { Locales } from 'types/locales';
 import { useRouter } from 'next/router';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';

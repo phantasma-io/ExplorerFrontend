@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from 'react';
 import { Box, IconButton, Tooltip, Dialog, Paper } from '@mui/material';
-import { useEcho } from '@ricardojrmcom/echo';
+import { useEcho } from 'hooks/useEcho';
 import { SearchInput } from 'components/display';
 import SearchIcon from '@mui/icons-material/Search';
 import { useThemeMode } from 'containers/ThemeProvider';

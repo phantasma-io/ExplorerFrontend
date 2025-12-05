@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo } from 'react';
 import { useRouter } from 'next/router';
 import { Box } from '@mui/material';
-import { useEcho } from '@ricardojrmcom/echo';
+import { useEcho } from 'hooks/useEcho';
 import { Locales } from 'types/locales';
 import { ExplorerRoutes } from 'types/routes';
 import { MetaDynamic } from 'components/meta';

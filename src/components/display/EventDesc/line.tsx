@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useMemo } from 'react';
 import { Box, Typography } from '@mui/material';
-import { useEcho } from '@ricardojrmcom/echo';
+import { useEcho } from 'hooks/useEcho';
 import { EventResult, EventTypes, EventKinds } from 'types/api';
 import { eventTypeMap } from 'cfg/eventTypes';
 import { Link } from 'components/display';

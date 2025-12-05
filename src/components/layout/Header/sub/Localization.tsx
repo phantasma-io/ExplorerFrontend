@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import { useRouter } from 'next/router';
 import { IconButton, Box, Tooltip, Menu, MenuItem } from '@mui/material';
-import { useEcho } from '@ricardojrmcom/echo';
+import { useEcho } from 'hooks/useEcho';
 import PublicIcon from '@mui/icons-material/Public';
 import { useThemeMode } from 'containers/ThemeProvider';
 

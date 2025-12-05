@@ -1,6 +1,6 @@
 import React, { useMemo, useCallback, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import { useEcho } from '@ricardojrmcom/echo';
+import { useEcho } from 'hooks/useEcho';
 import { useApi } from 'hooks';
 import { Box, Paper, Typography, Grid, Button } from '@mui/material';
 import { endpoints, routes } from 'cfg';

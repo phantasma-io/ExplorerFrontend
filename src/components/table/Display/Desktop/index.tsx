@@ -2,7 +2,7 @@ import React, { useState, useCallback, useMemo } from 'react';
 import FileDownloadIcon from '@mui/icons-material/FileDownload';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { nanoid } from 'nanoid';
-import { useEcho } from '@ricardojrmcom/echo';
+import { useEcho } from 'hooks/useEcho';
 import { Box, Grid, Typography, Button } from '@mui/material';
 import { useThemeMode } from 'containers/ThemeProvider';
 import { Link } from 'components/display';

@@ -6,8 +6,8 @@ import {
   TableParamControls,
   TableViewModes,
 } from 'types/table';
-import { useEcho } from '@ricardojrmcom/echo';
-import { numberFormat } from '@ricardojrmcom/dervish';
+import { useEcho } from 'hooks/useEcho';
+import { numberFormat } from 'scripts/format';
 import { TablePageSize } from './PageSize';
 import { TablePagination } from './Pagination';
 import { TableViewMode } from './ViewMode';

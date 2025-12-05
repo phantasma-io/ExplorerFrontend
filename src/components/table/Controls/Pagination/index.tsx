@@ -1,6 +1,6 @@
 import React from 'react';
-import { numberFormat } from '@ricardojrmcom/dervish';
-import { useEcho } from '@ricardojrmcom/echo';
+import { numberFormat } from 'scripts/format';
+import { useEcho } from 'hooks/useEcho';
 import { Box, Grid, IconButton, Button, Tooltip } from '@mui/material';
 import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';

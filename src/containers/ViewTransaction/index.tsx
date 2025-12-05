@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 import { useRouter } from 'next/router';
-import { useEcho } from '@ricardojrmcom/echo';
+import { useEcho } from 'hooks/useEcho';
 import { Box } from '@mui/material';
 import { NavTabs, NavTabsRecord, Breadcrumbs } from 'components/layout';
 import { useApi } from 'hooks';

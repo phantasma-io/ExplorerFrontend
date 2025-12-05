@@ -8,7 +8,7 @@ import { routes } from 'cfg';
 import { Locales } from 'types/locales';
 import { TableDisplayRow, TableDisplayCol } from 'types/table';
 import { DetailsValue } from 'types/components';
-import { useEcho } from '@ricardojrmcom/echo';
+import { useEcho } from 'hooks/useEcho';
 import csvDownload from 'json-to-csv-export';
 import FileDownloadIcon from '@mui/icons-material/FileDownload';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
