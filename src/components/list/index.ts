@@ -1,7 +1,5 @@
 export { BlocksList } from './Blocks';
 
-export { ChainsList } from './Chains';
-
 export { ContractsList } from './Contracts';
 
 export { DaosList } from './Daos';

@@ -73,12 +73,6 @@ export const ViewNexus = ({ tabForce = 'blocks' }: ViewNexusProps) => {
         href: routes['/nexus'](echoActiveId as Locales),
         component: <DaosList />,
       },
-      // chains: {
-      //   id: 'chains',
-      //   label: echo('tab-chains'),
-      //   href: routes['/nexus'](echoActiveId as Locales),
-      //   component: <ChainsList />,
-      // },
     }),
     [echo, echoActiveId],
   );
