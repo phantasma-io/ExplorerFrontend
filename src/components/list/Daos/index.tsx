@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import { useEcho } from 'hooks/useEcho';
 import { Box } from '@mui/material';
 import { endpoints } from 'cfg';
@@ -12,7 +12,7 @@ export const DaosList = () => {
   const { echo } = useEcho();
 
   const tableProps = useTable();
-  const { limit, order_by, offset, with_total } = tableProps;
+  const { limit, order_by, offset, with_total, onPageData } = tableProps;
 
   // filter states
   const [q, qSet] = useState<DaoParams['q']>(undefined);
@@ -32,6 +32,10 @@ export const DaosList = () => {
   );
 
   const { cols, rows, total } = useDaoData(data, loading);
+
+  useEffect(() => {
+    onPageData?.(data?.next_cursor ?? null, data?.organizations?.length || 0);
+  }, [data, onPageData]);
 
   const applySearch = useCallback(
     (value: string) => {

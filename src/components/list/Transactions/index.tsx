@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import { useEcho } from 'hooks/useEcho';
 import { Box } from '@mui/material';
 import { endpoints } from 'cfg';
@@ -16,8 +16,15 @@ export interface TransactionsListProps {
 export const TransactionsList = ({ address, block }: TransactionsListProps) => {
   const { echo } = useEcho();
 
-  const tableProps = useTable();
-  const { limit, order_by, order_direction, offset, with_total } = tableProps;
+  const tableProps = useTable('cursor');
+  const {
+    limit,
+    order_by,
+    order_direction,
+    cursor,
+    onPageData,
+    resetPagination,
+  } = tableProps;
 
   // filter states
   const [_address, _addressSet] = useState<TransactionParams['address']>(
@@ -31,18 +38,21 @@ export const TransactionsList = ({ address, block }: TransactionsListProps) => {
 
   const { data, loading, error } = useApi<TransactionResults>(
     endpoints['/transactions']({
-      offset,
       limit,
       order_by,
       order_direction,
-      with_total,
+      cursor: cursor || undefined,
       address: _address,
       block_height: blockHeight,
       q,
     }),
   );
 
-  const { cols, rows, total, withError } = useTransactionData(data, loading);
+  const { cols, rows, withError } = useTransactionData(data, loading);
+
+  useEffect(() => {
+    onPageData?.(data?.next_cursor ?? null, data?.transactions?.length || 0);
+  }, [data, onPageData]);
 
   const applySearch = useCallback(
     (value: string) => {
@@ -53,15 +63,15 @@ export const TransactionsList = ({ address, block }: TransactionsListProps) => {
         _addressSet(address || undefined);
         blockHeightSet(block || undefined);
         qSet(undefined);
-        tableProps.pageSet(1);
+        resetPagination?.();
         return;
       }
 
       qSet(trimmed);
 
-      tableProps.pageSet(1);
+      resetPagination?.();
     },
-    [address, block, tableProps],
+    [address, block, resetPagination],
   );
 
   return (
@@ -71,7 +81,6 @@ export const TransactionsList = ({ address, block }: TransactionsListProps) => {
         raw={data?.transactions || []}
         cols={cols}
         rows={rows}
-        total={total}
         linkOptions={{
           route: '/transaction',
           key: 'hash',

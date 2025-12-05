@@ -19,11 +19,11 @@ export interface TableDisplayData {
 }
 
 export interface TableUrlParams {
-  total: number;
   page: number;
   pageSize: number;
   orderBy: string;
   orderDirection: TableOrderDirection;
+  hasNext: boolean;
 }
 
 export interface TableParamControls {

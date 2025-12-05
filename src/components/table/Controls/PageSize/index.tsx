@@ -7,14 +7,12 @@ import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 export interface TablePageSizeProps {
   pageSize: number;
   pageSizeSet: (size: number) => void;
-  total: number;
   options: number[];
 }
 
 export const TablePageSize = ({
   pageSize,
   pageSizeSet,
-  total,
   options,
 }: TablePageSizeProps) => {
   const { echo } = useEcho();
@@ -44,29 +42,17 @@ export const TablePageSize = ({
         </Grid>
       </Grid>
       <Menu anchorEl={anchorMenu} open={openMenu} onClose={handleClose}>
-        {options.map((opt) =>
-          opt !== 0 ? (
-            <MenuItem
-              key={`table-pageSize-opt-${opt}`}
-              onClick={() => {
-                pageSizeSet(opt);
-                handleClose();
-              }}
-            >
-              <Typography variant="body2">{numberFormat(opt)}</Typography>
-            </MenuItem>
-          ) : (
-            <MenuItem
-              key={`table-pageSize-opt-${opt}`}
-              onClick={() => {
-                pageSizeSet(total);
-                handleClose();
-              }}
-            >
-              <Typography variant="body2">{echo('all')}</Typography>
-            </MenuItem>
-          ),
-        )}
+        {options.map((opt) => (
+          <MenuItem
+            key={`table-pageSize-opt-${opt}`}
+            onClick={() => {
+              pageSizeSet(opt);
+              handleClose();
+            }}
+          >
+            <Typography variant="body2">{numberFormat(opt)}</Typography>
+          </MenuItem>
+        ))}
       </Menu>
     </Box>
   );

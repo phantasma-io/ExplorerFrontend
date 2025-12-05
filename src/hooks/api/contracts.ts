@@ -1,18 +1,11 @@
-import { useMemo, useState, useEffect } from 'react';
+import { useMemo } from 'react';
 import { useEcho } from 'hooks/useEcho';
 import { TableDisplayRow, TableDisplayCol } from 'types/table';
 import { ContractResults } from 'types/api';
 
 export const useContractData = (data?: ContractResults, loading?: boolean) => {
   const { echo } = useEcho();
-
-  const [total, totalSet] = useState<number>(0);
-
-  useEffect(() => {
-    if (typeof data?.total_results === 'number' && !loading) {
-      totalSet(data.total_results);
-    }
-  }, [data, loading]);
+  const total = data?.total_results ?? 0;
 
   const cols = useMemo<TableDisplayCol[]>(() => {
     return [
@@ -98,7 +91,7 @@ export const useContractData = (data?: ContractResults, loading?: boolean) => {
       total,
       raw,
     }),
-    [cols, rows, total, raw],
+    [cols, rows, raw, total],
   );
 
   return ctx;

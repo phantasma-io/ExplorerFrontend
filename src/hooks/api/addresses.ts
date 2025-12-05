@@ -1,4 +1,4 @@
-import { useMemo, useState, useEffect } from 'react';
+import { useMemo } from 'react';
 import { useEcho } from 'hooks/useEcho';
 import { TableDisplayRow, TableDisplayCol } from 'types/table';
 import { Address, AddressResults } from 'types/api';
@@ -6,14 +6,7 @@ import { Balance } from 'types/api/addresses';
 
 export const useAddressData = (data?: AddressResults, loading?: boolean) => {
   const { echo } = useEcho();
-
-  const [total, totalSet] = useState<number>(0);
-
-  useEffect(() => {
-    if (typeof data?.total_results === 'number' && !loading) {
-      totalSet(data.total_results);
-    }
-  }, [data, loading]);
+  const total = data?.total_results ?? 0;
 
   const cols = useMemo<TableDisplayCol[]>(() => {
     return [
@@ -90,10 +83,10 @@ export const useAddressData = (data?: AddressResults, loading?: boolean) => {
     () => ({
       cols,
       rows,
-      total,
       raw,
+      total,
     }),
-    [cols, rows, total, raw],
+    [cols, rows, raw, total],
   );
 
   return ctx;
@@ -101,14 +94,7 @@ export const useAddressData = (data?: AddressResults, loading?: boolean) => {
 
 export const useAddressesTopTokenHoldersData = (token_id: string, data?: AddressResults, loading?: boolean) => {
   const { echo } = useEcho();
-
-  const [total, totalSet] = useState<number>(0);
-
-  useEffect(() => {
-    if (typeof data?.total_results === 'number' && !loading) {
-      totalSet(data.total_results);
-    }
-  }, [data, loading]);
+  const total = data?.total_results ?? 0;
 
   const cols = useMemo<TableDisplayCol[]>(() => {
     return [
@@ -194,10 +180,10 @@ export const useAddressesTopTokenHoldersData = (token_id: string, data?: Address
     () => ({
       cols,
       rows,
-      total,
       raw,
+      total,
     }),
-    [cols, rows, total, raw],
+    [cols, rows, raw, total],
   );
 
   return ctx;

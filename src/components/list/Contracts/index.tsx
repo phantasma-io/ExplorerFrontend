@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import { useEcho } from 'hooks/useEcho';
 import { Box } from '@mui/material';
 import { endpoints } from 'cfg';
@@ -11,8 +11,8 @@ import { InlineSearch } from 'components/table/Controls/InlineSearch';
 export const ContractsList = () => {
   const { echo } = useEcho();
 
-  const tableProps = useTable();
-  const { limit, order_by, offset, with_total } = tableProps;
+  const tableProps = useTable('cursor');
+  const { limit, order_by, cursor, onPageData, resetPagination } = tableProps;
 
   // filter states
   const [q, qSet] = useState<ContractParams['q']>(undefined);
@@ -20,16 +20,19 @@ export const ContractsList = () => {
 
   const { data, loading, error } = useApi<ContractResults>(
     endpoints['/contracts']({
-      offset,
       limit,
       order_by,
       order_direction: 'asc',
-      with_total,
+      cursor: cursor || undefined,
       q,
     } as ContractParams),
   );
 
-  const { cols, rows, total } = useContractData(data, loading);
+  const { cols, rows } = useContractData(data, loading);
+
+  useEffect(() => {
+    onPageData?.(data?.next_cursor ?? null, data?.contracts?.length || 0);
+  }, [data, onPageData]);
 
   const applySearch = useCallback(
     (value: string) => {
@@ -38,14 +41,14 @@ export const ContractsList = () => {
 
       if (!trimmed) {
         qSet(undefined);
-        tableProps.pageSet(1);
+        resetPagination?.();
         return;
       }
 
       qSet(trimmed);
-      tableProps.pageSet(1);
+      resetPagination?.();
     },
-    [tableProps],
+    [resetPagination],
   );
 
   return (
@@ -55,7 +58,6 @@ export const ContractsList = () => {
         raw={data?.contracts || []}
         cols={cols}
         rows={rows}
-        total={total}
         linkOptions={{
           route: '/contract',
           key: 'name',

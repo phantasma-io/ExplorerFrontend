@@ -31,6 +31,7 @@ export const en: LocaleMessages = {
   event: 'Event',
   // table
   'table-pageSize': 'Rows',
+  'table-page': 'Page',
   // meta
   'meta-title': 'Phantasma Explorer',
   'meta-home': `Phantasma is a blockchain for content distribution of NFTs, Gaming and dApps that is fast, secure and decentralized.`,

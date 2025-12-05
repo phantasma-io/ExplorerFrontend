@@ -3,7 +3,6 @@ import { nanoid } from 'nanoid';
 import { Box, Grid, NoSsr, Typography } from '@mui/material';
 import { TableUrlParams, TableParamControls } from 'types/table';
 import { useEcho } from 'hooks/useEcho';
-import { numberFormat } from 'scripts/format';
 import { TablePageSize } from './PageSize';
 import { TablePagination } from './Pagination';
 import { TableExporter } from './Exporter';
@@ -21,7 +20,7 @@ export const TableControls = ({
   pageSet,
   pageSize,
   pageSizeSet,
-  total,
+  hasNext,
   addon,
 }: TableControlsProps) => {
   const { echo } = useEcho();
@@ -29,8 +28,8 @@ export const TableControls = ({
   const csvFilename = useMemo(() => `${tableId}-${nanoid()}.csv`, [tableId]);
 
   const pageCount = useMemo(
-    () => Math.max(1, Math.ceil((total || 0) / pageSize)),
-    [pageSize, total],
+    () => Math.max(1, page + (hasNext ? 1 : 0)),
+    [hasNext, page],
   );
 
   useEffect(() => {
@@ -62,7 +61,6 @@ export const TableControls = ({
                   options={options}
                   pageSize={pageSize}
                   pageSizeSet={pageSizeSet}
-                  total={total}
                 />
               </Grid>
               <Grid item>
@@ -80,21 +78,11 @@ export const TableControls = ({
             spacing={1}
           >
             <Grid item>
-              <Box pb={0.39}>
-                <Typography
-                  variant="caption"
-                  color="textSecondary"
-                  fontWeight={600}
-                >
-                  {`(${numberFormat(total)} ${echo('table-results')})`}
-                </Typography>
-              </Box>
-            </Grid>
-            <Grid item>
               <TablePagination
                 page={page}
-                pageCount={pageCount}
-                pageSet={pageSet}
+                hasNext={hasNext}
+                onPrev={() => pageSet(page - 1)}
+                onNext={() => pageSet(page + 1)}
               />
             </Grid>
           </Grid>

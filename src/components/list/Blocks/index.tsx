@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import { useEcho } from 'hooks/useEcho';
 import { Box } from '@mui/material';
 import { endpoints } from 'cfg';
@@ -15,21 +15,31 @@ export const BlocksList = () => {
   const [q, qSet] = useState<BlockParams['q']>(undefined);
   const [search, searchSet] = useState<string>('');
 
-  const tableProps = useTable();
-  const { limit, order_by, order_direction, offset, with_total } = tableProps;
+  const tableProps = useTable('cursor');
+  const {
+    limit,
+    order_by,
+    order_direction,
+    cursor,
+    onPageData,
+    resetPagination,
+  } = tableProps;
 
   const { data, loading, error } = useApi<BlockResults>(
     endpoints['/blocks']({
-      offset,
       limit,
       order_by,
       order_direction,
-      with_total,
+      cursor: cursor || undefined,
       q,
     } as BlockParams),
   );
 
-  const { cols, rows, total } = useBlockData(data, loading);
+  const { cols, rows } = useBlockData(data, loading);
+
+  useEffect(() => {
+    onPageData?.(data?.next_cursor ?? null, data?.blocks?.length || 0);
+  }, [data, onPageData]);
 
   const applySearch = useCallback(
     (value: string) => {
@@ -38,15 +48,15 @@ export const BlocksList = () => {
 
       if (!trimmed) {
         qSet(undefined);
-        tableProps.pageSet(1);
+        resetPagination?.();
         return;
       }
 
       qSet(trimmed);
 
-      tableProps.pageSet(1);
+      resetPagination?.();
     },
-    [tableProps],
+    [resetPagination],
   );
 
   return (
@@ -56,7 +66,6 @@ export const BlocksList = () => {
         raw={data?.blocks || []}
         cols={cols}
         rows={rows}
-        total={total}
         linkOptions={{
           route: '/block',
           key: 'height',

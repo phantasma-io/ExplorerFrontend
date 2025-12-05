@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import { useEcho } from 'hooks/useEcho';
 import { Box } from '@mui/material';
 import { endpoints } from 'cfg';
@@ -11,8 +11,15 @@ import { InlineSearch } from 'components/table/Controls/InlineSearch';
 export const SeriesList = () => {
   const { echo } = useEcho();
 
-  const tableProps = useTable();
-  const { limit, order_by, offset, with_total, order_direction } = tableProps;
+  const tableProps = useTable('cursor');
+  const {
+    limit,
+    order_by,
+    order_direction,
+    cursor,
+    onPageData,
+    resetPagination,
+  } = tableProps;
 
   // filter states
   const [q, qSet] = useState<SeriesParams['q']>(undefined);
@@ -20,16 +27,19 @@ export const SeriesList = () => {
 
   const { data, loading, error } = useApi<SeriesResults>(
     endpoints['/series']({
-      offset,
       limit,
       order_by,
       order_direction,
-      with_total,
+      cursor: cursor || undefined,
       q,
     } as SeriesParams),
   );
 
   const { cols, rows, total } = useSeriesData(data, loading);
+
+  useEffect(() => {
+    onPageData?.(data?.next_cursor ?? null, data?.series?.length || 0);
+  }, [data, onPageData]);
 
   const applySearch = useCallback(
     (value: string) => {
@@ -38,14 +48,14 @@ export const SeriesList = () => {
 
       if (!trimmed) {
         qSet(undefined);
-        tableProps.pageSet(1);
+        resetPagination?.();
         return;
       }
 
       qSet(trimmed);
-      tableProps.pageSet(1);
+      resetPagination?.();
     },
-    [tableProps],
+    [resetPagination],
   );
 
   return (

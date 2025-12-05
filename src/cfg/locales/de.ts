@@ -31,6 +31,7 @@ export const de: LocaleMessages = {
   event: 'Vorfall',
   // table
   'table-pageSize': 'Linien',
+  'table-page': 'Seite',
   // meta
   'meta-title': 'Phantasma Explorer',
   'meta-home': `Phantasma ist eine Blockchain zur Verteilung von Inhalten von NFTs, Gaming und dApps, die schnell, sicher und dezentralisiert ist.`,

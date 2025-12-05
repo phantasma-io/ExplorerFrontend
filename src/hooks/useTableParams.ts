@@ -1,12 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useRouter } from 'next/router';
-import {
-  TABLE_PAGE,
-  TABLE_SIZE,
-  TABLE_ORDERBY,
-  TABLE_ORDERDIR,
-  TABLE_TOTAL,
-} from 'cfg';
+import { TABLE_PAGE, TABLE_SIZE, TABLE_ORDERBY, TABLE_ORDERDIR } from 'cfg';
 import { decode, queryToObj } from 'scripts';
 import { TableUrlParams, TableOrderDirection } from 'types/table';
 
@@ -26,12 +20,12 @@ export const useTableParams = () => {
       if (obj.t) {
         const decoded = decode(obj.t as string);
         return {
-          total: (decoded.total as number) || TABLE_TOTAL,
           page: (decoded.page as number) || TABLE_PAGE,
           pageSize: (decoded.pageSize as number) || TABLE_SIZE,
           orderBy: (decoded.orderBy as string) || TABLE_ORDERBY,
           orderDirection:
             (decoded.orderDirection as TableOrderDirection) || TABLE_ORDERDIR,
+          hasNext: true,
         };
       }
     }
@@ -41,7 +35,7 @@ export const useTableParams = () => {
       pageSize: TABLE_SIZE,
       orderBy: TABLE_ORDERBY,
       orderDirection: TABLE_ORDERDIR,
-      total: TABLE_TOTAL,
+      hasNext: true,
     };
   }, [search]);
 

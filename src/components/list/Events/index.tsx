@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import { useEcho } from 'hooks/useEcho';
 import { Box } from '@mui/material';
 import { endpoints } from 'cfg';
@@ -21,8 +21,14 @@ export const EventsList = ({
 }: EventsListProps) => {
   const { echo } = useEcho();
 
-  const tableProps = useTable();
-  const { limit, offset, with_total, order_direction } = tableProps;
+  const tableProps = useTable('cursor');
+  const {
+    limit,
+    cursor,
+    onPageData,
+    resetPagination,
+    order_direction,
+  } = tableProps;
 
   // filter states
   const [_address, _addressSet] = useState<EventParams['address']>(
@@ -33,11 +39,10 @@ export const EventsList = ({
 
   const { data, loading, error } = useApi<EventResults>(
     endpoints['/events']({
-      offset,
       limit,
       order_by: 'date',
       order_direction,
-      with_total,
+      cursor: cursor || undefined,
       chain: 'main',
       address: _address,
       block_height: block,
@@ -50,6 +55,10 @@ export const EventsList = ({
 
   const { cols, rows, total, withError } = useEventData(data, loading);
 
+  useEffect(() => {
+    onPageData?.(data?.next_cursor ?? null, data?.events?.length || 0);
+  }, [data, onPageData]);
+
   const applySearch = useCallback(
     (value: string) => {
       const trimmed = value.trim();
@@ -58,14 +67,14 @@ export const EventsList = ({
       if (!trimmed) {
         _addressSet(address || undefined);
         qSet(undefined);
-        tableProps.pageSet(1);
+        resetPagination?.();
         return;
       }
 
       qSet(trimmed);
-      tableProps.pageSet(1);
+      resetPagination?.();
     },
-    [address, tableProps],
+    [address, resetPagination],
   );
 
   return (
@@ -75,7 +84,6 @@ export const EventsList = ({
         raw={data?.events || []}
         cols={cols}
         rows={rows}
-        total={total}
         linkOptions={{
           route: '/event',
           key: 'event_id',

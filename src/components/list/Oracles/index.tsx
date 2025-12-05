@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useEcho } from 'hooks/useEcho';
 import { Box } from '@mui/material';
 import { endpoints } from 'cfg';
@@ -15,7 +15,8 @@ export const OraclesList = ({ block_hash }: OraclesListProps) => {
   const { echo } = useEcho();
 
   const tableProps = useTable();
-  const { limit, order_by, order_direction, offset, with_total } = tableProps;
+  const { limit, order_by, order_direction, offset, with_total, onPageData } =
+    tableProps;
 
   const { data, loading, error } = useApi<OracleResults>(
     endpoints['/oracles']({
@@ -29,6 +30,10 @@ export const OraclesList = ({ block_hash }: OraclesListProps) => {
   );
 
   const { cols, rows, total } = useOracleData(data, loading);
+
+  useEffect(() => {
+    onPageData?.(data?.next_cursor ?? null, data?.oracles?.length || 0);
+  }, [data, onPageData]);
 
   return (
     <Box>

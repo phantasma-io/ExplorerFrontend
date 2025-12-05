@@ -1,4 +1,4 @@
-import { useMemo, useState, useEffect } from 'react';
+import { useMemo } from 'react';
 import { useEcho } from 'hooks/useEcho';
 import { unixToDate } from 'scripts';
 import { TableDisplayRow, TableDisplayCol } from 'types/table';
@@ -6,14 +6,7 @@ import { EventResults } from 'types/api';
 
 export const useEventData = (data?: EventResults, loading?: boolean) => {
   const { echo } = useEcho();
-
-  const [total, totalSet] = useState<number>(0);
-
-  useEffect(() => {
-    if (typeof data?.total_results === 'number' && !loading) {
-      totalSet(data.total_results);
-    }
-  }, [data, loading]);
+  const total = data?.total_results ?? 0;
 
   const cols = useMemo<TableDisplayCol[]>(() => {
     return [
@@ -134,7 +127,7 @@ export const useEventData = (data?: EventResults, loading?: boolean) => {
       raw,
       withError,
     }),
-    [cols, rows, total, raw, withError],
+    [cols, rows, raw, total, withError],
   );
 
   return ctx;

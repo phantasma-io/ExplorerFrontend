@@ -1,4 +1,4 @@
-import { useMemo, useState, useEffect } from 'react';
+import { useMemo } from 'react';
 import { useEcho } from 'hooks/useEcho';
 import { TableDisplayRow, TableDisplayCol } from 'types/table';
 import { TransactionResults } from 'types/api';
@@ -10,14 +10,7 @@ export const useTransactionData = (
   loading?: boolean,
 ) => {
   const { echo } = useEcho();
-
-  const [total, totalSet] = useState<number>(0);
-
-  useEffect(() => {
-    if (typeof data?.total_results === 'number' && !loading) {
-      totalSet(data.total_results);
-    }
-  }, [data, loading]);
+  const total = data?.total_results ?? 0;
 
   const cols = useMemo<TableDisplayCol[]>(() => {
     return [
@@ -123,7 +116,7 @@ export const useTransactionData = (
       raw,
       withError,
     }),
-    [cols, rows, total, raw, withError],
+    [cols, rows, raw, total, withError],
   );
 
   return ctx;

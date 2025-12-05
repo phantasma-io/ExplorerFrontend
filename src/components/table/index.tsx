@@ -10,7 +10,16 @@ export interface TableProps
     TableParamControls,
     TableUrlParams {
   addon?: React.ReactNode;
-  hideControls?: boolean,
+  hideControls?: boolean;
+  total?: number;
+  cursor?: string | null;
+  limit?: number;
+  offset?: number;
+  mode?: string;
+  resetPagination?: () => void;
+  onPageData?: (nextCursor: string | null | undefined, received: number) => void;
+  with_total?: number;
+  withTotal?: number;
 }
 
 export const Table = ({
@@ -18,7 +27,6 @@ export const Table = ({
   raw,
   rows,
   cols,
-  total,
   page,
   pageSet,
   pageSize,
@@ -27,6 +35,7 @@ export const Table = ({
   orderBySet,
   orderDirection,
   orderDirectionSet,
+  hasNext,
   height = TABLE_HEIGHT,
   spacing = TABLE_SPACING,
   linkOptions,
@@ -44,7 +53,6 @@ export const Table = ({
         <TableControls
           tableId={tableId}
           exportData={strData}
-          total={total}
           page={page}
           pageSet={pageSet}
           pageSize={pageSize}
@@ -53,6 +61,7 @@ export const Table = ({
           orderBySet={orderBySet}
           orderDirection={orderDirection}
           orderDirectionSet={orderDirectionSet}
+          hasNext={hasNext}
           addon={addon}
         />
       </Box>
