@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { Box } from '@mui/material';
 import { useEcho } from 'hooks/useEcho';
-import { NavTabs, NavTabsRecord, Breadcrumbs } from 'components/layout';
+import { NavTabs, NavTabsRecord } from 'components/layout';
 import {
   BlocksList,
   ContractsList,
@@ -79,9 +79,6 @@ export const ViewNexus = ({ tabForce = 'blocks' }: ViewNexusProps) => {
 
   return (
     <Box>
-      <Box>
-        <Breadcrumbs tab="addresses" route="/nexus" />
-      </Box>
       <Box>
         <NavTabs tabs={tabs} tabsDefault={tabForce} />
       </Box>
