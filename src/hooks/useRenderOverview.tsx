@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useCallback } from 'react';
+import { nanoid } from 'nanoid';
 import { Box, Grid } from '@mui/material';
 import { useRenderDetails } from 'hooks/useRenderDetails';
 import { TableDisplayCol, TableDisplayRow } from 'types/table';
@@ -23,7 +24,7 @@ export const useRenderOverview = () => {
                 <Grid
                   container
                   spacing={1}
-                  key={`${col.id}-${i}`}
+                  key={nanoid()}
                   item
                   xs={12}
                   alignItems="center"

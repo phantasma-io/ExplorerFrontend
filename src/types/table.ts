@@ -25,7 +25,6 @@ export interface TableUrlParams {
   pageSize: number;
   orderBy: string;
   orderDirection: TableOrderDirection;
-  hasInitialParams?: boolean;
 }
 
 export interface TableParamControls {

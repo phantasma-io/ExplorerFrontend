@@ -1,7 +1,8 @@
 import React from 'react';
+import { useEcho } from '@ricardojrmcom/echo';
 import { Box } from '@mui/material';
 import { endpoints } from 'cfg';
-import { useApi, useI18n, useTable } from 'hooks';
+import { useApi, useTable } from 'hooks';
 import { useOracleData } from 'hooks/api';
 import { OracleResults, OracleParams } from 'types/api';
 import { Table } from 'components/table';
@@ -11,7 +12,7 @@ export interface OraclesListProps {
 }
 
 export const OraclesList = ({ block_hash }: OraclesListProps) => {
-  const { t } = useI18n();
+  const { echo } = useEcho();
 
   const tableProps = useTable();
   const { limit, order_by, order_direction, offset, with_total } = tableProps;
@@ -39,7 +40,7 @@ export const OraclesList = ({ block_hash }: OraclesListProps) => {
           rows={rows}
           total={total}
           dialogOptions={{
-            title: t('details-oracle'),
+            title: echo('details-oracle'),
           }}
           // linkOptions={{
           //   // eslint-disable-next-line @typescript-eslint/ban-ts-comment

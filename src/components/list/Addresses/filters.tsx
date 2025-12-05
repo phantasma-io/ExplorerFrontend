@@ -1,13 +1,13 @@
 /* eslint-disable react/jsx-wrap-multilines */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState, useCallback } from 'react';
+import { useEcho } from '@ricardojrmcom/echo';
 import { Box, Button, Grid, Typography, TextField } from '@mui/material';
 import { Dialog } from 'components/layout';
 import { AddressParams, WithOption } from 'types/api';
 import FilterAltIcon from '@mui/icons-material/FilterAlt';
 import CheckIcon from '@mui/icons-material/Check';
 import ClearAllIcon from '@mui/icons-material/ClearAll';
-import { useI18n } from 'hooks';
 
 export interface AddressesListFiltersProps extends AddressParams {
   addressSet: React.Dispatch<React.SetStateAction<string | undefined>>;
@@ -40,7 +40,7 @@ export const AddressesListFilters = ({
   with_storage,
   with_storageSet,
 }: AddressesListFiltersProps) => {
-  const { t } = useI18n();
+  const { echo } = useEcho();
 
   const [isOpen, isOpenSet] = useState<boolean>(false);
   const handleOpen = useCallback(() => {
@@ -128,12 +128,12 @@ export const AddressesListFilters = ({
         size="small"
         onClick={handleOpen}
       >
-        {t('filterData')}
+        {echo('filterData')}
       </Button>
       <Dialog
         handleClose={handleClose}
         isOpen={isOpen}
-        title={t('filter-addresses')}
+        title={echo('filter-addresses')}
         actions={
           <Box textAlign="right">
             <Box display="inline-block" mr={1.5}>
@@ -143,7 +143,7 @@ export const AddressesListFilters = ({
                 onClick={clearFields}
                 endIcon={<ClearAllIcon />}
               >
-                {t('clear')}
+                {echo('clear')}
               </Button>
             </Box>
             <Box display="inline-block">
@@ -153,7 +153,7 @@ export const AddressesListFilters = ({
                 onClick={applyFields}
                 endIcon={<CheckIcon />}
               >
-                {t('apply')}
+                {echo('apply')}
               </Button>
             </Box>
           </Box>
@@ -171,7 +171,7 @@ export const AddressesListFilters = ({
             {/* field */}
             <Grid item xs={12} container alignItems="center" spacing={1}>
               <Grid item xs={12} lg={2}>
-                <Typography fontWeight={600}>{`${t(
+                <Typography fontWeight={600}>{`${echo(
                   'addressExact',
                 )}:`}</Typography>
               </Grid>
@@ -187,7 +187,7 @@ export const AddressesListFilters = ({
             {/* field */}
             <Grid item xs={12} container alignItems="center" spacing={1}>
               <Grid item xs={12} lg={2}>
-                <Typography fontWeight={600}>{`${t(
+                <Typography fontWeight={600}>{`${echo(
                   'address_partial',
                 )}:`}</Typography>
               </Grid>
@@ -203,7 +203,7 @@ export const AddressesListFilters = ({
             {/* field */}
             <Grid item xs={12} container alignItems="center" spacing={1}>
               <Grid item xs={12} lg={2}>
-                <Typography fontWeight={600}>{`${t(
+                <Typography fontWeight={600}>{`${echo(
                   'address_name',
                 )}:`}</Typography>
               </Grid>
@@ -219,7 +219,7 @@ export const AddressesListFilters = ({
             {/* field */}
             <Grid item xs={12} container alignItems="center" spacing={1}>
               <Grid item xs={12} lg={2}>
-                <Typography fontWeight={600}>{`${t(
+                <Typography fontWeight={600}>{`${echo(
                   'organization_name',
                 )}:`}</Typography>
               </Grid>
@@ -235,7 +235,7 @@ export const AddressesListFilters = ({
             {/* field */}
             <Grid item xs={12} container alignItems="center" spacing={1}>
               <Grid item xs={12} lg={2}>
-                <Typography fontWeight={600}>{`${t(
+                <Typography fontWeight={600}>{`${echo(
                   'validator_kind',
                 )}:`}</Typography>
               </Grid>

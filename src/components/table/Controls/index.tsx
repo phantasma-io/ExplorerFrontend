@@ -6,8 +6,8 @@ import {
   TableParamControls,
   TableViewModes,
 } from 'types/table';
+import { useEcho } from '@ricardojrmcom/echo';
 import { numberFormat } from '@ricardojrmcom/dervish';
-import { useI18n } from 'hooks';
 import { TablePageSize } from './PageSize';
 import { TablePagination } from './Pagination';
 import { TableViewMode } from './ViewMode';
@@ -15,7 +15,7 @@ import { TableExporter } from './Exporter';
 
 export interface TableControlsProps extends TableUrlParams, TableParamControls {
   tableId: string;
-  exportData: unknown[] | string;
+  exportData: string;
   viewMode: TableViewModes;
   viewModeSet: React.Dispatch<React.SetStateAction<TableViewModes>>;
   addon?: React.ReactNode;
@@ -33,7 +33,7 @@ export const TableControls = ({
   viewModeSet,
   addon,
 }: TableControlsProps) => {
-  const { t } = useI18n();
+  const { echo } = useEcho();
 
   const csvFilename = useMemo(() => `${tableId}-${nanoid()}.csv`, [tableId]);
 
@@ -91,7 +91,7 @@ export const TableControls = ({
                   color="textSecondary"
                   fontWeight={600}
                 >
-                  {`(${numberFormat(total)} ${t('table-results')})`}
+                  {`(${numberFormat(total)} ${echo('table-results')})`}
                 </Typography>
               </Box>
             </Grid>

@@ -1,7 +1,8 @@
 import React, { useMemo } from 'react';
 import { Box } from '@mui/material';
 import { useRouter } from 'next/router';
-import { useApi, useI18n } from 'hooks';
+import { useApi } from 'hooks';
+import { useEcho } from '@ricardojrmcom/echo';
 import { NavTabs, NavTabsRecord, Breadcrumbs } from 'components/layout';
 import { routes, endpoints } from 'cfg';
 import { AddressResults } from 'types/api';
@@ -17,7 +18,7 @@ export interface ViewAddressProps {
 }
 
 export const ViewAddress = ({ tabForce = 'overview' }: ViewAddressProps) => {
-  const { t, locale } = useI18n();
+  const { echo, echoActiveId } = useEcho();
 
   const { query } = useRouter();
 
@@ -34,32 +35,32 @@ export const ViewAddress = ({ tabForce = 'overview' }: ViewAddressProps) => {
     () => ({
       overview: {
         id: 'overview',
-        label: t('tab-overview'),
-        href: routes['/address'](locale as Locales),
+        label: echo('tab-overview'),
+        href: routes['/address'](echoActiveId as Locales),
         component: (
           <AddressOverview data={data} loading={loading} error={error} />
         ),
       },
       transactions: {
         id: 'transactions',
-        label: t('tab-transactions'),
-        href: routes['/address'](locale as Locales),
+        label: echo('tab-transactions'),
+        href: routes['/address'](echoActiveId as Locales),
         component: <AddressTransactions />,
       },
       events: {
         id: 'events',
-        label: t('tab-events'),
-        href: routes['/address'](locale as Locales),
+        label: echo('tab-events'),
+        href: routes['/address'](echoActiveId as Locales),
         component: <AddressEvents />,
       },
       raw: {
         id: 'raw',
-        label: t('tab-raw'),
-        href: routes['/address'](locale as Locales),
+        label: echo('tab-raw'),
+        href: routes['/address'](echoActiveId as Locales),
         component: <AddressRaw data={data} loading={loading} error={error} />,
       },
     }),
-    [t, locale, data, error, loading],
+    [echo, echoActiveId, data, error, loading],
   );
 
   return (

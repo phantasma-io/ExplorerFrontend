@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState, useCallback } from 'react';
+import { useEcho } from '@ricardojrmcom/echo';
 import { Box, Button, Grid, Typography, TextField } from '@mui/material';
 import { Dialog } from 'components/layout';
 import { ContractParams } from 'types/api';
 import FilterAltIcon from '@mui/icons-material/FilterAlt';
 import CheckIcon from '@mui/icons-material/Check';
 import ClearAllIcon from '@mui/icons-material/ClearAll';
-import { useI18n } from 'hooks';
 
 export interface ContractsListFiltersProps extends ContractParams {
   hashSet: React.Dispatch<React.SetStateAction<string | undefined>>;
@@ -19,7 +19,7 @@ export const ContractsListFilters = ({
   symbol,
   symbolSet,
 }: ContractsListFiltersProps) => {
-  const { t } = useI18n();
+  const { echo } = useEcho();
 
   const [isOpen, isOpenSet] = useState<boolean>(false);
   const handleOpen = useCallback(() => {
@@ -61,12 +61,12 @@ export const ContractsListFilters = ({
         size="small"
         onClick={handleOpen}
       >
-        {t('filterData')}
+        {echo('filterData')}
       </Button>
       <Dialog
         handleClose={handleClose}
         isOpen={isOpen}
-        title={t('filter-contracts')}
+        title={echo('filter-contracts')}
         actions={
           <Box textAlign="right">
             <Box display="inline-block" mr={1.5}>
@@ -76,7 +76,7 @@ export const ContractsListFilters = ({
                 onClick={clearFields}
                 endIcon={<ClearAllIcon />}
               >
-                {t('clear')}
+                {echo('clear')}
               </Button>
             </Box>
             <Box display="inline-block">
@@ -86,7 +86,7 @@ export const ContractsListFilters = ({
                 onClick={applyFields}
                 endIcon={<CheckIcon />}
               >
-                {t('apply')}
+                {echo('apply')}
               </Button>
             </Box>
           </Box>
@@ -104,7 +104,7 @@ export const ContractsListFilters = ({
             {/* field */}
             <Grid item xs={12} container alignItems="center" spacing={1}>
               <Grid item xs={12} lg={2}>
-                <Typography fontWeight={600}>{`${t(
+                <Typography fontWeight={600}>{`${echo(
                   'hashExact',
                 )}:`}</Typography>
               </Grid>
@@ -120,7 +120,7 @@ export const ContractsListFilters = ({
             {/* field */}
             <Grid item xs={12} container alignItems="center" spacing={1}>
               <Grid item xs={12} lg={2}>
-                <Typography fontWeight={600}>{`${t('symbol')}:`}</Typography>
+                <Typography fontWeight={600}>{`${echo('symbol')}:`}</Typography>
               </Grid>
               <Grid item xs={12} lg={10}>
                 <TextField

@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
+import { useEcho } from '@ricardojrmcom/echo';
 import { Box } from '@mui/material';
 import { endpoints } from 'cfg';
-import { useApi, useI18n, useTable } from 'hooks';
+import { useApi, useTable } from 'hooks';
 import { useEventData } from 'hooks/api';
 import { EventResults, EventParams } from 'types/api';
 import { Table } from 'components/table';
@@ -18,7 +19,7 @@ export const EventsList = ({
   block,
   transaction,
 }: EventsListProps) => {
-  const { t } = useI18n();
+  const { echo } = useEcho();
 
   const tableProps = useTable();
   const { limit, offset, with_total, order_direction } = tableProps;
@@ -58,12 +59,12 @@ export const EventsList = ({
         rows={rows}
         total={total}
         dialogOptions={{
-          title: t('details-event'),
+          title: echo('details-event'),
         }}
         linkOptions={{
           route: '/event',
           key: 'event_id',
-          title: t('explore-event'),
+          title: echo('explore-event'),
         }}
         {...tableProps}
         loading={loading}

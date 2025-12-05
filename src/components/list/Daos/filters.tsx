@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState, useCallback } from 'react';
+import { useEcho } from '@ricardojrmcom/echo';
 import { Box, Button, Grid, Typography, TextField } from '@mui/material';
 import { Dialog } from 'components/layout';
 import { DaoParams } from 'types/api';
 import FilterAltIcon from '@mui/icons-material/FilterAlt';
 import CheckIcon from '@mui/icons-material/Check';
 import ClearAllIcon from '@mui/icons-material/ClearAll';
-import { useI18n } from 'hooks';
 
 export interface DaosListFiltersProps extends DaoParams {
   organization_nameSet: React.Dispatch<
@@ -23,7 +23,7 @@ export const DaosListFilters = ({
   organization_name_partial,
   organization_name_partialSet,
 }: DaosListFiltersProps) => {
-  const { t } = useI18n();
+  const { echo } = useEcho();
 
   const [isOpen, isOpenSet] = useState<boolean>(false);
   const handleOpen = useCallback(() => {
@@ -80,12 +80,12 @@ export const DaosListFilters = ({
         size="small"
         onClick={handleOpen}
       >
-        {t('filterData')}
+        {echo('filterData')}
       </Button>
       <Dialog
         handleClose={handleClose}
         isOpen={isOpen}
-        title={t('filter-daos')}
+        title={echo('filter-daos')}
         actions={
           <Box textAlign="right">
             <Box display="inline-block" mr={1.5}>
@@ -95,7 +95,7 @@ export const DaosListFilters = ({
                 onClick={clearFields}
                 endIcon={<ClearAllIcon />}
               >
-                {t('clear')}
+                {echo('clear')}
               </Button>
             </Box>
             <Box display="inline-block">
@@ -105,7 +105,7 @@ export const DaosListFilters = ({
                 onClick={applyFields}
                 endIcon={<CheckIcon />}
               >
-                {t('apply')}
+                {echo('apply')}
               </Button>
             </Box>
           </Box>
@@ -123,7 +123,7 @@ export const DaosListFilters = ({
             {/* field */}
             <Grid item xs={12} container alignItems="center" spacing={1}>
               <Grid item xs={12} lg={2}>
-                <Typography fontWeight={600}>{`${t(
+                <Typography fontWeight={600}>{`${echo(
                   'organization_nameExact',
                 )}:`}</Typography>
               </Grid>
@@ -139,7 +139,7 @@ export const DaosListFilters = ({
             {/* field */}
             <Grid item xs={12} container alignItems="center" spacing={1}>
               <Grid item xs={12} lg={2}>
-                <Typography fontWeight={600}>{`${t(
+                <Typography fontWeight={600}>{`${echo(
                   'organization_name_partial',
                 )}:`}</Typography>
               </Grid>

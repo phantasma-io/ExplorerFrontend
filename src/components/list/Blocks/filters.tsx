@@ -1,13 +1,13 @@
 /* eslint-disable react/jsx-wrap-multilines */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState, useCallback } from 'react';
+import { useEcho } from '@ricardojrmcom/echo';
 import { Box, Button, Grid, Typography, TextField } from '@mui/material';
 import { Dialog } from 'components/layout';
 import { BlockParams } from 'types/api';
 import FilterAltIcon from '@mui/icons-material/FilterAlt';
 import CheckIcon from '@mui/icons-material/Check';
 import ClearAllIcon from '@mui/icons-material/ClearAll';
-import { useI18n } from 'hooks';
 
 export interface BlocksListFiltersProps extends BlockParams {
   hashSet: React.Dispatch<React.SetStateAction<string | undefined>>;
@@ -23,7 +23,7 @@ export const BlocksListFilters = ({
   height,
   heightSet,
 }: BlocksListFiltersProps) => {
-  const { t } = useI18n();
+  const { echo } = useEcho();
 
   const [isOpen, isOpenSet] = useState<boolean>(false);
   const handleOpen = useCallback(() => {
@@ -82,12 +82,12 @@ export const BlocksListFilters = ({
         size="small"
         onClick={handleOpen}
       >
-        {t('filterData')}
+        {echo('filterData')}
       </Button>
       <Dialog
         handleClose={handleClose}
         isOpen={isOpen}
-        title={t('filter-blocks')}
+        title={echo('filter-blocks')}
         actions={
           <Box textAlign="right">
             <Box display="inline-block" mr={1.5}>
@@ -97,7 +97,7 @@ export const BlocksListFilters = ({
                 onClick={clearFields}
                 endIcon={<ClearAllIcon />}
               >
-                {t('clear')}
+                {echo('clear')}
               </Button>
             </Box>
             <Box display="inline-block">
@@ -107,7 +107,7 @@ export const BlocksListFilters = ({
                 onClick={applyFields}
                 endIcon={<CheckIcon />}
               >
-                {t('apply')}
+                {echo('apply')}
               </Button>
             </Box>
           </Box>
@@ -125,7 +125,7 @@ export const BlocksListFilters = ({
             {/* field */}
             <Grid item xs={12} container alignItems="center" spacing={1}>
               <Grid item xs={12} lg={2}>
-                <Typography fontWeight={600}>{`${t(
+                <Typography fontWeight={600}>{`${echo(
                   'hashExact',
                 )}:`}</Typography>
               </Grid>
@@ -141,7 +141,7 @@ export const BlocksListFilters = ({
             {/* field */}
             <Grid item xs={12} container alignItems="center" spacing={1}>
               <Grid item xs={12} lg={2}>
-                <Typography fontWeight={600}>{`${t(
+                <Typography fontWeight={600}>{`${echo(
                   'hash_partial',
                 )}:`}</Typography>
               </Grid>
@@ -157,7 +157,7 @@ export const BlocksListFilters = ({
             {/* field */}
             <Grid item xs={12} container alignItems="center" spacing={1}>
               <Grid item xs={12} lg={2}>
-                <Typography fontWeight={600}>{`${t('height')}:`}</Typography>
+                <Typography fontWeight={600}>{`${echo('height')}:`}</Typography>
               </Grid>
               <Grid item xs={12} lg={10}>
                 <TextField

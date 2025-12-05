@@ -21,11 +21,9 @@ export const useTableParams = () => {
   }, [asPath]);
 
   const params = useMemo<TableUrlParams>(() => {
-    let hasInitialParams = false;
     if (search) {
       const obj = queryToObj(search);
       if (obj.t) {
-        hasInitialParams = true;
         const decoded = decode(obj.t as string);
         return {
           total: (decoded.total as number) || TABLE_TOTAL,
@@ -34,7 +32,6 @@ export const useTableParams = () => {
           orderBy: (decoded.orderBy as string) || TABLE_ORDERBY,
           orderDirection:
             (decoded.orderDirection as TableOrderDirection) || TABLE_ORDERDIR,
-          hasInitialParams,
         };
       }
     }
@@ -45,7 +42,6 @@ export const useTableParams = () => {
       orderBy: TABLE_ORDERBY,
       orderDirection: TABLE_ORDERDIR,
       total: TABLE_TOTAL,
-      hasInitialParams,
     };
   }, [search]);
 

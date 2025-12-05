@@ -6,8 +6,9 @@ import type {
   GetStaticPaths,
 } from 'next';
 import { ParsedUrlQuery } from 'querystring';
+import { EchoProvider } from '@ricardojrmcom/echo';
 import { LocalizedView } from 'containers/LocalizedView';
-import { localesKeys, routesViews } from 'cfg';
+import { locales, localesKeys, routesViews } from 'cfg';
 import { Locales } from 'types/locales';
 
 export const getStaticPaths: GetStaticPaths = async () => {
@@ -48,9 +49,16 @@ export const getStaticProps: GetStaticProps = async (context) => {
 };
 
 const LocalizedPage: NextPage = ({
+  locale,
   route,
 }: InferGetStaticPropsType<typeof getStaticProps>) => (
-  <LocalizedView route={route} />
+  <EchoProvider
+    echo={locales}
+    echoDefault={locale}
+    lsid="phantasma-explorer-locale"
+  >
+    <LocalizedView locale={locale} route={route} />
+  </EchoProvider>
 );
 
 export default LocalizedPage;

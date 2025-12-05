@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Typography, Grid } from '@mui/material';
+import { useEcho } from '@ricardojrmcom/echo';
 import InboxIcon from '@mui/icons-material/Inbox';
-import { useI18n } from 'hooks';
 
 export interface EmptyProps {
   msg?: string;
@@ -9,7 +9,7 @@ export interface EmptyProps {
 }
 
 export const Empty = ({ msg, height }: EmptyProps) => {
-  const { t } = useI18n();
+  const { echo } = useEcho();
 
   return (
     <Grid container sx={{ height: height || '300px' }} alignItems="center">
@@ -22,7 +22,7 @@ export const Empty = ({ msg, height }: EmptyProps) => {
           </Box>
           <Box pt={1.5}>
             <Typography variant="h6" color="textSecondary">
-              {msg || t('no-results')}
+              {msg || echo('no-results')}
             </Typography>
           </Box>
         </Box>

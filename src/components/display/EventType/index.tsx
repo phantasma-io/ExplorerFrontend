@@ -1,13 +1,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useMemo } from 'react';
 import { Box, Grid, Button } from '@mui/material';
+import { useEcho } from '@ricardojrmcom/echo';
 import { EventResult, EventTypes, EventKinds } from 'types/api';
 import { eventTypeMap } from 'cfg/eventTypes';
 import { DetailsNumber, DetailsText } from 'components/details';
 import { Link, Text } from 'components/display';
 import { routes } from 'cfg';
 import { Locales } from 'types/locales';
-import { useI18n } from 'hooks';
 
 type Kind = EventKinds | undefined;
 type Type = EventTypes | undefined | null;
@@ -23,7 +23,7 @@ export interface EventTypeProps {
  * EventType
  */
 export const EventType = ({ data }: EventTypeProps) => {
-  const { t, locale } = useI18n();
+  const { echo, echoActiveId } = useEcho();
 
   const kind: Kind = useMemo(() => {
     if (data) {
@@ -72,7 +72,7 @@ export const EventType = ({ data }: EventTypeProps) => {
         <Grid container spacing={1} alignItems="center">
           <Grid item md={2}>
             <Link
-              href={routes['/event'](locale as Locales, {
+              href={routes['/event'](echoActiveId as Locales, {
                 id: `${data?.event_id}`,
               })}
               sx={{ textDecoration: 'none' }}
@@ -85,7 +85,7 @@ export const EventType = ({ data }: EventTypeProps) => {
           <Grid item md={10}>
             {payloadFormatted && (
               <Text
-                label={t('payload')}
+                label={echo('payload')}
                 value={payloadFormatted}
                 variant="body2"
                 monospace
@@ -94,7 +94,7 @@ export const EventType = ({ data }: EventTypeProps) => {
             )}
             {!payloadFormatted && rawDataFormatted && (
               <Text
-                label={t('raw-data')}
+                label={echo('raw-data')}
                 value={rawDataFormatted}
                 variant="body2"
                 monospace
@@ -105,7 +105,7 @@ export const EventType = ({ data }: EventTypeProps) => {
         </Grid>
       </Box>
     );
-  }, [data, locale, rawData, rawPayload, t]);
+  }, [data, echo, echoActiveId, rawData, rawPayload]);
 
   const content = useMemo(() => {
     if (kind && type) {
@@ -125,7 +125,7 @@ export const EventType = ({ data }: EventTypeProps) => {
               >
                 <Grid item md={2}>
                   <Link
-                    href={routes['/event'](locale as Locales, {
+                    href={routes['/event'](echoActiveId as Locales, {
                       id: `${data?.event_id}`,
                     })}
                     sx={{ textDecoration: 'none' }}
@@ -143,7 +143,7 @@ export const EventType = ({ data }: EventTypeProps) => {
                 <Grid item md={8}>
                   {data?.string_event?.string_value && (
                     <DetailsText
-                      label={t('value')}
+                      label={echo('value')}
                       value={data?.string_event?.string_value}
                     />
                   )}
@@ -164,7 +164,7 @@ export const EventType = ({ data }: EventTypeProps) => {
               >
                 <Grid item md={2}>
                   <Link
-                    href={routes['/event'](locale as Locales, {
+                    href={routes['/event'](echoActiveId as Locales, {
                       id: `${data?.event_id}`,
                     })}
                     sx={{ textDecoration: 'none' }}
@@ -182,7 +182,7 @@ export const EventType = ({ data }: EventTypeProps) => {
                 <Grid item md={8}>
                   {data?.sale_event?.hash && (
                     <DetailsText
-                      label={t('hash')}
+                      label={echo('hash')}
                       value={data?.sale_event?.hash}
                     />
                   )}
@@ -203,7 +203,7 @@ export const EventType = ({ data }: EventTypeProps) => {
               >
                 <Grid item md={2}>
                   <Link
-                    href={routes['/event'](locale as Locales, {
+                    href={routes['/event'](echoActiveId as Locales, {
                       id: `${data?.event_id}`,
                     })}
                     sx={{ textDecoration: 'none' }}
@@ -221,12 +221,12 @@ export const EventType = ({ data }: EventTypeProps) => {
                 <Grid item md={4}>
                   {data?.organization_event?.organization?.name && (
                     <DetailsText
-                      label={t('dao-name')}
+                      label={echo('dao-name')}
                       value={data?.organization_event?.organization?.name}
                       linkOptions={{
                         route: '/dao',
                         key: 'dao',
-                        title: t('explore-dao'),
+                        title: echo('explore-dao'),
                       }}
                     />
                   )}
@@ -234,12 +234,12 @@ export const EventType = ({ data }: EventTypeProps) => {
                 <Grid item md={6}>
                   {data?.organization_event?.address?.address && (
                     <DetailsText
-                      label={t('address')}
+                      label={echo('address')}
                       value={data?.organization_event?.address?.address}
                       linkOptions={{
                         route: '/address',
                         key: 'address',
-                        title: t('explore-address'),
+                        title: echo('explore-address'),
                       }}
                     />
                   )}
@@ -260,7 +260,7 @@ export const EventType = ({ data }: EventTypeProps) => {
               >
                 <Grid item md={2}>
                   <Link
-                    href={routes['/event'](locale as Locales, {
+                    href={routes['/event'](echoActiveId as Locales, {
                       id: `${data?.event_id}`,
                     })}
                     sx={{ textDecoration: 'none' }}
@@ -318,7 +318,7 @@ export const EventType = ({ data }: EventTypeProps) => {
               >
                 <Grid item md={2}>
                   <Link
-                    href={routes['/event'](locale as Locales, {
+                    href={routes['/event'](echoActiveId as Locales, {
                       id: `${data?.event_id}`,
                     })}
                     sx={{ textDecoration: 'none' }}
@@ -388,7 +388,7 @@ export const EventType = ({ data }: EventTypeProps) => {
               >
                 <Grid item md={2}>
                   <Link
-                    href={routes['/event'](locale as Locales, {
+                    href={routes['/event'](echoActiveId as Locales, {
                       id: `${data?.event_id}`,
                     })}
                     sx={{ textDecoration: 'none' }}
@@ -406,12 +406,12 @@ export const EventType = ({ data }: EventTypeProps) => {
                 <Grid item md={2}>
                   {data?.market_event?.base_token?.symbol && (
                     <DetailsText
-                      label={t('base-token')}
+                      label={echo('base-token')}
                       value={data?.market_event?.base_token?.symbol}
                       linkOptions={{
                         route: '/token',
                         key: 'symbol',
-                        title: t('explore-token'),
+                        title: echo('explore-token'),
                       }}
                     />
                   )}
@@ -419,12 +419,12 @@ export const EventType = ({ data }: EventTypeProps) => {
                 <Grid item md={2}>
                   {data?.market_event?.quote_token?.symbol && (
                     <DetailsText
-                      label={t('infused-token')}
+                      label={echo('infused-token')}
                       value={`${data?.market_event?.quote_token?.symbol}`}
                       linkOptions={{
                         route: '/token',
                         key: 'symbol',
-                        title: t('explore-token'),
+                        title: echo('explore-token'),
                       }}
                     />
                   )}
@@ -433,7 +433,7 @@ export const EventType = ({ data }: EventTypeProps) => {
                   <Box>
                     {data?.market_event?.price && (
                       <DetailsNumber
-                        label={t('value')}
+                        label={echo('value')}
                         value={parseInt(data?.market_event?.price, 10)}
                       />
                     )}
@@ -443,7 +443,7 @@ export const EventType = ({ data }: EventTypeProps) => {
                   <Box>
                     {data?.market_event?.end_price && (
                       <DetailsNumber
-                        label={t('value')}
+                        label={echo('value')}
                         value={parseInt(data?.market_event?.end_price, 10)}
                       />
                     )}
@@ -465,7 +465,7 @@ export const EventType = ({ data }: EventTypeProps) => {
               >
                 <Grid item md={2}>
                   <Link
-                    href={routes['/event'](locale as Locales, {
+                    href={routes['/event'](echoActiveId as Locales, {
                       id: `${data?.event_id}`,
                     })}
                     sx={{ textDecoration: 'none' }}
@@ -483,12 +483,12 @@ export const EventType = ({ data }: EventTypeProps) => {
                 <Grid item md={2}>
                   {data?.infusion_event?.base_token?.symbol && (
                     <DetailsText
-                      label={t('base-token')}
+                      label={echo('base-token')}
                       value={data?.infusion_event?.base_token?.symbol}
                       linkOptions={{
                         route: '/token',
                         key: 'symbol',
-                        title: t('explore-token'),
+                        title: echo('explore-token'),
                       }}
                     />
                   )}
@@ -496,12 +496,12 @@ export const EventType = ({ data }: EventTypeProps) => {
                 <Grid item md={2}>
                   {data?.infusion_event?.base_token?.symbol && (
                     <DetailsText
-                      label={t('infused-token')}
+                      label={echo('infused-token')}
                       value={`${data?.infusion_event?.infused_token?.symbol}`}
                       linkOptions={{
                         route: '/token',
                         key: 'symbol',
-                        title: t('explore-token'),
+                        title: echo('explore-token'),
                       }}
                     />
                   )}
@@ -510,7 +510,7 @@ export const EventType = ({ data }: EventTypeProps) => {
                   <Box>
                     {data?.infusion_event?.infused_value && (
                       <DetailsNumber
-                        label={t('value')}
+                        label={echo('value')}
                         value={parseInt(
                           data?.infusion_event?.infused_value,
                           10,
@@ -535,7 +535,7 @@ export const EventType = ({ data }: EventTypeProps) => {
               >
                 <Grid item md={2}>
                   <Link
-                    href={routes['/event'](locale as Locales, {
+                    href={routes['/event'](echoActiveId as Locales, {
                       id: `${data?.event_id}`,
                     })}
                     sx={{ textDecoration: 'none' }}
@@ -553,7 +553,7 @@ export const EventType = ({ data }: EventTypeProps) => {
                 <Grid item md={8}>
                   {data?.hash_event?.hash && (
                     <DetailsText
-                      label={t('hash')}
+                      label={echo('hash')}
                       value={data?.hash_event?.hash}
                     />
                   )}
@@ -574,7 +574,7 @@ export const EventType = ({ data }: EventTypeProps) => {
               >
                 <Grid item md={2}>
                   <Link
-                    href={routes['/event'](locale as Locales, {
+                    href={routes['/event'](echoActiveId as Locales, {
                       id: `${data?.event_id}`,
                     })}
                     sx={{ textDecoration: 'none' }}
@@ -593,7 +593,7 @@ export const EventType = ({ data }: EventTypeProps) => {
                   {data?.gas_event?.fee !== undefined &&
                     data?.gas_event?.fee !== null && (
                       <DetailsNumber
-                        label={t('fee')}
+                        label={echo('fee')}
                         value={parseFloat(`${data?.gas_event?.fee}`)}
                         append=" KCAL"
                       />
@@ -604,23 +604,23 @@ export const EventType = ({ data }: EventTypeProps) => {
                   data?.gas_event?.amount !== null &&
                   data?.gas_event?.amount !== '' ? (
                     <DetailsText
-                      label={t('amount')}
+                      label={echo('amount')}
                       value={data?.gas_event?.amount}
                       append=" KCAL"
                     />
                   ) : (
-                    <DetailsText label={t('amount')} value="unlimited" />
+                    <DetailsText label={echo('amount')} value="unlimited" />
                   )}
                 </Grid>
                 <Grid item md={6}>
                   {data?.gas_event?.address?.address && (
                     <DetailsText
-                      label={t('address')}
+                      label={echo('address')}
                       value={data?.gas_event?.address?.address}
                       linkOptions={{
                         route: '/address',
                         key: 'address',
-                        title: t('explore-address'),
+                        title: echo('explore-address'),
                       }}
                     />
                   )}
@@ -677,7 +677,7 @@ export const EventType = ({ data }: EventTypeProps) => {
               <Grid container spacing={1} alignContent="center" alignItems="center">
                 <Grid item md={2}>
                   <Link
-                    href={routes['/event'](locale as Locales, {
+                    href={routes['/event'](echoActiveId as Locales, {
                       id: `${data?.event_id}`,
                     })}
                     sx={{ textDecoration: 'none' }}
@@ -727,7 +727,7 @@ export const EventType = ({ data }: EventTypeProps) => {
               <Grid container spacing={1} alignContent="center" alignItems="center">
                 <Grid item md={2}>
                   <Link
-                    href={routes['/event'](locale as Locales, {
+                    href={routes['/event'](echoActiveId as Locales, {
                       id: `${data?.event_id}`,
                     })}
                     sx={{ textDecoration: 'none' }}
@@ -768,7 +768,7 @@ export const EventType = ({ data }: EventTypeProps) => {
               >
                 <Grid item md={2}>
                   <Link
-                    href={routes['/event'](locale as Locales, {
+                    href={routes['/event'](echoActiveId as Locales, {
                       id: `${data?.event_id}`,
                     })}
                     sx={{ textDecoration: 'none' }}
@@ -786,7 +786,7 @@ export const EventType = ({ data }: EventTypeProps) => {
                 <Grid item md={2}>
                   {data?.chain_event?.name && (
                     <DetailsText
-                      label={t('name')}
+                      label={echo('name')}
                       value={data?.chain_event?.name}
                     />
                   )}
@@ -795,7 +795,7 @@ export const EventType = ({ data }: EventTypeProps) => {
                   <Box>
                     {data?.chain_event?.value && (
                       <DetailsNumber
-                        label={t('value')}
+                        label={echo('value')}
                         value={parseInt(data?.chain_event?.value, 10)}
                       />
                     )}
@@ -804,7 +804,7 @@ export const EventType = ({ data }: EventTypeProps) => {
                 <Grid item md={2}>
                   {data?.chain_event?.chain?.chain_name && (
                     <DetailsText
-                      label={t('chain')}
+                      label={echo('chain')}
                       value={data?.chain_event?.chain?.chain_name}
                     />
                   )}
@@ -813,7 +813,7 @@ export const EventType = ({ data }: EventTypeProps) => {
                   <Box>
                     {data?.chain_event?.chain?.chain_height && (
                       <DetailsNumber
-                        label={t('height')}
+                        label={echo('height')}
                         value={parseInt(
                           data?.chain_event?.chain?.chain_height,
                           10,
@@ -838,7 +838,7 @@ export const EventType = ({ data }: EventTypeProps) => {
               >
                 <Grid item md={2}>
                   <Link
-                    href={routes['/event'](locale as Locales, {
+                    href={routes['/event'](echoActiveId as Locales, {
                       id: `${data?.event_id}`,
                     })}
                     sx={{ textDecoration: 'none' }}
@@ -856,12 +856,12 @@ export const EventType = ({ data }: EventTypeProps) => {
                 <Grid item md={10}>
                   {data?.address_event?.address && (
                     <DetailsText
-                      label={t('address')}
+                      label={echo('address')}
                       value={data?.address_event?.address?.address || ''}
                       linkOptions={{
                         route: '/address',
                         key: 'address',
-                        title: t('explore-address'),
+                        title: echo('explore-address'),
                       }}
                     />
                   )}
@@ -887,7 +887,7 @@ export const EventType = ({ data }: EventTypeProps) => {
                 >
                   <Grid item md={2}>
                     <Link
-                      href={routes['/event'](locale as Locales, {
+                      href={routes['/event'](echoActiveId as Locales, {
                         id: `${data?.event_id}`,
                       })}
                       sx={{ textDecoration: 'none' }}
@@ -905,19 +905,19 @@ export const EventType = ({ data }: EventTypeProps) => {
                   <Grid item md={2}>
                     <Box>
                       {tokenValue && (
-                        <DetailsText label={t('value')} value={tokenValue} />
+                        <DetailsText label={echo('value')} value={tokenValue} />
                       )}
                     </Box>
                   </Grid>
                   <Grid item md={2}>
                     {data?.token_event?.token?.symbol && (
                       <DetailsText
-                        label={t('token')}
+                        label={echo('token')}
                         value={data?.token_event?.token?.symbol}
                         linkOptions={{
                           route: '/token',
                           key: 'symbol',
-                          title: t('explore-token'),
+                          title: echo('explore-token'),
                         }}
                       />
                     )}
@@ -925,12 +925,12 @@ export const EventType = ({ data }: EventTypeProps) => {
                   <Grid item md={6}>
                     {data?.address && (
                       <DetailsText
-                        label={t('address')}
+                        label={echo('address')}
                         value={data?.address}
                         linkOptions={{
                           route: '/address',
                           key: 'address',
-                          title: t('explore-address'),
+                          title: echo('explore-address'),
                         }}
                       />
                     )}
@@ -947,7 +947,7 @@ export const EventType = ({ data }: EventTypeProps) => {
       }
     }
     return renderUnknown;
-  }, [type, kind, data, locale, renderUnknown, t]);
+  }, [type, kind, data, echo, echoActiveId, renderUnknown]);
 
   return <Box>{content}</Box>;
 };

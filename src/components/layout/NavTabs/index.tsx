@@ -27,13 +27,12 @@ export interface NavTabsProps {
 export const NavTabs = ({ tabs, tabsDefault }: NavTabsProps) => {
   const { query, push } = useRouter();
   const activeTab = useMemo(
-    () => (query.tab as string) || tabsDefault,
-    [query.tab, tabsDefault],
+    () => query.tab || tabsDefault,
+    [query, tabsDefault],
   );
 
   const changeTab = useCallback(
     (tab: string, url: string) => {
-      // update UI immediately
       const { id } = query;
       const queryNew = id
         ? {
@@ -41,14 +40,10 @@ export const NavTabs = ({ tabs, tabsDefault }: NavTabsProps) => {
             tab,
           }
         : { tab };
-      push(
-        {
-          pathname: url,
-          query: queryNew,
-        },
-        undefined,
-        { shallow: true, scroll: false },
-      );
+      push({
+        pathname: url,
+        query: queryNew,
+      });
     },
     [push, query],
   );
@@ -75,9 +70,9 @@ export const NavTabs = ({ tabs, tabsDefault }: NavTabsProps) => {
         </Tabs>
       </Box>
       <Box px={2} pt={1} pb={2}>
-        {Object.values(tabs).map(({ id, component }: NavTab) =>
-          activeTab === id ? <Box key={`panel-${id}`}>{component}</Box> : null,
-        )}
+        {Object.values(tabs).map(({ id, component }: NavTab) => (
+          <Box key={`panel-${id}`}>{activeTab === id && component}</Box>
+        ))}
       </Box>
     </Paper>
   );

@@ -7,7 +7,7 @@ import { TransactionResults } from 'types/api';
 import { Loading, Error, Empty, Overview } from 'components/layout';
 import { EventDesc } from 'components/display/EventDesc';
 import { endpoints, routes } from 'cfg';
-import { useI18n } from 'hooks';
+import { useEcho } from '@ricardojrmcom/echo';
 import { Locales } from 'types/locales';
 import { useRouter } from 'next/router';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
@@ -28,7 +28,7 @@ export const TransactionOverview = ({
   loading,
   error,
 }: TransactionOverviewProps) => {
-  const { locale } = useI18n();
+  const { echoActiveId } = useEcho();
   const router = useRouter();
 
   const tx = data?.transactions?.[0];
@@ -163,11 +163,11 @@ export const TransactionOverview = ({
     (hash?: string | null) => {
       if (!hash) return;
       router.push({
-        pathname: routes['/transaction'](locale as Locales),
+        pathname: routes['/transaction'](echoActiveId as Locales),
         query: { id: hash },
       });
     },
-    [locale, router],
+    [echoActiveId, router],
   );
 
   const renderOverview = useRenderOverview();

@@ -1,8 +1,8 @@
 import React from 'react';
 import { Typography } from '@mui/material';
+import { useFury } from '@ricardojrmcom/fury';
 import { Text } from 'components/display';
 import CheckIcon from '@mui/icons-material/Check';
-import { useTheme } from '@mui/material/styles';
 
 export interface DetailsBooleanProps {
   value: boolean;
@@ -15,7 +15,7 @@ export const DetailsBoolean = ({
   label,
   height,
 }: DetailsBooleanProps) => {
-  const theme = useTheme();
+  const { furyActive } = useFury();
   if (value) {
     return (
       <Text
@@ -27,7 +27,7 @@ export const DetailsBoolean = ({
         height={height}
       >
         <Typography variant="body2" color="primary">
-          <CheckIcon style={{ height: theme.typography.h6.fontSize }} />
+          <CheckIcon style={{ height: furyActive.typography.h6.fontSize }} />
         </Typography>
       </Text>
     );

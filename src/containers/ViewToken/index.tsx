@@ -1,8 +1,9 @@
 import React, { useMemo } from 'react';
 import { Box } from '@mui/material';
 import { useRouter } from 'next/router';
+import { useEcho } from '@ricardojrmcom/echo';
 import { NavTabs, NavTabsRecord, Breadcrumbs } from 'components/layout';
-import { useApi, useI18n, useTable } from 'hooks';
+import { useApi, useTable } from 'hooks';
 import { endpoints, routes } from 'cfg';
 import { Locales } from 'types/locales';
 import { ExplorerTabs } from 'types/routes';
@@ -20,7 +21,7 @@ export interface ViewTokenProps {
 }
 
 export const ViewToken = ({ tabForce = 'overview' }: ViewTokenProps) => {
-  const { t, locale } = useI18n();
+  const { echo, echoActiveId } = useEcho();
 
   const { query } = useRouter();
 
@@ -55,8 +56,8 @@ export const ViewToken = ({ tabForce = 'overview' }: ViewTokenProps) => {
     () => ({
       overview: {
         id: 'overview',
-        label: t('tab-overview'),
-        href: routes['/token'](locale as Locales),
+        label: echo('tab-overview'),
+        href: routes['/token'](echoActiveId as Locales),
         component: (
           <TokenOverview data={data} loading={loading} error={error} />
         ),
@@ -64,7 +65,7 @@ export const ViewToken = ({ tabForce = 'overview' }: ViewTokenProps) => {
       holders: {
         id: 'holders',
         label: "Top Holders",
-        href: routes['/token'](locale as Locales),
+        href: routes['/token'](echoActiveId as Locales),
         component: (
             <Table
               tableId="PhantasmaExplorer-Addresses-TopHolders"
@@ -75,7 +76,7 @@ export const ViewToken = ({ tabForce = 'overview' }: ViewTokenProps) => {
               linkOptions={{
                 route: '/address',
                 key: 'address',
-                title: t('explore-address'),
+                title: echo('explore-address'),
               }}
               {...holdersTableProps}
               loading={holders_res.loading}
@@ -86,8 +87,8 @@ export const ViewToken = ({ tabForce = 'overview' }: ViewTokenProps) => {
       },
       instructions: {
         id: 'instructions',
-        label: t('tab-instructions'),
-        href: routes['/token'](locale as Locales),
+        label: echo('tab-instructions'),
+        href: routes['/token'](echoActiveId as Locales),
         component: (
           <TokenInstructions
             data={data}
@@ -99,20 +100,20 @@ export const ViewToken = ({ tabForce = 'overview' }: ViewTokenProps) => {
       },
       script: {
         id: 'script',
-        label: t('tab-script'),
-        href: routes['/token'](locale as Locales),
+        label: echo('tab-script'),
+        href: routes['/token'](echoActiveId as Locales),
         component: <TokenScript data={data} loading={loading} error={error} />,
       },
       raw: {
         id: 'raw',
-        label: t('tab-raw'),
-        href: routes['/token'](locale as Locales),
+        label: echo('tab-raw'),
+        href: routes['/token'](echoActiveId as Locales),
         component: <TokenRaw data={data} loading={loading} error={error} />,
       },
     }),
     [
-      t,
-      locale,
+      echo,
+      echoActiveId,
       data,
       error,
       loading,

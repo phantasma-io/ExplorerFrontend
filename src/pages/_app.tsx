@@ -3,7 +3,6 @@ import { AppProps } from 'next/app';
 import { CacheProvider, EmotionCache } from '@emotion/react';
 import { AppProvider } from 'containers';
 import { createEmotionCache } from 'scripts';
-import { Locales } from 'types/locales';
 
 const clientSideEmotionCache = createEmotionCache();
 
@@ -17,7 +16,7 @@ const ExplorerApp = ({
   pageProps,
 }: ExplorerAppProps) => (
   <CacheProvider value={emotionCache}>
-    <AppProvider locale={(pageProps as { locale?: Locales }).locale}>
+    <AppProvider>
       <Component {...pageProps} />
     </AppProvider>
   </CacheProvider>

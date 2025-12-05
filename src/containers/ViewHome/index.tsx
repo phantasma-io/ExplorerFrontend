@@ -1,16 +1,16 @@
 import React from 'react';
+import { useEcho } from '@ricardojrmcom/echo';
 import { Box, Grid, Button } from '@mui/material';
 import { Image, Link } from 'components/display';
 import { Fullscreen } from 'components/layout';
 import { FOOTER_HEIGHT, HEADER_HEIGHT, routes } from 'cfg';
 import { Locales } from 'types/locales';
-import { useI18n } from 'hooks';
 
 /**
  * ViewHome
  */
 export const ViewHome = () => {
-  const { t, locale } = useI18n();
+  const { echo, echoActiveId } = useEcho();
 
   return (
     <Fullscreen subtract={HEADER_HEIGHT + FOOTER_HEIGHT}>
@@ -45,11 +45,11 @@ export const ViewHome = () => {
         <Grid item xs={12}>
           <Box pt={3} textAlign="center">
             <Link
-              href={routes['/nexus'](locale as Locales)}
+              href={routes['/nexus'](echoActiveId as Locales)}
               sx={{ textDecoration: 'none' }}
             >
               <Button size="large" variant="contained" color="primary">
-                {t('btn-enterNexus')}
+                {echo('btn-enterNexus')}
               </Button>
             </Link>
           </Box>

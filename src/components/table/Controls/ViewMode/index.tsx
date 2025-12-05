@@ -1,9 +1,9 @@
 import React from 'react';
 import { Box, Button } from '@mui/material';
+import { useEcho } from '@ricardojrmcom/echo';
 import { TableViewModes } from 'types/table';
 import ViewListIcon from '@mui/icons-material/ViewList';
 import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
-import { useI18n } from 'hooks';
 
 export interface TableViewModeProps {
   viewMode: TableViewModes;
@@ -14,7 +14,7 @@ export const TableViewMode = ({
   viewMode,
   viewModeSet,
 }: TableViewModeProps) => {
-  const { t } = useI18n();
+  const { echo } = useEcho();
   return (
     <Box>
       <Box display={{ xs: 'none', md: 'block' }}>
@@ -36,7 +36,7 @@ export const TableViewMode = ({
           }
           color="inherit"
         >
-          {t('table-toggleViewMode')}
+          {echo('table-toggleViewMode')}
         </Button>
       </Box>
     </Box>

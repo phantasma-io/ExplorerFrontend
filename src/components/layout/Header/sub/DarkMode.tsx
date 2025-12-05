@@ -1,34 +1,43 @@
-import React from 'react';
+import React, { useMemo, useCallback } from 'react';
 import { Box, IconButton, Tooltip } from '@mui/material';
+import { useFury } from '@ricardojrmcom/fury';
+import { useEcho } from '@ricardojrmcom/echo';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import Brightness4Icon from '@mui/icons-material/Brightness4';
-import { useTheme } from '@mui/material/styles';
-import { useDarkMode, useI18n } from 'hooks';
 
 /**
  * DarkMode
  */
 export const DarkMode = () => {
-  const theme = useTheme();
-  const { isDark, toggleDarkMode } = useDarkMode();
-  const { t } = useI18n();
+  const { furyActive, furyActiveId, furySetById } = useFury();
+  const { echo } = useEcho();
+
+  const isDark = useMemo(() => furyActiveId.includes('-dark'), [furyActiveId]);
+
+  const toggleDarkMode = useCallback(() => {
+    if (isDark) {
+      furySetById(furyActiveId.split('-')[0]);
+    } else {
+      furySetById(`${furyActiveId}-dark`);
+    }
+  }, [isDark, furyActiveId, furySetById]);
 
   return (
     <Box>
       <Box>
-        <Tooltip title={t('tooltip-darkmode')}>
+        <Tooltip title={echo('tooltip-darkmode')}>
           <IconButton size="small" onClick={toggleDarkMode}>
             {isDark ? (
               <Brightness4Icon
                 sx={{
-                  fontSize: theme.typography.h5.fontSize,
+                  fontSize: furyActive.typography.h5.fontSize,
                   color: '#fff',
                 }}
               />
             ) : (
               <DarkModeIcon
                 sx={{
-                  fontSize: theme.typography.h5.fontSize,
+                  fontSize: furyActive.typography.h5.fontSize,
                   color: '#fff',
                 }}
               />

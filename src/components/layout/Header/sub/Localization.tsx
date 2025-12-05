@@ -1,17 +1,17 @@
 import React, { useState, useCallback } from 'react';
 import { useRouter } from 'next/router';
 import { IconButton, Box, Tooltip, Menu, MenuItem } from '@mui/material';
+import { useFury } from '@ricardojrmcom/fury';
+import { useEcho } from '@ricardojrmcom/echo';
 import PublicIcon from '@mui/icons-material/Public';
-import { useTheme } from '@mui/material/styles';
-import { useI18n } from 'hooks';
 
 /**
  * Localization
  */
 export const Localization = () => {
   const { push, asPath } = useRouter();
-  const theme = useTheme();
-  const { t, locale } = useI18n();
+  const { furyActive } = useFury();
+  const { echo, echoActiveId } = useEcho();
 
   const [anchorLocales, anchorLocalesSet] = useState<null | HTMLElement>(null);
   const openLocales = Boolean(anchorLocales);
@@ -28,11 +28,11 @@ export const Localization = () => {
   return (
     <Box>
       <Box>
-        <Tooltip title={t('tooltip-locale')}>
+        <Tooltip title={echo('tooltip-locale')}>
           <IconButton size="small" onClick={handleOpenLocales}>
             <PublicIcon
               sx={{
-                fontSize: theme.typography.h5.fontSize,
+                fontSize: furyActive.typography.h5.fontSize,
                 color: '#fff',
               }}
             />
@@ -54,18 +54,18 @@ export const Localization = () => {
       >
         <MenuItem
           onClick={() => {
-            push(asPath.replace(`/${locale}`, '/en'));
+            push(asPath.replace(`/${echoActiveId}`, '/en'));
             handleCloseLocales();
           }}
           sx={{
             borderLeft: `3px solid ${
-              locale === 'en'
-                ? theme.palette.primary.main
+              echoActiveId === 'en'
+                ? furyActive.palette.primary.main
                 : 'rgba(0,0,0,0)'
             }`,
             borderRight: `3px solid ${
-              locale === 'en'
-                ? theme.palette.primary.main
+              echoActiveId === 'en'
+                ? furyActive.palette.primary.main
                 : 'rgba(0,0,0,0)'
             }`,
           }}
@@ -74,18 +74,18 @@ export const Localization = () => {
         </MenuItem>
         <MenuItem
           onClick={() => {
-            push(asPath.replace(`/${locale}`, '/pt'));
+            push(asPath.replace(`/${echoActiveId}`, '/pt'));
             handleCloseLocales();
           }}
           sx={{
             borderLeft: `3px solid ${
-              locale === 'pt'
-                ? theme.palette.primary.main
+              echoActiveId === 'pt'
+                ? furyActive.palette.primary.main
                 : 'rgba(0,0,0,0)'
             }`,
             borderRight: `3px solid ${
-              locale === 'pt'
-                ? theme.palette.primary.main
+              echoActiveId === 'pt'
+                ? furyActive.palette.primary.main
                 : 'rgba(0,0,0,0)'
             }`,
           }}
@@ -94,18 +94,18 @@ export const Localization = () => {
         </MenuItem>
         <MenuItem
           onClick={() => {
-            push(asPath.replace(`/${locale}`, '/de'));
+            push(asPath.replace(`/${echoActiveId}`, '/de'));
             handleCloseLocales();
           }}
           sx={{
             borderLeft: `3px solid ${
-              locale === 'de'
-                ? theme.palette.primary.main
+              echoActiveId === 'de'
+                ? furyActive.palette.primary.main
                 : 'rgba(0,0,0,0)'
             }`,
             borderRight: `3px solid ${
-              locale === 'de'
-                ? theme.palette.primary.main
+              echoActiveId === 'de'
+                ? furyActive.palette.primary.main
                 : 'rgba(0,0,0,0)'
             }`,
           }}

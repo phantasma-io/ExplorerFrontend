@@ -2,8 +2,9 @@ import React, { useState, useCallback, useMemo } from 'react';
 import FileDownloadIcon from '@mui/icons-material/FileDownload';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { nanoid } from 'nanoid';
+import { useFury } from '@ricardojrmcom/fury';
+import { useEcho } from '@ricardojrmcom/echo';
 import { Box, Grid, Typography, Button } from '@mui/material';
-import { useTheme } from '@mui/material/styles';
 import { Link } from 'components/display';
 import { Dialog, Loading, Empty, Error } from 'components/layout';
 import { routes } from 'cfg';
@@ -14,7 +15,7 @@ import {
 } from 'types/table';
 import { Locales } from 'types/locales';
 import csvDownload from 'json-to-csv-export';
-import { useRenderDetails, useI18n } from 'hooks';
+import { useRenderDetails } from 'hooks';
 import { AddressBalances } from 'containers/ViewAddress/balances';
 import { TableRow } from './row';
 
@@ -31,23 +32,12 @@ export const TableDisplayDesktop = ({
   loading,
   error,
 }: TableDisplayProps) => {
-  const { t, locale } = useI18n();
-  const theme = useTheme();
+  const { echo, echoActiveId } = useEcho();
+  const { furyActive } = useFury();
 
   const isSuccess = useMemo(() => !loading && !error, [loading, error]);
 
   const renderDialogDetails = useRenderDetails();
-  const buildRowKey = useCallback(
-    (row: TableDisplayRow, rawRow?: Record<string, unknown>) => {
-      const primaryValue =
-        linkOptions && rawRow
-          ? rawRow[linkOptions.key as keyof typeof rawRow]
-          : undefined;
-      const firstValue = row?.[0];
-      return `${tableId}-${primaryValue ?? firstValue ?? 'row'}`;
-    },
-    [linkOptions, tableId],
-  );
 
   const [dialogOpen, dialogOpenSet] = useState(false);
   const [selectedRow, selectedRowSet] = useState<TableDisplayRow | undefined>(
@@ -78,7 +68,7 @@ export const TableDisplayDesktop = ({
                 <Grid
                   container
                   spacing={spacing}
-                  key={`${tableId}-dialog-${col.id}`}
+                  key={`${tableId}-dialog-${col.id}-${i}`}
                   item
                   xs={12}
                   alignItems="center"
@@ -107,15 +97,7 @@ export const TableDisplayDesktop = ({
     }
 
     return null;
-  }, [
-    cols,
-    selectedRow,
-    renderDialogDetails,
-    spacing,
-    raw,
-    selectedRowIndex,
-    tableId,
-  ]);
+  }, [cols, selectedRow, renderDialogDetails, spacing, raw, selectedRowIndex]);
 
   const renderDialogActions = useCallback(() => {
     if (withDetails) {
@@ -130,7 +112,7 @@ export const TableDisplayDesktop = ({
                     csvDownload([raw[selectedRowIndex]], csvFilename, ',')
                   }
                 >
-                  {t('table-exportCsv')}
+                  {echo('table-exportCsv')}
                 </Button>
               </Grid>
             )}
@@ -139,7 +121,7 @@ export const TableDisplayDesktop = ({
               linkOptions && (
                 <Grid item>
                   <Link
-                    href={routes[linkOptions.route](locale as Locales, {
+                    href={routes[linkOptions.route](echoActiveId as Locales, {
                       id: raw[selectedRowIndex][linkOptions.key],
                     })}
                     title={linkOptions.title}
@@ -163,8 +145,8 @@ export const TableDisplayDesktop = ({
     return null;
   }, [
     withDetails,
-    t,
-    locale,
+    echo,
+    echoActiveId,
     closeDialog,
     raw,
     csvFilename,
@@ -186,27 +168,24 @@ export const TableDisplayDesktop = ({
     }
 
     if (isSuccess && rows) {
-      return rows.map((row, i) => {
-        const rowKey = buildRowKey(row, raw[i]);
-        return (
-          <TableRow
-            index={i}
-            raw={raw[i]}
-            row={row}
-            spacing={spacing}
-            cols={cols}
-            key={rowKey}
-            hasClick={!!withDetails}
-            openDialog={openDialog}
-            linkOptions={linkOptions}
-          />
-        );
-      });
+      return rows.map((row, i) => (
+        <TableRow
+          tableId={tableId}
+          index={i}
+          raw={raw[i]}
+          row={row}
+          spacing={spacing}
+          cols={cols}
+          key={`${tableId}-row-${i}`}
+          hasClick={!!withDetails}
+          openDialog={openDialog}
+          linkOptions={linkOptions}
+        />
+      ));
     }
 
     return null;
   }, [
-    buildRowKey,
     cols,
     error,
     isSuccess,
@@ -216,6 +195,7 @@ export const TableDisplayDesktop = ({
     raw,
     rows,
     spacing,
+    tableId,
     withDetails,
   ]);
 
@@ -224,7 +204,7 @@ export const TableDisplayDesktop = ({
       {/* header */}
       <Box
         py={1}
-        style={{ borderBottom: `2px solid ${theme.palette.divider}` }}
+        style={{ borderBottom: `2px solid ${furyActive.palette.divider}` }}
       >
         <Grid container>
           {cols.map((col: TableDisplayCol) => {
@@ -252,7 +232,7 @@ export const TableDisplayDesktop = ({
         <Dialog
           isOpen={dialogOpen}
           handleClose={closeDialog}
-          title={dialogOptions ? dialogOptions.title : t('details')}
+          title={dialogOptions ? dialogOptions.title : echo('details')}
           actions={renderDialogActions()}
         >
           {renderDialogContent()}

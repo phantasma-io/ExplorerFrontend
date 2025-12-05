@@ -1,7 +1,8 @@
 import React, { useMemo } from 'react';
 import { Box } from '@mui/material';
 import { useRouter } from 'next/router';
-import { useApi, useI18n } from 'hooks';
+import { useApi } from 'hooks';
+import { useEcho } from '@ricardojrmcom/echo';
 import { NavTabs, NavTabsRecord, Breadcrumbs } from 'components/layout';
 import { endpoints, routes } from 'cfg';
 import { Locales } from 'types/locales';
@@ -15,7 +16,7 @@ export interface ViewEventProps {
 }
 
 export const ViewEvent = ({ tabForce = 'overview' }: ViewEventProps) => {
-  const { t, locale } = useI18n();
+  const { echo, echoActiveId } = useEcho();
 
   const { query } = useRouter();
 
@@ -31,20 +32,20 @@ export const ViewEvent = ({ tabForce = 'overview' }: ViewEventProps) => {
     () => ({
       overview: {
         id: 'overview',
-        label: t('tab-overview'),
-        href: routes['/event'](locale as Locales),
+        label: echo('tab-overview'),
+        href: routes['/event'](echoActiveId as Locales),
         component: (
           <EventOverview data={data} loading={loading} error={error} />
         ),
       },
       raw: {
         id: 'raw',
-        label: t('tab-raw'),
-        href: routes['/event'](locale as Locales),
+        label: echo('tab-raw'),
+        href: routes['/event'](echoActiveId as Locales),
         component: <EventRaw data={data} loading={loading} error={error} />,
       },
     }),
-    [t, locale, data, error, loading],
+    [echo, echoActiveId, data, error, loading],
   );
 
   return (

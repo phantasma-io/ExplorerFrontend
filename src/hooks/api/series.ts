@@ -1,10 +1,10 @@
 import { useMemo, useState, useEffect } from 'react';
-import { useI18n } from 'hooks';
+import { useEcho } from '@ricardojrmcom/echo';
 import { TableDisplayRow, TableDisplayCol } from 'types/table';
 import { SeriesResults } from 'types/api';
 
 export const useSeriesData = (data?: SeriesResults, loading?: boolean) => {
-  const { t } = useI18n();
+  const { echo } = useEcho();
 
   const [total, totalSet] = useState<number>(0);
 
@@ -19,112 +19,112 @@ export const useSeriesData = (data?: SeriesResults, loading?: boolean) => {
       // thumb
       {
         id: 'thumbnail',
-        label: t('image'),
+        label: echo('image'),
         type: 'thumbnail',
         size: 2,
       },
       {
         id: 'name',
-        label: t('name'),
+        label: echo('name'),
         type: 'text',
         size: 4,
         showDesktop: true,
       },
       {
         id: 'current_supply',
-        label: t('current_supply'),
+        label: echo('current_supply'),
         type: 'number',
         size: 3,
       },
       {
         id: 'max_supply',
-        label: t('max_supply'),
+        label: echo('max_supply'),
         type: 'number',
         size: 3,
       },
       {
         id: 'description',
-        label: t('description'),
+        label: echo('description'),
         type: 'text',
         size: 5,
       },
       {
         id: 'creator',
-        label: t('creator'),
+        label: echo('creator'),
         type: 'monospace',
         size: 1,
         linkOptions: {
           route: '/address',
           key: 'address',
-          title: t('explore-address'),
+          title: echo('explore-address'),
         },
       },
       {
         id: 'image',
-        label: t('image'),
+        label: echo('image'),
         type: 'monospace',
         size: 5,
       },
       {
         id: 'mode_name',
-        label: t('mode_name'),
+        label: echo('mode_name'),
         type: 'text',
         size: 5,
       },
       {
         id: 'type',
-        label: t('type'),
+        label: echo('type'),
         type: 'text',
         size: 1,
         showDesktop: true,
       },
       {
         id: 'royalties',
-        label: t('royalties'),
+        label: echo('royalties'),
         type: 'text',
         size: 5,
       },
       {
         id: 'attr_type_1',
-        label: t('attr_type_1'),
+        label: echo('attr_type_1'),
         type: 'text',
         size: 5,
       },
       {
         id: 'attr_value_1',
-        label: t('attr_value_1'),
+        label: echo('attr_value_1'),
         type: 'text',
         size: 2,
         showDesktop: true,
       },
       {
         id: 'attr_type_2',
-        label: t('attr_type_2'),
+        label: echo('attr_type_2'),
         type: 'text',
         size: 5,
       },
       {
         id: 'attr_value_2',
-        label: t('attr_value_2'),
+        label: echo('attr_value_2'),
         type: 'text',
         size: 2,
         showDesktop: true,
       },
       {
         id: 'attr_type_3',
-        label: t('attr_type_3'),
+        label: echo('attr_type_3'),
         type: 'text',
         size: 5,
       },
       {
         id: 'attr_value_3',
-        label: t('attr_value_3'),
+        label: echo('attr_value_3'),
         type: 'text',
         size: 2,
         showDesktop: true,
       },
     ];
-  }, [t]);
+  }, [echo]);
 
   const rows = useMemo<TableDisplayRow[]>(() => {
     if (data) {

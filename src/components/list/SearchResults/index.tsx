@@ -1,6 +1,7 @@
 import React, { useMemo, useCallback, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import { useApi, useI18n } from 'hooks';
+import { useEcho } from '@ricardojrmcom/echo';
+import { useApi } from 'hooks';
 import { Box, Paper, Typography, Grid, Button } from '@mui/material';
 import { endpoints, routes } from 'cfg';
 import { Locales } from 'types/locales';
@@ -21,7 +22,7 @@ type SearchMap = {
 export const SearchResults = () => {
   const { query, push } = useRouter();
 
-  const { locale, t } = useI18n();
+  const { echoActiveId, echo } = useEcho();
 
   const { data, loading, error } = useApi<SearchResultsType>(
     endpoints['/searches']({
@@ -74,132 +75,130 @@ export const SearchResults = () => {
     if (isSingle.single) {
       const route = switchType(isSingle.type) as ExplorerRoutes;
       push({
-        pathname: routes[route](locale as Locales),
+        pathname: routes[route](echoActiveId as Locales),
         query,
       });
     }
-  }, [isSingle, switchType, push, query, locale]);
+  }, [isSingle, switchType, push, query, echoActiveId]);
 
   return (
     <Paper>
       <Box p={2} minHeight="210px">
-        <>
-          <Box pb={1.5}>
-            <Grid container spacing={1} alignItems="center">
-              <Grid item>
-                <Typography variant="h6">{t('search-param')}:</Typography>
+        <Box pb={1.5}>
+          <Grid container spacing={1} alignItems="center">
+            <Grid item>
+              <Typography variant="h6">{echo('search-param')}:</Typography>
+            </Grid>
+            <Grid item>
+              <Typography variant="h6">{query.id}</Typography>
+            </Grid>
+          </Grid>
+        </Box>
+        {isEmpty && <Empty />}
+        {error && <Error />}
+        {loading && <Loading />}
+        {data && data.result && (
+          <Box pt={2.4}>
+            <Grid container spacing={1}>
+              <Grid item xs={12}>
+                <Typography variant="body1" gutterBottom>
+                  {echo('search-results')}:
+                </Typography>
               </Grid>
-              <Grid item>
-                <Typography variant="h6">{query.id}</Typography>
-              </Grid>
+              {byType.addresses?.found && (
+                <Grid item xs={12}>
+                  <Link
+                    href={routes['/address'](echoActiveId as Locales, {
+                      id: query.id as string,
+                    })}
+                  >
+                    <Button>
+                      {query.id} ({echo('address')})
+                    </Button>
+                  </Link>
+                </Grid>
+              )}
+              {byType.blocks?.found && (
+                <Grid item xs={12}>
+                  <Link
+                    href={routes['/block'](echoActiveId as Locales, {
+                      id: query.id as string,
+                    })}
+                  >
+                    <Button>
+                      {query.id} ({echo('block')})
+                    </Button>
+                  </Link>
+                </Grid>
+              )}
+              {byType.contracts?.found && (
+                <Grid item xs={12}>
+                  <Link
+                    href={routes['/contract'](echoActiveId as Locales, {
+                      id: query.id as string,
+                    })}
+                  >
+                    <Button>
+                      {query.id} ({echo('contract')})
+                    </Button>
+                  </Link>
+                </Grid>
+              )}
+              {byType.platforms?.found && (
+                <Grid item xs={12}>
+                  <Link
+                    href={routes['/platform'](echoActiveId as Locales, {
+                      id: query.id as string,
+                    })}
+                  >
+                    <Button>
+                      {query.id} ({echo('platform')})
+                    </Button>
+                  </Link>
+                </Grid>
+              )}
+              {byType.organizations?.found && (
+                <Grid item xs={12}>
+                  <Link
+                    href={routes['/dao'](echoActiveId as Locales, {
+                      id: query.id as string,
+                    })}
+                  >
+                    <Button>
+                      {query.id} ({echo('dao')})
+                    </Button>
+                  </Link>
+                </Grid>
+              )}
+              {byType.tokens?.found && (
+                <Grid item xs={12}>
+                  <Link
+                    href={routes['/token'](echoActiveId as Locales, {
+                      id: query.id as string,
+                    })}
+                  >
+                    <Button>
+                      {query.id} ({echo('token')})
+                    </Button>
+                  </Link>
+                </Grid>
+              )}
+              {byType.transactions?.found && (
+                <Grid item xs={12}>
+                  <Link
+                    href={routes['/transaction'](echoActiveId as Locales, {
+                      id: query.id as string,
+                    })}
+                  >
+                    <Button>
+                      {query.id} ({echo('transaction')})
+                    </Button>
+                  </Link>
+                </Grid>
+              )}
             </Grid>
           </Box>
-          {isEmpty && <Empty />}
-          {error && <Error />}
-          {loading && <Loading />}
-          {data && data.result && (
-            <Box pt={2.4}>
-              <Grid container spacing={1}>
-                <Grid item xs={12}>
-                  <Typography variant="body1" gutterBottom>
-                    {t('search-results')}:
-                  </Typography>
-                </Grid>
-                {byType.addresses?.found && (
-                  <Grid item xs={12}>
-                    <Link
-                      href={routes['/address'](locale as Locales, {
-                        id: query.id as string,
-                      })}
-                    >
-                      <Button>
-                        {query.id} ({t('address')})
-                      </Button>
-                    </Link>
-                  </Grid>
-                )}
-                {byType.blocks?.found && (
-                  <Grid item xs={12}>
-                    <Link
-                      href={routes['/block'](locale as Locales, {
-                        id: query.id as string,
-                      })}
-                    >
-                      <Button>
-                        {query.id} ({t('block')})
-                      </Button>
-                    </Link>
-                  </Grid>
-                )}
-                {byType.contracts?.found && (
-                  <Grid item xs={12}>
-                    <Link
-                      href={routes['/contract'](locale as Locales, {
-                        id: query.id as string,
-                      })}
-                    >
-                      <Button>
-                        {query.id} ({t('contract')})
-                      </Button>
-                    </Link>
-                  </Grid>
-                )}
-                {byType.platforms?.found && (
-                  <Grid item xs={12}>
-                    <Link
-                      href={routes['/platform'](locale as Locales, {
-                        id: query.id as string,
-                      })}
-                    >
-                      <Button>
-                        {query.id} ({t('platform')})
-                      </Button>
-                    </Link>
-                  </Grid>
-                )}
-                {byType.organizations?.found && (
-                  <Grid item xs={12}>
-                    <Link
-                      href={routes['/dao'](locale as Locales, {
-                        id: query.id as string,
-                      })}
-                    >
-                      <Button>
-                        {query.id} ({t('dao')})
-                      </Button>
-                    </Link>
-                  </Grid>
-                )}
-                {byType.tokens?.found && (
-                  <Grid item xs={12}>
-                    <Link
-                      href={routes['/token'](locale as Locales, {
-                        id: query.id as string,
-                      })}
-                    >
-                      <Button>
-                        {query.id} ({t('token')})
-                      </Button>
-                    </Link>
-                  </Grid>
-                )}
-                {byType.transactions?.found && (
-                  <Grid item xs={12}>
-                    <Link
-                      href={routes['/transaction'](locale as Locales, {
-                        id: query.id as string,
-                      })}
-                    >
-                      <Button>
-                        {query.id} ({t('transaction')})
-                      </Button>
-                    </Link>
-                  </Grid>
-                )}
-              </Grid>
-            </Box>
-          )}
-        </>
+        )}
       </Box>
     </Paper>
   );

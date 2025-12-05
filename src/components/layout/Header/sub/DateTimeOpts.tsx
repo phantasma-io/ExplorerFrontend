@@ -1,9 +1,9 @@
 import React, { useState, useCallback } from 'react';
 import { IconButton, Box, Grid, Tooltip, Menu, MenuItem } from '@mui/material';
+import { useFury } from '@ricardojrmcom/fury';
+import { useEcho } from '@ricardojrmcom/echo';
 import AccessTimeFilledIcon from '@mui/icons-material/AccessTimeFilled';
 import { Text } from 'components/display';
-import { useTheme } from '@mui/material/styles';
-import { useI18n } from 'hooks';
 import { useDatetimeOpts } from 'hooks/datetime/useDatetimeOpts';
 
 /**
@@ -12,8 +12,8 @@ import { useDatetimeOpts } from 'hooks/datetime/useDatetimeOpts';
 export const DateTimeOpts = () => {
   const { dtOpts, dtOptsSet } = useDatetimeOpts();
 
-  const theme = useTheme();
-  const { t } = useI18n();
+  const { furyActive } = useFury();
+  const { echo } = useEcho();
 
   const [anchorOptions, anchorOptionsSet] = useState<null | HTMLElement>(null);
   const openOptions = Boolean(anchorOptions);
@@ -30,11 +30,11 @@ export const DateTimeOpts = () => {
   return (
     <Box>
       <Box>
-        <Tooltip title={t('tooltip-datetimeopts')}>
+        <Tooltip title={echo('tooltip-datetimeopts')}>
           <IconButton size="small" onClick={handleOpenOptions}>
             <AccessTimeFilledIcon
               sx={{
-                fontSize: theme.typography.h5.fontSize,
+                fontSize: furyActive.typography.h5.fontSize,
                 color: '#fff',
               }}
             />
@@ -62,19 +62,19 @@ export const DateTimeOpts = () => {
           sx={{
             borderLeft: `3px solid ${
               dtOpts === 'local'
-                ? theme.palette.primary.main
+                ? furyActive.palette.primary.main
                 : 'rgba(0,0,0,0)'
             }`,
             borderRight: `3px solid ${
               dtOpts === 'local'
-                ? theme.palette.primary.main
+                ? furyActive.palette.primary.main
                 : 'rgba(0,0,0,0)'
             }`,
           }}
         >
           <Grid container alignItems="center" spacing={1}>
             <Grid item>
-              <Text value={t('dt-local')} sx={{ fontWeight: 600 }} />
+              <Text value={echo('dt-local')} sx={{ fontWeight: 600 }} />
             </Grid>
           </Grid>
         </MenuItem>
@@ -87,19 +87,19 @@ export const DateTimeOpts = () => {
           sx={{
             borderLeft: `3px solid ${
               dtOpts === 'local-24'
-                ? theme.palette.primary.main
+                ? furyActive.palette.primary.main
                 : 'rgba(0,0,0,0)'
             }`,
             borderRight: `3px solid ${
               dtOpts === 'local-24'
-                ? theme.palette.primary.main
+                ? furyActive.palette.primary.main
                 : 'rgba(0,0,0,0)'
             }`,
           }}
         >
           <Grid container alignItems="center" spacing={1}>
             <Grid item>
-              <Text value={t('dt-local-24')} sx={{ fontWeight: 600 }} />
+              <Text value={echo('dt-local-24')} sx={{ fontWeight: 600 }} />
             </Grid>
           </Grid>
         </MenuItem>
@@ -111,19 +111,19 @@ export const DateTimeOpts = () => {
           sx={{
             borderLeft: `3px solid ${
               dtOpts === 'utc'
-                ? theme.palette.primary.main
+                ? furyActive.palette.primary.main
                 : 'rgba(0,0,0,0)'
             }`,
             borderRight: `3px solid ${
               dtOpts === 'utc'
-                ? theme.palette.primary.main
+                ? furyActive.palette.primary.main
                 : 'rgba(0,0,0,0)'
             }`,
           }}
         >
           <Grid container alignItems="center" spacing={1}>
             <Grid item>
-              <Text value={t('dt-utc')} sx={{ fontWeight: 600 }} />
+              <Text value={echo('dt-utc')} sx={{ fontWeight: 600 }} />
             </Grid>
           </Grid>
         </MenuItem>
@@ -135,19 +135,19 @@ export const DateTimeOpts = () => {
           sx={{
             borderLeft: `3px solid ${
               dtOpts === 'utc-24'
-                ? theme.palette.primary.main
+                ? furyActive.palette.primary.main
                 : 'rgba(0,0,0,0)'
             }`,
             borderRight: `3px solid ${
               dtOpts === 'utc-24'
-                ? theme.palette.primary.main
+                ? furyActive.palette.primary.main
                 : 'rgba(0,0,0,0)'
             }`,
           }}
         >
           <Grid container alignItems="center" spacing={1}>
             <Grid item>
-              <Text value={t('dt-utc-24')} sx={{ fontWeight: 600 }} />
+              <Text value={echo('dt-utc-24')} sx={{ fontWeight: 600 }} />
             </Grid>
           </Grid>
         </MenuItem>
@@ -159,19 +159,19 @@ export const DateTimeOpts = () => {
           sx={{
             borderLeft: `3px solid ${
               dtOpts === 'unix'
-                ? theme.palette.primary.main
+                ? furyActive.palette.primary.main
                 : 'rgba(0,0,0,0)'
             }`,
             borderRight: `3px solid ${
               dtOpts === 'unix'
-                ? theme.palette.primary.main
+                ? furyActive.palette.primary.main
                 : 'rgba(0,0,0,0)'
             }`,
           }}
         >
           <Grid container alignItems="center" spacing={1}>
             <Grid item>
-              <Text value={t('dt-unix')} sx={{ fontWeight: 600 }} />
+              <Text value={echo('dt-unix')} sx={{ fontWeight: 600 }} />
             </Grid>
           </Grid>
         </MenuItem>

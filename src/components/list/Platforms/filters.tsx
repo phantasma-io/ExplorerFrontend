@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState, useCallback } from 'react';
+import { useEcho } from '@ricardojrmcom/echo';
 import { Box, Button, Grid, Typography, TextField } from '@mui/material';
 import { Dialog } from 'components/layout';
 import { PlatformParams } from 'types/api';
 import FilterAltIcon from '@mui/icons-material/FilterAlt';
 import CheckIcon from '@mui/icons-material/Check';
 import ClearAllIcon from '@mui/icons-material/ClearAll';
-import { useI18n } from 'hooks';
 
 export interface PlatformsListFiltersProps extends PlatformParams {
   nameSet: React.Dispatch<React.SetStateAction<string | undefined>>;
@@ -16,7 +16,7 @@ export const PlatformsListFilters = ({
   name,
   nameSet,
 }: PlatformsListFiltersProps) => {
-  const { t } = useI18n();
+  const { echo } = useEcho();
 
   const [isOpen, isOpenSet] = useState<boolean>(false);
   const handleOpen = useCallback(() => {
@@ -51,12 +51,12 @@ export const PlatformsListFilters = ({
         size="small"
         onClick={handleOpen}
       >
-        {t('filterData')}
+        {echo('filterData')}
       </Button>
       <Dialog
         handleClose={handleClose}
         isOpen={isOpen}
-        title={t('filter-platforms')}
+        title={echo('filter-platforms')}
         actions={
           <Box textAlign="right">
             <Box display="inline-block" mr={1.5}>
@@ -66,7 +66,7 @@ export const PlatformsListFilters = ({
                 onClick={clearFields}
                 endIcon={<ClearAllIcon />}
               >
-                {t('clear')}
+                {echo('clear')}
               </Button>
             </Box>
             <Box display="inline-block">
@@ -76,7 +76,7 @@ export const PlatformsListFilters = ({
                 onClick={applyFields}
                 endIcon={<CheckIcon />}
               >
-                {t('apply')}
+                {echo('apply')}
               </Button>
             </Box>
           </Box>
@@ -94,7 +94,7 @@ export const PlatformsListFilters = ({
             {/* field */}
             <Grid item xs={12} container alignItems="center" spacing={1}>
               <Grid item xs={12} lg={2}>
-                <Typography fontWeight={600}>{`${t('name')}:`}</Typography>
+                <Typography fontWeight={600}>{`${echo('name')}:`}</Typography>
               </Grid>
               <Grid item xs={12} lg={10}>
                 <TextField

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, CircularProgress, Typography, Grid } from '@mui/material';
-import { useI18n } from 'hooks';
+import { useEcho } from '@ricardojrmcom/echo';
 
 export interface LoadingProps {
   msg?: string;
@@ -8,7 +8,7 @@ export interface LoadingProps {
 }
 
 export const Loading = ({ msg, height }: LoadingProps) => {
-  const { t } = useI18n();
+  const { echo } = useEcho();
 
   return (
     <Grid container sx={{ height: height || '300px' }} alignItems="center">
@@ -17,7 +17,7 @@ export const Loading = ({ msg, height }: LoadingProps) => {
           <CircularProgress size={81} color="primary" />
           <Box pt={1.5}>
             <Typography variant="h6" color="primary">
-              {msg || t('loading')}
+              {msg || echo('loading')}
             </Typography>
           </Box>
         </Box>

@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
+import { useEcho } from '@ricardojrmcom/echo';
 import { Box } from '@mui/material';
 import { endpoints } from 'cfg';
-import { useApi, useI18n, useTable } from 'hooks';
+import { useApi, useTable } from 'hooks';
 import { TransactionResults, TransactionParams } from 'types/api';
 import { Table } from 'components/table';
 import { useTransactionData } from 'hooks/api';
@@ -13,7 +14,7 @@ export interface TransactionsListProps {
 }
 
 export const TransactionsList = ({ address, block }: TransactionsListProps) => {
-  const { t } = useI18n();
+  const { echo } = useEcho();
 
   const tableProps = useTable();
   const { limit, order_by, order_direction, offset, with_total } = tableProps;
@@ -46,12 +47,12 @@ export const TransactionsList = ({ address, block }: TransactionsListProps) => {
         rows={rows}
         total={total}
         dialogOptions={{
-          title: t('details-transaction'),
+          title: echo('details-transaction'),
         }}
         linkOptions={{
           route: '/transaction',
           key: 'hash',
-          title: t('explore-transaction'),
+          title: echo('explore-transaction'),
         }}
         {...tableProps}
         loading={loading}

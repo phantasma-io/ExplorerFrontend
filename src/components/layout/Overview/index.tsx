@@ -1,8 +1,8 @@
 import React, { ReactNode } from 'react';
 import csvDownload from 'json-to-csv-export';
+import { useEcho } from '@ricardojrmcom/echo';
 import { Box, Button } from '@mui/material';
 import FileDownloadIcon from '@mui/icons-material/FileDownload';
-import { useI18n } from 'hooks';
 
 export interface OverviewProps {
   children?: ReactNode;
@@ -12,7 +12,7 @@ export interface OverviewProps {
 }
 
 export const Overview = ({ children, csvFilename, raw }: OverviewProps) => {
-  const { t } = useI18n();
+  const { echo } = useEcho();
 
   return (
     <Box>
@@ -24,7 +24,7 @@ export const Overview = ({ children, csvFilename, raw }: OverviewProps) => {
           endIcon={<FileDownloadIcon />}
           onClick={() => csvDownload([raw], csvFilename, ',')}
         >
-          {t('table-exportCsv')}
+          {echo('table-exportCsv')}
         </Button>
       </Box>
     </Box>

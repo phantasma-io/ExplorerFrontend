@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Box } from '@mui/material';
+import { useLocalState } from '@ricardojrmcom/reaper';
 import {
   TableDisplayProps,
   TableUrlParams,
@@ -7,7 +8,6 @@ import {
   TableViewModes,
 } from 'types/table';
 import { TABLE_HEIGHT, TABLE_SPACING } from 'cfg';
-import { useLocalStorage } from 'hooks';
 import { TableControls } from './Controls';
 import { TableDisplay } from './Display';
 
@@ -43,10 +43,12 @@ export const Table = ({
   addon,
   hideControls,
 }: TableProps) => {
-  const [viewMode, viewModeSet] = useLocalStorage<TableViewModes>(
+  const [viewMode, viewModeSet] = useLocalState<TableViewModes>(
     'PhantasmaExplorer-table-viewMode',
     'desktop',
   );
+
+  const strData = useMemo(() => JSON.stringify(raw, null, 2), [raw]);
 
   return (
     <Box p={1} id={tableId}>
@@ -54,7 +56,7 @@ export const Table = ({
       <Box mb={1}>
         <TableControls
           tableId={tableId}
-          exportData={Array.isArray(raw) ? raw : []}
+          exportData={strData}
           total={total}
           page={page}
           pageSet={pageSet}

@@ -1,9 +1,9 @@
 import React from 'react';
 import { Box, Grid, Button } from '@mui/material';
+import { useEcho } from '@ricardojrmcom/echo';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { atomDark } from 'react-syntax-highlighter/dist/cjs/styles/prism';
-import { useI18n } from 'hooks';
 
 export interface DetailsScriptProps {
   value: string;
@@ -14,7 +14,7 @@ export const DetailsScript = ({
   value,
   height = '75vh',
 }: DetailsScriptProps) => {
-  const { t } = useI18n();
+  const { echo } = useEcho();
 
   return (
     <Box>
@@ -28,7 +28,7 @@ export const DetailsScript = ({
                 e.stopPropagation();
               }}
             >
-              {t('copy-to-clipboard')}
+              {echo('copy-to-clipboard')}
             </Button>
           </CopyToClipboard>
         </Grid>

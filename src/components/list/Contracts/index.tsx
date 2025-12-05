@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
+import { useEcho } from '@ricardojrmcom/echo';
 import { Box } from '@mui/material';
 import { endpoints } from 'cfg';
-import { useApi, useI18n, useTable } from 'hooks';
+import { useApi, useTable } from 'hooks';
 import { useContractData } from 'hooks/api';
 import { ContractResults, ContractParams } from 'types/api';
 import { Table } from 'components/table';
 import { ContractsListFilters } from './filters';
 
 export const ContractsList = () => {
-  const { t } = useI18n();
+  const { echo } = useEcho();
 
   const tableProps = useTable();
   const { limit, order_by, offset, with_total } = tableProps;
@@ -40,12 +41,12 @@ export const ContractsList = () => {
         rows={rows}
         total={total}
         dialogOptions={{
-          title: t('details-contract'),
+          title: echo('details-contract'),
         }}
         linkOptions={{
           route: '/contract',
           key: 'name',
-          title: t('explore-contract'),
+          title: echo('explore-contract'),
         }}
         {...tableProps}
         loading={loading}

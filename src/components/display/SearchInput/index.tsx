@@ -10,11 +10,11 @@ import {
   Theme,
 } from '@mui/material';
 import { useRouter } from 'next/router';
+import { useEcho } from '@ricardojrmcom/ace';
 import ClearAllIcon from '@mui/icons-material/ClearAll';
 import SearchIcon from '@mui/icons-material/Search';
 import { routes } from 'cfg';
 import { Locales } from 'types/locales';
-import { useI18n } from 'hooks';
 
 export interface SearchInputProps {
   white?: boolean;
@@ -37,7 +37,7 @@ export const SearchInput: FC<SearchInputProps> = ({
 }: SearchInputProps) => {
   const { push } = useRouter();
 
-  const { t, locale } = useI18n();
+  const { echo, echoActiveId } = useEcho();
 
   const [inputValue, inputValueSet] = useState<string>('');
 
@@ -53,23 +53,23 @@ export const SearchInput: FC<SearchInputProps> = ({
     if (inputValue && inputValue !== '') {
       const trimmed = inputValue.trim();
       push({
-        pathname: routes['/search'](locale as Locales),
+        pathname: routes['/search'](echoActiveId as Locales),
         query: { id: trimmed },
       });
       if (onApply) {
         onApply();
       }
     }
-  }, [inputValue, locale, push, onApply]);
+  }, [inputValue, echoActiveId, push, onApply]);
 
   if (white) {
     return (
       <ThemeProvider theme={theme}>
         <Box>
           <TextField
-            // label={t('search')}
+            // label={echo('search')}
             variant="standard"
-            placeholder={t('search')}
+            placeholder={echo('search')}
             size="small"
             fullWidth
             color="info"
@@ -88,14 +88,14 @@ export const SearchInput: FC<SearchInputProps> = ({
             }}
             InputProps={{
               startAdornment: (
-                <Tooltip title={t('search')}>
+                <Tooltip title={echo('search')}>
                   <IconButton size="small" onClick={() => applySearch()}>
                     <SearchIcon />
                   </IconButton>
                 </Tooltip>
               ),
               endAdornment: (
-                <Tooltip title={t('clear')}>
+                <Tooltip title={echo('clear')}>
                   <IconButton size="small" onClick={() => clearInput()}>
                     <ClearAllIcon />
                   </IconButton>
@@ -111,9 +111,9 @@ export const SearchInput: FC<SearchInputProps> = ({
   return (
     <Box>
       <TextField
-        // label={t('search')}
+        // label={echo('search')}
         variant="standard"
-        placeholder={t('search')}
+        placeholder={echo('search')}
         size="small"
         fullWidth
         color="info"
@@ -127,14 +127,14 @@ export const SearchInput: FC<SearchInputProps> = ({
         }}
         InputProps={{
           startAdornment: (
-            <Tooltip title={t('search')}>
+            <Tooltip title={echo('search')}>
               <IconButton size="small" onClick={() => applySearch()}>
                 <SearchIcon />
               </IconButton>
             </Tooltip>
           ),
           endAdornment: (
-            <Tooltip title={t('clear')}>
+            <Tooltip title={echo('clear')}>
               <IconButton size="small" onClick={() => clearInput()}>
                 <ClearAllIcon />
               </IconButton>

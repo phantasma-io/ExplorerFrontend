@@ -1,10 +1,10 @@
 import React, { useMemo } from 'react';
 import { useRouter } from 'next/router';
-import { Box, Grid } from '@mui/material';
+import { useFury } from '@ricardojrmcom/fury';
+import { Box, Grid, Typography } from '@mui/material';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import TelegramIcon from '@mui/icons-material/Telegram';
-import { useTheme } from '@mui/material/styles';
 // import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import { Link, Image } from 'components/display';
 import { FOOTER_HEIGHT, FOOTER_OFFSET, routesHome } from 'cfg';
@@ -29,7 +29,7 @@ export const Footer = ({
 }: FooterProps) => {
   const { asPath } = useRouter();
 
-  const theme = useTheme();
+  const { furyActive } = useFury();
 
   const isHome = useMemo(() => routesHome.includes(asPath), [asPath]);
 
@@ -60,7 +60,7 @@ export const Footer = ({
         >
           <path
             d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
-            fill={theme.palette.secondary.main}
+            fill={furyActive.palette.secondary.main}
           />
         </svg>
       </div>
@@ -74,7 +74,7 @@ export const Footer = ({
           width: '100%',
           backgroundColor: isHome
             ? 'transparent'
-            : theme.palette.secondary.main,
+            : furyActive.palette.secondary.main,
         }}
         alignItems="center"
         alignContent="center"

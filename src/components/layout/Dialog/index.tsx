@@ -8,9 +8,9 @@ import {
   Tooltip,
   IconButton,
 } from '@mui/material';
+import { useEcho } from '@ricardojrmcom/echo';
 import CloseIcon from '@mui/icons-material/Close';
 import { Text } from 'components/display';
-import { useI18n } from 'hooks';
 
 export interface DialogProps
   extends Pick<MuiDialogProps, 'maxWidth' | 'fullWidth'> {
@@ -30,7 +30,7 @@ export const Dialog = ({
   maxWidth = 'md',
   fullWidth = true,
 }: DialogProps) => {
-  const { t } = useI18n();
+  const { echo } = useEcho();
   return (
     <MuiDialog
       open={isOpen}
@@ -47,7 +47,7 @@ export const Dialog = ({
                 <Text variant="subtitle2" value={title} />
               </Grid>
               <Grid item>
-                <Tooltip title={t('close')}>
+                <Tooltip title={echo('close')}>
                   <IconButton size="small" onClick={handleClose}>
                     <CloseIcon />
                   </IconButton>

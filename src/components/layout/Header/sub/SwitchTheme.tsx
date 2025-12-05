@@ -1,20 +1,18 @@
 import React, { useState, useMemo, useCallback } from 'react';
 import { IconButton, Box, Grid, Tooltip, Menu, MenuItem } from '@mui/material';
+import { useFury } from '@ricardojrmcom/fury';
+import { useEcho } from '@ricardojrmcom/echo';
 import PaletteIcon from '@mui/icons-material/Palette';
 import { Text, Image } from 'components/display';
-import { useI18n, useThemeSettings } from 'hooks';
 
 /**
  * SwitchTheme
  */
 export const SwitchTheme = () => {
-  const { theme, themeId, setThemeId } = useThemeSettings();
-  const { t } = useI18n();
+  const { furyActive, furyActiveId, furySetById } = useFury();
+  const { echo } = useEcho();
 
-  const isDark = useMemo(
-    () => themeId.includes('-dark') || theme.palette.mode === 'dark',
-    [theme.palette.mode, themeId],
-  );
+  const isDark = useMemo(() => furyActiveId.includes('-dark'), [furyActiveId]);
 
   const [anchorBrands, anchorBrandsSet] = useState<null | HTMLElement>(null);
   const openBrands = Boolean(anchorBrands);
@@ -28,23 +26,14 @@ export const SwitchTheme = () => {
     anchorBrandsSet(null);
   }, []);
 
-  const selectTheme = useCallback(
-    (baseId: 'soul' | 'kcal' | 'gm') => {
-      const nextId = isDark ? `${baseId}-dark` : baseId;
-      setThemeId(nextId as typeof themeId);
-      handleCloseBrands();
-    },
-    [handleCloseBrands, isDark, setThemeId],
-  );
-
   return (
     <Box>
       <Box>
-        <Tooltip title={t('tooltip-theme')}>
+        <Tooltip title={echo('tooltip-theme')}>
           <IconButton size="small" onClick={handleOpenBrands}>
             <PaletteIcon
               sx={{
-                fontSize: theme.typography.h5.fontSize,
+                fontSize: furyActive.typography.h5.fontSize,
                 color: '#fff',
               }}
             />
@@ -65,16 +54,19 @@ export const SwitchTheme = () => {
         }}
       >
         <MenuItem
-          onClick={() => selectTheme('soul')}
+          onClick={() => {
+            furySetById(isDark ? 'soul-dark' : 'soul');
+            handleCloseBrands();
+          }}
           sx={{
             borderLeft: `3px solid ${
-              themeId.includes('soul')
-                ? theme.palette.primary.main
+              furyActiveId.includes('soul')
+                ? furyActive.palette.primary.main
                 : 'rgba(0,0,0,0)'
             }`,
             borderRight: `3px solid ${
-              themeId.includes('soul')
-                ? theme.palette.primary.main
+              furyActiveId.includes('soul')
+                ? furyActive.palette.primary.main
                 : 'rgba(0,0,0,0)'
             }`,
           }}
@@ -97,16 +89,19 @@ export const SwitchTheme = () => {
           </Grid>
         </MenuItem>
         <MenuItem
-          onClick={() => selectTheme('kcal')}
+          onClick={() => {
+            furySetById(isDark ? 'kcal-dark' : 'kcal');
+            handleCloseBrands();
+          }}
           sx={{
             borderLeft: `3px solid ${
-              themeId.includes('kcal')
-                ? theme.palette.primary.main
+              furyActiveId.includes('kcal')
+                ? furyActive.palette.primary.main
                 : 'rgba(0,0,0,0)'
             }`,
             borderRight: `3px solid ${
-              themeId.includes('kcal')
-                ? theme.palette.primary.main
+              furyActiveId.includes('kcal')
+                ? furyActive.palette.primary.main
                 : 'rgba(0,0,0,0)'
             }`,
           }}
@@ -129,16 +124,19 @@ export const SwitchTheme = () => {
           </Grid>
         </MenuItem>
         <MenuItem
-          onClick={() => selectTheme('gm')}
+          onClick={() => {
+            furySetById(isDark ? 'gm-dark' : 'gm');
+            handleCloseBrands();
+          }}
           sx={{
             borderLeft: `3px solid ${
-              themeId.includes('gm')
-                ? theme.palette.primary.main
+              furyActiveId.includes('gm')
+                ? furyActive.palette.primary.main
                 : 'rgba(0,0,0,0)'
             }`,
             borderRight: `3px solid ${
-              themeId.includes('gm')
-                ? theme.palette.primary.main
+              furyActiveId.includes('gm')
+                ? furyActive.palette.primary.main
                 : 'rgba(0,0,0,0)'
             }`,
           }}

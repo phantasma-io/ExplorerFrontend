@@ -1,11 +1,11 @@
 import React from 'react';
 import { numberFormat } from '@ricardojrmcom/dervish';
+import { useEcho } from '@ricardojrmcom/echo';
 import { Box, Grid, IconButton, Button, Tooltip } from '@mui/material';
 import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-import { useI18n } from 'hooks';
 
 export interface TablePaginationProps {
   page: number;
@@ -18,13 +18,13 @@ export const TablePagination = ({
   pageSet,
   pageCount,
 }: TablePaginationProps) => {
-  const { t } = useI18n();
+  const { echo } = useEcho();
 
   return (
     <Box>
       <Grid container spacing={{ xs: 0, md: 0.6 }} justifyContent="center">
         <Grid item>
-          <Tooltip title={t('table-firstpage')} placement="top">
+          <Tooltip title={echo('table-firstpage')} placement="top">
             <IconButton
               size="small"
               onClick={() => pageSet(1)}
@@ -35,7 +35,7 @@ export const TablePagination = ({
           </Tooltip>
         </Grid>
         <Grid item>
-          <Tooltip title={t('table-prevpage')} placement="top">
+          <Tooltip title={echo('table-prevpage')} placement="top">
             <IconButton
               size="small"
               onClick={() => pageSet(page - 1)}
@@ -112,7 +112,7 @@ export const TablePagination = ({
         </Grid>
 
         <Grid item>
-          <Tooltip title={t('table-nextpage')} placement="top">
+          <Tooltip title={echo('table-nextpage')} placement="top">
             <IconButton
               size="small"
               onClick={() => pageSet(page + 1)}
@@ -123,7 +123,7 @@ export const TablePagination = ({
           </Tooltip>
         </Grid>
         <Grid item>
-          <Tooltip title={t('table-lastpage')} placement="top">
+          <Tooltip title={echo('table-lastpage')} placement="top">
             <IconButton
               size="small"
               onClick={() => pageSet(pageCount)}
