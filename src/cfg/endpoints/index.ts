@@ -2,7 +2,7 @@ import { objToQuery } from 'scripts/objQuery';
 import { ExplorerApi, ApiParams } from 'types/endpoints';
 
 const parseParams = (params: ApiParams | undefined) =>
-  params ? objToQuery(params) : '';
+  params ? objToQuery(params as any) : '';
 
 const testnet = process.env.NEXT_PUBLIC_TESTNET === 'testnet';
 

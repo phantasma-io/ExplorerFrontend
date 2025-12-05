@@ -32,14 +32,14 @@ export const Link = ({
         target: '_blank',
         rel: 'noopener noreferrer',
         ...props,
-      });
+      } as any);
     }
 
     return React.cloneElement(children as ReactElement, {
       component: NextLink,
       href,
       ...props,
-    });
+    } as any);
   }
 
   if (external) {

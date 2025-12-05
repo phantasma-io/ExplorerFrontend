@@ -1,11 +1,11 @@
 type ObjectType = Record<string, string | number | boolean | undefined | null>;
 
-type ObjToQueryType = <T>(obj: T | ObjectType) => string;
+type ObjToQueryType = (obj: ObjectType) => string;
 
 export const objToQuery: ObjToQueryType = (obj) => {
   const params = new URLSearchParams();
 
-  Object.entries(obj).forEach(([key, val]) => {
+  Object.entries(obj as Record<string, unknown>).forEach(([key, val]) => {
     if (val === undefined || val === null) {
       return;
     }
