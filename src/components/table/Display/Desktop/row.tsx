@@ -47,8 +47,16 @@ export const TableRow = ({
   const shouldOpenDialog = useCallback(() => {
     if (hasClick) {
       openDialog(row, index);
+      return;
     }
-  }, [hasClick, openDialog, row, index]);
+
+    if (linkOptions) {
+      const href = routes[linkOptions.route](echoActiveId as Locales, {
+        id: raw[linkOptions.key],
+      });
+      window.location.href = href;
+    }
+  }, [hasClick, openDialog, row, index, linkOptions, echoActiveId, raw]);
 
   const csvFilename = useMemo(() => `${tableId}-${nanoid()}.csv`, [tableId]);
 

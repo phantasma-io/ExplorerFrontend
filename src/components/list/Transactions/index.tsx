@@ -54,6 +54,7 @@ export const TransactionsList = ({ address, block }: TransactionsListProps) => {
           key: 'hash',
           title: echo('explore-transaction'),
         }}
+        withDetails={false}
         {...tableProps}
         loading={loading}
         error={error || withError}

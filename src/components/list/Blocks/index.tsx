@@ -51,6 +51,7 @@ export const BlocksList = () => {
           key: 'height',
           title: echo('explore-block'),
         }}
+        withDetails={false}
         {...tableProps}
         loading={loading}
         error={error}
