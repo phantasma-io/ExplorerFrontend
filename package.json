@@ -26,6 +26,10 @@
     "husky",
     "cicd"
   ],
+  "engines": {
+    "node": ">=24",
+    "npm": ">=10"
+  },
   "scripts": {
     "dev": "next dev",
     "start": "next start",
@@ -64,7 +68,7 @@
     "@testing-library/react-hooks": "^7.0.2",
     "@testing-library/user-event": "^13.5.0",
     "@types/jest": "^27.0.2",
-    "@types/node": "^16.11.4",
+    "@types/node": "^24.10.1",
     "@types/react-copy-to-clipboard": "^5.0.2",
     "@typescript-eslint/eslint-plugin": "^5.1.0",
     "@typescript-eslint/parser": "^5.12.1",

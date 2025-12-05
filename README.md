@@ -129,6 +129,8 @@ https://explorer.phantasma.info/
 
 ## Installation without docker
 
+Node.js 24.x with npm (see `.nvmrc`) is required for local development and builds.
+
 ### <b>Requirements</b>
 
 <b>Baseline:</b>

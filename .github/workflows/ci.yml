@@ -15,7 +15,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [16.x]
+        node-version: [24.x]
         os: [ubuntu-latest]
 
     steps:
@@ -28,22 +28,22 @@ jobs:
           node-version: ${{ matrix.node-version }}
 
       - name: Install Deps
-        run: yarn install
+        run: npm ci
 
       - name: Run Dry Build
-        run: yarn build:noemit
+        run: npm run build:noemit
 
       - name: Run Lint
-        run: yarn lint
+        run: npm run lint
 
       - name: Run Unit Tests
-        run: yarn test
+        run: npm test
 
       - name: Run e2e Tests
         uses: cypress-io/github-action@v2
         with:
-          build: yarn build
-          start: yarn start
+          build: npm run build
+          start: npm start
 
   release:
     name: Release Package
@@ -61,12 +61,12 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '16'
+          node-version: '24.x'
 
       - name: Install Deps
-        run: yarn install
+        run: npm ci
 
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: yarn semantic-release
+        run: npm run semantic-release
