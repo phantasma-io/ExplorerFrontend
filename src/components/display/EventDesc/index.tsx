@@ -72,11 +72,16 @@ export const EventDesc = ({ data }: EventDescProps) => {
     return (
       <Box>
         <Box pt={1}>
-          <Typography fontWeight={600} variant="body2" gutterBottom>
+          <Typography
+            fontWeight={600}
+            variant="body2"
+            gutterBottom={false}
+            sx={{ mb: 0.5 }}
+          >
             {echo('desc')}:
           </Typography>
         </Box>
-        <Grid container>
+        <Grid container spacing={0.4} mt={0}>
           {ordered.map((event) => {
             return (
               <Grid item xs={12} key={nanoid()}>

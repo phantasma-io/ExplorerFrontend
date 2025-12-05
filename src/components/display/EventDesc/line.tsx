@@ -50,11 +50,11 @@ export const EventLine = ({ data }: EventLineProps) => {
     const snippetSource = rawPayload || rawData || '';
     const snippet =
       snippetSource.length > 120
-        ? `${snippetSource.slice(0, 120)}…`
+        ? `${snippetSource.slice(0, 120)}...`
         : snippetSource;
 
     return (
-      <Typography gutterBottom>
+      <Typography gutterBottom component="div">
         {kind || 'Unknown'}{' '}
         {snippet && (
           <Typography component="span" variant="body2">
@@ -70,7 +70,7 @@ export const EventLine = ({ data }: EventLineProps) => {
       switch (type) {
         case 'transaction_settle_event':
           return (
-            <Typography gutterBottom>
+            <Typography gutterBottom component="div">
               {kind}:{' '}
               {data?.transaction_settle_event?.hash && (
                 <Typography component="span" variant="body2">
@@ -719,5 +719,14 @@ export const EventLine = ({ data }: EventLineProps) => {
     return fallbackLine;
   }, [type, kind, data, echo, echoActiveId, fallbackLine]);
 
-  return <Box>{content}</Box>;
+  return (
+    <Box
+      sx={{
+        '& .MuiTypography-root': { lineHeight: 1.3 },
+        '& .MuiTypography-gutterBottom': { marginBottom: '4px' },
+      }}
+    >
+      {content}
+    </Box>
+  );
 };
