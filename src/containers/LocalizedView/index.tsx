@@ -7,7 +7,6 @@ import { ExplorerRoutes } from 'types/routes';
 import { MetaDynamic } from 'components/meta';
 import {
   AppLayout,
-  ViewHome,
   ViewAddress,
   ViewBlock,
   ViewContract,
@@ -76,9 +75,8 @@ export const LocalizedView = ({ locale, route }: LocalizedViewProps) => {
         return `${echo('token')} | ${echo('meta-title')}`;
       case '/transaction':
         return `${echo('transaction')} | ${echo('meta-title')}`;
-      case '/':
       default:
-        return `${echo('meta-title')}`;
+        return `${echo('nexus')} | ${echo('meta-title')}`;
     }
   }, [route, echo]);
 
@@ -106,9 +104,8 @@ export const LocalizedView = ({ locale, route }: LocalizedViewProps) => {
         return `${echo('meta-token')}`;
       case '/transaction':
         return `${echo('meta-transaction')}`;
-      case '/':
       default:
-        return `${echo('meta-home')}`;
+        return `${echo('meta-nexus')}`;
     }
   }, [route, echo]);
 
@@ -177,9 +174,8 @@ export const LocalizedView = ({ locale, route }: LocalizedViewProps) => {
           return <ViewTransaction />;
         }
         return null;
-      case '/':
       default:
-        return <ViewHome />;
+        return <ViewNexus />;
     }
   }, [needsQuery, ready, route, query]);
 

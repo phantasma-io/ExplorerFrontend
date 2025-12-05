@@ -3,7 +3,6 @@ export { AppLayout } from './AppLayout';
 export { AppProvider } from './AppProvider';
 
 // views
-export { ViewHome } from './ViewHome';
 export { ViewAddress } from './ViewAddress';
 export { ViewBlock } from './ViewBlock';
 export { ViewContract } from './ViewContract';
