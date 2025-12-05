@@ -1,6 +1,5 @@
 import React, { useMemo } from 'react';
 import { useSnackbar } from 'notistack';
-import bigint from 'bigintjs';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import {
   Box,
@@ -180,13 +179,16 @@ export const Text = ({
         return formatNumber;
       }
 
-      const bigNumber = bigint(formatNumber);
       const formattedNumber = numberFormat(
         parseFloat(formatNumber as string),
         formatNumberStr,
       );
       if (Number.isNaN(formattedNumber) || formattedNumber === 'NaN') {
-        return bigNumber.toString();
+        try {
+          return BigInt(formatNumber as string).toString();
+        } catch {
+          return `${formatNumber}`;
+        }
       }
 
       return formattedNumber;
