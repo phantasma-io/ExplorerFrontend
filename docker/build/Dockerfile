@@ -23,10 +23,10 @@ RUN git clone -b $BUILD_BRANCH --single-branch git@github.com:phantasma-io/Explo
 WORKDIR /source/ExplorerFrontend
 RUN git submodule update --init --recursive
 
-RUN npm install
+RUN npm ci
 
 FROM base AS build
 
-RUN yarn next build
+RUN npm run build
 
 FROM build AS final

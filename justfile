@@ -10,21 +10,21 @@ set dotenv-required := false
 alias inst := install-deps
 [group('deployment')]
 install-deps:
-  yarn install
+  npm install
 
 
 alias b := build
 [group('build')]
 build:
-  yarn build
+  npm run build
 
 [group('run')]
 run:
-    yarn dev
+    npm run dev
 
 [group('run')]
 r0:
-    yarn next
+    npm run dev
 
 [group('run')]
 r:

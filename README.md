@@ -166,38 +166,38 @@ https://explorer.phantasma.info/
 
 ```tsx
 // install deps
-yarn install
+npm install
 
 // run dev server
-yarn dev
+npm run dev
 
 // build app
-yarn build
+npm run build
 
 // start app
-yarn start
+npm start
 
 // export app
-yarn export
+npm run export
 
 // run lint
-yarn lint
+npm run lint
 
 // run unit tests
-yarn test
+npm test
 
 // run e2e tests
-yarn cy:run
+npm run cy:run
 
 // run storybook
-yarn sb
+npm run sb
 ```
 
 <br />
 
 ### <b>Dev Dependencies</b>
 
-- `Yarn`
+- `npm`
 - `Typescript`
 - `React`
 - `Material-UI`

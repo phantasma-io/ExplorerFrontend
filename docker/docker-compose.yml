@@ -10,7 +10,7 @@ services:
     environment:
       SENTRY_ENVIRONMENT: Production
       NEXT_PUBLIC_TESTNET: testnet
-    command: yarn start
+    command: npm start
     networks:
       - frontend-production
     ports:
