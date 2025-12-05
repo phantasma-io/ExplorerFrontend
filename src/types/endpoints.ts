@@ -5,7 +5,6 @@ import {
   EventParams,
   TokenParams,
   SeriesParams,
-  AddressParams,
   ContractParams,
   EventKindParams,
   IntructionParams,
@@ -17,7 +16,6 @@ import {
 } from './api';
 
 export type ExplorerEndpoints =
-  | '/addresses'
   | '/blocks'
   | '/chains'
   | '/contracts'
@@ -34,7 +32,6 @@ export type ExplorerEndpoints =
   | '/transactions';
 
 export type ApiParams =
-  | AddressParams
   | BlockParams
   | ChainParams
   | ContractParams

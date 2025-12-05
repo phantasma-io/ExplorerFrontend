@@ -3,7 +3,6 @@ import { Box } from '@mui/material';
 import { useEcho } from 'hooks/useEcho';
 import { NavTabs, NavTabsRecord, Breadcrumbs } from 'components/layout';
 import {
-  AddressesList,
   BlocksList,
   ContractsList,
   DaosList,
@@ -26,12 +25,6 @@ export const ViewNexus = ({ tabForce = 'blocks' }: ViewNexusProps) => {
 
   const tabs: NavTabsRecord = useMemo(
     () => ({
-      addresses: {
-        id: 'addresses',
-        label: echo('tab-addresses'),
-        href: routes['/nexus'](echoActiveId as Locales),
-        component: <AddressesList />,
-      },
       blocks: {
         id: 'blocks',
         label: echo('tab-blocks'),

@@ -63,7 +63,6 @@ export const SearchResults = () => {
         return '/block';
       case 'transactions':
         return '/transaction';
-      case 'addresses':
       default:
         return '/address';
     }
@@ -104,20 +103,6 @@ export const SearchResults = () => {
                   {echo('search-results')}:
                 </Typography>
               </Grid>
-              {byType.addresses?.found && (
-                <Grid item xs={12}>
-                  <Link
-                    href={routes['/address'](echoActiveId as Locales, {
-                      id: query.id as string,
-                    })}
-                    asChild
-                  >
-                    <Button>
-                      {query.id} ({echo('address')})
-                    </Button>
-                  </Link>
-                </Grid>
-              )}
               {byType.blocks?.found && (
                 <Grid item xs={12}>
                   <Link

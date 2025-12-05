@@ -10,7 +10,6 @@ const fallbackUrl = `https://${testnet ? 'testnet-backend-explorer' : 'api-explo
 export const url = process.env.NEXT_PUBLIC_API_URL ? process.env.NEXT_PUBLIC_API_URL : fallbackUrl
 
 export const endpoints: ExplorerApi = {
-  '/addresses': (params) => `${url}/addresses${parseParams(params)}`,
   '/blocks': (params) => `${url}/blocks${parseParams(params)}`,
   '/chains': (params) => `${url}/chains${parseParams(params)}`,
   '/contracts': (params) => `${url}/contracts${parseParams(params)}`,

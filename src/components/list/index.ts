@@ -1,5 +1,3 @@
-export { AddressesList } from './Addresses';
-
 export { BlocksList } from './Blocks';
 
 export { ChainsList } from './Chains';
