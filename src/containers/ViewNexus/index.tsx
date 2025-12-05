@@ -9,8 +9,8 @@ import {
   NftsList,
   TokensList,
   TransactionsList,
-  EventsList,
   SeriesList,
+  EventsList,
 } from 'components/list';
 import { routes } from 'cfg';
 import { Locales } from 'types/locales';
@@ -31,17 +31,11 @@ export const ViewNexus = ({ tabForce = 'blocks' }: ViewNexusProps) => {
         href: routes['/nexus'](echoActiveId as Locales),
         component: <BlocksList />,
       },
-      contracts: {
-        id: 'contracts',
-        label: echo('tab-contracts'),
+      transactions: {
+        id: 'transactions',
+        label: echo('tab-transactions'),
         href: routes['/nexus'](echoActiveId as Locales),
-        component: <ContractsList />,
-      },
-      daos: {
-        id: 'daos',
-        label: echo('tab-daos'),
-        href: routes['/nexus'](echoActiveId as Locales),
-        component: <DaosList />,
+        component: <TransactionsList />,
       },
       events: {
         id: 'events',
@@ -49,17 +43,11 @@ export const ViewNexus = ({ tabForce = 'blocks' }: ViewNexusProps) => {
         href: routes['/nexus'](echoActiveId as Locales),
         component: <EventsList />,
       },
-      nfts: {
-        id: 'nfts',
-        label: echo('tab-nfts'),
+      contracts: {
+        id: 'contracts',
+        label: echo('tab-contracts'),
         href: routes['/nexus'](echoActiveId as Locales),
-        component: <NftsList />,
-      },
-      series: {
-        id: 'series',
-        label: echo('tab-series'),
-        href: routes['/nexus'](echoActiveId as Locales),
-        component: <SeriesList />,
+        component: <ContractsList />,
       },
       tokens: {
         id: 'tokens',
@@ -67,11 +55,23 @@ export const ViewNexus = ({ tabForce = 'blocks' }: ViewNexusProps) => {
         href: routes['/nexus'](echoActiveId as Locales),
         component: <TokensList />,
       },
-      transactions: {
-        id: 'transactions',
-        label: echo('tab-transactions'),
+      series: {
+        id: 'series',
+        label: echo('tab-series'),
         href: routes['/nexus'](echoActiveId as Locales),
-        component: <TransactionsList />,
+        component: <SeriesList />,
+      },
+      nfts: {
+        id: 'nfts',
+        label: echo('tab-nfts'),
+        href: routes['/nexus'](echoActiveId as Locales),
+        component: <NftsList />,
+      },
+      daos: {
+        id: 'daos',
+        label: echo('tab-daos'),
+        href: routes['/nexus'](echoActiveId as Locales),
+        component: <DaosList />,
       },
       // chains: {
       //   id: 'chains',
