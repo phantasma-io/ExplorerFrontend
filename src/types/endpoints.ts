@@ -11,7 +11,6 @@ import {
   IntructionParams,
   TransactionParams,
   BlockParams,
-  PlatformParams,
   HistoryPriceParams,
   OracleParams,
   SearchParams,
@@ -28,7 +27,6 @@ export type ExplorerEndpoints =
   | '/nfts'
   | '/oracles'
   | '/organizations'
-  | '/platforms'
   | '/series'
   | '/searches'
   | '/historyprices'
@@ -46,7 +44,6 @@ export type ApiParams =
   | NftParams
   | OracleParams
   | DaoParams
-  | PlatformParams
   | HistoryPriceParams
   | SeriesParams
   | SearchParams

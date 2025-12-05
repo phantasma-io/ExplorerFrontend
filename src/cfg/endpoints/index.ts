@@ -20,7 +20,6 @@ export const endpoints: ExplorerApi = {
   '/nfts': (params) => `${url}/nfts${parseParams(params)}`,
   '/oracles': (params) => `${url}/oracles${parseParams(params)}`,
   '/organizations': (params) => `${url}/organizations${parseParams(params)}`,
-  '/platforms': (params) => `${url}/platforms${parseParams(params)}`,
   '/historyprices': (params) => `${url}/historyprices${parseParams(params)}`,
   '/series': (params) => `${url}/series${parseParams(params)}`,
   '/searches': (params) => `${url}/searches${parseParams(params)}`,

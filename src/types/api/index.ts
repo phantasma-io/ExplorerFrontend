@@ -35,8 +35,6 @@ export type { Oracle, OracleParams, OracleResults } from './oracles';
 
 export type { Dao, DaoParams, DaoResults } from './organizations';
 
-export type { Platform, PlatformParams, PlatformResults } from './platforms';
-
 export type {
   HistoryPrice,
   HistoryPriceParams,

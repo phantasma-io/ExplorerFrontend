@@ -14,8 +14,6 @@ export { SeriesList } from './Series';
 
 export { SearchResults } from './SearchResults';
 
-export { PlatformsList } from './Platforms';
-
 export { OraclesList } from './Oracles';
 
 export { NftsList } from './Nfts';

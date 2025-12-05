@@ -10,7 +10,6 @@ import {
   NftsList,
   TokensList,
   TransactionsList,
-  PlatformsList,
   EventsList,
   SeriesList,
 } from 'components/list';
@@ -62,12 +61,6 @@ export const ViewNexus = ({ tabForce = 'blocks' }: ViewNexusProps) => {
         label: echo('tab-nfts'),
         href: routes['/nexus'](echoActiveId as Locales),
         component: <NftsList />,
-      },
-      platforms: {
-        id: 'platforms',
-        label: echo('tab-platforms'),
-        href: routes['/nexus'](echoActiveId as Locales),
-        component: <PlatformsList />,
       },
       series: {
         id: 'series',

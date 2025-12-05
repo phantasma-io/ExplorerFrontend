@@ -4,7 +4,6 @@ import { Chain } from './chains';
 import { Token } from './tokens';
 import { Fiat } from './fiat';
 import { Dao } from './organizations';
-import { Platform } from './platforms';
 
 export type EventTypes =
   | 'address_event'
@@ -138,7 +137,10 @@ export type TokenSeriesEvent = {
 
 export type TransactionSettleEvent = {
   hash?: string;
-  platform?: Platform;
+  platform?: {
+    name?: string;
+    chain?: string;
+  };
   chain?: string;
 };
 

@@ -53,8 +53,6 @@ export const SearchResults = () => {
     switch (type) {
       case 'tokens':
         return '/token';
-      case 'platforms':
-        return '/platform';
       case 'organizations':
         return '/dao';
       case 'contracts':
@@ -144,20 +142,6 @@ export const SearchResults = () => {
                   >
                     <Button>
                       {query.id} ({echo('contract')})
-                    </Button>
-                  </Link>
-                </Grid>
-              )}
-              {byType.platforms?.found && (
-                <Grid item xs={12}>
-                  <Link
-                    href={routes['/platform'](echoActiveId as Locales, {
-                      id: query.id as string,
-                    })}
-                    asChild
-                  >
-                    <Button>
-                      {query.id} ({echo('platform')})
                     </Button>
                   </Link>
                 </Grid>

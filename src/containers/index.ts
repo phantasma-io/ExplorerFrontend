@@ -8,7 +8,6 @@ export { ViewBlock } from './ViewBlock';
 export { ViewContract } from './ViewContract';
 export { ViewDao } from './ViewDao';
 export { ViewEvent } from './ViewEvent';
-export { ViewPlatform } from './ViewPlatform';
 export { ViewNft } from './ViewNft';
 export { ViewSeries } from './ViewSeries';
 export { ViewNexus } from './ViewNexus';

@@ -12,7 +12,6 @@ import {
   ViewContract,
   ViewDao,
   ViewEvent,
-  ViewPlatform,
   ViewNft,
   ViewNexus,
   ViewSeries,
@@ -36,7 +35,6 @@ export const LocalizedView = ({ locale, route }: LocalizedViewProps) => {
     route === '/contract' ||
     route === '/dao' ||
     route === '/event' ||
-    route === '/platform' ||
     route === '/oracle' ||
     route === '/nft' ||
     route === '/series' ||
@@ -65,8 +63,6 @@ export const LocalizedView = ({ locale, route }: LocalizedViewProps) => {
         return `${echo('dao')} | ${echo('meta-title')}`;
       case '/event':
         return `${echo('event')} | ${echo('meta-title')}`;
-      case '/platform':
-        return `${echo('platform')} | ${echo('meta-title')}`;
       case '/nft':
         return `${echo('nft')} | ${echo('meta-title')}`;
       case '/series':
@@ -94,8 +90,6 @@ export const LocalizedView = ({ locale, route }: LocalizedViewProps) => {
         return `${echo('meta-dao')}`;
       case '/event':
         return `${echo('meta-event')}`;
-      case '/platform':
-        return `${echo('meta-platform')}`;
       case '/nft':
         return `${echo('meta-nft')}`;
       case '/series':
@@ -140,11 +134,6 @@ export const LocalizedView = ({ locale, route }: LocalizedViewProps) => {
       case '/event':
         if (query?.id) {
           return <ViewEvent />;
-        }
-        return null;
-      case '/platform':
-        if (query?.id) {
-          return <ViewPlatform />;
         }
         return null;
       case '/oracle':
