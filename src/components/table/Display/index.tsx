@@ -14,7 +14,6 @@ export const TableDisplay = ({
   linkOptions,
   loading,
   error,
-  viewMode,
 }: TableDisplayProps) => {
   const visibleCols = cols.filter((col) => !col.overviewOnly);
   const visibleRows = rows.map((row) =>
@@ -25,34 +24,23 @@ export const TableDisplay = ({
     <Box>
       {/* desktop */}
       <Box mb={1} display={{ xs: 'none', md: 'block' }}>
-        {viewMode === 'mobile' ? (
-          <TableDisplayMobile
-            rows={visibleRows}
-            cols={visibleCols}
-            spacing={spacing}
-            height={height}
-            loading={loading}
-            error={error}
-          />
-        ) : (
-          <TableDisplayDesktop
-            tableId={tableId}
-            raw={raw}
-            rows={visibleRows}
-            cols={visibleCols}
-            height={height}
-            spacing={spacing}
-            linkOptions={linkOptions}
-            loading={loading}
-            error={error}
-          />
-        )}
+        <TableDisplayDesktop
+          tableId={tableId}
+          raw={raw}
+          rows={visibleRows}
+          cols={visibleCols}
+          height={height}
+          spacing={spacing}
+          linkOptions={linkOptions}
+          loading={loading}
+          error={error}
+        />
       </Box>
       {/* mobile */}
       <Box mb={1} display={{ xs: 'block', md: 'none' }}>
         <TableDisplayMobile
-          rows={rows}
-          cols={cols}
+          rows={visibleRows}
+          cols={visibleCols}
           spacing={spacing}
           height={height}
           loading={loading}
