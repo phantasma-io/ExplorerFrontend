@@ -32,6 +32,8 @@ export const useApi = <Data>(
     },
     {
       revalidateOnFocus: false,
+      revalidateOnMount: true,
+      keepPreviousData: false,
       shouldRetryOnError: false,
       ...config,
     },

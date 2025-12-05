@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { useEcho } from 'hooks/useEcho';
 import { Box } from '@mui/material';
 import { endpoints } from 'cfg';
@@ -6,7 +6,7 @@ import { useApi, useTable } from 'hooks';
 import { useEventData } from 'hooks/api';
 import { EventResults, EventParams } from 'types/api';
 import { Table } from 'components/table';
-import { EventsListFilters } from './filters';
+import { InlineSearch } from 'components/table/Controls/InlineSearch';
 
 export interface EventsListProps {
   address?: string;
@@ -28,8 +28,8 @@ export const EventsList = ({
   const [_address, _addressSet] = useState<EventParams['address']>(
     address || undefined,
   );
-  const [address_partial, address_partialSet] =
-    useState<EventParams['address_partial']>(undefined);
+  const [q, qSet] = useState<EventParams['q']>(undefined);
+  const [search, searchSet] = useState<string>('');
 
   const { data, loading, error } = useApi<EventResults>(
     endpoints['/events']({
@@ -40,15 +40,33 @@ export const EventsList = ({
       with_total,
       chain: 'main',
       address: _address,
-      address_partial,
       block_height: block,
       transaction_hash: transaction,
       with_event_data: 1,
       with_fiat: 1,
+      q,
     } as EventParams),
   );
 
   const { cols, rows, total, withError } = useEventData(data, loading);
+
+  const applySearch = useCallback(
+    (value: string) => {
+      const trimmed = value.trim();
+      searchSet(trimmed);
+
+      if (!trimmed) {
+        _addressSet(address || undefined);
+        qSet(undefined);
+        tableProps.pageSet(1);
+        return;
+      }
+
+      qSet(trimmed);
+      tableProps.pageSet(1);
+    },
+    [address, tableProps],
+  );
 
   return (
     <Box>
@@ -70,12 +88,11 @@ export const EventsList = ({
         loading={loading}
         error={error || withError}
         addon={
-          <EventsListFilters
-            address={_address}
-            addressSet={_addressSet}
-            address_partial={address_partial}
-            address_partialSet={address_partialSet}
-            address_disable={!!address}
+          <InlineSearch
+            value={search}
+            onChange={searchSet}
+            onSubmit={applySearch}
+            placeholder={echo('search')}
           />
         }
       />

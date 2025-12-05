@@ -19,6 +19,7 @@ export interface BlockParams
   hash_partial?: string;
   with_fiat?: WithOption;
   with_nft?: WithOption;
+  q?: string;
 }
 
 export interface BlockResults extends ListResults {

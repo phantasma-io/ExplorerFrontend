@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { useEcho } from 'hooks/useEcho';
 import { Box } from '@mui/material';
 import { endpoints } from 'cfg';
@@ -6,7 +6,7 @@ import { useApi, useTable } from 'hooks';
 import { TransactionResults, TransactionParams } from 'types/api';
 import { Table } from 'components/table';
 import { useTransactionData } from 'hooks/api';
-import { TransactionsListFilters } from './filters';
+import { InlineSearch } from 'components/table/Controls/InlineSearch';
 
 export interface TransactionsListProps {
   address?: string;
@@ -23,6 +23,11 @@ export const TransactionsList = ({ address, block }: TransactionsListProps) => {
   const [_address, _addressSet] = useState<TransactionParams['address']>(
     address || undefined,
   );
+  const [blockHeight, blockHeightSet] = useState<
+    TransactionParams['block_height']
+  >(block);
+  const [q, qSet] = useState<TransactionParams['q']>(undefined);
+  const [search, searchSet] = useState<string>('');
 
   const { data, loading, error } = useApi<TransactionResults>(
     endpoints['/transactions']({
@@ -32,11 +37,32 @@ export const TransactionsList = ({ address, block }: TransactionsListProps) => {
       order_direction,
       with_total,
       address: _address,
-      block_height: block,
+      block_height: blockHeight,
+      q,
     }),
   );
 
   const { cols, rows, total, withError } = useTransactionData(data, loading);
+
+  const applySearch = useCallback(
+    (value: string) => {
+      const trimmed = value.trim();
+      searchSet(trimmed);
+
+      if (!trimmed) {
+        _addressSet(address || undefined);
+        blockHeightSet(block || undefined);
+        qSet(undefined);
+        tableProps.pageSet(1);
+        return;
+      }
+
+      qSet(trimmed);
+
+      tableProps.pageSet(1);
+    },
+    [address, block, tableProps],
+  );
 
   return (
     <Box>
@@ -59,10 +85,11 @@ export const TransactionsList = ({ address, block }: TransactionsListProps) => {
         loading={loading}
         error={error || withError}
         addon={
-          <TransactionsListFilters
-            address={_address}
-            addressSet={_addressSet}
-            address_disable={!!address}
+          <InlineSearch
+            value={search}
+            onChange={searchSet}
+            onSubmit={applySearch}
+            placeholder={echo('search')}
           />
         }
       />
