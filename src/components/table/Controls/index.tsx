@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { nanoid } from 'nanoid';
 import { Box, Grid, NoSsr, Typography } from '@mui/material';
 import {
@@ -38,9 +38,16 @@ export const TableControls = ({
   const csvFilename = useMemo(() => `${tableId}-${nanoid()}.csv`, [tableId]);
 
   const pageCount = useMemo(
-    () => Math.ceil(total / pageSize),
+    () => Math.max(1, Math.ceil((total || 0) / pageSize)),
     [pageSize, total],
   );
+
+  useEffect(() => {
+    const nextPage = Math.min(Math.max(page, 1), pageCount);
+    if (nextPage !== page) {
+      pageSet(nextPage);
+    }
+  }, [page, pageCount, pageSet]);
 
   const options = useMemo(() => [25, 50, 100], []);
 
