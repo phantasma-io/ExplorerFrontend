@@ -1,4 +1,3 @@
-export { DateTimeOpts } from './DateTimeOpts';
 export { DarkMode } from './DarkMode';
 export { GotoDex } from './GotoDex';
 export { GetWallet } from './GetWallet';

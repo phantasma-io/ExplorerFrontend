@@ -7,7 +7,6 @@ import {
   Search,
   DarkMode,
   GetWallet,
-  DateTimeOpts,
   GotoDex,
 } from './sub';
 
@@ -63,9 +62,6 @@ export const Header = ({ height }: HeaderProps) => {
             </Box>
             <Box display="inline-block" pr={{ xs: 0.1, md: 1.5 }}>
               <DarkMode />
-            </Box>
-            <Box display="inline-block" pr={{ xs: 0.1, md: 1.5 }}>
-              <DateTimeOpts />
             </Box>
             <Box display="inline-block">
               <Localization />

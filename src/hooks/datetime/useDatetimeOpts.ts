@@ -12,7 +12,7 @@ export interface DatetimeOptsContextType {
 }
 
 const init: DatetimeOptsContextType = {
-  dtOpts: 'utc',
+  dtOpts: 'local',
   dtOptsSet: () => undefined,
 };
 
