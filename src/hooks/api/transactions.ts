@@ -60,6 +60,14 @@ export const useTransactionData = (
         showDesktop: true,
       },
       {
+        id: 'date_unix',
+        label: `${echo('date')} (unix)`,
+        type: 'monospace',
+        size: 2,
+        showDesktop: true,
+        overviewOnly: true,
+      },
+      {
         id: 'result',
         label: echo('result'),
         type: 'monospace',
@@ -88,6 +96,7 @@ export const useTransactionData = (
         item?.state === 'Halt' ? 'Successful' : item?.state,
         item?.block_height,
         item?.date ? unixToDate(item.date) : undefined,
+        item?.date,
         item?.result,
         item?.payload ? decodeBase16(item?.payload) : null,
         item?.fee,

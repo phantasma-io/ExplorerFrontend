@@ -88,6 +88,14 @@ export const useEventData = (data?: EventResults, loading?: boolean) => {
         size: 2,
         showDesktop: true,
       },
+      {
+        id: 'date_unix',
+        label: `${echo('date')} (unix)`,
+        type: 'monospace',
+        size: 2,
+        showDesktop: true,
+        overviewOnly: true,
+      },
     ];
   }, [echo]);
 
@@ -102,6 +110,7 @@ export const useEventData = (data?: EventResults, loading?: boolean) => {
         item?.chain,
         item?.contract?.name,
         item?.date ? unixToDate(item.date) : undefined,
+        item?.date,
       ]) as TableDisplayRow[];
     }
 

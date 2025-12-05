@@ -38,6 +38,14 @@ export const useBlockData = (data?: BlockResults, loading?: boolean) => {
         showDesktop: true,
       },
       {
+        id: 'date_unix',
+        label: `${echo('date')} (unix)`,
+        type: 'monospace',
+        size: 2,
+        showDesktop: true,
+        overviewOnly: true,
+      },
+      {
         id: 'protocol',
         label: echo('protocol'),
         type: 'number',
@@ -97,6 +105,7 @@ export const useBlockData = (data?: BlockResults, loading?: boolean) => {
       return data?.blocks?.map((item) => [
         item?.height,
         item?.date ? unixToDate(item.date) : undefined,
+        item?.date,
         item?.protocol,
         item?.reward,
         item?.chain_address,
