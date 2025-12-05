@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { useEcho } from 'hooks/useEcho';
 import { Box } from '@mui/material';
 import { endpoints } from 'cfg';
@@ -6,7 +6,7 @@ import { useApi, useTable } from 'hooks';
 import { useTokenData } from 'hooks/api';
 import { TokenResults, TokenParams } from 'types/api';
 import { Table } from 'components/table';
-import { TokensListFilters } from './filters';
+import { InlineSearch } from 'components/table/Controls/InlineSearch';
 
 export const TokensList = () => {
   const { echo } = useEcho();
@@ -15,7 +15,8 @@ export const TokensList = () => {
   const { limit, order_by, offset, with_total } = tableProps;
 
   // filter states
-  const [symbol, symbolSet] = useState<TokenParams['symbol']>(undefined);
+  const [q, qSet] = useState<TokenParams['q']>(undefined);
+  const [search, searchSet] = useState<string>('');
 
   const { data, loading, error } = useApi<TokenResults>(
     endpoints['/tokens']({
@@ -26,11 +27,28 @@ export const TokensList = () => {
       with_total,
       with_logo: 1,
       with_price: 1,
-      symbol,
+      q,
     } as TokenParams),
   );
 
   const { cols, rows, total } = useTokenData(data, loading);
+
+  const applySearch = useCallback(
+    (value: string) => {
+      const trimmed = value.trim();
+      searchSet(trimmed);
+
+      if (!trimmed) {
+        qSet(undefined);
+        tableProps.pageSet(1);
+        return;
+      }
+
+      qSet(trimmed);
+      tableProps.pageSet(1);
+    },
+    [tableProps],
+  );
 
   return (
     <Box>
@@ -51,7 +69,14 @@ export const TokensList = () => {
         {...tableProps}
         loading={loading}
         error={error}
-        addon={<TokensListFilters symbol={symbol} symbolSet={symbolSet} />}
+        addon={
+          <InlineSearch
+            value={search}
+            onChange={searchSet}
+            onSubmit={applySearch}
+            placeholder={echo('search')}
+          />
+        }
       />
     </Box>
   );

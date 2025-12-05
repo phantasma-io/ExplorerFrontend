@@ -41,6 +41,7 @@ export interface NftParams extends ListParams {
   owner?: string;
   contract_hash?: string;
   name?: string;
+  q?: string;
   chain?: string;
   symbol?: string;
   token_id?: string;

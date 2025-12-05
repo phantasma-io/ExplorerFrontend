@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { useEcho } from 'hooks/useEcho';
 import { Box } from '@mui/material';
 import { endpoints } from 'cfg';
@@ -6,7 +6,7 @@ import { useApi, useTable } from 'hooks';
 import { useNftData } from 'hooks/api';
 import { NftResults, NftParams } from 'types/api';
 import { Table } from 'components/table';
-import { NftsListFilters } from './filters';
+import { InlineSearch } from 'components/table/Controls/InlineSearch';
 
 export const NftsList = () => {
   const { echo } = useEcho();
@@ -15,8 +15,8 @@ export const NftsList = () => {
   const { limit, order_by, offset, with_total, order_direction } = tableProps;
 
   // filter states
-  const [name, nameSet] = useState<NftParams['name']>(undefined);
-  const [symbol, symbolSet] = useState<NftParams['symbol']>(undefined);
+  const [q, qSet] = useState<NftParams['q']>(undefined);
+  const [search, searchSet] = useState<string>('');
 
   const { data, loading, error } = useApi<NftResults>(
     endpoints['/nfts']({
@@ -25,12 +25,28 @@ export const NftsList = () => {
       order_by,
       order_direction,
       with_total,
-      name,
-      symbol,
+      q,
     } as NftParams),
   );
 
   const { cols, rows, total } = useNftData(data, loading);
+
+  const applySearch = useCallback(
+    (value: string) => {
+      const trimmed = value.trim();
+      searchSet(trimmed);
+
+      if (!trimmed) {
+        qSet(undefined);
+        tableProps.pageSet(1);
+        return;
+      }
+
+      qSet(trimmed);
+      tableProps.pageSet(1);
+    },
+    [tableProps],
+  );
 
   return (
     <Box>
@@ -52,11 +68,11 @@ export const NftsList = () => {
         loading={loading}
         error={error}
         addon={
-          <NftsListFilters
-            name={name}
-            nameSet={nameSet}
-            symbol={symbol}
-            symbolSet={symbolSet}
+          <InlineSearch
+            value={search}
+            onChange={searchSet}
+            onSubmit={applySearch}
+            placeholder={echo('search')}
           />
         }
       />

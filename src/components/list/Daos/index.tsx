@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { useEcho } from 'hooks/useEcho';
 import { Box } from '@mui/material';
 import { endpoints } from 'cfg';
@@ -6,7 +6,7 @@ import { useApi, useTable } from 'hooks';
 import { useDaoData } from 'hooks/api';
 import { DaoResults, DaoParams } from 'types/api';
 import { Table } from 'components/table';
-import { DaosListFilters } from './filters';
+import { InlineSearch } from 'components/table/Controls/InlineSearch';
 
 export const DaosList = () => {
   const { echo } = useEcho();
@@ -15,10 +15,8 @@ export const DaosList = () => {
   const { limit, order_by, offset, with_total } = tableProps;
 
   // filter states
-  const [organization_name, organization_nameSet] =
-    useState<DaoParams['organization_name']>(undefined);
-  const [organization_name_partial, organization_name_partialSet] =
-    useState<DaoParams['organization_name_partial']>(undefined);
+  const [q, qSet] = useState<DaoParams['q']>(undefined);
+  const [search, searchSet] = useState<string>('');
 
   const { data, loading, error } = useApi<DaoResults>(
     endpoints['/organizations']({
@@ -27,14 +25,30 @@ export const DaosList = () => {
       order_by,
       order_direction: 'asc',
       with_total,
-      organization_name,
-      organization_name_partial,
+      q,
       with_creation_event: 1,
       with_address: 1,
     } as DaoParams),
   );
 
   const { cols, rows, total } = useDaoData(data, loading);
+
+  const applySearch = useCallback(
+    (value: string) => {
+      const trimmed = value.trim();
+      searchSet(trimmed);
+
+      if (!trimmed) {
+        qSet(undefined);
+        tableProps.pageSet(1);
+        return;
+      }
+
+      qSet(trimmed);
+      tableProps.pageSet(1);
+    },
+    [tableProps],
+  );
 
   return (
     <Box>
@@ -56,11 +70,11 @@ export const DaosList = () => {
         loading={loading}
         error={error}
         addon={
-          <DaosListFilters
-            organization_name={organization_name}
-            organization_nameSet={organization_nameSet}
-            organization_name_partial={organization_name_partial}
-            organization_name_partialSet={organization_name_partialSet}
+          <InlineSearch
+            value={search}
+            onChange={searchSet}
+            onSubmit={applySearch}
+            placeholder={echo('search')}
           />
         }
       />

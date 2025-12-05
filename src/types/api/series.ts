@@ -23,6 +23,7 @@ export interface SeriesParams extends ListParams {
   id?: string;
   creator?: string;
   name?: string;
+  q?: string;
   chain?: string;
   contract?: string;
   symbol?: string;

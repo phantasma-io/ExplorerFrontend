@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { useEcho } from 'hooks/useEcho';
 import { Box } from '@mui/material';
 import { endpoints } from 'cfg';
@@ -6,7 +6,7 @@ import { useApi, useTable } from 'hooks';
 import { useContractData } from 'hooks/api';
 import { ContractResults, ContractParams } from 'types/api';
 import { Table } from 'components/table';
-import { ContractsListFilters } from './filters';
+import { InlineSearch } from 'components/table/Controls/InlineSearch';
 
 export const ContractsList = () => {
   const { echo } = useEcho();
@@ -15,8 +15,8 @@ export const ContractsList = () => {
   const { limit, order_by, offset, with_total } = tableProps;
 
   // filter states
-  const [hash, hashSet] = useState<ContractParams['hash']>(undefined);
-  const [symbol, symbolSet] = useState<ContractParams['symbol']>(undefined);
+  const [q, qSet] = useState<ContractParams['q']>(undefined);
+  const [search, searchSet] = useState<string>('');
 
   const { data, loading, error } = useApi<ContractResults>(
     endpoints['/contracts']({
@@ -25,12 +25,28 @@ export const ContractsList = () => {
       order_by,
       order_direction: 'asc',
       with_total,
-      hash,
-      symbol,
+      q,
     } as ContractParams),
   );
 
   const { cols, rows, total } = useContractData(data, loading);
+
+  const applySearch = useCallback(
+    (value: string) => {
+      const trimmed = value.trim();
+      searchSet(trimmed);
+
+      if (!trimmed) {
+        qSet(undefined);
+        tableProps.pageSet(1);
+        return;
+      }
+
+      qSet(trimmed);
+      tableProps.pageSet(1);
+    },
+    [tableProps],
+  );
 
   return (
     <Box>
@@ -52,11 +68,11 @@ export const ContractsList = () => {
         loading={loading}
         error={error}
         addon={
-          <ContractsListFilters
-            hash={hash}
-            hashSet={hashSet}
-            symbol={symbol}
-            symbolSet={symbolSet}
+          <InlineSearch
+            value={search}
+            onChange={searchSet}
+            onSubmit={applySearch}
+            placeholder={echo('search')}
           />
         }
       />
