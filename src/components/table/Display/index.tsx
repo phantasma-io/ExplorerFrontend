@@ -11,9 +11,7 @@ export const TableDisplay = ({
   cols,
   height,
   spacing,
-  withDetails,
   linkOptions,
-  dialogOptions,
   loading,
   error,
   viewMode,
@@ -39,9 +37,7 @@ export const TableDisplay = ({
             cols={cols}
             height={height}
             spacing={spacing}
-            withDetails={withDetails}
             linkOptions={linkOptions}
-            dialogOptions={dialogOptions}
             loading={loading}
             error={error}
           />

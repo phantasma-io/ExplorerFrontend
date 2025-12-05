@@ -56,9 +56,6 @@ export const SeriesList = () => {
         cols={cols}
         rows={rows}
         total={total}
-        dialogOptions={{
-          title: echo('details-series'),
-        }}
         linkOptions={{
           route: '/series',
           key: 'id',

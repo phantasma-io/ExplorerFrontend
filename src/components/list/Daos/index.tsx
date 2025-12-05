@@ -58,9 +58,6 @@ export const DaosList = () => {
         cols={cols}
         rows={rows}
         total={total}
-        dialogOptions={{
-          title: echo('details-dao'),
-        }}
         linkOptions={{
           route: '/dao',
           key: 'name',

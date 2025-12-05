@@ -33,11 +33,9 @@ export const Table = ({
   orderBySet,
   orderDirection,
   orderDirectionSet,
-  withDetails = true,
   height = TABLE_HEIGHT,
   spacing = TABLE_SPACING,
   linkOptions,
-  dialogOptions,
   loading,
   error,
   addon,
@@ -78,11 +76,9 @@ export const Table = ({
           raw={raw}
           rows={rows}
           cols={cols}
-          withDetails={withDetails}
           height={height}
           spacing={spacing}
           linkOptions={linkOptions}
-          dialogOptions={dialogOptions}
           loading={loading}
           error={error}
           viewMode={viewMode}

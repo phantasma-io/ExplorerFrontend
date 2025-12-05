@@ -72,15 +72,11 @@ export const TransactionsList = ({ address, block }: TransactionsListProps) => {
         cols={cols}
         rows={rows}
         total={total}
-        dialogOptions={{
-          title: echo('details-transaction'),
-        }}
         linkOptions={{
           route: '/transaction',
           key: 'hash',
           title: echo('explore-transaction'),
         }}
-        withDetails={false}
         {...tableProps}
         loading={loading}
         error={error || withError}

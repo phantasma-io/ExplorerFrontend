@@ -56,9 +56,6 @@ export const NftsList = () => {
         cols={cols}
         rows={rows}
         total={total}
-        dialogOptions={{
-          title: echo('details-nft'),
-        }}
         linkOptions={{
           route: '/nft',
           key: 'token_id',

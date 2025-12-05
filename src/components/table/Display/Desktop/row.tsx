@@ -1,5 +1,4 @@
-import React, { useState, useCallback, useMemo } from 'react';
-import { nanoid } from 'nanoid';
+import React, { useState, useCallback } from 'react';
 import { Box, Grid, GridSpacing, IconButton, Tooltip } from '@mui/material';
 import { useThemeMode } from 'containers/ThemeProvider';
 import { Link } from 'components/display';
@@ -9,56 +8,41 @@ import { Locales } from 'types/locales';
 import { TableDisplayRow, TableDisplayCol } from 'types/table';
 import { DetailsValue } from 'types/components';
 import { useEcho } from 'hooks/useEcho';
-import csvDownload from 'json-to-csv-export';
-import FileDownloadIcon from '@mui/icons-material/FileDownload';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
 export interface TableRowProps {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   raw: any;
-  tableId: string;
-  index: number;
   row: TableDisplayRow;
   cols: TableDisplayCol[];
   spacing?: GridSpacing;
-  hasClick?: boolean;
-  openDialog: (row: TableDisplayRow, index: number) => void;
+  clickable?: boolean;
   linkOptions?: TableDisplayCol['linkOptions'];
 }
 
 export const TableRow = ({
   raw,
-  tableId,
-  index,
   cols,
   row,
   spacing,
-  hasClick = false,
-  openDialog,
+  clickable = false,
   linkOptions,
 }: TableRowProps) => {
-  const { echo, echoActiveId } = useEcho();
+  const { echoActiveId } = useEcho();
   const { themeActive } = useThemeMode();
   const { isDark } = useDarkMode();
   const renderDetails = useRenderDetails();
 
   const [isHover, isHoverSet] = useState<boolean>(false);
 
-  const shouldOpenDialog = useCallback(() => {
-    if (hasClick) {
-      openDialog(row, index);
-      return;
-    }
-
+  const openLink = useCallback(() => {
     if (linkOptions) {
       const href = routes[linkOptions.route](echoActiveId as Locales, {
         id: raw[linkOptions.key],
       });
       window.location.href = href;
     }
-  }, [hasClick, openDialog, row, index, linkOptions, echoActiveId, raw]);
-
-  const csvFilename = useMemo(() => `${tableId}-${nanoid()}.csv`, [tableId]);
+  }, [linkOptions, echoActiveId, raw]);
 
   return (
     <Box
@@ -72,10 +56,10 @@ export const TableRow = ({
           isDark && isHover
             ? undefined
             : `linear-gradient(rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05))`,
-        cursor: hasClick ? 'pointer' : 'default',
+        cursor: clickable ? 'pointer' : 'default',
         borderBottom: `1px solid ${themeActive.palette.divider}`,
       }}
-      onClick={shouldOpenDialog}
+      onClick={openLink}
     >
       <Grid container spacing={spacing} alignItems="center">
         {/* cols */}

@@ -39,9 +39,6 @@ export const OraclesList = ({ block_hash }: OraclesListProps) => {
           cols={cols}
           rows={rows}
           total={total}
-          dialogOptions={{
-            title: echo('details-oracle'),
-          }}
           // linkOptions={{
           //   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
           //   // @ts-ignore

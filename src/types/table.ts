@@ -40,10 +40,6 @@ export interface TableDisplayProps extends TableDisplayData {
   tableId: string;
   height?: string;
   spacing?: GridSpacing;
-  withDetails?: boolean;
-  dialogOptions?: {
-    title: string;
-  };
   linkOptions?: DetailsLinkOptions;
   loading?: boolean;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

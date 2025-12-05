@@ -57,15 +57,11 @@ export const BlocksList = () => {
         cols={cols}
         rows={rows}
         total={total}
-        dialogOptions={{
-          title: echo('details-block'),
-        }}
         linkOptions={{
           route: '/block',
           key: 'height',
           title: echo('explore-block'),
         }}
-        withDetails={false}
         {...tableProps}
         loading={loading}
         error={error}

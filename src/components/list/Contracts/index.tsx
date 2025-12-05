@@ -56,9 +56,6 @@ export const ContractsList = () => {
         cols={cols}
         rows={rows}
         total={total}
-        dialogOptions={{
-          title: echo('details-contract'),
-        }}
         linkOptions={{
           route: '/contract',
           key: 'name',

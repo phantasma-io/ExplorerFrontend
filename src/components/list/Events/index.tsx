@@ -76,9 +76,6 @@ export const EventsList = ({
         cols={cols}
         rows={rows}
         total={total}
-        dialogOptions={{
-          title: echo('details-event'),
-        }}
         linkOptions={{
           route: '/event',
           key: 'event_id',

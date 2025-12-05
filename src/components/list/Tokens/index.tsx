@@ -58,9 +58,6 @@ export const TokensList = () => {
         cols={cols}
         rows={rows}
         total={total}
-        dialogOptions={{
-          title: echo('details-token'),
-        }}
         linkOptions={{
           route: '/token',
           key: 'symbol',
