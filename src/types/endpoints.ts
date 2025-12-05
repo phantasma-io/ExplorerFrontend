@@ -13,11 +13,13 @@ import {
   HistoryPriceParams,
   OracleParams,
   SearchParams,
+  AddressParams,
 } from './api';
 
 export type ExplorerEndpoints =
   | '/blocks'
   | '/chains'
+  | '/addresses'
   | '/contracts'
   | '/instructions'
   | '/eventkinds'
@@ -40,6 +42,7 @@ export type ApiParams =
   | IntructionParams
   | NftParams
   | OracleParams
+  | AddressParams
   | DaoParams
   | HistoryPriceParams
   | SeriesParams

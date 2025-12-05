@@ -12,6 +12,7 @@ export const url = process.env.NEXT_PUBLIC_API_URL ? process.env.NEXT_PUBLIC_API
 export const endpoints: ExplorerApi = {
   '/blocks': (params) => `${url}/blocks${parseParams(params)}`,
   '/chains': (params) => `${url}/chains${parseParams(params)}`,
+  '/addresses': (params) => `${url}/addresses${parseParams(params)}`,
   '/contracts': (params) => `${url}/contracts${parseParams(params)}`,
   '/instructions': (params) => `${url}/instructions${parseParams(params)}`,
   '/eventkinds': (params) => `${url}/eventkinds${parseParams(params)}`,
