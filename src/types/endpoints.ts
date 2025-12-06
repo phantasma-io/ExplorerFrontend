@@ -23,6 +23,7 @@ export type ExplorerEndpoints =
   | '/contracts'
   | '/instructions'
   | '/eventkinds'
+  | '/eventKindsWithEvents'
   | '/events'
   | '/nfts'
   | '/oracles'

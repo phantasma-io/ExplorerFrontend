@@ -48,13 +48,14 @@ export type EventKinds =
   | 'ValueUpdate';
 
 export interface EventKind {
-  kind?: EventKinds;
+  name?: string;
 }
 
 export interface EventKindParams extends ListParams {
   event_kind?: string;
+  chain?: string;
 }
 
 export interface EventKindResults extends ListResults {
-  eventKinds?: EventKind[];
+  event_kinds?: EventKind[];
 }

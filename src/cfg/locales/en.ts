@@ -198,6 +198,7 @@ export const en: LocaleMessages = {
   'filter-daos': 'Filter DAOs',
   'filter-events': 'Filter events',
   'filter-nfts': 'Filter NFTs',
+  event_kind_short: 'Event',
   'filter-series': 'Filter series',
   'filter-tokens': 'Filter tokens',
   'filter-transactions': 'Filter transactions',

@@ -16,6 +16,8 @@ export const endpoints: ExplorerApi = {
   '/contracts': (params) => `${url}/contracts${parseParams(params)}`,
   '/instructions': (params) => `${url}/instructions${parseParams(params)}`,
   '/eventkinds': (params) => `${url}/eventkinds${parseParams(params)}`,
+  '/eventKindsWithEvents': (params) =>
+    `${url}/eventKindsWithEvents${parseParams(params)}`,
   '/events': (params) => `${url}/events${parseParams(params)}`,
   '/nfts': (params) => `${url}/nfts${parseParams(params)}`,
   '/oracles': (params) => `${url}/oracles${parseParams(params)}`,
