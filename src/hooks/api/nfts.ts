@@ -66,15 +66,23 @@ export const useNftData = (data?: NftResults, loading?: boolean) => {
       {
         id: 'contract',
         label: echo('contract'),
-        type: 'text',
+        type: 'monospace',
         size: 2,
         showDesktop: true,
+        linkOptions: {
+          route: '/contract',
+          title: echo('explore-contract'),
+        },
       },
       {
         id: 'symbol',
         label: echo('symbol'),
-        type: 'text',
+        type: 'monospace',
         size: 3,
+        linkOptions: {
+          route: '/token',
+          title: echo('explore-token'),
+        },
       },
       // {
       //   id: 'rom',
@@ -212,7 +220,7 @@ export const useNftData = (data?: NftResults, loading?: boolean) => {
         item?.nft_metadata?.mint_date
           ? unixToDate(item?.nft_metadata?.mint_date)
           : undefined,
-        item?.contract?.name,
+        item?.contract?.hash || item?.contract?.name,
         item?.symbol,
         // item?.nft_metadata?.rom,
         // item?.nft_metadata?.ram,
