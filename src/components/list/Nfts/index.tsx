@@ -28,8 +28,8 @@ export const NftsList = () => {
   const { data, loading, error } = useApi<NftResults>(
     endpoints['/nfts']({
       limit,
-      order_by,
-      order_direction,
+      order_by: 'mint_date',
+      order_direction: 'desc',
       cursor: cursor || undefined,
       q,
     } as NftParams),
