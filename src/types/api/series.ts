@@ -17,6 +17,7 @@ export interface Series {
   attr_value_2?: string;
   attr_type_3?: string;
   attr_value_3?: string;
+  metadata?: Record<string, string>;
 }
 
 export interface SeriesParams extends ListParams {

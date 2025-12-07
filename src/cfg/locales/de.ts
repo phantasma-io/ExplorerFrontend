@@ -163,6 +163,8 @@ export const de: LocaleMessages = {
   series_creator: 'Schöpfer der Serie',
   mint_date: 'Prägedatum',
   mint_number: 'Keil #',
+  'metadata-nft': 'NFT-Metadaten',
+  'metadata-series': 'Serien-Metadaten',
   ram: 'RAM',
   rom: 'ROM',
   nft: 'NFT',

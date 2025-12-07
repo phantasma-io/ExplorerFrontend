@@ -5,3 +5,4 @@ export { Instructions } from './Instructions';
 export { Methods } from './Methods';
 export { Text } from './Text';
 export type { TextProps } from './Text';
+export { MetadataBlock } from './MetadataBlock';

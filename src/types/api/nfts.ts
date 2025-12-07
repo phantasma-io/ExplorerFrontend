@@ -13,6 +13,7 @@ export interface NftMetadata {
   ram?: string;
   mint_date?: string;
   mint_number?: string;
+  metadata?: Record<string, string>;
 }
 
 export interface NftOwner {

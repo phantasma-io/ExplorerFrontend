@@ -163,6 +163,8 @@ export const en: LocaleMessages = {
   series_creator: 'Series creator',
   mint_date: 'Mint date',
   mint_number: 'Mint #',
+  'metadata-nft': 'NFT metadata',
+  'metadata-series': 'Series metadata',
   ram: 'RAM',
   rom: 'ROM',
   nft: 'NFT',
