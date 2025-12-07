@@ -25,8 +25,8 @@ export interface NavTabsProps {
  * NavTabs
  */
 export const NavTabs = ({ tabs, tabsDefault }: NavTabsProps) => {
-  const { query, push, isReady } = useRouter();
-  const [activeTab, setActiveTab] = useState<string | null>(null);
+  const { query, replace, isReady } = useRouter();
+  const [activeTab, setActiveTab] = useState<string>(tabsDefault);
 
   useEffect(() => {
     if (!isReady) return;
@@ -36,10 +36,8 @@ export const NavTabs = ({ tabs, tabsDefault }: NavTabsProps) => {
         ? query.tab
         : tabsDefault;
 
-    if (nextTab !== activeTab) {
-      setActiveTab(nextTab);
-    }
-  }, [activeTab, isReady, query.tab, tabsDefault]);
+    setActiveTab(nextTab);
+  }, [isReady, query.tab, tabsDefault]);
 
   const changeTab = useCallback(
     (tab: string, url: string) => {
@@ -51,17 +49,17 @@ export const NavTabs = ({ tabs, tabsDefault }: NavTabsProps) => {
           }
         : { tab };
       setActiveTab(tab);
-      void push({
-        pathname: url,
-        query: queryNew,
-      });
+      void replace(
+        {
+          pathname: url,
+          query: queryNew,
+        },
+        undefined,
+        { shallow: true, scroll: false },
+      );
     },
-    [push, query],
+    [replace, query],
   );
-
-  if (!activeTab) {
-    return null;
-  }
 
   return (
     <Paper>
