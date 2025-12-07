@@ -6,9 +6,9 @@ import { Contract } from './contracts';
 export interface NftMetadata {
   description?: string;
   name?: string;
-  image?: string;
-  video?: string;
-  info_url?: string;
+  imageURL?: string;
+  videoURL?: string;
+  infoURL?: string;
   rom?: string;
   ram?: string;
   mint_date?: string;

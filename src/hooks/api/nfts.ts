@@ -209,11 +209,11 @@ export const useNftData = (data?: NftResults, loading?: boolean) => {
     if (data) {
       return data?.nfts?.map((item) => [
         // thumb
-        item?.nft_metadata?.image,
+        item?.nft_metadata?.imageURL,
         // data
         item?.nft_metadata?.name,
         item?.nft_metadata?.description,
-        item?.nft_metadata?.image,
+        item?.nft_metadata?.imageURL,
         item?.series?.current_supply,
         item?.series?.max_supply,
         item?.nft_metadata?.mint_number,
