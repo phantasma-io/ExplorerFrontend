@@ -153,7 +153,6 @@ Node.js 24.x with npm (see `.nvmrc`) is required for local development and build
 - White label
 - Localization
 - Data visualization
-- Component library with `storybook`
 - Unit tests with `jest` and `react-testing-library`
 - Integration / e2e tests with `cypress`
 - CI workflows with `github-actions`
@@ -191,8 +190,6 @@ npm test
 // run e2e tests
 npm run cy:run
 
-// run storybook
-npm run sb
 ```
 
 <br />

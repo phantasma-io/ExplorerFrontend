@@ -29,7 +29,6 @@
     "plugin:react/recommended",
     "plugin:react-hooks/recommended",
     "plugin:@typescript-eslint/recommended",
-    "plugin:storybook/recommended",
     "plugin:jest/recommended",
     "plugin:jest/style",
     "plugin:cypress/recommended",
@@ -48,7 +47,7 @@
     "ecmaFeatures": {
       "jsx": true
     },
-    "ecmaVersion": 12,
+    "ecmaVersion": 2021,
     "sourceType": "module"
   },
   "overrides": [
