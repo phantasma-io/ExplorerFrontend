@@ -33,6 +33,7 @@ export type EventKinds =
   | 'PlatformCreate'
   | 'GovernanceSetGasConfig'
   | 'GovernanceSetChainConfig'
+  | 'SpecialResolution'
   | 'LeaderboardCreate'
   | 'TokenBurn'
   | 'TokenClaim'

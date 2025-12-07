@@ -11,6 +11,7 @@ export type EventTypes =
   | 'gas_event'
   | 'governance_gas_config_event'
   | 'governance_chain_config_event'
+  | 'special_resolution_event'
   | 'hash_event'
   | 'infusion_event'
   | 'market_event'
@@ -70,6 +71,21 @@ export type GovernanceChainConfigEvent = {
   allowed_tx_types?: string;
   expiry_window?: string;
   block_rate_target?: string;
+};
+
+export type SpecialResolutionCall = {
+  module_id?: number;
+  module?: string;
+  method_id?: number;
+  method?: string;
+  arguments?: Record<string, string>;
+  calls?: SpecialResolutionCall[];
+};
+
+export type SpecialResolutionEvent = {
+  resolution_id?: string;
+  description?: string;
+  calls?: SpecialResolutionCall[];
 };
 
 export type HashEvent = {
@@ -159,6 +175,7 @@ export interface EventData {
   gas_event?: GasEvent;
   governance_gas_config_event?: GovernanceGasConfigEvent;
   governance_chain_config_event?: GovernanceChainConfigEvent;
+  special_resolution_event?: SpecialResolutionEvent;
   hash_event?: HashEvent;
   infusion_event?: InfusionEvent;
   market_event?: MarketEvent;

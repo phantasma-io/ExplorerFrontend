@@ -13,7 +13,12 @@ export type {
 
 export type { EventParams, EventResult, EventResults } from './events';
 
-export type { EventTypeMap, EventTypes } from './eventTypes';
+export type {
+  EventTypeMap,
+  EventTypes,
+  SpecialResolutionCall,
+  SpecialResolutionEvent,
+} from './eventTypes';
 
 export type { Fiat } from './fiat';
 

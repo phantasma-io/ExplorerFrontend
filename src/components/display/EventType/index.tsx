@@ -2,7 +2,12 @@
 import React, { useMemo } from 'react';
 import { Box, Grid, Button } from '@mui/material';
 import { useEcho } from 'hooks/useEcho';
-import { EventResult, EventTypes, EventKinds } from 'types/api';
+import {
+  EventResult,
+  EventTypes,
+  EventKinds,
+  SpecialResolutionCall,
+} from 'types/api';
 import { eventTypeMap } from 'cfg/eventTypes';
 import { DetailsNumber, DetailsText } from 'components/details';
 import { Link, Text } from 'components/display';
@@ -51,6 +56,39 @@ export const EventType = ({ data }: EventTypeProps) => {
   const rawData = useMemo(() => {
     return data?.unknown_event?.raw_data ?? data?.raw_data ?? '';
   }, [data]);
+
+  const formatResolutionCall = (call?: SpecialResolutionCall) => {
+    if (!call) return '';
+    const method =
+      call.method || (call.method_id !== undefined ? `${call.method_id}` : '');
+    const module =
+      call.module || (call.module_id !== undefined ? `${call.module_id}` : '');
+    if (module && method) return `${module}.${method}`;
+    return module || method || '';
+  };
+
+  const flattenResolutionCalls = (calls?: SpecialResolutionCall[]) => {
+    if (!calls?.length) return [];
+
+    const result: SpecialResolutionCall[] = [];
+    const walk = (items?: SpecialResolutionCall[]) => {
+      if (!items) return;
+      items.forEach((item) => {
+        result.push(item);
+        if (item.calls?.length) {
+          walk(item.calls);
+        }
+      });
+    };
+
+    walk(calls);
+    return result;
+  };
+
+  const resolutionCalls = useMemo(
+    () => flattenResolutionCalls(data?.special_resolution_event?.calls),
+    [data?.special_resolution_event?.calls],
+  );
 
   const renderUnknown = useMemo(() => {
     if (!data || (!rawPayload && !rawData)) return null;
@@ -750,6 +788,56 @@ export const EventType = ({ data }: EventTypeProps) => {
                       </Grid>
                     ))}
                   </Grid>
+                </Grid>
+              </Grid>
+            </Box>
+          );
+        }
+        case 'special_resolution_event': {
+          const resolution = data?.special_resolution_event;
+          const callNames = resolutionCalls
+            .map((call) => formatResolutionCall(call))
+            .filter((x) => x);
+          const callsLabel =
+            resolutionCalls.length === 1
+              ? '1 call'
+              : `${resolutionCalls.length} calls`;
+          const summary = `${kind.replace('SpecialResolution', 'Special Resolution')} #${resolution?.resolution_id ?? ''}: ${
+            callsLabel || '0 calls'
+          }${callNames.length ? `: ${callNames.join(', ')}` : ''}`;
+
+          return (
+            <Box my={1}>
+              <Grid container spacing={1} alignItems="flex-start">
+                <Grid item md={2}>
+                  <Link
+                    href={routes['/event'](echoActiveId as Locales, {
+                      id: `${data?.event_id}`,
+                    })}
+                    sx={{ textDecoration: 'none' }}
+                  >
+                    <Button
+                    fullWidth
+                    variant="contained"
+                    size="small"
+                    sx={{
+                      backgroundColor: '#7e57c2',
+                      color: '#fff',
+                      '&:hover': { backgroundColor: '#6a46b3' },
+                    }}
+                  >
+                    {kind}
+                  </Button>
+                </Link>
+              </Grid>
+                <Grid item md={10}>
+                  <DetailsText label="Summary" value={summary} />
+                  {resolution?.description && (
+                    <DetailsText
+                      label="Payload"
+                      value={resolution.description}
+                    />
+                  )}
                 </Grid>
               </Grid>
             </Box>

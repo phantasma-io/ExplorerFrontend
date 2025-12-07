@@ -90,6 +90,43 @@ export const EventLine = ({ data }: EventLineProps) => {
               )}
             </Typography>
           );
+        case 'special_resolution_event': {
+          const resolution = data?.special_resolution_event;
+          const headline = [
+            resolution?.resolution_id ? `#${resolution.resolution_id}` : '',
+            resolution?.description || '',
+          ]
+            .filter(Boolean)
+            .join(' — ');
+
+          const firstCall = resolution?.calls?.[0];
+          const callLabel =
+            firstCall?.method || firstCall?.method_id || firstCall?.module || firstCall?.module_id;
+          const callCount = resolution?.calls?.length ?? 0;
+
+          return (
+            <Typography gutterBottom component="div">
+              {kind}{' '}
+              {headline && (
+                <Typography component="span" variant="body2">
+                  {headline}
+                </Typography>
+              )}
+              {callCount > 0 && (
+                <Typography component="span" variant="body2">
+                  {' '}
+                  ({callCount} call{callCount > 1 ? 's' : ''})
+                </Typography>
+              )}
+              {callLabel && (
+                <Typography component="span" variant="body2">
+                  {' '}
+                  {callLabel}
+                </Typography>
+              )}
+            </Typography>
+          );
+        }
         case 'string_event': {
           const subject = data?.address_name || data?.address;
           const label =

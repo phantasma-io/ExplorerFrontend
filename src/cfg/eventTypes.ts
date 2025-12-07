@@ -33,6 +33,7 @@ export const eventTypeMap: EventTypeMap = {
   PlatformCreate: 'string_event',
   GovernanceSetGasConfig: 'governance_gas_config_event',
   GovernanceSetChainConfig: 'governance_chain_config_event',
+  SpecialResolution: 'special_resolution_event',
   LeaderboardCreate: 'string_event',
   TokenBurn: 'token_event',
   TokenClaim: 'token_event',
