@@ -7,7 +7,7 @@ set dotenv-required := false
 
 # TMUX_SESSION_NAME := env("TMUX_SESSION_NAME")
 
-alias inst := install-deps
+alias i := install-deps
 [group('deployment')]
 install-deps:
   npm install

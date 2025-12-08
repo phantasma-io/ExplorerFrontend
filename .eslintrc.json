@@ -24,8 +24,8 @@
   },
   "plugins": ["@typescript-eslint", "jest", "testing-library", "import"],
   "extends": [
+    "eslint:recommended",
     "prettier",
-    "airbnb",
     "plugin:react/recommended",
     "plugin:react-hooks/recommended",
     "plugin:@typescript-eslint/recommended",
