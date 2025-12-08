@@ -12,6 +12,11 @@ alias i := install-deps
 install-deps:
   npm install
 
+alias ri := reinstall
+[group('deployment')]
+reinstall:
+  rm -r node_modules
+  just i
 
 alias b := build
 [group('build')]
