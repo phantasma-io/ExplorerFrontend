@@ -1,4 +1,5 @@
 import React, { useState, useCallback } from 'react';
+import { useRouter } from 'next/router';
 import { Box, Grid, GridSpacing, IconButton, Tooltip } from '@mui/material';
 import { useThemeMode } from 'containers/ThemeProvider';
 import { Link } from 'components/display';
@@ -28,6 +29,7 @@ export const TableRow = ({
   clickable = false,
   linkOptions,
 }: TableRowProps) => {
+  const router = useRouter();
   const { echoActiveId } = useEcho();
   const { themeActive } = useThemeMode();
   const { isDark } = useDarkMode();
@@ -40,9 +42,11 @@ export const TableRow = ({
       const href = routes[linkOptions.route](echoActiveId as Locales, {
         id: raw[linkOptions.key],
       });
-      window.location.href = href;
+      router.push(href).catch(() => {
+        window.location.href = href;
+      });
     }
-  }, [linkOptions, echoActiveId, raw]);
+  }, [linkOptions, echoActiveId, raw, router]);
 
   return (
     <Box
