@@ -7,7 +7,7 @@ import { DatetimeOptsProvider } from 'hooks/datetime/DatetimeOptsProvider';
  * AppProviderProps
  */
 interface AppProviderProps {
-  children: JSX.Element;
+  children: React.ReactNode;
 }
 
 /**

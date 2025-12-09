@@ -71,6 +71,7 @@ export const useNftData = (data?: NftResults, loading?: boolean) => {
         showDesktop: true,
         linkOptions: {
           route: '/contract',
+          key: 'contract',
           title: echo('explore-contract'),
         },
       },
@@ -81,6 +82,7 @@ export const useNftData = (data?: NftResults, loading?: boolean) => {
         size: 3,
         linkOptions: {
           route: '/token',
+          key: 'symbol',
           title: echo('explore-token'),
         },
       },
