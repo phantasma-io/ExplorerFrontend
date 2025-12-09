@@ -1,4 +1,4 @@
-import { ListParams, ListResults } from './list';
+import { ListParams, ListResults, WithOption } from './list';
 import { EventResult } from './events';
 import { Address } from './addresses';
 
@@ -27,6 +27,15 @@ export interface Transaction {
 export interface TransactionParams extends ListParams {
   hash?: string;
   address?: string;
+  hash_partial?: string;
+  block_height?: string;
+  block_hash?: string;
+  q?: string;
+  chain?: string;
+  with_fiat?: WithOption;
+  with_nft?: WithOption;
+  with_neighbors?: WithOption;
+  with_script?: WithOption;
 }
 
 export interface TransactionResults extends ListResults {

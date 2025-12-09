@@ -1,24 +1,24 @@
-import React, { useState } from 'react';
-import { useEcho } from '@ricardojrmcom/echo';
-import { useEmpathy } from '@ricardojrmcom/empathy';
+import React, { useState, useCallback, useEffect } from 'react';
+import { useEcho } from 'hooks/useEcho';
 import { Box } from '@mui/material';
 import { endpoints } from 'cfg';
-import { useTable } from 'hooks';
+import { useApi, useTable } from 'hooks';
 import { useTokenData } from 'hooks/api';
 import { TokenResults, TokenParams } from 'types/api';
 import { Table } from 'components/table';
-import { TokensListFilters } from './filters';
+import { InlineSearch } from 'components/table/Controls/InlineSearch';
 
 export const TokensList = () => {
   const { echo } = useEcho();
 
   const tableProps = useTable();
-  const { limit, order_by, offset, with_total } = tableProps;
+  const { limit, order_by, offset, with_total, onPageData } = tableProps;
 
   // filter states
-  const [symbol, symbolSet] = useState<TokenParams['symbol']>(undefined);
+  const [q, qSet] = useState<TokenParams['q']>(undefined);
+  const [search, searchSet] = useState<string>('');
 
-  const { data, loading, error } = useEmpathy<TokenResults>(
+  const { data, loading, error } = useApi<TokenResults>(
     endpoints['/tokens']({
       offset,
       limit,
@@ -27,11 +27,32 @@ export const TokensList = () => {
       with_total,
       with_logo: 1,
       with_price: 1,
-      symbol,
+      q,
     } as TokenParams),
   );
 
   const { cols, rows, total } = useTokenData(data, loading);
+
+  useEffect(() => {
+    onPageData?.(data?.next_cursor ?? null, data?.tokens?.length || 0);
+  }, [data, onPageData]);
+
+  const applySearch = useCallback(
+    (value: string) => {
+      const trimmed = value.trim();
+      searchSet(trimmed);
+
+      if (!trimmed) {
+        qSet(undefined);
+        tableProps.pageSet(1);
+        return;
+      }
+
+      qSet(trimmed);
+      tableProps.pageSet(1);
+    },
+    [tableProps],
+  );
 
   return (
     <Box>
@@ -41,9 +62,6 @@ export const TokensList = () => {
         cols={cols}
         rows={rows}
         total={total}
-        dialogOptions={{
-          title: echo('details-token'),
-        }}
         linkOptions={{
           route: '/token',
           key: 'symbol',
@@ -52,7 +70,14 @@ export const TokensList = () => {
         {...tableProps}
         loading={loading}
         error={error}
-        addon={<TokensListFilters symbol={symbol} symbolSet={symbolSet} />}
+        addon={
+          <InlineSearch
+            value={search}
+            onChange={searchSet}
+            onSubmit={applySearch}
+            placeholder={echo('search')}
+          />
+        }
       />
     </Box>
   );

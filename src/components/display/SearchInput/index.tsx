@@ -10,7 +10,7 @@ import {
   Theme,
 } from '@mui/material';
 import { useRouter } from 'next/router';
-import { useEcho } from '@ricardojrmcom/ace';
+import { useEcho } from 'hooks/useEcho';
 import ClearAllIcon from '@mui/icons-material/ClearAll';
 import SearchIcon from '@mui/icons-material/Search';
 import { routes } from 'cfg';

@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { useEcho } from '@ricardojrmcom/echo';
+import { useEcho } from 'hooks/useEcho';
 import { Text } from 'components/display';
 import { routes } from 'cfg';
 import { DetailsLinkOptions } from 'types/components';

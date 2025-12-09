@@ -10,8 +10,6 @@ export { useEventData } from './events';
 
 export { useNftData } from './nfts';
 
-export { usePlatformData } from './platforms';
-
 export { useSeriesData } from './series';
 
 export { useTokenData } from './tokens';

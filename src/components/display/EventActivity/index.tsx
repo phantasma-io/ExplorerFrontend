@@ -2,7 +2,7 @@
 import React from 'react';
 import { nanoid } from 'nanoid';
 import { Box, Grid, Typography } from '@mui/material';
-import { useEcho } from '@ricardojrmcom/echo';
+import { useEcho } from 'hooks/useEcho';
 import { EventResult } from 'types/api';
 import { EventType } from '../EventType';
 

@@ -1,19 +1,12 @@
-import { useMemo, useState, useEffect } from 'react';
-import { useEcho } from '@ricardojrmcom/echo';
-import { unixmsToDate } from 'scripts';
+import { useMemo } from 'react';
+import { useEcho } from 'hooks/useEcho';
+import { unixToDate } from 'scripts';
 import { TableDisplayRow, TableDisplayCol } from 'types/table';
 import { EventResults } from 'types/api';
 
 export const useEventData = (data?: EventResults, loading?: boolean) => {
   const { echo } = useEcho();
-
-  const [total, totalSet] = useState<number>(0);
-
-  useEffect(() => {
-    if (data?.total_results && !loading) {
-      totalSet(data.total_results);
-    }
-  }, [data, loading]);
+  const total = data?.total_results ?? 0;
 
   const cols = useMemo<TableDisplayCol[]>(() => {
     return [
@@ -88,6 +81,14 @@ export const useEventData = (data?: EventResults, loading?: boolean) => {
         size: 2,
         showDesktop: true,
       },
+      {
+        id: 'date_unix',
+        label: `${echo('date')} (unix)`,
+        type: 'monospace',
+        size: 2,
+        showDesktop: true,
+        overviewOnly: true,
+      },
     ];
   }, [echo]);
 
@@ -101,7 +102,8 @@ export const useEventData = (data?: EventResults, loading?: boolean) => {
         item?.transaction_hash,
         item?.chain,
         item?.contract?.name,
-        item?.date ? unixmsToDate(item.date) : undefined,
+        item?.date ? unixToDate(item.date) : undefined,
+        item?.date,
       ]) as TableDisplayRow[];
     }
 
@@ -125,7 +127,7 @@ export const useEventData = (data?: EventResults, loading?: boolean) => {
       raw,
       withError,
     }),
-    [cols, rows, total, raw, withError],
+    [cols, rows, raw, total, withError],
   );
 
   return ctx;

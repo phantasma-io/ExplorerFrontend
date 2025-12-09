@@ -1,5 +1,4 @@
 import React, { useMemo, SetStateAction, Dispatch } from 'react';
-import { useLocalState } from '@ricardojrmcom/reaper';
 import { DatetimeOptsChoices, DatetimeOptsContext } from './useDatetimeOpts';
 
 export interface DatetimeOptsProviderProps {
@@ -11,17 +10,12 @@ export interface DatetimeOptsProviderProps {
 export const DatetimeOptsProvider = ({
   children,
 }: DatetimeOptsProviderProps) => {
-  const [dtOpts, dtOptsSet] = useLocalState<DatetimeOptsChoices>(
-    'PhantasmaExplorer-datetimeopts',
-    'local',
-  );
-
   const ctx = useMemo(
     () => ({
-      dtOpts,
-      dtOptsSet,
+      dtOpts: 'local' as DatetimeOptsChoices,
+      dtOptsSet: () => undefined,
     }),
-    [dtOpts, dtOptsSet],
+    [],
   );
 
   return (

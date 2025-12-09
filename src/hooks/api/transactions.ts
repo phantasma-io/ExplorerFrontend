@@ -1,23 +1,16 @@
-import { useMemo, useState, useEffect } from 'react';
-import { useEcho } from '@ricardojrmcom/echo';
+import { useMemo } from 'react';
+import { useEcho } from 'hooks/useEcho';
 import { TableDisplayRow, TableDisplayCol } from 'types/table';
 import { TransactionResults } from 'types/api';
 import { decodeBase16 } from 'scripts/decodeBase16';
-import { unixmsToDate } from 'scripts';
+import { unixToDate } from 'scripts';
 
 export const useTransactionData = (
   data?: TransactionResults,
   loading?: boolean,
 ) => {
   const { echo } = useEcho();
-
-  const [total, totalSet] = useState<number>(0);
-
-  useEffect(() => {
-    if (data?.total_results && !loading) {
-      totalSet(data.total_results);
-    }
-  }, [data, loading]);
+  const total = data?.total_results ?? 0;
 
   const cols = useMemo<TableDisplayCol[]>(() => {
     return [
@@ -60,6 +53,14 @@ export const useTransactionData = (
         showDesktop: true,
       },
       {
+        id: 'date_unix',
+        label: `${echo('date')} (unix)`,
+        type: 'monospace',
+        size: 2,
+        showDesktop: true,
+        overviewOnly: true,
+      },
+      {
         id: 'result',
         label: echo('result'),
         type: 'monospace',
@@ -87,7 +88,8 @@ export const useTransactionData = (
         item?.hash,
         item?.state === 'Halt' ? 'Successful' : item?.state,
         item?.block_height,
-        item?.date ? unixmsToDate(item.date) : undefined,
+        item?.date ? unixToDate(item.date) : undefined,
+        item?.date,
         item?.result,
         item?.payload ? decodeBase16(item?.payload) : null,
         item?.fee,
@@ -114,7 +116,7 @@ export const useTransactionData = (
       raw,
       withError,
     }),
-    [cols, rows, total, raw, withError],
+    [cols, rows, raw, total, withError],
   );
 
   return ctx;

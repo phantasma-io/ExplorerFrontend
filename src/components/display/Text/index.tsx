@@ -1,6 +1,5 @@
 import React, { useMemo } from 'react';
 import { useSnackbar } from 'notistack';
-import bigint from 'bigintjs';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import {
   Box,
@@ -11,13 +10,13 @@ import {
   IconButton,
   Tooltip,
 } from '@mui/material';
-import { useEcho } from '@ricardojrmcom/echo';
-import { useFury } from '@ricardojrmcom/fury';
+import { useEcho } from 'hooks/useEcho';
+import { useThemeMode } from 'containers/ThemeProvider';
 import {
   numberFormat,
   stringCapitalize,
   stringTruncate,
-} from '@ricardojrmcom/dervish';
+} from 'scripts/format';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import EventIcon from '@mui/icons-material/Event';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
@@ -146,7 +145,7 @@ export const Text = ({
   ...propsTypo
 }: TextProps) => {
   const { enqueueSnackbar } = useSnackbar();
-  const { furyActive } = useFury();
+  const { themeActive } = useThemeMode();
   const { echo } = useEcho();
   const { isDark } = useDarkMode();
   const { dtOpts } = useDatetimeOpts();
@@ -175,18 +174,21 @@ export const Text = ({
       }
     }
 
-    if (formatNumber) {
+    if (formatNumber !== undefined && formatNumber !== null) {
       if (Number(formatNumber) === formatNumber && formatNumber % 1 !== 0) {
         return formatNumber;
       }
 
-      const bigNumber = bigint(formatNumber);
       const formattedNumber = numberFormat(
         parseFloat(formatNumber as string),
         formatNumberStr,
       );
       if (Number.isNaN(formattedNumber) || formattedNumber === 'NaN') {
-        return bigNumber.toString();
+        try {
+          return BigInt(formatNumber as string).toString();
+        } catch {
+          return `${formatNumber}`;
+        }
       }
 
       return formattedNumber;
@@ -213,6 +215,8 @@ export const Text = ({
     translate,
     echo,
     capitalize,
+    dtOpts,
+    formatDateIcon,
   ]);
 
   const result = useMemo(() => {
@@ -283,7 +287,7 @@ export const Text = ({
                 >
                   <ContentCopyIcon
                     style={{
-                      fontSize: furyActive.typography[variant].fontSize,
+                      fontSize: themeActive.typography[variant].fontSize,
                       opacity: 0.45,
                     }}
                   />
@@ -306,7 +310,7 @@ export const Text = ({
               >
                 <ArrowForwardIosIcon
                   style={{
-                    fontSize: furyActive.typography[variant].fontSize,
+                    fontSize: themeActive.typography[variant].fontSize,
                     width: 'auto',
                   }}
                 />

@@ -2,14 +2,13 @@ import React from 'react';
 import { GridSpacing } from '@mui/material';
 import { DetailsLinkOptions, DetailsItem, DetailsValue } from './components';
 
-export type TableViewModes = 'desktop' | 'mobile';
-
 export type TableOrderDirection = 'asc' | 'desc';
 
 export interface TableDisplayCol extends DetailsItem {
   size: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
   showDesktop?: boolean;
   append?: string;
+  overviewOnly?: boolean;
 }
 
 export type TableDisplayRow = DetailsValue[];
@@ -20,11 +19,11 @@ export interface TableDisplayData {
 }
 
 export interface TableUrlParams {
-  total: number;
   page: number;
   pageSize: number;
   orderBy: string;
   orderDirection: TableOrderDirection;
+  hasNext: boolean;
 }
 
 export interface TableParamControls {
@@ -40,13 +39,8 @@ export interface TableDisplayProps extends TableDisplayData {
   tableId: string;
   height?: string;
   spacing?: GridSpacing;
-  withDetails?: boolean;
-  dialogOptions?: {
-    title: string;
-  };
   linkOptions?: DetailsLinkOptions;
   loading?: boolean;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   error?: any;
-  viewMode?: TableViewModes;
 }

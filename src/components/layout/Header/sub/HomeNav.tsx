@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, Grid } from '@mui/material';
-import { useEcho } from '@ricardojrmcom/echo';
+import { useEcho } from 'hooks/useEcho';
 import { routes } from 'cfg';
 import { Image, Link } from 'components/display';
 import { Locales } from 'types/locales';

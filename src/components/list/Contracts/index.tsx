@@ -1,37 +1,55 @@
-import React, { useState } from 'react';
-import { useEcho } from '@ricardojrmcom/echo';
-import { useEmpathy } from '@ricardojrmcom/empathy';
+import React, { useState, useCallback, useEffect } from 'react';
+import { useEcho } from 'hooks/useEcho';
 import { Box } from '@mui/material';
 import { endpoints } from 'cfg';
-import { useTable } from 'hooks';
+import { useApi, useTable } from 'hooks';
 import { useContractData } from 'hooks/api';
 import { ContractResults, ContractParams } from 'types/api';
 import { Table } from 'components/table';
-import { ContractsListFilters } from './filters';
+import { InlineSearch } from 'components/table/Controls/InlineSearch';
 
 export const ContractsList = () => {
   const { echo } = useEcho();
 
-  const tableProps = useTable();
-  const { limit, order_by, offset, with_total } = tableProps;
+  const tableProps = useTable('cursor');
+  const { limit, order_by, cursor, onPageData, resetPagination } = tableProps;
 
   // filter states
-  const [hash, hashSet] = useState<ContractParams['hash']>(undefined);
-  const [symbol, symbolSet] = useState<ContractParams['symbol']>(undefined);
+  const [q, qSet] = useState<ContractParams['q']>(undefined);
+  const [search, searchSet] = useState<string>('');
 
-  const { data, loading, error } = useEmpathy<ContractResults>(
+  const { data, loading, error } = useApi<ContractResults>(
     endpoints['/contracts']({
-      offset,
       limit,
       order_by,
       order_direction: 'asc',
-      with_total,
-      hash,
-      symbol,
+      cursor: cursor || undefined,
+      q,
     } as ContractParams),
   );
 
-  const { cols, rows, total } = useContractData(data, loading);
+  const { cols, rows } = useContractData(data, loading);
+
+  useEffect(() => {
+    onPageData?.(data?.next_cursor ?? null, data?.contracts?.length || 0);
+  }, [data, onPageData]);
+
+  const applySearch = useCallback(
+    (value: string) => {
+      const trimmed = value.trim();
+      searchSet(trimmed);
+
+      if (!trimmed) {
+        qSet(undefined);
+        resetPagination?.();
+        return;
+      }
+
+      qSet(trimmed);
+      resetPagination?.();
+    },
+    [resetPagination],
+  );
 
   return (
     <Box>
@@ -40,10 +58,6 @@ export const ContractsList = () => {
         raw={data?.contracts || []}
         cols={cols}
         rows={rows}
-        total={total}
-        dialogOptions={{
-          title: echo('details-contract'),
-        }}
         linkOptions={{
           route: '/contract',
           key: 'name',
@@ -53,11 +67,11 @@ export const ContractsList = () => {
         loading={loading}
         error={error}
         addon={
-          <ContractsListFilters
-            hash={hash}
-            hashSet={hashSet}
-            symbol={symbol}
-            symbolSet={symbolSet}
+          <InlineSearch
+            value={search}
+            onChange={searchSet}
+            onSubmit={applySearch}
+            placeholder={echo('search')}
           />
         }
       />

@@ -1,7 +1,7 @@
 import React, { useMemo, useCallback, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import { useEcho } from '@ricardojrmcom/echo';
-import { useEmpathy } from '@ricardojrmcom/empathy';
+import { useEcho } from 'hooks/useEcho';
+import { useApi } from 'hooks';
 import { Box, Paper, Typography, Grid, Button } from '@mui/material';
 import { endpoints, routes } from 'cfg';
 import { Locales } from 'types/locales';
@@ -15,58 +15,44 @@ interface SingleResult {
   type: string;
 }
 
+type SearchMap = {
+  [endpoint: string]: { found: boolean; value: string };
+};
+
 export const SearchResults = () => {
   const { query, push } = useRouter();
 
   const { echoActiveId, echo } = useEcho();
 
-  const { data, loading, error } = useEmpathy<SearchResultsType>(
+  const { data, loading, error } = useApi<SearchResultsType>(
     endpoints['/searches']({
       value: query.id,
     } as SearchParams),
   );
 
-  const isEmpty = useMemo(() => {
-    if (data && data.result) {
-      let empty = true;
-      data.result.forEach((item) => {
-        if (item.found) {
-          empty = false;
-        }
-      });
-      return empty;
-    }
-    return false;
-  }, [data]);
+  const { isEmpty, isSingle, byType } = useMemo(() => {
+    const result = data?.result || [];
+    const foundItems = result.filter((item) => item.found);
 
-  const isSingle: SingleResult | undefined = useMemo(() => {
-    if (!isEmpty && data && data.result) {
-      let count = 0;
-      let type = '';
-      data.result.forEach((item) => {
-        if (item.found) {
-          // eslint-disable-next-line no-plusplus
-          count++;
-          type = item.endpoint_name;
-        }
-      });
-      return {
-        single: count === 1,
-        type,
-      };
-    }
+    const map: SearchMap = {};
+    foundItems.forEach((item) => {
+      map[item.endpoint_name] = { found: item.found, value: query.id as string };
+    });
+
     return {
-      single: false,
-      type: '',
+      isEmpty: foundItems.length === 0,
+      isSingle: {
+        single: foundItems.length === 1,
+        type: foundItems[0]?.endpoint_name || '',
+      } as SingleResult,
+      byType: map,
     };
-  }, [data, isEmpty]);
+  }, [data?.result, query.id]);
 
   const switchType = useCallback((type: string) => {
     switch (type) {
       case 'tokens':
         return '/token';
-      case 'platforms':
-        return '/platform';
       case 'organizations':
         return '/dao';
       case 'contracts':
@@ -77,7 +63,6 @@ export const SearchResults = () => {
         return '/block';
       case 'transactions':
         return '/transaction';
-      case 'addresses':
       default:
         return '/address';
     }
@@ -96,6 +81,7 @@ export const SearchResults = () => {
   return (
     <Paper>
       <Box p={2} minHeight="210px">
+        <>
         <Box pb={1.5}>
           <Grid container spacing={1} alignItems="center">
             <Grid item>
@@ -117,25 +103,13 @@ export const SearchResults = () => {
                   {echo('search-results')}:
                 </Typography>
               </Grid>
-              {data && data.result[0].found && (
-                <Grid item xs={12}>
-                  <Link
-                    href={routes['/address'](echoActiveId as Locales, {
-                      id: query.id as string,
-                    })}
-                  >
-                    <Button>
-                      {query.id} ({echo('address')})
-                    </Button>
-                  </Link>
-                </Grid>
-              )}
-              {data && data.result[1].found && (
+              {byType.blocks?.found && (
                 <Grid item xs={12}>
                   <Link
                     href={routes['/block'](echoActiveId as Locales, {
                       id: query.id as string,
                     })}
+                    asChild
                   >
                     <Button>
                       {query.id} ({echo('block')})
@@ -143,12 +117,13 @@ export const SearchResults = () => {
                   </Link>
                 </Grid>
               )}
-              {data && data.result[3].found && (
+              {byType.contracts?.found && (
                 <Grid item xs={12}>
                   <Link
                     href={routes['/contract'](echoActiveId as Locales, {
                       id: query.id as string,
                     })}
+                    asChild
                   >
                     <Button>
                       {query.id} ({echo('contract')})
@@ -156,25 +131,13 @@ export const SearchResults = () => {
                   </Link>
                 </Grid>
               )}
-              {data && data.result[5].found && (
-                <Grid item xs={12}>
-                  <Link
-                    href={routes['/platform'](echoActiveId as Locales, {
-                      id: query.id as string,
-                    })}
-                  >
-                    <Button>
-                      {query.id} ({echo('platform')})
-                    </Button>
-                  </Link>
-                </Grid>
-              )}
-              {data && data.result[4].found && (
+              {byType.organizations?.found && (
                 <Grid item xs={12}>
                   <Link
                     href={routes['/dao'](echoActiveId as Locales, {
                       id: query.id as string,
                     })}
+                    asChild
                   >
                     <Button>
                       {query.id} ({echo('dao')})
@@ -182,12 +145,13 @@ export const SearchResults = () => {
                   </Link>
                 </Grid>
               )}
-              {data && data.result[6].found && (
+              {byType.tokens?.found && (
                 <Grid item xs={12}>
                   <Link
                     href={routes['/token'](echoActiveId as Locales, {
                       id: query.id as string,
                     })}
+                    asChild
                   >
                     <Button>
                       {query.id} ({echo('token')})
@@ -195,12 +159,13 @@ export const SearchResults = () => {
                   </Link>
                 </Grid>
               )}
-              {data && data.result[7].found && (
+              {byType.transactions?.found && (
                 <Grid item xs={12}>
                   <Link
                     href={routes['/transaction'](echoActiveId as Locales, {
                       id: query.id as string,
                     })}
+                    asChild
                   >
                     <Button>
                       {query.id} ({echo('transaction')})
@@ -211,6 +176,7 @@ export const SearchResults = () => {
             </Grid>
           </Box>
         )}
+        </>
       </Box>
     </Paper>
   );

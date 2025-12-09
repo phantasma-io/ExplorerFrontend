@@ -7,24 +7,29 @@ set dotenv-required := false
 
 # TMUX_SESSION_NAME := env("TMUX_SESSION_NAME")
 
-alias inst := install-deps
+alias i := install-deps
 [group('deployment')]
 install-deps:
-  yarn install
+  npm install
 
+alias ri := reinstall
+[group('deployment')]
+reinstall:
+  rm -r node_modules
+  just i
 
 alias b := build
 [group('build')]
 build:
-  yarn build
+  npm run build
 
 [group('run')]
 run:
-    yarn dev
+    npm run dev
 
 [group('run')]
 r0:
-    yarn next
+    npm run dev
 
 [group('run')]
 r:

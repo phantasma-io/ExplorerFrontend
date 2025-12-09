@@ -1,8 +1,8 @@
 import React, { useMemo } from 'react';
 import { Box } from '@mui/material';
 import { useRouter } from 'next/router';
-import { useEmpathy } from '@ricardojrmcom/empathy';
-import { useEcho } from '@ricardojrmcom/echo';
+import { useApi } from 'hooks';
+import { useEcho } from 'hooks/useEcho';
 import { NavTabs, NavTabsRecord, Breadcrumbs } from 'components/layout';
 import { endpoints, routes } from 'cfg';
 import { Locales } from 'types/locales';
@@ -20,7 +20,7 @@ export const ViewNft = ({ tabForce = 'overview' }: ViewNftProps) => {
 
   const { query } = useRouter();
 
-  const { data, error, loading } = useEmpathy<NftResults>(
+  const { data, error, loading } = useApi<NftResults>(
     endpoints['/nfts']({
       token_id: (query?.id as string) || '',
       with_logo: 1,

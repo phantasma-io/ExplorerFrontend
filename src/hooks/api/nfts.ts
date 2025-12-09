@@ -1,19 +1,12 @@
-import { useMemo, useState, useEffect } from 'react';
-import { useEcho } from '@ricardojrmcom/echo';
+import { useMemo } from 'react';
+import { useEcho } from 'hooks/useEcho';
 import { TableDisplayRow, TableDisplayCol } from 'types/table';
 import { NftResults } from 'types/api';
-import { unixmsToDate } from 'scripts';
+import { unixToDate } from 'scripts';
 
 export const useNftData = (data?: NftResults, loading?: boolean) => {
   const { echo } = useEcho();
-
-  const [total, totalSet] = useState<number>(0);
-
-  useEffect(() => {
-    if (data?.total_results && !loading) {
-      totalSet(data.total_results);
-    }
-  }, [data, loading]);
+  const total = data?.total_results ?? 0;
 
   const cols = useMemo<TableDisplayCol[]>(() => {
     return [
@@ -73,15 +66,23 @@ export const useNftData = (data?: NftResults, loading?: boolean) => {
       {
         id: 'contract',
         label: echo('contract'),
-        type: 'text',
+        type: 'monospace',
         size: 2,
         showDesktop: true,
+        linkOptions: {
+          route: '/contract',
+          title: echo('explore-contract'),
+        },
       },
       {
         id: 'symbol',
         label: echo('symbol'),
-        type: 'text',
+        type: 'monospace',
         size: 3,
+        linkOptions: {
+          route: '/token',
+          title: echo('explore-token'),
+        },
       },
       // {
       //   id: 'rom',
@@ -208,18 +209,18 @@ export const useNftData = (data?: NftResults, loading?: boolean) => {
     if (data) {
       return data?.nfts?.map((item) => [
         // thumb
-        item?.nft_metadata?.image,
+        item?.nft_metadata?.imageURL,
         // data
         item?.nft_metadata?.name,
         item?.nft_metadata?.description,
-        item?.nft_metadata?.image,
+        item?.nft_metadata?.imageURL,
         item?.series?.current_supply,
         item?.series?.max_supply,
         item?.nft_metadata?.mint_number,
         item?.nft_metadata?.mint_date
-          ? unixmsToDate(item?.nft_metadata?.mint_date)
+          ? unixToDate(item?.nft_metadata?.mint_date)
           : undefined,
-        item?.contract?.name,
+        item?.contract?.hash || item?.contract?.name,
         item?.symbol,
         // item?.nft_metadata?.rom,
         // item?.nft_metadata?.ram,

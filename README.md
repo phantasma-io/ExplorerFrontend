@@ -129,6 +129,8 @@ https://explorer.phantasma.info/
 
 ## Installation without docker
 
+Node.js 24.x with npm (see `.nvmrc`) is required for local development and builds.
+
 ### <b>Requirements</b>
 
 <b>Baseline:</b>
@@ -151,7 +153,6 @@ https://explorer.phantasma.info/
 - White label
 - Localization
 - Data visualization
-- Component library with `storybook`
 - Unit tests with `jest` and `react-testing-library`
 - Integration / e2e tests with `cypress`
 - CI workflows with `github-actions`
@@ -166,38 +167,36 @@ https://explorer.phantasma.info/
 
 ```tsx
 // install deps
-yarn install
+npm install
 
 // run dev server
-yarn dev
+npm run dev
 
 // build app
-yarn build
+npm run build
 
 // start app
-yarn start
+npm start
 
 // export app
-yarn export
+npm run export
 
 // run lint
-yarn lint
+npm run lint
 
 // run unit tests
-yarn test
+npm test
 
 // run e2e tests
-yarn cy:run
+npm run cy:run
 
-// run storybook
-yarn sb
 ```
 
 <br />
 
 ### <b>Dev Dependencies</b>
 
-- `Yarn`
+- `npm`
 - `Typescript`
 - `React`
 - `Material-UI`

@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { nanoid } from 'nanoid';
 import { Box, Grid } from '@mui/material';
-import { useFury } from '@ricardojrmcom/fury';
+import { useThemeMode } from 'containers/ThemeProvider';
 import { TableDisplayProps } from 'types/table';
 import { useRenderDetails } from 'hooks';
 import { Loading, Empty, Error } from 'components/layout';
@@ -21,7 +21,7 @@ export const TableDisplayMobile = ({
   loading,
   error,
 }: TableDisplayMobileProps) => {
-  const { furyActive } = useFury();
+  const { themeActive } = useThemeMode();
   const renderDetails = useRenderDetails();
 
   const isSuccess = useMemo(() => !loading && !error, [loading, error]);
@@ -44,7 +44,7 @@ export const TableDisplayMobile = ({
         <Box
           key={nanoid()}
           py={2}
-          sx={{ borderTop: `1px solid ${furyActive.palette.divider}` }}
+          sx={{ borderTop: `1px solid ${themeActive.palette.divider}` }}
         >
           <Grid spacing={spacing} container>
             {cols.map((col, i) =>
@@ -74,16 +74,7 @@ export const TableDisplayMobile = ({
     }
 
     return null;
-  }, [
-    cols,
-    error,
-    isSuccess,
-    loading,
-    rows,
-    spacing,
-    renderDetails,
-    furyActive,
-  ]);
+  }, [cols, error, isSuccess, loading, rows, spacing, renderDetails, themeActive]);
 
   return <Box sx={{ overflow: 'auto', height }}>{content}</Box>;
 };

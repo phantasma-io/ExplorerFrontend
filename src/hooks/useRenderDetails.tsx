@@ -23,7 +23,7 @@ type RenderDetails = (
 export const useRenderDetails = () => {
   const renderDetails = useCallback<RenderDetails>(
     (type, value, label, linkOptions, inTable, append) => {
-      if (value) {
+      if (value !== null && value !== undefined) {
         switch (type) {
           case 'thumbnail': {
             const { thumb, link } = parseIpfs(value as string);

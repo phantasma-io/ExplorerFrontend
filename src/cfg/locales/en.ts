@@ -1,6 +1,6 @@
-import { EchoMsgs } from '@ricardojrmcom/echo';
+import { LocaleMessages } from 'types/locales';
 
-export const en: EchoMsgs = {
+export const en: LocaleMessages = {
   // sys
   example: 'example en',
   wip: '🚧 Work in progress 🚧',
@@ -31,6 +31,7 @@ export const en: EchoMsgs = {
   event: 'Event',
   // table
   'table-pageSize': 'Rows',
+  'table-page': 'Page',
   // meta
   'meta-title': 'Phantasma Explorer',
   'meta-home': `Phantasma is a blockchain for content distribution of NFTs, Gaming and dApps that is fast, secure and decentralized.`,
@@ -115,7 +116,6 @@ export const en: EchoMsgs = {
   'tab-script': 'Script',
   'tab-members': 'Members',
   'tab-addresses': 'Addresses',
-  'tab-platforms': 'Platforms',
   'tab-series': 'Series',
   'tab-nfts': 'NFTs',
   'tab-instructions': 'Instructions',
@@ -126,7 +126,6 @@ export const en: EchoMsgs = {
   'details-block': 'Block details',
   'details-contract': 'Contract details',
   'details-dao': 'DAO details',
-  'details-platform': 'Platform details',
   'details-event': 'Event details',
   'details-series': 'Series details',
   'details-nft': 'NFT details',
@@ -139,7 +138,6 @@ export const en: EchoMsgs = {
   'explore-contract': 'Explore contract',
   'explore-dao': 'Explore DAO',
   'explore-event': 'Explore event',
-  'explore-platform': 'Explore platform',
   'explore-series': 'Explore series',
   'explore-nft': 'Explore NFT',
   'explore-token': 'Explore token',
@@ -165,6 +163,8 @@ export const en: EchoMsgs = {
   series_creator: 'Series creator',
   mint_date: 'Mint date',
   mint_number: 'Mint #',
+  'metadata-nft': 'NFT metadata',
+  'metadata-series': 'Series metadata',
   ram: 'RAM',
   rom: 'ROM',
   nft: 'NFT',
@@ -200,7 +200,7 @@ export const en: EchoMsgs = {
   'filter-daos': 'Filter DAOs',
   'filter-events': 'Filter events',
   'filter-nfts': 'Filter NFTs',
-  'filter-platforms': 'Filter platforms',
+  event_kind_short: 'Event',
   'filter-series': 'Filter series',
   'filter-tokens': 'Filter tokens',
   'filter-transactions': 'Filter transactions',

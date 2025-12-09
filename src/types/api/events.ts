@@ -17,6 +17,8 @@ export interface EventResult extends EventData {
   series?: Series;
   token_id?: string;
   transaction_hash?: string;
+  payload_json?: string;
+  raw_data?: string;
 }
 
 export interface EventParams extends ListParams {
@@ -31,9 +33,14 @@ export interface EventParams extends ListParams {
   date_less?: string;
   event_id?: string;
   event_kind?: string;
+  event_kind_partial?: string;
+  nft_description_partial?: string;
+  nft_name_partial?: string;
+  q?: string;
   token_id?: string;
   transaction_hash?: string;
   with_blacklisted?: WithOption;
+  with_event_data?: WithOption;
   with_fiat?: WithOption;
   with_metadata?: WithOption;
   with_nsfw?: WithOption;

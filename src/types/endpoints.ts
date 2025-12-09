@@ -5,30 +5,29 @@ import {
   EventParams,
   TokenParams,
   SeriesParams,
-  AddressParams,
   ContractParams,
   EventKindParams,
   IntructionParams,
   TransactionParams,
   BlockParams,
-  PlatformParams,
   HistoryPriceParams,
   OracleParams,
   SearchParams,
+  AddressParams,
 } from './api';
 
 export type ExplorerEndpoints =
-  | '/addresses'
   | '/blocks'
   | '/chains'
+  | '/addresses'
   | '/contracts'
   | '/instructions'
   | '/eventkinds'
+  | '/eventKindsWithEvents'
   | '/events'
   | '/nfts'
   | '/oracles'
   | '/organizations'
-  | '/platforms'
   | '/series'
   | '/searches'
   | '/historyprices'
@@ -36,7 +35,6 @@ export type ExplorerEndpoints =
   | '/transactions';
 
 export type ApiParams =
-  | AddressParams
   | BlockParams
   | ChainParams
   | ContractParams
@@ -45,8 +43,8 @@ export type ApiParams =
   | IntructionParams
   | NftParams
   | OracleParams
+  | AddressParams
   | DaoParams
-  | PlatformParams
   | HistoryPriceParams
   | SeriesParams
   | SearchParams

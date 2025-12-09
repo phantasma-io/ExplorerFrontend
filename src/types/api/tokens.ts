@@ -30,6 +30,7 @@ export interface Token {
 
 export interface TokenParams extends ListParams {
   symbol?: string;
+  q?: string;
   with_logo?: WithOption;
   with_price?: WithOption;
 }

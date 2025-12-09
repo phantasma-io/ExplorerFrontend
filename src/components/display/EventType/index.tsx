@@ -1,11 +1,16 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useMemo } from 'react';
 import { Box, Grid, Button } from '@mui/material';
-import { useEcho } from '@ricardojrmcom/echo';
-import { EventResult, EventTypes, EventKinds } from 'types/api';
+import { useEcho } from 'hooks/useEcho';
+import {
+  EventResult,
+  EventTypes,
+  EventKinds,
+  SpecialResolutionCall,
+} from 'types/api';
 import { eventTypeMap } from 'cfg/eventTypes';
 import { DetailsNumber, DetailsText } from 'components/details';
-import { Link } from 'components/display';
+import { Link, Text } from 'components/display';
 import { routes } from 'cfg';
 import { Locales } from 'types/locales';
 
@@ -38,6 +43,107 @@ export const EventType = ({ data }: EventTypeProps) => {
     }
     return undefined;
   }, [kind]);
+
+  const rawPayload = useMemo(() => {
+    return (
+      data?.unknown_event?.payload_json ??
+      data?.payload_json ??
+      data?.string_event?.string_value ??
+      ''
+    );
+  }, [data]);
+
+  const rawData = useMemo(() => {
+    return data?.unknown_event?.raw_data ?? data?.raw_data ?? '';
+  }, [data]);
+
+  const formatResolutionCall = (call?: SpecialResolutionCall) => {
+    if (!call) return '';
+    const method =
+      call.method || (call.method_id !== undefined ? `${call.method_id}` : '');
+    const module =
+      call.module || (call.module_id !== undefined ? `${call.module_id}` : '');
+    if (module && method) return `${module}.${method}`;
+    return module || method || '';
+  };
+
+  const flattenResolutionCalls = (calls?: SpecialResolutionCall[]) => {
+    if (!calls?.length) return [];
+
+    const result: SpecialResolutionCall[] = [];
+    const walk = (items?: SpecialResolutionCall[]) => {
+      if (!items) return;
+      items.forEach((item) => {
+        result.push(item);
+        if (item.calls?.length) {
+          walk(item.calls);
+        }
+      });
+    };
+
+    walk(calls);
+    return result;
+  };
+
+  const resolutionCalls = useMemo(
+    () => flattenResolutionCalls(data?.special_resolution_event?.calls),
+    [data?.special_resolution_event?.calls],
+  );
+
+  const renderUnknown = useMemo(() => {
+    if (!data || (!rawPayload && !rawData)) return null;
+
+    const formatPayload = (value?: string) => {
+      if (!value) return '';
+      try {
+        return JSON.stringify(JSON.parse(value), null, 2);
+      } catch {
+        return value;
+      }
+    };
+
+    const payloadFormatted = formatPayload(rawPayload);
+    const rawDataFormatted = rawData && rawData !== rawPayload ? rawData : '';
+
+    return (
+      <Box my={1}>
+        <Grid container spacing={1} alignItems="center">
+          <Grid item md={2}>
+            <Link
+              href={routes['/event'](echoActiveId as Locales, {
+                id: `${data?.event_id}`,
+              })}
+              sx={{ textDecoration: 'none' }}
+            >
+              <Button fullWidth color="warning" variant="contained" size="small">
+                {data?.event_kind || 'Unknown'}
+              </Button>
+            </Link>
+          </Grid>
+          <Grid item md={10}>
+            {payloadFormatted && (
+              <Text
+                label={echo('payload')}
+                value={payloadFormatted}
+                variant="body2"
+                monospace
+                wordBreak="break-word"
+              />
+            )}
+            {!payloadFormatted && rawDataFormatted && (
+              <Text
+                label={echo('raw-data')}
+                value={rawDataFormatted}
+                variant="body2"
+                monospace
+                wordBreak="break-word"
+              />
+            )}
+          </Grid>
+        </Grid>
+      </Box>
+    );
+  }, [data, echo, echoActiveId, rawData, rawPayload]);
 
   const content = useMemo(() => {
     if (kind && type) {
@@ -173,6 +279,134 @@ export const EventType = ({ data }: EventTypeProps) => {
                         key: 'address',
                         title: echo('explore-address'),
                       }}
+                    />
+                  )}
+                </Grid>
+              </Grid>
+            </Box>
+          );
+        case 'token_create_event':
+          return (
+            <Box my={1}>
+              <Grid
+                container
+                spacing={1}
+                justifyContent="flex-start"
+                justifyItems="flex-start"
+                alignContent="center"
+                alignItems="center"
+              >
+                <Grid item md={2}>
+                  <Link
+                    href={routes['/event'](echoActiveId as Locales, {
+                      id: `${data?.event_id}`,
+                    })}
+                    sx={{ textDecoration: 'none' }}
+                  >
+                    <Button fullWidth color="success" variant="contained" size="small">
+                      {kind}
+                    </Button>
+                  </Link>
+                </Grid>
+                <Grid item md={8}>
+                  {data?.token_create_event?.token?.symbol && (
+                    <DetailsText
+                      label="token"
+                      value={data?.token_create_event?.token?.symbol}
+                    />
+                  )}
+                  {data?.token_create_event?.max_supply && (
+                    <DetailsText
+                      label="max supply"
+                      value={data?.token_create_event?.max_supply}
+                    />
+                  )}
+                  {data?.token_create_event?.decimals && (
+                    <DetailsText
+                      label="decimals"
+                      value={data?.token_create_event?.decimals}
+                    />
+                  )}
+                  {data?.token_create_event?.is_non_fungible !== undefined && (
+                    <DetailsText
+                      label="non-fungible"
+                      value={`${data?.token_create_event?.is_non_fungible}`}
+                    />
+                  )}
+                  {data?.token_create_event?.carbon_token_id && (
+                    <DetailsText
+                      label="carbon token"
+                      value={data?.token_create_event?.carbon_token_id}
+                    />
+                  )}
+                </Grid>
+              </Grid>
+            </Box>
+          );
+        case 'token_series_event':
+          return (
+            <Box my={1}>
+              <Grid
+                container
+                spacing={1}
+                justifyContent="flex-start"
+                justifyItems="flex-start"
+                alignContent="center"
+                alignItems="center"
+              >
+                <Grid item md={2}>
+                  <Link
+                    href={routes['/event'](echoActiveId as Locales, {
+                      id: `${data?.event_id}`,
+                    })}
+                    sx={{ textDecoration: 'none' }}
+                  >
+                    <Button fullWidth color="success" variant="contained" size="small">
+                      {kind}
+                    </Button>
+                  </Link>
+                </Grid>
+                <Grid item md={8}>
+                  {data?.token_series_event?.series_id && (
+                    <DetailsText
+                      label="series"
+                      value={data?.token_series_event?.series_id}
+                    />
+                  )}
+                  {data?.token_series_event?.token?.symbol && (
+                    <DetailsText
+                      label="token"
+                      value={data?.token_series_event?.token?.symbol}
+                    />
+                  )}
+                  {data?.token_series_event?.owner?.address && (
+                    <DetailsText
+                      label="owner"
+                      value={data?.token_series_event?.owner?.address}
+                    />
+                  )}
+                  {data?.token_series_event?.max_supply && (
+                    <DetailsText
+                      label="max supply"
+                      value={data?.token_series_event?.max_supply}
+                    />
+                  )}
+                  {data?.token_series_event?.max_mint && (
+                    <DetailsText
+                      label="max mint"
+                      value={data?.token_series_event?.max_mint}
+                    />
+                  )}
+                  {data?.token_series_event?.carbon_series_id && (
+                    <DetailsText
+                      label="carbon series"
+                      value={data?.token_series_event?.carbon_series_id}
+                    />
+                  )}
+                  {data?.token_series_event?.carbon_token_id && (
+                    <DetailsText
+                      label="carbon token"
+                      value={data?.token_series_event?.carbon_token_id}
                     />
                   )}
                 </Grid>
@@ -394,24 +628,27 @@ export const EventType = ({ data }: EventTypeProps) => {
                   </Link>
                 </Grid>
                 <Grid item md={2}>
-                  {data?.gas_event?.fee && (
-                    <DetailsNumber
-                      label={echo('fee')}
-                      value={parseFloat(data?.gas_event?.fee)}
-                      append=" KCAL"
-                    />
-                  )}
-                </Grid>
-                <Grid item md={2}>
-                  <Box>
-                    {data?.gas_event?.amount && (
+                  {data?.gas_event?.fee !== undefined &&
+                    data?.gas_event?.fee !== null && (
                       <DetailsNumber
-                        label={echo('amount')}
-                        value={parseInt(data?.gas_event?.amount, 10)}
+                        label={echo('fee')}
+                        value={parseFloat(`${data?.gas_event?.fee}`)}
                         append=" KCAL"
                       />
                     )}
-                  </Box>
+                </Grid>
+                <Grid item md={2}>
+                  {data?.gas_event?.amount !== undefined &&
+                  data?.gas_event?.amount !== null &&
+                  data?.gas_event?.amount !== '' ? (
+                    <DetailsText
+                      label={echo('amount')}
+                      value={data?.gas_event?.amount}
+                      append=" KCAL"
+                    />
+                  ) : (
+                    <DetailsText label={echo('amount')} value="unlimited" />
+                  )}
                 </Grid>
                 <Grid item md={6}>
                   {data?.gas_event?.address?.address && (
@@ -429,6 +666,183 @@ export const EventType = ({ data }: EventTypeProps) => {
               </Grid>
             </Box>
           );
+        case 'governance_gas_config_event': {
+          const fields =
+            [
+              { label: 'version', value: data?.governance_gas_config_event?.version },
+              { label: 'fee multiplier', value: data?.governance_gas_config_event?.fee_multiplier },
+              { label: 'fee shift', value: data?.governance_gas_config_event?.fee_shift },
+              { label: 'gas token id', value: data?.governance_gas_config_event?.gas_token_id },
+              { label: 'data token id', value: data?.governance_gas_config_event?.data_token_id },
+              { label: 'minimum gas offer', value: data?.governance_gas_config_event?.minimum_gas_offer },
+              { label: 'gas fee transfer', value: data?.governance_gas_config_event?.gas_fee_transfer },
+              { label: 'gas fee query', value: data?.governance_gas_config_event?.gas_fee_query },
+              { label: 'gas fee per byte', value: data?.governance_gas_config_event?.gas_fee_per_byte },
+              {
+                label: 'gas fee create token (base)',
+                value: data?.governance_gas_config_event?.gas_fee_create_token_base,
+              },
+              {
+                label: 'gas fee create token (symbol)',
+                value: data?.governance_gas_config_event?.gas_fee_create_token_symbol,
+              },
+              {
+                label: 'gas fee create token (series)',
+                value: data?.governance_gas_config_event?.gas_fee_create_token_series,
+              },
+              {
+                label: 'gas fee register name',
+                value: data?.governance_gas_config_event?.gas_fee_register_name,
+              },
+              { label: 'max structure size', value: data?.governance_gas_config_event?.max_structure_size },
+              { label: 'max name length', value: data?.governance_gas_config_event?.max_name_length },
+              {
+                label: 'max token symbol length',
+                value: data?.governance_gas_config_event?.max_token_symbol_length,
+              },
+              { label: 'data escrow per row', value: data?.governance_gas_config_event?.data_escrow_per_row },
+              { label: 'gas burn ratio (mul)', value: data?.governance_gas_config_event?.gas_burn_ratio_mul },
+              { label: 'gas burn ratio (shift)', value: data?.governance_gas_config_event?.gas_burn_ratio_shift },
+            ].filter(
+              (item) =>
+                item.value !== undefined &&
+                item.value !== null &&
+                `${item.value}` !== '',
+            );
+
+          return (
+            <Box my={1}>
+              <Grid container spacing={1} alignContent="center" alignItems="center">
+                <Grid item md={2}>
+                  <Link
+                    href={routes['/event'](echoActiveId as Locales, {
+                      id: `${data?.event_id}`,
+                    })}
+                    sx={{ textDecoration: 'none' }}
+                  >
+                    <Button
+                      fullWidth
+                      color="info"
+                      variant="contained"
+                      size="small"
+                    >
+                      {kind}
+                    </Button>
+                  </Link>
+                </Grid>
+                <Grid item md={10}>
+                  <Grid container spacing={1}>
+                    {fields.map((item) => (
+                      <Grid item md={3} sm={6} xs={12} key={item.label}>
+                        <DetailsText label={item.label} value={`${item.value}`} />
+                      </Grid>
+                    ))}
+                  </Grid>
+                </Grid>
+              </Grid>
+            </Box>
+          );
+        }
+        case 'governance_chain_config_event': {
+          const fields =
+            [
+              { label: 'version', value: data?.governance_chain_config_event?.version },
+              { label: 'allowed tx types', value: data?.governance_chain_config_event?.allowed_tx_types },
+              { label: 'expiry window', value: data?.governance_chain_config_event?.expiry_window },
+              { label: 'block rate target', value: data?.governance_chain_config_event?.block_rate_target },
+              { label: 'reserved 1', value: data?.governance_chain_config_event?.reserved_1 },
+              { label: 'reserved 2', value: data?.governance_chain_config_event?.reserved_2 },
+              { label: 'reserved 3', value: data?.governance_chain_config_event?.reserved_3 },
+            ].filter(
+              (item) =>
+                item.value !== undefined &&
+                item.value !== null &&
+                `${item.value}` !== '',
+            );
+
+          return (
+            <Box my={1}>
+              <Grid container spacing={1} alignContent="center" alignItems="center">
+                <Grid item md={2}>
+                  <Link
+                    href={routes['/event'](echoActiveId as Locales, {
+                      id: `${data?.event_id}`,
+                    })}
+                    sx={{ textDecoration: 'none' }}
+                  >
+                    <Button
+                      fullWidth
+                      color="info"
+                      variant="contained"
+                      size="small"
+                    >
+                      {kind}
+                    </Button>
+                  </Link>
+                </Grid>
+                <Grid item md={10}>
+                  <Grid container spacing={1}>
+                    {fields.map((item) => (
+                      <Grid item md={3} sm={6} xs={12} key={item.label}>
+                        <DetailsText label={item.label} value={`${item.value}`} />
+                      </Grid>
+                    ))}
+                  </Grid>
+                </Grid>
+              </Grid>
+            </Box>
+          );
+        }
+        case 'special_resolution_event': {
+          const resolution = data?.special_resolution_event;
+          const callNames = resolutionCalls
+            .map((call) => formatResolutionCall(call))
+            .filter((x) => x);
+          const callsLabel =
+            resolutionCalls.length === 1
+              ? '1 call'
+              : `${resolutionCalls.length} calls`;
+          const summary = `${kind.replace('SpecialResolution', 'Special Resolution')} #${resolution?.resolution_id ?? ''}: ${
+            callsLabel || '0 calls'
+          }${callNames.length ? `: ${callNames.join(', ')}` : ''}`;
+
+          return (
+            <Box my={1}>
+              <Grid container spacing={1} alignItems="flex-start">
+                <Grid item md={2}>
+                  <Link
+                    href={routes['/event'](echoActiveId as Locales, {
+                      id: `${data?.event_id}`,
+                    })}
+                    sx={{ textDecoration: 'none' }}
+                  >
+                    <Button
+                    fullWidth
+                    variant="contained"
+                    size="small"
+                    sx={{
+                      backgroundColor: '#7e57c2',
+                      color: '#fff',
+                      '&:hover': { backgroundColor: '#6a46b3' },
+                    }}
+                  >
+                    {kind}
+                  </Button>
+                </Link>
+              </Grid>
+                <Grid item md={10}>
+                  <DetailsText label="Summary" value={summary} />
+                  {resolution?.description && (
+                    <DetailsText
+                      label="Payload"
+                      value={resolution.description}
+                    />
+                  )}
+                </Grid>
+              </Grid>
+            </Box>
+          );
+        }
         case 'chain_event':
           return (
             <Box my={1}>
@@ -527,7 +941,7 @@ export const EventType = ({ data }: EventTypeProps) => {
                     </Button>
                   </Link>
                 </Grid>
-                <Grid item md={8}>
+                <Grid item md={10}>
                   {data?.address_event?.address && (
                     <DetailsText
                       label={echo('address')}
@@ -545,6 +959,10 @@ export const EventType = ({ data }: EventTypeProps) => {
           );
         case 'token_event':
           if (data?.token_event) {
+            const tokenValue =
+              data?.token_event?.value ??
+              data?.token_event?.value_raw ??
+              '';
             return (
               <Box my={1}>
                 <Grid
@@ -574,11 +992,8 @@ export const EventType = ({ data }: EventTypeProps) => {
                   </Grid>
                   <Grid item md={2}>
                     <Box>
-                      {data?.token_event?.value && (
-                        <DetailsNumber
-                          label={echo('value')}
-                          value={parseFloat(data?.token_event?.value)}
-                        />
+                      {tokenValue && (
+                        <DetailsText label={echo('value')} value={tokenValue} />
                       )}
                     </Box>
                   </Grid>
@@ -612,13 +1027,15 @@ export const EventType = ({ data }: EventTypeProps) => {
               </Box>
             );
           }
-          return null;
+          return renderUnknown;
+        case 'unknown_event':
+          return renderUnknown;
         default:
-          return null;
+          return renderUnknown;
       }
     }
-    return null;
-  }, [type, kind, data, echo, echoActiveId]);
+    return renderUnknown;
+  }, [type, kind, data, echo, echoActiveId, renderUnknown]);
 
   return <Box>{content}</Box>;
 };

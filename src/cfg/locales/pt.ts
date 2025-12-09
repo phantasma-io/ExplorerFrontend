@@ -1,6 +1,6 @@
-import { EchoMsgs } from '@ricardojrmcom/echo';
+import { LocaleMessages } from 'types/locales';
 
-export const pt: EchoMsgs = {
+export const pt: LocaleMessages = {
   // sys
   example: 'example pt',
   wip: '🚧 Trabalho em progresso 🚧',
@@ -31,6 +31,7 @@ export const pt: EchoMsgs = {
   event: 'Evento',
   // table
   'table-pageSize': 'Linhas',
+  'table-page': 'Página',
   // meta
   'meta-title': 'Phantasma Explorer',
   'meta-home': `Phantasma é uma blockchain para distribuição de conteúdo de NFTs, Gaming e dApps que é rápido, seguro e descentralizado.`,
@@ -115,7 +116,6 @@ export const pt: EchoMsgs = {
   'tab-script': 'Script',
   'tab-members': 'Membros',
   'tab-addresses': 'Endereços',
-  'tab-platforms': 'Plataformas',
   'tab-series': 'Series',
   'tab-nfts': 'NFTs',
   'tab-instructions': 'Instruções',
@@ -126,7 +126,6 @@ export const pt: EchoMsgs = {
   'details-block': 'Detalhes do Bloco',
   'details-contract': 'Detalhes do Contrato',
   'details-dao': 'Detalhes da DAO',
-  'details-platform': 'Detalhes da Platforma',
   'details-event': 'Detalhes do Evento',
   'details-series': 'Detalhes da Série',
   'details-nft': 'Detalhes do NFT',
@@ -139,7 +138,6 @@ export const pt: EchoMsgs = {
   'explore-contract': 'Explorar contrato',
   'explore-dao': 'Explorar DAO',
   'explore-event': 'Explorar evento',
-  'explore-platform': 'Explorar platforma',
   'explore-series': 'Explorar série',
   'explore-nft': 'Explorar NFT',
   'explore-token': 'Explorar token',
@@ -165,6 +163,8 @@ export const pt: EchoMsgs = {
   series_creator: 'Criador da série',
   mint_date: 'Data da cunhagem',
   mint_number: 'Cunha #',
+  'metadata-nft': 'Metadados do NFT',
+  'metadata-series': 'Metadados da série',
   ram: 'RAM',
   rom: 'ROM',
   nft: 'NFT',
@@ -200,7 +200,7 @@ export const pt: EchoMsgs = {
   'filter-daos': 'Filtrar DAOs',
   'filter-events': 'Filtrar eventos',
   'filter-nfts': 'Filtrar NFTs',
-  'filter-platforms': 'Filter platforms',
+  event_kind_short: 'Evento',
   'filter-series': 'Filtrar séries',
   'filter-tokens': 'Filtrar tokens',
   'filter-transactions': 'Filtrar transações',

@@ -1,18 +1,20 @@
 import React, { useState, useMemo, useCallback } from 'react';
-import { IconButton, Box, Grid, Tooltip, Menu, MenuItem } from '@mui/material';
-import { useFury } from '@ricardojrmcom/fury';
-import { useEcho } from '@ricardojrmcom/echo';
+import { IconButton, Box, Tooltip, Menu, MenuItem } from '@mui/material';
+import { useEcho } from 'hooks/useEcho';
 import PaletteIcon from '@mui/icons-material/Palette';
-import { Text, Image } from 'components/display';
+import { useThemeMode } from 'containers/ThemeProvider';
 
 /**
  * SwitchTheme
  */
 export const SwitchTheme = () => {
-  const { furyActive, furyActiveId, furySetById } = useFury();
+  const { themeActive, themeActiveId, themeSetById } = useThemeMode();
   const { echo } = useEcho();
 
-  const isDark = useMemo(() => furyActiveId.includes('-dark'), [furyActiveId]);
+  const isDark = useMemo(
+    () => themeActiveId === 'soul-dark',
+    [themeActiveId],
+  );
 
   const [anchorBrands, anchorBrandsSet] = useState<null | HTMLElement>(null);
   const openBrands = Boolean(anchorBrands);
@@ -33,7 +35,7 @@ export const SwitchTheme = () => {
           <IconButton size="small" onClick={handleOpenBrands}>
             <PaletteIcon
               sx={{
-                fontSize: furyActive.typography.h5.fontSize,
+                fontSize: themeActive.typography.h5.fontSize,
                 color: '#fff',
               }}
             />
@@ -55,108 +57,25 @@ export const SwitchTheme = () => {
       >
         <MenuItem
           onClick={() => {
-            furySetById(isDark ? 'soul-dark' : 'soul');
+            themeSetById('soul');
             handleCloseBrands();
           }}
           sx={{
-            borderLeft: `3px solid ${
-              furyActiveId.includes('soul')
-                ? furyActive.palette.primary.main
-                : 'rgba(0,0,0,0)'
-            }`,
-            borderRight: `3px solid ${
-              furyActiveId.includes('soul')
-                ? furyActive.palette.primary.main
-                : 'rgba(0,0,0,0)'
-            }`,
+            fontWeight: !isDark ? 700 : 400,
           }}
         >
-          <Grid container alignItems="center" spacing={1}>
-            <Grid item>
-              <Box pt={0.4}>
-                <Image
-                  src="/static/v1/img/soul.png"
-                  height="1.2rem"
-                  responsive
-                  title="SOUL"
-                  alt="SOUL"
-                />
-              </Box>
-            </Grid>
-            <Grid item>
-              <Text value="SOUL" sx={{ fontWeight: 600 }} />
-            </Grid>
-          </Grid>
+          Light
         </MenuItem>
         <MenuItem
           onClick={() => {
-            furySetById(isDark ? 'kcal-dark' : 'kcal');
+            themeSetById('soul-dark');
             handleCloseBrands();
           }}
           sx={{
-            borderLeft: `3px solid ${
-              furyActiveId.includes('kcal')
-                ? furyActive.palette.primary.main
-                : 'rgba(0,0,0,0)'
-            }`,
-            borderRight: `3px solid ${
-              furyActiveId.includes('kcal')
-                ? furyActive.palette.primary.main
-                : 'rgba(0,0,0,0)'
-            }`,
+            fontWeight: isDark ? 700 : 400,
           }}
         >
-          <Grid container alignItems="center" spacing={1}>
-            <Grid item>
-              <Box pt={0}>
-                <Image
-                  src="/static/v1/img/kcal.png"
-                  height="1.2rem"
-                  responsive
-                  title="KCAL"
-                  alt="KCAL"
-                />
-              </Box>
-            </Grid>
-            <Grid item>
-              <Text value="KCAL" sx={{ fontWeight: 600 }} />
-            </Grid>
-          </Grid>
-        </MenuItem>
-        <MenuItem
-          onClick={() => {
-            furySetById(isDark ? 'gm-dark' : 'gm');
-            handleCloseBrands();
-          }}
-          sx={{
-            borderLeft: `3px solid ${
-              furyActiveId.includes('gm')
-                ? furyActive.palette.primary.main
-                : 'rgba(0,0,0,0)'
-            }`,
-            borderRight: `3px solid ${
-              furyActiveId.includes('gm')
-                ? furyActive.palette.primary.main
-                : 'rgba(0,0,0,0)'
-            }`,
-          }}
-        >
-          <Grid container alignItems="center" spacing={1}>
-            <Grid item>
-              <Box pt={0}>
-                <Image
-                  src="/static/v1/img/gm.png"
-                  height="1.2rem"
-                  responsive
-                  title="KCAL"
-                  alt="KCAL"
-                />
-              </Box>
-            </Grid>
-            <Grid item>
-              <Text value="GM" sx={{ fontWeight: 600 }} />
-            </Grid>
-          </Grid>
+          Dark
         </MenuItem>
       </Menu>
     </Box>

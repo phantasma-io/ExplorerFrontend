@@ -5,6 +5,7 @@ export type EventKinds =
   | 'AddressRegister'
   | 'AddressUnregister'
   | 'ChainSwap'
+  | 'ChainCreate'
   | 'ContractDeploy'
   | 'ContractUpgrade'
   | 'Crowdsale'
@@ -21,15 +22,23 @@ export type EventKinds =
   | 'OrderCancelled'
   | 'OrderCreated'
   | 'OrderFilled'
+  | 'OrderClosed'
   | 'OrganizationAdd'
   | 'OrganizationCreate'
   | 'OrganizationRemove'
+  | 'ValidatorPropose'
+  | 'ValidatorSwitch'
   | 'OwnerAdded'
   | 'OwnerRemoved'
   | 'PlatformCreate'
+  | 'GovernanceSetGasConfig'
+  | 'GovernanceSetChainConfig'
+  | 'SpecialResolution'
+  | 'LeaderboardCreate'
   | 'TokenBurn'
   | 'TokenClaim'
   | 'TokenCreate'
+  | 'TokenSeriesCreate'
   | 'TokenMint'
   | 'TokenReceive'
   | 'TokenSend'
@@ -40,13 +49,14 @@ export type EventKinds =
   | 'ValueUpdate';
 
 export interface EventKind {
-  kind?: EventKinds;
+  name?: string;
 }
 
 export interface EventKindParams extends ListParams {
   event_kind?: string;
+  chain?: string;
 }
 
 export interface EventKindResults extends ListResults {
-  eventKinds?: EventKind[];
+  event_kinds?: EventKind[];
 }

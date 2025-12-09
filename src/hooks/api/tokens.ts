@@ -1,18 +1,11 @@
-import { useMemo, useState, useEffect } from 'react';
-import { useEcho } from '@ricardojrmcom/echo';
+import { useMemo } from 'react';
+import { useEcho } from 'hooks/useEcho';
 import { TableDisplayRow, TableDisplayCol } from 'types/table';
 import { TokenResults } from 'types/api';
 
 export const useTokenData = (data?: TokenResults, loading?: boolean) => {
   const { echo } = useEcho();
-
-  const [total, totalSet] = useState<number>(0);
-
-  useEffect(() => {
-    if (data?.total_results && !loading) {
-      totalSet(data.total_results);
-    }
-  }, [data, loading]);
+  const total = data?.total_results ?? 0;
 
   const cols = useMemo<TableDisplayCol[]>(() => {
     return [
@@ -169,11 +162,11 @@ export const useTokenData = (data?: TokenResults, loading?: boolean) => {
     () => ({
       cols,
       rows,
-      total,
       raw,
       withError,
+      total,
     }),
-    [cols, rows, total, raw, withError],
+    [cols, rows, raw, total, withError],
   );
 
   return ctx;

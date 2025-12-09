@@ -2,9 +2,11 @@ import React, { useMemo } from 'react';
 import { nanoid } from 'nanoid';
 import { Box } from '@mui/material';
 import { useRenderOverview } from 'hooks/useRenderOverview';
+import { useEcho } from 'hooks/useEcho';
 import { useSeriesData } from 'hooks/api';
 import { SeriesResults } from 'types/api';
 import { Loading, Error, Empty, Overview } from 'components/layout';
+import { MetadataBlock } from 'components/display';
 
 export interface SeriesOverviewProps {
   data?: SeriesResults;
@@ -19,8 +21,10 @@ export const SeriesOverview = ({
   error,
 }: SeriesOverviewProps) => {
   const renderOverview = useRenderOverview();
+  const { echo } = useEcho();
 
   const { cols, rows, raw } = useSeriesData(data);
+  const seriesMetadata = data?.series?.[0]?.metadata;
 
   const content = useMemo(() => {
     if (loading) {
@@ -41,9 +45,13 @@ export const SeriesOverview = ({
         raw={raw[0]}
       >
         <Box>{data && renderOverview(cols, rows)}</Box>
+        <MetadataBlock
+          title={echo('metadata-series')}
+          metadata={seriesMetadata}
+        />
       </Overview>
     );
-  }, [loading, error, rows, data, renderOverview, cols, raw]);
+  }, [loading, error, rows, data, renderOverview, cols, raw, echo, seriesMetadata]);
 
   return <Box p={1}>{content}</Box>;
 };

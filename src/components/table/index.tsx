@@ -1,12 +1,6 @@
 import React, { useMemo } from 'react';
 import { Box } from '@mui/material';
-import { useLocalState } from '@ricardojrmcom/reaper';
-import {
-  TableDisplayProps,
-  TableUrlParams,
-  TableParamControls,
-  TableViewModes,
-} from 'types/table';
+import { TableDisplayProps, TableUrlParams, TableParamControls } from 'types/table';
 import { TABLE_HEIGHT, TABLE_SPACING } from 'cfg';
 import { TableControls } from './Controls';
 import { TableDisplay } from './Display';
@@ -16,7 +10,16 @@ export interface TableProps
     TableParamControls,
     TableUrlParams {
   addon?: React.ReactNode;
-  hideControls?: boolean,
+  hideControls?: boolean;
+  total?: number;
+  cursor?: string | null;
+  limit?: number;
+  offset?: number;
+  mode?: string;
+  resetPagination?: () => void;
+  onPageData?: (nextCursor: string | null | undefined, received: number) => void;
+  with_total?: number;
+  withTotal?: number;
 }
 
 export const Table = ({
@@ -24,7 +27,6 @@ export const Table = ({
   raw,
   rows,
   cols,
-  total,
   page,
   pageSet,
   pageSize,
@@ -33,21 +35,15 @@ export const Table = ({
   orderBySet,
   orderDirection,
   orderDirectionSet,
-  withDetails = true,
+  hasNext,
   height = TABLE_HEIGHT,
   spacing = TABLE_SPACING,
   linkOptions,
-  dialogOptions,
   loading,
   error,
   addon,
   hideControls,
 }: TableProps) => {
-  const [viewMode, viewModeSet] = useLocalState<TableViewModes>(
-    'PhantasmaExplorer-table-viewMode',
-    'desktop',
-  );
-
   const strData = useMemo(() => JSON.stringify(raw, null, 2), [raw]);
 
   return (
@@ -57,7 +53,6 @@ export const Table = ({
         <TableControls
           tableId={tableId}
           exportData={strData}
-          total={total}
           page={page}
           pageSet={pageSet}
           pageSize={pageSize}
@@ -66,8 +61,7 @@ export const Table = ({
           orderBySet={orderBySet}
           orderDirection={orderDirection}
           orderDirectionSet={orderDirectionSet}
-          viewMode={viewMode}
-          viewModeSet={viewModeSet}
+          hasNext={hasNext}
           addon={addon}
         />
       </Box>
@@ -78,14 +72,11 @@ export const Table = ({
           raw={raw}
           rows={rows}
           cols={cols}
-          withDetails={withDetails}
           height={height}
           spacing={spacing}
           linkOptions={linkOptions}
-          dialogOptions={dialogOptions}
           loading={loading}
           error={error}
-          viewMode={viewMode}
         />
       </Box>
     </Box>

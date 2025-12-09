@@ -1,13 +1,12 @@
-import React, { useState } from 'react';
-import { useEcho } from '@ricardojrmcom/echo';
-import { useEmpathy } from '@ricardojrmcom/empathy';
+import React, { useState, useCallback, useEffect } from 'react';
+import { useEcho } from 'hooks/useEcho';
 import { Box } from '@mui/material';
 import { endpoints } from 'cfg';
-import { useTable } from 'hooks';
+import { useApi, useTable } from 'hooks';
 import { TransactionResults, TransactionParams } from 'types/api';
 import { Table } from 'components/table';
 import { useTransactionData } from 'hooks/api';
-import { TransactionsListFilters } from './filters';
+import { InlineSearch } from 'components/table/Controls/InlineSearch';
 
 export interface TransactionsListProps {
   address?: string;
@@ -17,27 +16,63 @@ export interface TransactionsListProps {
 export const TransactionsList = ({ address, block }: TransactionsListProps) => {
   const { echo } = useEcho();
 
-  const tableProps = useTable();
-  const { limit, order_by, order_direction, offset, with_total } = tableProps;
+  const tableProps = useTable('cursor');
+  const {
+    limit,
+    order_by,
+    order_direction,
+    cursor,
+    onPageData,
+    resetPagination,
+  } = tableProps;
 
   // filter states
   const [_address, _addressSet] = useState<TransactionParams['address']>(
     address || undefined,
   );
+  const [blockHeight, blockHeightSet] = useState<
+    TransactionParams['block_height']
+  >(block);
+  const [q, qSet] = useState<TransactionParams['q']>(undefined);
+  const [search, searchSet] = useState<string>('');
 
-  const { data, loading, error } = useEmpathy<TransactionResults>(
+  const { data, loading, error } = useApi<TransactionResults>(
     endpoints['/transactions']({
-      offset,
       limit,
       order_by,
       order_direction,
-      with_total,
+      cursor: cursor || undefined,
       address: _address,
-      block_height: block,
+      block_height: blockHeight,
+      q,
     }),
   );
 
-  const { cols, rows, total, withError } = useTransactionData(data, loading);
+  const { cols, rows, withError } = useTransactionData(data, loading);
+
+  useEffect(() => {
+    onPageData?.(data?.next_cursor ?? null, data?.transactions?.length || 0);
+  }, [data, onPageData]);
+
+  const applySearch = useCallback(
+    (value: string) => {
+      const trimmed = value.trim();
+      searchSet(trimmed);
+
+      if (!trimmed) {
+        _addressSet(address || undefined);
+        blockHeightSet(block || undefined);
+        qSet(undefined);
+        resetPagination?.();
+        return;
+      }
+
+      qSet(trimmed);
+
+      resetPagination?.();
+    },
+    [address, block, resetPagination],
+  );
 
   return (
     <Box>
@@ -46,10 +81,6 @@ export const TransactionsList = ({ address, block }: TransactionsListProps) => {
         raw={data?.transactions || []}
         cols={cols}
         rows={rows}
-        total={total}
-        dialogOptions={{
-          title: echo('details-transaction'),
-        }}
         linkOptions={{
           route: '/transaction',
           key: 'hash',
@@ -59,10 +90,11 @@ export const TransactionsList = ({ address, block }: TransactionsListProps) => {
         loading={loading}
         error={error || withError}
         addon={
-          <TransactionsListFilters
-            address={_address}
-            addressSet={_addressSet}
-            address_disable={!!address}
+          <InlineSearch
+            value={search}
+            onChange={searchSet}
+            onSubmit={applySearch}
+            placeholder={echo('search')}
           />
         }
       />
