@@ -2,7 +2,7 @@ import React, { useMemo, SetStateAction, Dispatch } from 'react';
 import { DatetimeOptsChoices, DatetimeOptsContext } from './useDatetimeOpts';
 
 export interface DatetimeOptsProviderProps {
-  children?: JSX.Element;
+  children?: React.ReactNode;
   dtOps?: DatetimeOptsChoices;
   dtOpsSet?: Dispatch<SetStateAction<DatetimeOptsChoices>>;
 }

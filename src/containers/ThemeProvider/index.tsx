@@ -26,7 +26,9 @@ const ThemeCtx = createContext<ThemeContextType>({
 
 export const useThemeMode = () => useContext(ThemeCtx);
 
-export const ThemeModeProvider = ({ children }: { children: JSX.Element }) => {
+export const ThemeModeProvider = ({
+  children,
+}: { children: React.ReactNode }) => {
   const [themeActiveId, themeActiveIdSet] = useState<ThemeId>(DEFAULT_THEME);
 
   const themeActive = useMemo<Theme>(

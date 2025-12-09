@@ -176,7 +176,7 @@ export const Text = ({
 
     if (formatNumber !== undefined && formatNumber !== null) {
       if (Number(formatNumber) === formatNumber && formatNumber % 1 !== 0) {
-        return formatNumber;
+        return `${formatNumber}`;
       }
 
       const formattedNumber = numberFormat(

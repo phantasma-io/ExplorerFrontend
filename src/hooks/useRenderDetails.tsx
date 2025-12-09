@@ -18,7 +18,7 @@ type RenderDetails = (
   linkOptions?: DetailsItem['linkOptions'],
   inTable?: boolean,
   append?: string,
-) => JSX.Element | null;
+) => React.ReactNode;
 
 export const useRenderDetails = () => {
   const renderDetails = useCallback<RenderDetails>(
