@@ -7,7 +7,6 @@ import {
   Search,
   DarkMode,
   GetWallet,
-  GotoDex,
 } from './sub';
 
 /**
@@ -53,9 +52,6 @@ export const Header = ({ height }: HeaderProps) => {
           <Box textAlign="right">
             <Box display="inline-block" pr={{ xs: 0.1, md: 1.5 }}>
               <Search />
-            </Box>
-            <Box display="inline-block" pr={{ xs: 0.1, md: 1.5 }}>
-              <GotoDex />
             </Box>
             <Box display="inline-block" pr={{ xs: 0.1, md: 1.5 }}>
               <GetWallet />
