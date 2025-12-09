@@ -2,6 +2,7 @@ import React, {
   createContext,
   useCallback,
   useContext,
+  useEffect,
   useMemo,
   useState,
 } from 'react';
@@ -17,6 +18,7 @@ interface ThemeContextType {
 }
 
 const DEFAULT_THEME: ThemeId = 'soul';
+const THEME_STORAGE_KEY = 'explorer-theme-id';
 
 const ThemeCtx = createContext<ThemeContextType>({
   themeActive: createTheme(themes[DEFAULT_THEME]),
@@ -30,6 +32,38 @@ export const ThemeModeProvider = ({
   children,
 }: { children: React.ReactNode }) => {
   const [themeActiveId, themeActiveIdSet] = useState<ThemeId>(DEFAULT_THEME);
+  const [isReady, isReadySet] = useState(false);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') {
+      return;
+    }
+
+    const stored = window.localStorage.getItem(THEME_STORAGE_KEY);
+    if (stored === 'soul' || stored === 'soul-dark') {
+      themeActiveIdSet(stored);
+      isReadySet(true);
+      return;
+    }
+
+    const prefersDark =
+      typeof window !== 'undefined' &&
+      window.matchMedia?.('(prefers-color-scheme: dark)').matches;
+
+    if (prefersDark) {
+      themeActiveIdSet('soul-dark');
+    }
+
+    isReadySet(true);
+  }, []);
+
+  useEffect(() => {
+    if (!isReady || typeof window === 'undefined') {
+      return;
+    }
+
+    window.localStorage.setItem(THEME_STORAGE_KEY, themeActiveId);
+  }, [isReady, themeActiveId]);
 
   const themeActive = useMemo<Theme>(
     () => createTheme(themes[themeActiveId]),
