@@ -1,6 +1,6 @@
 import React from 'react';
 import { Typography } from '@mui/material';
-import { useFury } from '@ricardojrmcom/fury';
+import { useThemeMode } from 'containers/ThemeProvider';
 import { Text } from 'components/display';
 import CheckIcon from '@mui/icons-material/Check';
 
@@ -15,7 +15,7 @@ export const DetailsBoolean = ({
   label,
   height,
 }: DetailsBooleanProps) => {
-  const { furyActive } = useFury();
+  const { themeActive } = useThemeMode();
   if (value) {
     return (
       <Text
@@ -27,7 +27,7 @@ export const DetailsBoolean = ({
         height={height}
       >
         <Typography variant="body2" color="primary">
-          <CheckIcon style={{ height: furyActive.typography.h6.fontSize }} />
+          <CheckIcon style={{ height: themeActive.typography.h6.fontSize }} />
         </Typography>
       </Text>
     );

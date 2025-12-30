@@ -1,12 +1,12 @@
 import React, { useMemo } from 'react';
 import { Box } from '@mui/material';
-import { useEcho } from '@ricardojrmcom/echo';
+import { useEcho } from 'hooks/useEcho';
 import { useRenderOverview } from 'hooks/useRenderOverview';
 import { useTransactionData } from 'hooks/api';
 import { TransactionResults } from 'types/api';
 import { Loading, Error, Empty, Overview } from 'components/layout';
 import { EventActivity } from 'components/display/EventActivity';
-import { unixmsToDate } from 'scripts';
+import { unixToDate } from 'scripts';
 import { TableDisplayRow, TableDisplayCol } from 'types/table';
 
 export interface TransactionAdvancedProps {
@@ -28,14 +28,20 @@ export const TransactionAdvanced = ({
 
   const rows = useMemo(() => {
     if (data) {
+      const sanitizeExpiration = (expiration?: string) => {
+        if (!expiration || expiration === '0') return undefined;
+        return unixToDate(expiration);
+      };
+
       return data?.transactions?.map((item) => [
-        item?.gas_limit,
+        item?.gas_limit ? `${item.gas_limit} KCAL` : 'unlimited',
         item?.gas_price,
         item?.gas_target?.address,
         item?.gas_payer?.address,
         item?.sender?.address,
-        item?.date ? unixmsToDate(item.date) : undefined,
-        item?.expiration ? unixmsToDate(item.expiration) : undefined,
+        item?.date ? unixToDate(item.date) : undefined,
+        sanitizeExpiration(item?.expiration),
+        item?.fee,
       ]) as TableDisplayRow[];
     }
 
@@ -49,7 +55,6 @@ export const TransactionAdvanced = ({
         label: echo('gas_limit'),
         type: 'text',
         size: 2,
-        append: ' KCAL',
       },
       {
         id: 'gas_price',
@@ -103,6 +108,13 @@ export const TransactionAdvanced = ({
         label: echo('expiration'),
         type: 'date',
         size: 2,
+      },
+      {
+        id: 'fee',
+        label: echo('fee'),
+        type: 'text',
+        size: 2,
+        append: ' KCAL',
       },
     ];
   }, [echo]);

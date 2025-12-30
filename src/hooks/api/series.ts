@@ -1,18 +1,11 @@
-import { useMemo, useState, useEffect } from 'react';
-import { useEcho } from '@ricardojrmcom/echo';
+import { useMemo } from 'react';
+import { useEcho } from 'hooks/useEcho';
 import { TableDisplayRow, TableDisplayCol } from 'types/table';
 import { SeriesResults } from 'types/api';
 
 export const useSeriesData = (data?: SeriesResults, loading?: boolean) => {
   const { echo } = useEcho();
-
-  const [total, totalSet] = useState<number>(0);
-
-  useEffect(() => {
-    if (data?.total_results && !loading) {
-      totalSet(data.total_results);
-    }
-  }, [data, loading]);
+  const total = data?.total_results ?? 0;
 
   const cols = useMemo<TableDisplayCol[]>(() => {
     return [

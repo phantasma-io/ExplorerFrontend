@@ -1,16 +1,16 @@
 import React, { useState, useCallback } from 'react';
 import { useRouter } from 'next/router';
 import { IconButton, Box, Tooltip, Menu, MenuItem } from '@mui/material';
-import { useFury } from '@ricardojrmcom/fury';
-import { useEcho } from '@ricardojrmcom/echo';
+import { useEcho } from 'hooks/useEcho';
 import PublicIcon from '@mui/icons-material/Public';
+import { useThemeMode } from 'containers/ThemeProvider';
 
 /**
  * Localization
  */
 export const Localization = () => {
   const { push, asPath } = useRouter();
-  const { furyActive } = useFury();
+  const { themeActive } = useThemeMode();
   const { echo, echoActiveId } = useEcho();
 
   const [anchorLocales, anchorLocalesSet] = useState<null | HTMLElement>(null);
@@ -32,7 +32,7 @@ export const Localization = () => {
           <IconButton size="small" onClick={handleOpenLocales}>
             <PublicIcon
               sx={{
-                fontSize: furyActive.typography.h5.fontSize,
+                fontSize: themeActive.typography.h5.fontSize,
                 color: '#fff',
               }}
             />
@@ -60,12 +60,12 @@ export const Localization = () => {
           sx={{
             borderLeft: `3px solid ${
               echoActiveId === 'en'
-                ? furyActive.palette.primary.main
+                ? themeActive.palette.primary.main
                 : 'rgba(0,0,0,0)'
             }`,
             borderRight: `3px solid ${
               echoActiveId === 'en'
-                ? furyActive.palette.primary.main
+                ? themeActive.palette.primary.main
                 : 'rgba(0,0,0,0)'
             }`,
           }}
@@ -80,12 +80,12 @@ export const Localization = () => {
           sx={{
             borderLeft: `3px solid ${
               echoActiveId === 'pt'
-                ? furyActive.palette.primary.main
+                ? themeActive.palette.primary.main
                 : 'rgba(0,0,0,0)'
             }`,
             borderRight: `3px solid ${
               echoActiveId === 'pt'
-                ? furyActive.palette.primary.main
+                ? themeActive.palette.primary.main
                 : 'rgba(0,0,0,0)'
             }`,
           }}
@@ -100,12 +100,12 @@ export const Localization = () => {
           sx={{
             borderLeft: `3px solid ${
               echoActiveId === 'de'
-                ? furyActive.palette.primary.main
+                ? themeActive.palette.primary.main
                 : 'rgba(0,0,0,0)'
             }`,
             borderRight: `3px solid ${
               echoActiveId === 'de'
-                ? furyActive.palette.primary.main
+                ? themeActive.palette.primary.main
                 : 'rgba(0,0,0,0)'
             }`,
           }}

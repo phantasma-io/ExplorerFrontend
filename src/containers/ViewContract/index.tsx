@@ -1,8 +1,8 @@
 import React, { useMemo } from 'react';
 import { Box } from '@mui/material';
 import { useRouter } from 'next/router';
-import { useEmpathy } from '@ricardojrmcom/empathy';
-import { useEcho } from '@ricardojrmcom/echo';
+import { useApi } from 'hooks';
+import { useEcho } from 'hooks/useEcho';
 import { NavTabs, NavTabsRecord, Breadcrumbs } from 'components/layout';
 import { endpoints, routes } from 'cfg';
 import { Locales } from 'types/locales';
@@ -21,16 +21,19 @@ export interface ViewContractProps {
 export const ViewContract = ({ tabForce = 'overview' }: ViewContractProps) => {
   const { echo, echoActiveId } = useEcho();
 
-  const { query } = useRouter();
+  const { query, isReady } = useRouter();
+  const ready = typeof window === 'undefined' ? true : isReady;
 
-  const { data, error, loading } = useEmpathy<ContractResults>(
-    endpoints['/contracts']({
-      hash: (query?.id as string) || '',
-      with_creation_event: 1,
-      with_methods: 1,
-      with_script: 1,
-      with_token: 1,
-    } as ContractParams),
+  const { data, error, loading } = useApi<ContractResults>(
+    ready && query?.id
+      ? endpoints['/contracts']({
+          hash: (query?.id as string) || '',
+          with_creation_event: 1,
+          with_methods: 1,
+          with_script: 1,
+          with_token: 1,
+        } as ContractParams)
+      : null,
   );
 
   const tabs: NavTabsRecord = useMemo(
@@ -85,6 +88,10 @@ export const ViewContract = ({ tabForce = 'overview' }: ViewContractProps) => {
     }),
     [echo, echoActiveId, data, error, loading],
   );
+
+  if (!ready || !query?.id) {
+    return null;
+  }
 
   return (
     <Box>

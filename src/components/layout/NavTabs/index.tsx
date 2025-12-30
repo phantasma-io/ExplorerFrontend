@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, ReactNode } from 'react';
+import React, { useCallback, useEffect, useState, ReactNode } from 'react';
 import { useRouter } from 'next/router';
 import { Box, Paper, Tabs, Tab } from '@mui/material';
 
@@ -25,11 +25,19 @@ export interface NavTabsProps {
  * NavTabs
  */
 export const NavTabs = ({ tabs, tabsDefault }: NavTabsProps) => {
-  const { query, push } = useRouter();
-  const activeTab = useMemo(
-    () => query.tab || tabsDefault,
-    [query, tabsDefault],
-  );
+  const { query, replace, isReady } = useRouter();
+  const [activeTab, setActiveTab] = useState<string>(tabsDefault);
+
+  useEffect(() => {
+    if (!isReady) return;
+
+    const nextTab =
+      typeof query.tab === 'string' && query.tab.length > 0
+        ? query.tab
+        : tabsDefault;
+
+    setActiveTab(nextTab);
+  }, [isReady, query.tab, tabsDefault]);
 
   const changeTab = useCallback(
     (tab: string, url: string) => {
@@ -40,12 +48,17 @@ export const NavTabs = ({ tabs, tabsDefault }: NavTabsProps) => {
             tab,
           }
         : { tab };
-      push({
-        pathname: url,
-        query: queryNew,
-      });
+      setActiveTab(tab);
+      void replace(
+        {
+          pathname: url,
+          query: queryNew,
+        },
+        undefined,
+        { shallow: true, scroll: false },
+      );
     },
-    [push, query],
+    [replace, query],
   );
 
   return (

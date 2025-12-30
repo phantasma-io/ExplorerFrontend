@@ -2,7 +2,7 @@ import { objToQuery } from 'scripts/objQuery';
 import { ExplorerApi, ApiParams } from 'types/endpoints';
 
 const parseParams = (params: ApiParams | undefined) =>
-  params ? objToQuery(params) : '';
+  params ? objToQuery(params as any) : '';
 
 const testnet = process.env.NEXT_PUBLIC_TESTNET === 'testnet';
 
@@ -10,17 +10,18 @@ const fallbackUrl = `https://${testnet ? 'testnet-backend-explorer' : 'api-explo
 export const url = process.env.NEXT_PUBLIC_API_URL ? process.env.NEXT_PUBLIC_API_URL : fallbackUrl
 
 export const endpoints: ExplorerApi = {
-  '/addresses': (params) => `${url}/addresses${parseParams(params)}`,
   '/blocks': (params) => `${url}/blocks${parseParams(params)}`,
   '/chains': (params) => `${url}/chains${parseParams(params)}`,
+  '/addresses': (params) => `${url}/addresses${parseParams(params)}`,
   '/contracts': (params) => `${url}/contracts${parseParams(params)}`,
   '/instructions': (params) => `${url}/instructions${parseParams(params)}`,
   '/eventkinds': (params) => `${url}/eventkinds${parseParams(params)}`,
+  '/eventKindsWithEvents': (params) =>
+    `${url}/eventKindsWithEvents${parseParams(params)}`,
   '/events': (params) => `${url}/events${parseParams(params)}`,
   '/nfts': (params) => `${url}/nfts${parseParams(params)}`,
   '/oracles': (params) => `${url}/oracles${parseParams(params)}`,
   '/organizations': (params) => `${url}/organizations${parseParams(params)}`,
-  '/platforms': (params) => `${url}/platforms${parseParams(params)}`,
   '/historyprices': (params) => `${url}/historyprices${parseParams(params)}`,
   '/series': (params) => `${url}/series${parseParams(params)}`,
   '/searches': (params) => `${url}/searches${parseParams(params)}`,

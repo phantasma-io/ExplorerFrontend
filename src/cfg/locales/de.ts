@@ -1,6 +1,6 @@
-import { EchoMsgs } from '@ricardojrmcom/echo';
+import { LocaleMessages } from 'types/locales';
 
-export const de: EchoMsgs = {
+export const de: LocaleMessages = {
   // sys
   example: 'beispiel de',
   wip: '🚧 In Arbeit 🚧',
@@ -31,6 +31,7 @@ export const de: EchoMsgs = {
   event: 'Vorfall',
   // table
   'table-pageSize': 'Linien',
+  'table-page': 'Seite',
   // meta
   'meta-title': 'Phantasma Explorer',
   'meta-home': `Phantasma ist eine Blockchain zur Verteilung von Inhalten von NFTs, Gaming und dApps, die schnell, sicher und dezentralisiert ist.`,
@@ -115,7 +116,6 @@ export const de: EchoMsgs = {
   'tab-script': 'Skript',
   'tab-members': 'Mitglieder',
   'tab-addresses': 'Adressen',
-  'tab-platforms': 'Plattformen',
   'tab-series': 'Serie',
   'tab-nfts': 'NFTs',
   'tab-instructions': 'Anweisungen',
@@ -126,7 +126,6 @@ export const de: EchoMsgs = {
   'details-block': 'Block Detail',
   'details-contract': 'Vertragsdetails',
   'details-dao': 'DAO-Details',
-  'details-platform': 'Plattformdetails',
   'details-event': 'Veranstaltungsdetails',
   'details-series': 'Seriendetails',
   'details-nft': 'NFT-Details',
@@ -139,7 +138,6 @@ export const de: EchoMsgs = {
   'explore-contract': 'Vertrag erkunden',
   'explore-dao': 'Erkunden DAO',
   'explore-event': 'Veranstaltung erkunden',
-  'explore-platform': 'Plattform erkunden',
   'explore-series': 'Serie erkunden',
   'explore-nft': 'Entdecken Sie NFT',
   'explore-token': 'Entdecken Sie Token',
@@ -165,6 +163,8 @@ export const de: EchoMsgs = {
   series_creator: 'Schöpfer der Serie',
   mint_date: 'Prägedatum',
   mint_number: 'Keil #',
+  'metadata-nft': 'NFT-Metadaten',
+  'metadata-series': 'Serien-Metadaten',
   ram: 'RAM',
   rom: 'ROM',
   nft: 'NFT',
@@ -200,7 +200,7 @@ export const de: EchoMsgs = {
   'filter-daos': 'DAOs filtern',
   'filter-events': 'Ereignisse filtern',
   'filter-nfts': 'NFTs filtern',
-  'filter-platforms': 'Plattformen filtern',
+  event_kind_short: 'Event',
   'filter-series': 'Filterserie',
   'filter-tokens': 'Filtertoken',
   'filter-transactions': 'Transaktionen filtern',

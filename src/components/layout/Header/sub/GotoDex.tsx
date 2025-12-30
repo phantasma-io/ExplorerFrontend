@@ -1,15 +1,15 @@
 import React from 'react';
 import { Box, IconButton, Tooltip } from '@mui/material';
-import { useFury } from '@ricardojrmcom/fury';
-import { useEcho } from '@ricardojrmcom/echo';
+import { useEcho } from 'hooks/useEcho';
 import { Link } from 'components/display';
 import SwapHorizIcon from '@mui/icons-material/SwapHoriz';
+import { useThemeMode } from 'containers/ThemeProvider';
 
 /**
  * GotoDex
  */
 export const GotoDex = () => {
-  const { furyActive } = useFury();
+  const { themeActive } = useThemeMode();
   const { echo } = useEcho();
 
   return (
@@ -19,10 +19,10 @@ export const GotoDex = () => {
           <Tooltip title={echo('tooltip-gotodex')}>
             <IconButton size="small">
               <SwapHorizIcon
-                sx={{
-                  fontSize: furyActive.typography.h5.fontSize,
-                  color: '#fff',
-                }}
+              sx={{
+                fontSize: themeActive.typography.h5.fontSize,
+                color: '#fff',
+              }}
               />
             </IconButton>
           </Tooltip>

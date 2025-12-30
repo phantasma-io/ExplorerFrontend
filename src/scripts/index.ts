@@ -4,6 +4,6 @@ export { objToQuery, queryToObj } from './objQuery';
 
 export { createEmotionCache } from './createEmotionCache';
 
-export { unixmsToDate } from './unixDate';
+export { unixToDate } from './unixDate';
 
 export { parseIpfs } from './parseIpfs';

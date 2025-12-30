@@ -1,37 +1,62 @@
-import React, { useState } from 'react';
-import { useEcho } from '@ricardojrmcom/echo';
-import { useEmpathy } from '@ricardojrmcom/empathy';
+import React, { useState, useCallback, useEffect } from 'react';
+import { useEcho } from 'hooks/useEcho';
 import { Box } from '@mui/material';
 import { endpoints } from 'cfg';
-import { useTable } from 'hooks';
+import { useApi, useTable } from 'hooks';
 import { useNftData } from 'hooks/api';
 import { NftResults, NftParams } from 'types/api';
 import { Table } from 'components/table';
-import { NftsListFilters } from './filters';
+import { InlineSearch } from 'components/table/Controls/InlineSearch';
 
 export const NftsList = () => {
   const { echo } = useEcho();
 
-  const tableProps = useTable();
-  const { limit, order_by, offset, with_total, order_direction } = tableProps;
+  const tableProps = useTable('cursor');
+  const {
+    limit,
+    order_by,
+    order_direction,
+    cursor,
+    onPageData,
+    resetPagination,
+  } = tableProps;
 
   // filter states
-  const [name, nameSet] = useState<NftParams['name']>(undefined);
-  const [symbol, symbolSet] = useState<NftParams['symbol']>(undefined);
+  const [q, qSet] = useState<NftParams['q']>(undefined);
+  const [search, searchSet] = useState<string>('');
 
-  const { data, loading, error } = useEmpathy<NftResults>(
+  const { data, loading, error } = useApi<NftResults>(
     endpoints['/nfts']({
-      offset,
       limit,
-      order_by,
-      order_direction,
-      with_total,
-      name,
-      symbol,
+      order_by: 'mint_date',
+      order_direction: 'desc',
+      cursor: cursor || undefined,
+      q,
     } as NftParams),
   );
 
   const { cols, rows, total } = useNftData(data, loading);
+
+  useEffect(() => {
+    onPageData?.(data?.next_cursor ?? null, data?.nfts?.length || 0);
+  }, [data, onPageData]);
+
+  const applySearch = useCallback(
+    (value: string) => {
+      const trimmed = value.trim();
+      searchSet(trimmed);
+
+      if (!trimmed) {
+        qSet(undefined);
+        resetPagination?.();
+        return;
+      }
+
+      qSet(trimmed);
+      resetPagination?.();
+    },
+    [resetPagination],
+  );
 
   return (
     <Box>
@@ -41,9 +66,6 @@ export const NftsList = () => {
         cols={cols}
         rows={rows}
         total={total}
-        dialogOptions={{
-          title: echo('details-nft'),
-        }}
         linkOptions={{
           route: '/nft',
           key: 'token_id',
@@ -53,11 +75,11 @@ export const NftsList = () => {
         loading={loading}
         error={error}
         addon={
-          <NftsListFilters
-            name={name}
-            nameSet={nameSet}
-            symbol={symbol}
-            symbolSet={symbolSet}
+          <InlineSearch
+            value={search}
+            onChange={searchSet}
+            onSubmit={applySearch}
+            placeholder={echo('search')}
           />
         }
       />

@@ -1,8 +1,8 @@
 import React, { useMemo } from 'react';
 import { Box } from '@mui/material';
 import { useRouter } from 'next/router';
-import { useEmpathy } from '@ricardojrmcom/empathy';
-import { useEcho } from '@ricardojrmcom/echo';
+import { useApi } from 'hooks';
+import { useEcho } from 'hooks/useEcho';
 import { NavTabs, NavTabsRecord, Breadcrumbs } from 'components/layout';
 import { endpoints, routes } from 'cfg';
 import { Locales } from 'types/locales';
@@ -20,7 +20,7 @@ export const ViewSeries = ({ tabForce = 'overview' }: ViewSeriesProps) => {
 
   const { query } = useRouter();
 
-  const { data, error, loading } = useEmpathy<SeriesResults>(
+  const { data, error, loading } = useApi<SeriesResults>(
     endpoints['/series']({
       id: (query?.id as string) || '',
     } as SeriesParams),

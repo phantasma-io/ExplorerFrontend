@@ -1,19 +1,12 @@
-import { useMemo, useState, useEffect } from 'react';
-import { useEcho } from '@ricardojrmcom/echo';
+import { useMemo } from 'react';
+import { useEcho } from 'hooks/useEcho';
 import { TableDisplayRow, TableDisplayCol } from 'types/table';
 import { BlockResults } from 'types/api';
-import { unixmsToDate } from 'scripts';
+import { unixToDate } from 'scripts';
 
 export const useBlockData = (data?: BlockResults, loading?: boolean) => {
   const { echo } = useEcho();
-
-  const [total, totalSet] = useState<number>(0);
-
-  useEffect(() => {
-    if (data?.total_results && !loading) {
-      totalSet(data.total_results);
-    }
-  }, [data, loading]);
+  const total = data?.total_results ?? 0;
 
   const cols = useMemo<TableDisplayCol[]>(() => {
     return [
@@ -36,6 +29,14 @@ export const useBlockData = (data?: BlockResults, loading?: boolean) => {
         type: 'date',
         size: 2,
         showDesktop: true,
+      },
+      {
+        id: 'date_unix',
+        label: `${echo('date')} (unix)`,
+        type: 'monospace',
+        size: 2,
+        showDesktop: true,
+        overviewOnly: true,
       },
       {
         id: 'protocol',
@@ -96,7 +97,8 @@ export const useBlockData = (data?: BlockResults, loading?: boolean) => {
     if (data) {
       return data?.blocks?.map((item) => [
         item?.height,
-        item?.date ? unixmsToDate(item.date) : undefined,
+        item?.date ? unixToDate(item.date) : undefined,
+        item?.date,
         item?.protocol,
         item?.reward,
         item?.chain_address,
@@ -118,7 +120,7 @@ export const useBlockData = (data?: BlockResults, loading?: boolean) => {
       total,
       raw,
     }),
-    [cols, rows, total, raw],
+    [cols, rows, raw, total],
   );
 
   return ctx;

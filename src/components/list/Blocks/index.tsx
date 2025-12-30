@@ -1,40 +1,63 @@
-import React, { useState } from 'react';
-import { useEcho } from '@ricardojrmcom/echo';
-import { useEmpathy } from '@ricardojrmcom/empathy';
+import React, { useState, useCallback, useEffect } from 'react';
+import { useEcho } from 'hooks/useEcho';
 import { Box } from '@mui/material';
 import { endpoints } from 'cfg';
-import { useTable } from 'hooks';
+import { useApi, useTable } from 'hooks';
 import { useBlockData } from 'hooks/api';
 import { BlockResults, BlockParams } from 'types/api';
 import { Table } from 'components/table';
-import { BlocksListFilters } from './filters';
+import { InlineSearch } from 'components/table/Controls/InlineSearch';
 
 export const BlocksList = () => {
   const { echo } = useEcho();
 
   // filter states
-  const [hash, hashSet] = useState<BlockParams['hash']>(undefined);
-  const [hash_partial, hash_partialSet] =
-    useState<BlockParams['hash_partial']>(undefined);
-  const [height, heightSet] = useState<BlockParams['height']>(undefined);
+  const [q, qSet] = useState<BlockParams['q']>(undefined);
+  const [search, searchSet] = useState<string>('');
 
-  const tableProps = useTable();
-  const { limit, order_by, order_direction, offset, with_total } = tableProps;
+  const tableProps = useTable('cursor');
+  const {
+    limit,
+    order_by,
+    order_direction,
+    cursor,
+    onPageData,
+    resetPagination,
+  } = tableProps;
 
-  const { data, loading, error } = useEmpathy<BlockResults>(
+  const { data, loading, error } = useApi<BlockResults>(
     endpoints['/blocks']({
-      offset,
       limit,
       order_by,
       order_direction,
-      with_total,
-      hash,
-      hash_partial,
-      height,
+      cursor: cursor || undefined,
+      q,
     } as BlockParams),
   );
 
-  const { cols, rows, total } = useBlockData(data, loading);
+  const { cols, rows } = useBlockData(data, loading);
+
+  useEffect(() => {
+    onPageData?.(data?.next_cursor ?? null, data?.blocks?.length || 0);
+  }, [data, onPageData]);
+
+  const applySearch = useCallback(
+    (value: string) => {
+      const trimmed = value.trim();
+      searchSet(trimmed);
+
+      if (!trimmed) {
+        qSet(undefined);
+        resetPagination?.();
+        return;
+      }
+
+      qSet(trimmed);
+
+      resetPagination?.();
+    },
+    [resetPagination],
+  );
 
   return (
     <Box>
@@ -43,10 +66,6 @@ export const BlocksList = () => {
         raw={data?.blocks || []}
         cols={cols}
         rows={rows}
-        total={total}
-        dialogOptions={{
-          title: echo('details-block'),
-        }}
         linkOptions={{
           route: '/block',
           key: 'height',
@@ -56,13 +75,11 @@ export const BlocksList = () => {
         loading={loading}
         error={error}
         addon={
-          <BlocksListFilters
-            hash={hash}
-            hashSet={hashSet}
-            hash_partial={hash_partial}
-            hash_partialSet={hash_partialSet}
-            height={height}
-            heightSet={heightSet}
+          <InlineSearch
+            value={search}
+            onChange={searchSet}
+            onSubmit={applySearch}
+            placeholder={echo('search')}
           />
         }
       />

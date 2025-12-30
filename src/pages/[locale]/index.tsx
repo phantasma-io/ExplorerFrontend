@@ -5,11 +5,11 @@ import type {
   GetStaticProps,
   GetStaticPaths,
 } from 'next';
-import { EchoProvider } from '@ricardojrmcom/echo';
 import { LocalizedView } from 'containers/LocalizedView';
-import { locales, localesKeys } from 'cfg';
+import { localesKeys } from 'cfg';
 import { Locales } from 'types/locales';
 import { ExplorerRoutes } from 'types/routes';
+import { I18nProvider } from 'containers/I18nProvider';
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const paths = localesKeys.map((key) => ({
@@ -34,13 +34,9 @@ const HomePage: NextPage = ({
   locale,
   route,
 }: InferGetStaticPropsType<typeof getStaticProps>) => (
-  <EchoProvider
-    echo={locales}
-    echoDefault={locale}
-    lsid="phantasma-explorer-locale"
-  >
+  <I18nProvider locale={locale}>
     <LocalizedView locale={locale} route={route} />
-  </EchoProvider>
+  </I18nProvider>
 );
 
 export default HomePage;

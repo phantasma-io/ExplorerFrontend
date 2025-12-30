@@ -1,47 +1,29 @@
-type ObjectType = {
-  [x: string]: string | number;
-};
+type ObjectType = Record<string, string | number | boolean | undefined | null>;
 
-/**
- * ObjToQueryType
- */
-type ObjToQueryType = <T>(obj: T | ObjectType) => string;
+type ObjToQueryType = (obj: ObjectType) => string;
 
-/**
- * objToQuery
- */
 export const objToQuery: ObjToQueryType = (obj) => {
-  let str = '?';
+  const params = new URLSearchParams();
 
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
-  Object.entries(obj).forEach((entry) => {
-    if (entry[1]) {
-      str += `${entry[0]}=${entry[1]}&`;
+  Object.entries(obj as Record<string, unknown>).forEach(([key, val]) => {
+    if (val === undefined || val === null) {
+      return;
     }
+    params.append(key, String(val));
   });
 
-  str = str.substring(0, str.length - 1);
-
-  return str;
+  const query = params.toString();
+  return query ? `?${query}` : '';
 };
 
-/**
- * QueryToObjType
- */
 type QueryToObjType = (str: string) => ObjectType;
 
-/**
- * queryToObj
- */
 export const queryToObj: QueryToObjType = (str) => {
   const obj: ObjectType = {};
+  const clean = str.startsWith('?') ? str.substring(1) : str;
+  const params = new URLSearchParams(clean);
 
-  const newStr = str.startsWith('?') ? str.substring(1, str.length) : str;
-
-  newStr.split('&').forEach((propStr) => {
-    const prop = propStr.split('=');
-    const [key, value] = prop;
+  params.forEach((value, key) => {
     obj[key] = value;
   });
 

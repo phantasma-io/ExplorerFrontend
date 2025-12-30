@@ -17,12 +17,14 @@ export interface Series {
   attr_value_2?: string;
   attr_type_3?: string;
   attr_value_3?: string;
+  metadata?: Record<string, string>;
 }
 
 export interface SeriesParams extends ListParams {
   id?: string;
   creator?: string;
   name?: string;
+  q?: string;
   chain?: string;
   contract?: string;
   symbol?: string;

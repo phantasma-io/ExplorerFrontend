@@ -16,6 +16,7 @@ export interface Contract {
 export interface ContractParams
   extends ListParams,
     Pick<Contract, 'symbol' | 'hash'> {
+  q?: string;
   with_methods?: WithOption;
   with_script?: WithOption;
   with_token?: WithOption;

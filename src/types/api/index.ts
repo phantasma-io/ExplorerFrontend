@@ -1,4 +1,9 @@
-export type { Address, AddressParams, AddressResults } from './addresses';
+export type {
+  Address,
+  AddressParams,
+  AddressResults,
+  Balance,
+} from './addresses';
 
 export type { Block, BlockParams, BlockResults } from './blocks';
 
@@ -15,7 +20,12 @@ export type {
 
 export type { EventParams, EventResult, EventResults } from './events';
 
-export type { EventTypeMap, EventTypes } from './eventTypes';
+export type {
+  EventTypeMap,
+  EventTypes,
+  SpecialResolutionCall,
+  SpecialResolutionEvent,
+} from './eventTypes';
 
 export type { Fiat } from './fiat';
 
@@ -34,8 +44,6 @@ export type { Nft, NftMetadata, NftOwner, NftParams, NftResults } from './nfts';
 export type { Oracle, OracleParams, OracleResults } from './oracles';
 
 export type { Dao, DaoParams, DaoResults } from './organizations';
-
-export type { Platform, PlatformParams, PlatformResults } from './platforms';
 
 export type {
   HistoryPrice,

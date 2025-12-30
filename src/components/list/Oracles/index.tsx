@@ -1,9 +1,8 @@
-import React from 'react';
-import { useEcho } from '@ricardojrmcom/echo';
-import { useEmpathy } from '@ricardojrmcom/empathy';
+import React, { useEffect } from 'react';
+import { useEcho } from 'hooks/useEcho';
 import { Box } from '@mui/material';
 import { endpoints } from 'cfg';
-import { useTable } from 'hooks';
+import { useApi, useTable } from 'hooks';
 import { useOracleData } from 'hooks/api';
 import { OracleResults, OracleParams } from 'types/api';
 import { Table } from 'components/table';
@@ -16,9 +15,10 @@ export const OraclesList = ({ block_hash }: OraclesListProps) => {
   const { echo } = useEcho();
 
   const tableProps = useTable();
-  const { limit, order_by, order_direction, offset, with_total } = tableProps;
+  const { limit, order_by, order_direction, offset, with_total, onPageData } =
+    tableProps;
 
-  const { data, loading, error } = useEmpathy<OracleResults>(
+  const { data, loading, error } = useApi<OracleResults>(
     endpoints['/oracles']({
       offset,
       limit,
@@ -31,6 +31,10 @@ export const OraclesList = ({ block_hash }: OraclesListProps) => {
 
   const { cols, rows, total } = useOracleData(data, loading);
 
+  useEffect(() => {
+    onPageData?.(data?.next_cursor ?? null, data?.oracles?.length || 0);
+  }, [data, onPageData]);
+
   return (
     <Box>
       {block_hash ? (
@@ -40,9 +44,6 @@ export const OraclesList = ({ block_hash }: OraclesListProps) => {
           cols={cols}
           rows={rows}
           total={total}
-          dialogOptions={{
-            title: echo('details-oracle'),
-          }}
           // linkOptions={{
           //   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
           //   // @ts-ignore

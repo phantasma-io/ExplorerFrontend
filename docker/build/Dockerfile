@@ -1,4 +1,4 @@
-FROM node:16-alpine AS base
+FROM node:24-alpine AS base
 
 RUN apk update && apk upgrade
 
@@ -23,10 +23,13 @@ RUN git clone -b $BUILD_BRANCH --single-branch git@github.com:phantasma-io/Explo
 WORKDIR /source/ExplorerFrontend
 RUN git submodule update --init --recursive
 
-RUN npm install
+RUN npm ci
 
 FROM base AS build
 
-RUN yarn next build
+ARG NEXT_PUBLIC_API_URL
+ENV NEXT_PUBLIC_API_URL=$NEXT_PUBLIC_API_URL
+
+RUN npm run build
 
 FROM build AS final

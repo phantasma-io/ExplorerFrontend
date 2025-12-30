@@ -18,12 +18,12 @@ type RenderDetails = (
   linkOptions?: DetailsItem['linkOptions'],
   inTable?: boolean,
   append?: string,
-) => JSX.Element | null;
+) => React.ReactNode;
 
 export const useRenderDetails = () => {
   const renderDetails = useCallback<RenderDetails>(
     (type, value, label, linkOptions, inTable, append) => {
-      if (value) {
+      if (value !== null && value !== undefined) {
         switch (type) {
           case 'thumbnail': {
             const { thumb, link } = parseIpfs(value as string);

@@ -23,6 +23,7 @@ export interface Dao {
 export interface DaoParams extends ListParams {
   organization_name?: string;
   organization_name_partial?: string;
+  q?: string;
   with_creation_event?: WithOption;
   with_address?: WithOption;
 }

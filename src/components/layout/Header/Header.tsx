@@ -6,10 +6,7 @@ import {
   Localization,
   Search,
   DarkMode,
-  SwitchTheme,
   GetWallet,
-  DateTimeOpts,
-  GotoDex,
 } from './sub';
 
 /**
@@ -57,19 +54,10 @@ export const Header = ({ height }: HeaderProps) => {
               <Search />
             </Box>
             <Box display="inline-block" pr={{ xs: 0.1, md: 1.5 }}>
-              <GotoDex />
-            </Box>
-            <Box display="inline-block" pr={{ xs: 0.1, md: 1.5 }}>
               <GetWallet />
             </Box>
             <Box display="inline-block" pr={{ xs: 0.1, md: 1.5 }}>
               <DarkMode />
-            </Box>
-            <Box display="inline-block" pr={{ xs: 0.1, md: 1.5 }}>
-              <SwitchTheme />
-            </Box>
-            <Box display="inline-block" pr={{ xs: 0.1, md: 1.5 }}>
-              <DateTimeOpts />
             </Box>
             <Box display="inline-block">
               <Localization />

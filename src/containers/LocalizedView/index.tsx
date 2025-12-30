@@ -1,19 +1,17 @@
 import React, { useEffect, useMemo } from 'react';
 import { useRouter } from 'next/router';
 import { Box } from '@mui/material';
-import { useEcho } from '@ricardojrmcom/echo';
+import { useEcho } from 'hooks/useEcho';
 import { Locales } from 'types/locales';
 import { ExplorerRoutes } from 'types/routes';
 import { MetaDynamic } from 'components/meta';
 import {
   AppLayout,
-  ViewHome,
   ViewAddress,
   ViewBlock,
   ViewContract,
   ViewDao,
   ViewEvent,
-  ViewPlatform,
   ViewNft,
   ViewNexus,
   ViewSeries,
@@ -29,12 +27,27 @@ interface LocalizedViewProps {
 }
 
 export const LocalizedView = ({ locale, route }: LocalizedViewProps) => {
-  const { query } = useRouter();
+  const { query, isReady } = useRouter();
   const { echo, echoSetById } = useEcho();
+  const needsQuery =
+    route === '/address' ||
+    route === '/block' ||
+    route === '/contract' ||
+    route === '/dao' ||
+    route === '/event' ||
+    route === '/oracle' ||
+    route === '/nft' ||
+    route === '/series' ||
+    route === '/token' ||
+    route === '/transaction' ||
+    route === '/search';
+
+  const ready =
+    typeof window === 'undefined' ? !needsQuery : !needsQuery || isReady;
 
   useEffect(() => {
     echoSetById(locale);
-  });
+  }, [echoSetById, locale]);
 
   const title = useMemo(() => {
     switch (route) {
@@ -50,8 +63,6 @@ export const LocalizedView = ({ locale, route }: LocalizedViewProps) => {
         return `${echo('dao')} | ${echo('meta-title')}`;
       case '/event':
         return `${echo('event')} | ${echo('meta-title')}`;
-      case '/platform':
-        return `${echo('platform')} | ${echo('meta-title')}`;
       case '/nft':
         return `${echo('nft')} | ${echo('meta-title')}`;
       case '/series':
@@ -60,9 +71,8 @@ export const LocalizedView = ({ locale, route }: LocalizedViewProps) => {
         return `${echo('token')} | ${echo('meta-title')}`;
       case '/transaction':
         return `${echo('transaction')} | ${echo('meta-title')}`;
-      case '/':
       default:
-        return `${echo('meta-title')}`;
+        return `${echo('nexus')} | ${echo('meta-title')}`;
     }
   }, [route, echo]);
 
@@ -80,8 +90,6 @@ export const LocalizedView = ({ locale, route }: LocalizedViewProps) => {
         return `${echo('meta-dao')}`;
       case '/event':
         return `${echo('meta-event')}`;
-      case '/platform':
-        return `${echo('meta-platform')}`;
       case '/nft':
         return `${echo('meta-nft')}`;
       case '/series':
@@ -90,13 +98,16 @@ export const LocalizedView = ({ locale, route }: LocalizedViewProps) => {
         return `${echo('meta-token')}`;
       case '/transaction':
         return `${echo('meta-transaction')}`;
-      case '/':
       default:
-        return `${echo('meta-home')}`;
+        return `${echo('meta-nexus')}`;
     }
   }, [route, echo]);
 
   const children = useMemo(() => {
+    if (needsQuery && (!ready || !query?.id)) {
+      return null;
+    }
+
     switch (route) {
       case '/nexus':
         return <ViewNexus />;
@@ -123,11 +134,6 @@ export const LocalizedView = ({ locale, route }: LocalizedViewProps) => {
       case '/event':
         if (query?.id) {
           return <ViewEvent />;
-        }
-        return null;
-      case '/platform':
-        if (query?.id) {
-          return <ViewPlatform />;
         }
         return null;
       case '/oracle':
@@ -157,11 +163,10 @@ export const LocalizedView = ({ locale, route }: LocalizedViewProps) => {
           return <ViewTransaction />;
         }
         return null;
-      case '/':
       default:
-        return <ViewHome />;
+        return <ViewNexus />;
     }
-  }, [route, query]);
+  }, [needsQuery, ready, route, query]);
 
   return (
     <AppLayout>

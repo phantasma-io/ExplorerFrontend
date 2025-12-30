@@ -6,13 +6,14 @@ import { Contract } from './contracts';
 export interface NftMetadata {
   description?: string;
   name?: string;
-  image?: string;
-  video?: string;
-  info_url?: string;
+  imageURL?: string;
+  videoURL?: string;
+  infoURL?: string;
   rom?: string;
   ram?: string;
   mint_date?: string;
   mint_number?: string;
+  metadata?: Record<string, string>;
 }
 
 export interface NftOwner {
@@ -41,6 +42,7 @@ export interface NftParams extends ListParams {
   owner?: string;
   contract_hash?: string;
   name?: string;
+  q?: string;
   chain?: string;
   symbol?: string;
   token_id?: string;

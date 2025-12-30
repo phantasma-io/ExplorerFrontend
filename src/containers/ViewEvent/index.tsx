@@ -1,8 +1,8 @@
 import React, { useMemo } from 'react';
 import { Box } from '@mui/material';
 import { useRouter } from 'next/router';
-import { useEmpathy } from '@ricardojrmcom/empathy';
-import { useEcho } from '@ricardojrmcom/echo';
+import { useApi } from 'hooks';
+import { useEcho } from 'hooks/useEcho';
 import { NavTabs, NavTabsRecord, Breadcrumbs } from 'components/layout';
 import { endpoints, routes } from 'cfg';
 import { Locales } from 'types/locales';
@@ -18,14 +18,17 @@ export interface ViewEventProps {
 export const ViewEvent = ({ tabForce = 'overview' }: ViewEventProps) => {
   const { echo, echoActiveId } = useEcho();
 
-  const { query } = useRouter();
+  const { query, isReady } = useRouter();
+  const ready = typeof window === 'undefined' ? true : isReady;
 
-  const { data, error, loading } = useEmpathy<EventResults>(
-    endpoints['/events']({
-      event_id: (query?.id as string) || '',
-      with_fiat: 1,
-      with_event_data: 1,
-    } as EventParams),
+  const { data, error, loading } = useApi<EventResults>(
+    ready && query?.id
+      ? endpoints['/events']({
+          event_id: (query?.id as string) || '',
+          with_fiat: 1,
+          with_event_data: 1,
+        } as EventParams)
+      : null,
   );
 
   const tabs: NavTabsRecord = useMemo(
@@ -47,6 +50,10 @@ export const ViewEvent = ({ tabForce = 'overview' }: ViewEventProps) => {
     }),
     [echo, echoActiveId, data, error, loading],
   );
+
+  if (!ready || !query?.id) {
+    return null;
+  }
 
   return (
     <Box>

@@ -1,18 +1,11 @@
-import { useMemo, useState, useEffect } from 'react';
-import { useEcho } from '@ricardojrmcom/echo';
+import { useMemo } from 'react';
+import { useEcho } from 'hooks/useEcho';
 import { TableDisplayRow, TableDisplayCol } from 'types/table';
 import { OracleResults } from 'types/api';
 
 export const useOracleData = (data?: OracleResults, loading?: boolean) => {
   const { echo } = useEcho();
-
-  const [total, totalSet] = useState<number>(0);
-
-  useEffect(() => {
-    if (data?.total_results && !loading) {
-      totalSet(data.total_results);
-    }
-  }, [data, loading]);
+  const total = data?.total_results ?? 0;
 
   const cols = useMemo<TableDisplayCol[]>(() => {
     return [
@@ -49,10 +42,10 @@ export const useOracleData = (data?: OracleResults, loading?: boolean) => {
     () => ({
       cols,
       rows,
-      total,
       raw,
+      total,
     }),
-    [cols, rows, total, raw],
+    [cols, rows, raw, total],
   );
 
   return ctx;

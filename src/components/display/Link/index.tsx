@@ -1,52 +1,69 @@
-import React from 'react';
+import React, { isValidElement, ReactElement } from 'react';
 import NextLink from 'next/link';
-import { Typography, TypographyProps, Link as MuiLink } from '@mui/material';
+import { Link as MuiLink, LinkProps as MuiLinkProps } from '@mui/material';
 
-/**
- * Link props
- */
-export interface LinkProps extends TypographyProps {
+export interface LinkProps extends Omit<MuiLinkProps, 'href'> {
   external?: boolean;
   href: string;
   withDec?: boolean;
+  /**
+   * When true, no wrapper is rendered; the child is turned into the link target via `component` + `href`.
+   * Use for interactive children like Buttons/IconButtons to avoid nesting anchors.
+   */
+  asChild?: boolean;
 }
 
-/**
- * Link
- */
 export const Link = ({
   children,
   external,
   href,
   sx,
   withDec,
-  ...propsTypo
+  asChild,
+  ...props
 }: LinkProps) => {
-  const linkProps = external
-    ? { target: '_blank', rel: 'noopener noreferrer' }
-    : {};
+  const decoration = withDec ? 'underline' : 'none';
 
-  const linkComponent = (
+  if (asChild && isValidElement(children)) {
+    if (external) {
+      return React.cloneElement(children as ReactElement, {
+        component: 'a',
+        href,
+        target: '_blank',
+        rel: 'noopener noreferrer',
+        ...props,
+      } as any);
+    }
+
+    return React.cloneElement(children as ReactElement, {
+      component: NextLink,
+      href,
+      ...props,
+    } as any);
+  }
+
+  if (external) {
+    return (
+      <MuiLink
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        sx={{ textDecoration: decoration, ...sx }}
+        {...props}
+      >
+        {children}
+      </MuiLink>
+    );
+  }
+
+  return (
     <MuiLink
+      component={NextLink}
       href={href}
-      {...linkProps}
-      sx={{ textDecoration: withDec ? 'underline' : 'none', ...sx }}
+      sx={{ textDecoration: decoration, ...sx }}
+      {...props}
     >
       {children}
     </MuiLink>
-  );
-  if (external) {
-    return (
-      <Typography {...propsTypo} sx={sx}>
-        {linkComponent}
-      </Typography>
-    );
-  }
-  return (
-    <Typography {...propsTypo} sx={sx}>
-      <NextLink href={href} passHref>
-        {linkComponent}
-      </NextLink>
-    </Typography>
   );
 };

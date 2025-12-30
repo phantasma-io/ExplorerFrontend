@@ -1,7 +1,6 @@
 import React from 'react';
-import { useRouter } from 'next/router';
 import { Box } from '@mui/material';
-import { useEcho } from '@ricardojrmcom/echo';
+import { useEcho } from 'hooks/useEcho';
 import { Text } from 'components/display';
 import { ExplorerTabs, ExplorerRoutes } from 'types/routes';
 
@@ -12,7 +11,8 @@ export interface BreadcrumbsProps {
 
 export const Breadcrumbs = ({ tab, route }: BreadcrumbsProps) => {
   const { echo } = useEcho();
-  const { query } = useRouter();
+
+  const labelKey = route === '/' ? 'home' : route.replace('/', '');
 
   return (
     <Box
@@ -24,9 +24,9 @@ export const Breadcrumbs = ({ tab, route }: BreadcrumbsProps) => {
     >
       <Box>
         <Text
-          variant='h6'
+          variant="h6"
           sx={{ color: '#fff' }}
-          value={echo(`details-${query?.view as string}`)}
+          value={echo(`details-${labelKey}`)}
         />
       </Box>
     </Box>

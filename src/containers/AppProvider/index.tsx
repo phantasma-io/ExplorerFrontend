@@ -1,14 +1,13 @@
 import React from 'react';
 import { SnackbarProvider } from 'notistack';
-import { FuryProvider } from '@ricardojrmcom/fury';
-import { themes } from 'cfg';
+import { ThemeModeProvider } from 'containers/ThemeProvider';
 import { DatetimeOptsProvider } from 'hooks/datetime/DatetimeOptsProvider';
 
 /**
  * AppProviderProps
  */
 interface AppProviderProps {
-  children: JSX.Element;
+  children: React.ReactNode;
 }
 
 /**
@@ -17,13 +16,9 @@ interface AppProviderProps {
 export const AppProvider = ({ children }: AppProviderProps) => (
   <SnackbarProvider maxSnack={3}>
     <DatetimeOptsProvider>
-      <FuryProvider
-        fury={themes}
-        furyDefault="soul"
-        lsid="phantasma-explorer-theme"
-      >
+      <ThemeModeProvider>
         {children}
-      </FuryProvider>
+      </ThemeModeProvider>
     </DatetimeOptsProvider>
   </SnackbarProvider>
 );
