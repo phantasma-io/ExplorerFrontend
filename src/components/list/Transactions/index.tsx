@@ -398,6 +398,10 @@ const TransactionsExportButton = ({
     toSet(range.to);
   }, []);
 
+  const normalizeFilenameAddress = (value: string) =>
+    value.replace(/[^a-zA-Z0-9-_]/g, '');
+  const toFilenameDate = (value: string) => value.replace(/[^0-9]/g, '');
+
   const fetchTransactions = useCallback(
     async (params: TransactionParams) => {
       const transactions: Transaction[] = [];
@@ -471,7 +475,9 @@ const TransactionsExportButton = ({
         exportErrorSet('No transactions found for the selected range.');
         return;
       }
-      const filename = `PhantasmaExplorer-Transactions-Koinly-${nanoid()}.csv`;
+      const filename = `PhantasmaExplorer-Transactions-Koinly-${normalizeFilenameAddress(
+        address,
+      )}-${toFilenameDate(from)}-${toFilenameDate(to)}.csv`;
       csvDownload(rows, filename, ',');
       isOpenSet(false);
     } catch (error) {
