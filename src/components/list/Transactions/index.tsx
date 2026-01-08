@@ -422,6 +422,7 @@ const TransactionsExportButton = ({
 
       return transactions;
     },
+    [],
   );
 
   const handleExport = useCallback(async () => {
