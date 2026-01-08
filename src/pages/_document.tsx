@@ -6,15 +6,13 @@ import Document, {
   Main,
   NextScript,
   DocumentContext,
-  DocumentInitialProps,
 } from 'next/document';
 import createEmotionServer from '@emotion/server/create-instance';
 import { createEmotionCache } from 'scripts';
 import { localesDefault, localesKeys } from 'cfg';
 import { Locales } from 'types/locales';
 
-type DocumentProps = DocumentInitialProps & {
-  emotionStyleTags: JSX.Element[];
+type DocumentExtraProps = {
   locale: Locales;
 };
 
@@ -33,14 +31,12 @@ const localeFromPath = (path: string | undefined) => {
   return normalizeLocale(segment);
 };
 
-export default class MyDocument extends Document {
+export default class MyDocument extends Document<DocumentExtraProps> {
   public render() {
-    const { locale, emotionStyleTags } = this.props as DocumentProps;
+    const { locale } = this.props;
     return (
       <Html lang={locale ?? localesDefault}>
-        <Head>
-          {emotionStyleTags}
-        </Head>
+        <Head />
         <body>
           <Main />
           <NextScript />
