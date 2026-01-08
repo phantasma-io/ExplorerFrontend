@@ -11,6 +11,7 @@ export interface TableControlsProps extends TableUrlParams, TableParamControls {
   tableId: string;
   exportData: string;
   addon?: React.ReactNode;
+  exporter?: React.ReactNode;
 }
 
 export const TableControls = ({
@@ -22,6 +23,7 @@ export const TableControls = ({
   pageSizeSet,
   hasNext,
   addon,
+  exporter,
 }: TableControlsProps) => {
   const { echo } = useEcho();
 
@@ -64,7 +66,9 @@ export const TableControls = ({
                 />
               </Grid>
               <Grid item>
-                <TableExporter data={exportData} filename={csvFilename} />
+                {exporter ?? (
+                  <TableExporter data={exportData} filename={csvFilename} />
+                )}
               </Grid>
               {addon && <Grid item>{addon}</Grid>}
             </Grid>

@@ -10,6 +10,7 @@ export interface TableProps
     TableParamControls,
     TableUrlParams {
   addon?: React.ReactNode;
+  exporter?: React.ReactNode;
   hideControls?: boolean;
   total?: number;
   cursor?: string | null;
@@ -42,6 +43,7 @@ export const Table = ({
   loading,
   error,
   addon,
+  exporter,
   hideControls,
 }: TableProps) => {
   const strData = useMemo(() => JSON.stringify(raw, null, 2), [raw]);
@@ -63,6 +65,7 @@ export const Table = ({
           orderDirectionSet={orderDirectionSet}
           hasNext={hasNext}
           addon={addon}
+          exporter={exporter}
         />
       </Box>
       }

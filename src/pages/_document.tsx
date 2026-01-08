@@ -1,15 +1,45 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react';
-import Document, { Html, Head, Main, NextScript } from 'next/document';
+import Document, {
+  Html,
+  Head,
+  Main,
+  NextScript,
+  DocumentContext,
+  DocumentInitialProps,
+} from 'next/document';
 import createEmotionServer from '@emotion/server/create-instance';
 import { createEmotionCache } from 'scripts';
+import { localesDefault, localesKeys } from 'cfg';
+import { Locales } from 'types/locales';
+
+type DocumentProps = DocumentInitialProps & {
+  emotionStyleTags: JSX.Element[];
+  locale: Locales;
+};
+
+const normalizeLocale = (value: string | string[] | undefined) => {
+  if (!value) return null;
+  const candidate = Array.isArray(value) ? value[0] : value;
+  return localesKeys.includes(candidate as Locales)
+    ? (candidate as Locales)
+    : null;
+};
+
+const localeFromPath = (path: string | undefined) => {
+  if (!path) return null;
+  const base = path.split('?')[0]?.split('#')[0] ?? '';
+  const segment = base.split('/')[1];
+  return normalizeLocale(segment);
+};
 
 export default class MyDocument extends Document {
   public render() {
+    const { locale, emotionStyleTags } = this.props as DocumentProps;
     return (
-      <Html lang="en">
+      <Html lang={locale ?? localesDefault}>
         <Head>
-          {(this.props as any).emotionStyleTags}
+          {emotionStyleTags}
         </Head>
         <body>
           <Main />
@@ -20,7 +50,7 @@ export default class MyDocument extends Document {
   }
 }
 
-MyDocument.getInitialProps = async (ctx) => {
+MyDocument.getInitialProps = async (ctx: DocumentContext) => {
   const originalRenderPage = ctx.renderPage;
 
   const cache = createEmotionCache();
@@ -43,9 +73,15 @@ MyDocument.getInitialProps = async (ctx) => {
       dangerouslySetInnerHTML={{ __html: style.css }}
     />
   ));
+  // HTML lang drives native datetime-local formatting, so align with UI locale.
+  const locale =
+    normalizeLocale(ctx.query?.locale) ||
+    localeFromPath(ctx.req?.url ?? ctx.asPath) ||
+    localesDefault;
 
   return {
     ...initialProps,
+    locale,
     styles: [
       ...React.Children.toArray(initialProps.styles),
       ...emotionStyleTags,
