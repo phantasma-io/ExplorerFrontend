@@ -20,27 +20,24 @@ mkdir /home/pha/docker
 
 ### Frontend
 
-Create following folder:
+Clone the repo (or pull updates when you want to rebuild):
 ```
-mkdir -p /home/pha/docker/explorer-frontend
+git clone https://github.com/phantasma-io/ExplorerFrontend.git /home/pha/explorer/ExplorerFrontend
 ```
 
-Copy content of ExplorerFrontend/docker folder into /home/pha/docker/explorer-frontend.
+Add file /home/pha/explorer/ExplorerFrontend/docker/.env with the following content:
+```
+NEXT_PUBLIC_API_URL=https://api-explorer.phantasma.info/api/v1
+```
+Use `env.default` as a reference for API URLs.
 
-Add file /home/pha/docker/explorer-frontend/.env with the following content:
+Launch frontend service from folder /home/pha/explorer/ExplorerFrontend/docker by either using sh script 'deploy.sh'
 ```
-# Github branch to be used
-BUILD_BRANCH=main
-```
-where 'main' is main github branch of backend project which we use for production deployment.
-
-Launch frontend service from folder /home/pha/docker/explorer-frontend by either using sh script 'deploy.sh'
-```
-deploy.sh
+./deploy.sh
 ```
 or by running commands
 ```
-docker compose pull
+docker compose build
 docker compose up -d
 ```
 

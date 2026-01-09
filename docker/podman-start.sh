@@ -6,4 +6,7 @@ fi
 # Avoid compose project name collisions across stacks.
 export COMPOSE_PROJECT_NAME="explorer-frontend-${DEPLOY_ENV:-production}"
 
-docker compose up -d --force-recreate --remove-orphans
+CONTAINER_NAME="explorer-frontend-${DEPLOY_ENV:-production}"
+podman rm -f "$CONTAINER_NAME" >/dev/null 2>&1 || true
+
+podman-compose up -d --force-recreate --remove-orphans

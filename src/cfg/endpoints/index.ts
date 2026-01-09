@@ -4,10 +4,8 @@ import { ExplorerApi, ApiParams } from 'types/endpoints';
 const parseParams = (params: ApiParams | undefined) =>
   params ? objToQuery(params as any) : '';
 
-const testnet = process.env.NEXT_PUBLIC_TESTNET === 'testnet';
-
-const fallbackUrl = `https://${testnet ? 'testnet-backend-explorer' : 'api-explorer'}.phantasma.info/api/v1`;
-export const url = process.env.NEXT_PUBLIC_API_URL ? process.env.NEXT_PUBLIC_API_URL : fallbackUrl
+const fallbackUrl = 'https://api-explorer.phantasma.info/api/v1';
+export const url = process.env.NEXT_PUBLIC_API_URL ? process.env.NEXT_PUBLIC_API_URL : fallbackUrl;
 
 export const endpoints: ExplorerApi = {
   '/blocks': (params) => `${url}/blocks${parseParams(params)}`,

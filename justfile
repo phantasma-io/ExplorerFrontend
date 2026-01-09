@@ -38,3 +38,35 @@ r:
 [group('run')]
 rd:
     sh ./scripts/run_in_tmux.sh "explorer_front" "just r0" --detached
+
+[group('docker')]
+docker-deploy:
+  cd docker && sh ./deploy.sh
+
+[group('docker')]
+docker-start:
+  cd docker && sh ./start.sh
+
+[group('docker')]
+docker-stop:
+  cd docker && sh ./stop.sh
+
+[group('docker')]
+docker-prepare:
+  mkdir -p docker/config docker/logs
+
+[group('podman')]
+podman-deploy:
+  cd docker && sh ./podman-deploy.sh
+
+[group('podman')]
+podman-start:
+  cd docker && sh ./podman-start.sh
+
+[group('podman')]
+podman-stop:
+  cd docker && sh ./stop.sh
+
+[group('podman')]
+podman-prepare:
+  just docker-prepare
