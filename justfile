@@ -50,3 +50,7 @@ docker-start:
 [group('docker')]
 docker-stop:
   cd docker && sh ./stop.sh
+
+[group('docker')]
+docker-prepare:
+  mkdir -p docker/config docker/logs

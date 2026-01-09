@@ -2,8 +2,8 @@ version: "3.9"
 
 services:
   frontend:
-    image: "explorer-frontend-production"
-    container_name: explorer-frontend-production
+    image: "explorer-frontend-${DEPLOY_ENV:-production}"
+    container_name: explorer-frontend-${DEPLOY_ENV:-production}
     build:
       context: ..
       dockerfile: docker/build/Dockerfile
@@ -12,13 +12,11 @@ services:
     volumes:
       - ./logs:/app/logs
       - ./config:/app/config
-    environment:
-      SENTRY_ENVIRONMENT: Production
     command: node server.js
     networks:
-      - frontend-production
+      - frontend
     ports:
-      - 3000:3000
+      - ${FRONTEND_PORT:-3000}:3000
     restart: unless-stopped
     logging:
       driver: "json-file"
@@ -27,5 +25,5 @@ services:
         max-size: "20m"
 
 networks:
-   frontend-production:
-      name: frontend-production-network
+   frontend:
+      name: frontend-${DEPLOY_ENV:-production}-network
