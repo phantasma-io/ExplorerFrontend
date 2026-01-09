@@ -4,13 +4,17 @@ services:
   frontend:
     image: "explorer-frontend-production"
     container_name: explorer-frontend-production
+    build:
+      context: ..
+      dockerfile: docker/build/Dockerfile
+      args:
+        NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL}
     volumes:
       - ./logs:/app/logs
       - ./config:/app/config
     environment:
       SENTRY_ENVIRONMENT: Production
-      NEXT_PUBLIC_TESTNET: testnet
-    command: npm start
+    command: node server.js
     networks:
       - frontend-production
     ports:

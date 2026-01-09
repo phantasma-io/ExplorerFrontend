@@ -38,3 +38,15 @@ r:
 [group('run')]
 rd:
     sh ./scripts/run_in_tmux.sh "explorer_front" "just r0" --detached
+
+[group('docker')]
+docker-deploy:
+  cd docker && sh ./deploy.sh
+
+[group('docker')]
+docker-start:
+  cd docker && sh ./start.sh
+
+[group('docker')]
+docker-stop:
+  cd docker && sh ./stop.sh
